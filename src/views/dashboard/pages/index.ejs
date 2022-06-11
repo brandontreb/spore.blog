@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head'); %>
+</head>
+
+<body class="container">
+
+  <header>
+    <%- include('../partials/header'); %>
+  </header>
+
+  <main>
+    <div class="jumbotron">
+      <h1>Home Page</h1>
+      <form method="post" action="/dashboard?_method=put">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" value="<%- title %>">
+        <label for="homepage_content">Homepage Content (markdown):</label>
+        <textarea id="homepage_content" name="homepage_content"><%- homepage_content %></textarea>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <%- include('../partials/footer'); %>
+  </footer>
+
+</body>
+
+</html>

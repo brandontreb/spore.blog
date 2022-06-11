@@ -1,0 +1,8 @@
+nav a {
+  margin-right: 10px;
+  text-decoration: underline;
+}
+
+input[type="text"] {
+  width: 100%;
+}
