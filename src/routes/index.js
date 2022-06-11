@@ -1,12 +1,15 @@
 const express = require('express');
 const dashboardRoute = require('./dashboard.route');
-const config = require('../config/config');
+const blogRoute = require('./blog.route');
 
 const router = express.Router();
 
 const defaultRoutes = [{
   path: '/dashboard',
   route: dashboardRoute,
+}, {
+  path: '/',
+  route: blogRoute,
 }, ];
 
 defaultRoutes.forEach((route) => {
