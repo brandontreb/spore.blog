@@ -1,5 +1,3 @@
-// node_modules/.bin/sequelize model:generate --name Blog --attributes email:string,password:string,title:string,homepage_content:string,meta_description:string,language:string
-// node_modules/.bin/sequelize db:migrate
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -20,10 +18,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       homepage_content: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       meta_description: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       language: {
         type: Sequelize.STRING
