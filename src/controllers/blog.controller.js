@@ -7,7 +7,11 @@ const getBlog = catchAsync(async(req, res) => {
   let blog = await blogService.getBlog();
   res.render('pages/index', {
     ...blog.dataValues,
-    homepage_content_html: md.render(blog.homepage_content)
+    homepage_content_html: md.render(blog.homepage_content),
+    nav_html: md.render(blog.nav),
+    meta: {
+      url: req.protocol + '://' + req.get('host') + req.originalUrl
+    }
   });
 });
 

@@ -1,22 +1,27 @@
 <!DOCTYPE html>
-<html lang="<%- language %>">
+<html lang="en">
 
 <head>
   <%- include('../partials/head'); %>
 </head>
 
-<body>
+<body class="container">
+
   <header>
     <%- include('../partials/header'); %>
   </header>
+
   <main>
     <content>
-      <%- homepage_content_html %>
+      <h1>Posts</h1>
+      <a href="/dashboard/posts/new">New post</a>
     </content>
   </main>
+
   <footer>
     <%- include('../partials/footer'); %>
   </footer>
+
 </body>
 
 </html>

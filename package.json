@@ -76,6 +76,7 @@
     "sqlite3": "^5.0.8",
     "swagger-jsdoc": "^6.0.8",
     "swagger-ui-express": "^4.1.6",
+    "url-slug": "^3.0.4",
     "validator": "^13.0.0",
     "winston": "^3.2.1",
     "xss-clean": "^0.1.1"

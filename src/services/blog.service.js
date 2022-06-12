@@ -1,6 +1,4 @@
-const httpStatus = require('http-status');
 const db = require('../db/models');
-const ApiError = require('../utils/ApiError');
 
 const getBlog = async(id = 1) => {
   let blog = await db.Blog.findByPk(id);
@@ -9,9 +7,12 @@ const getBlog = async(id = 1) => {
       title: 'My Blog',
       email: 'brandontreb@gmail.com',
       password: 'tr4v15',
-      homepage_content: '# Welcome to my spore.blog\nChange this content in the dashboard.',
+      homepage_content: '# Welcome to my spore.blog\n\nChange this content in the dashboard.',
+      homepage_content_html: '<h1> Welcome to my spore.blog</h1><p>Change this content in the dashboard.</p>',
       meta_description: 'A new blog for my spore.blog',
-      language: 'en'
+      language: 'en',
+      nav: '[Home](/)\n[Blog](/blog/)',
+      nav_html: '<a href="/">Home</a>\n<a href="/blog/">Blog</a>',
     }
     blog = await db.Blog.create(blogObject);
   }

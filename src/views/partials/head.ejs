@@ -1,37 +1,35 @@
-<meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
 <meta charset="utf-8">
-<meta name="bear-validation" content="look-for-the-bear-necessities" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5" />
 <link rel="shortcut icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>
 🐼
 </text></svg>">
 <link rel="alternate icon" href="/favicon.ico" type="image/x-icon" sizes="48x48" />
 <title>
-  brandon&#x27;s blog!
-  <!-- todo show title -->
+  <%- title %>
+    <!-- todo show title -->
 </title>
 
 <meta name="robots" content="noindex">
 <meta name="robots" content="nofollow">
 
 <!-- Primary Meta Tags -->
-<meta name="title" content="brandon&#x27;s blog!">
-<meta name="description" content="1337 h4xd">
+<meta name="title" content="<%- title %>">
+<meta name="description" content="<%- meta_description %>">
 <meta name="keywords" content="blog, blogging, write, writing" />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="brandon&#x27;s blog!">
-<meta property="og:url" content="http://0xcool.bearblog.dev">
-<meta property="og:title" content="brandon&#x27;s blog!">
-<meta property="og:description" content="1337 h4xd">
+<meta property="og:site_name" content="<%- title %>">
+<meta property="og:url" content="<%- meta.url %>">
+<meta property="og:title" content="<%- title %>">
+<meta property="og:description" content="<%- meta_description %>">
 
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary">
-<meta property="twitter:url" content="http://0xcool.bearblog.dev">
-<meta property="twitter:title" content="brandon&#x27;s blog!">
-<meta property="twitter:description" content="1337 h4xd">
+<meta property="twitter:url" content="<%- meta.url %>">
+<meta property="twitter:title" content="<%- title %>">
+<meta property="twitter:description" content="<%- meta_description %>">
 
 
 <!-- Microdata -->
@@ -39,12 +37,12 @@
   {
     "@context": "http://schema.org",
     "@type": "Website",
-    "name": "brandon&#x27;s blog!",
-    "url": "http://0xcool.bearblog.dev",
-    "description": "1337 h4xd",
+    "name": "<%- title %>>",
+    "url": "<%- meta.url %>",
+    "description": "<%- meta_description %>",
     "about": {
-      "@type": "brandon&#x27;s blog!",
-      "description": "1337 h4xd"
+      "@type": "<%- title %>>",
+      "description": "<%- meta_description %>"
     },
   }
 </script>

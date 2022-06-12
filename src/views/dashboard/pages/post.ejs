@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head'); %>
+</head>
+
+<body class="container">
+
+  <header>
+    <%- include('../partials/header'); %>
+  </header>
+
+  <main>
+    <content>
+
+      <h1>
+        <%- locals.post ? 'Edit Post' : 'New Post' %>
+      </h1>
+
+      <form method="POST" action="/dashboard/posts/new<%- locals.post ? '_method=PUT' : '' %>">
+        <p>
+          <label for="title">Title:</label>
+          <input type="text" id="title" name="title" value="<%- locals.post ? locals.post.title : '' %>">
+        </p>
+        <p>
+          <label for="permalink">Permalink:</label>
+          <input type="text" id="permalink" name="permalink" value="<%- locals.post ? locals.post.permalink : '' %>">
+        </p>
+        <p>
+          <label for="published_date">Date:</label>
+          <input type="date" id="published_date" name="published_date" value="<%- locals.post ? locals.post.published_date : '' %>">
+          <span class="helptext">eg: '2022-03-10' (leave empty to post now)</span>
+        </p>
+
+        <p>
+          <label for="content">Content (markdown):</label>
+          <textarea id="content" name="content" rows="20"><%- locals.post ? locals.post.content : '' %></textarea>
+        </p>
+
+        <p>
+          <label for="permalink">Meta Description:</label>
+          <input type="text" id="meta_description" name="meta_description" value="<%- locals.post ? locals.post.meta_description : '' %>">
+        </p>
+
+        <p>
+          <label for="permalink">Meta Image URL:</label>
+          <input type="text" id="meta_image_url" name="meta_image_url" value="<%- locals.post ? locals.post.meta_image_url : '' %>">
+        </p>
+
+        <p>
+          <label for="tags">Tags:</label>
+          <input type="text" id="tags" name="tags" value="<%- locals.post ? locals.post.tags : '' %>">
+          <span class="helptext">A comma-separated list of tags</span>
+        </p>
+
+        <p>
+          <label for="is_page">Is Page:</label>
+          <input type="checkbox" id="is_page" name="is_page" value="true" <%- (locals.post && locals.post.is_page) ? 'checked' : '' %>>
+        </p>
+
+        <p>
+          <label for="show_in_feed">Show In Feed:</label>
+          <input type="checkbox" id="show_in_feed" name="show_in_feed" value="true" <%- (locals.post && !locals.post.show_in_feed) ? '' : 'checked' %>>
+        </p>
+
+        <input type="hidden" name="published" id="published">
+
+        <p>
+          <button type="submit" onclick="document.getElementById('published').value = true;">Publish</button>
+          <button type="submit" onclick="document.getElementById('published').value = false;">Save as draft</button>
+        </p>
+      </form>
+
+    </content>
+  </main>
+
+  <footer>
+    <%- include('../partials/footer'); %>
+  </footer>
+
+</body>
+
+</html>

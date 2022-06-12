@@ -1,39 +1,43 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Blogs', {
+    await queryInterface.createTable('Posts', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      email: {
-        type: Sequelize.STRING
-      },
-      password: {
-        type: Sequelize.STRING
-      },
       title: {
         type: Sequelize.STRING
       },
-      homepage_content: {
-        type: Sequelize.TEXT
+      permalink: {
+        type: Sequelize.STRING
       },
-      homepage_content_html: {
+      published_date: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW
+      },
+      content: {
         type: Sequelize.TEXT
       },
       meta_description: {
-        type: Sequelize.TEXT
-      },
-      nav: {
-        type: Sequelize.TEXT
-      },
-      nav_html: {
-        type: Sequelize.TEXT
-      },
-      language: {
         type: Sequelize.STRING
+      },
+      meta_image_url: {
+        type: Sequelize.STRING
+      },
+      tags: {
+        type: Sequelize.STRING
+      },
+      is_page: {
+        type: Sequelize.BOOLEAN
+      },
+      show_in_feed: {
+        type: Sequelize.BOOLEAN
+      },
+      published: {
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,
@@ -46,6 +50,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Blogs');
+    await queryInterface.dropTable('Posts');
   }
 };
