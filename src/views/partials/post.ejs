@@ -1,18 +1,26 @@
-<h1>
-  <%- post.title %>
-</h1>
-<p>
-  <i>
+<% if(!post.is_page) { %>
+  <h1>
+    <%- post.title %>
+  </h1>
+
+  <p>
+    <i>
         <time><%- post.published_date_formatted %></time>
     </i>
-</p>
-<content>
-  <%- post.content_html %>
-</content>
-<p>
-  <% post.tags.forEach(tag => { %>
-    <a href="/blog/?q=<%- tag %>">
+  </p>
+  <% } %>
+    <content>
+      <%- post.content_html %>
+    </content>
+
+    <% if(!post.is_page) { %>
+      <p>
+        <% post.tags.forEach(tag => { %>
+          <% if(tag.length > 0) { %>
+            <a href="/blog/?q=<%- tag %>">
       #<%- tag %>
-    </a>
-    <% }); %>
-</p>
+        </a>
+            <% } %>
+              <% }); %>
+      </p>
+      <% } %>

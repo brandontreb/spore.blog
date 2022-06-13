@@ -22,7 +22,8 @@
               <i><time><%- post.published_date_formatted %></time></i>
             </span>
             <a href="/dashboard/posts/<%- post.id %>">
-              <%- post.title %>
+              <%- post.is_page ? '[Page] ' : '' %>
+                <%- post.title %>
             </a>
             <% if (!post.published) { %>
               <small>(not published)</small>

@@ -1,30 +1,7 @@
-const Sequelize = require('sequelize');
-const Op = Sequelize.Op;
 const urlSlug = require('url-slug');
 const db = require('../db/models');
 
 const queryPosts = async(filter, options) => {
-  if (filter && typeof filter === 'string') {
-    filter = {
-      [Op.or]: [{
-          title: {
-            [Op.like]: `%${filter}%`
-          }
-        },
-        {
-          content: {
-            [Op.like]: `%${filter}%`
-          }
-        },
-        {
-          tags: {
-            [Op.like]: `%${filter}%`
-          }
-        }
-      ]
-    }
-  }
-
   let posts = await db.Posts.findAll({
     where: filter,
     ...options,
@@ -58,28 +35,30 @@ const createPost = async(body) => {
 
 const updatePost = async(id, body) => {
   let post = await db.Posts.findByPk(id);
-  body = await setPostDefaults(body);
+  body = await setPostDefaults(body, true);
   post = await post.update(body);
   return post;
 }
 
-const setPostDefaults = async(body) => {
+const setPostDefaults = async(body, update = false) => {
   // If the permalink is not set, generate one
   if (!body.permalink) {
     body.permalink = urlSlug(body.title);
   }
 
-  // Ensure that the permalink is unique
-  let permalink = body.permalink;
-  let post = await db.Posts.findOne({
-    where: {
-      permalink,
-    },
-  });
-  // If the permalink is not unique, add a number to the end
-  if (post) {
-    let number = Math.floor(1000 + Math.random() * 9000);
-    body.permalink = `${permalink}-${number}`;
+  if (!update) {
+    // Ensure that the permalink is unique
+    let permalink = body.permalink;
+    let post = await db.Posts.findOne({
+      where: {
+        permalink,
+      },
+    });
+    // If the permalink is not unique, add a number to the end
+    if (post) {
+      let number = Math.floor(1000 + Math.random() * 9000);
+      body.permalink = `${permalink}-${number}`;
+    }
   }
 
   // If the published date is not set, set it to now
