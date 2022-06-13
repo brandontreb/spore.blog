@@ -26,6 +26,10 @@
         <p>
           <label for="meta_description">Meta description:</label>
           <textarea name="meta_description" rows="2" id="id_meta_description"><%- meta_description %></textarea>
+          <span class="helptext">Max 200 characters</span>
+        </p>
+        <p>
+          Lang: <input type="text" id="language" name="language" value="<%- language %>">
         </p>
         <input type="submit" value="Save">
       </form>

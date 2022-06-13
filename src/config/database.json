@@ -5,7 +5,7 @@
     "database": "main",
     "host": "localhost",
     "dialect": "sqlite",
-    "storage": "./src/db/spore.sqlite3"
+    "storage": "./content/spore.sqlite3"
   },
   "test": {
     "username": "root",

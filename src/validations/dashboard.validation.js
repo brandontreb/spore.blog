@@ -5,7 +5,6 @@ const updateDashboard = {
   body: Joi.object().keys({
     title: Joi.string().required(),
     homepage_content: Joi.string().required(),
-    homepage_content_html: Joi.string().required(),
     meta_description: Joi.string().required(),
     language: Joi.string().required()
   })

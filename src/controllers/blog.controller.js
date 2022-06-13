@@ -1,9 +1,7 @@
 const catchAsync = require('../utils/catchAsync');
 const { blogService, postService } = require('../services');
-const MarkdownIt = require('markdown-it');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
-const md = new MarkdownIt();
 
 const getBlog = catchAsync(async(req, res) => {
   let blog = await blogService.getBlog();
@@ -68,15 +66,12 @@ const getPost = catchAsync(async(req, res) => {
 
   // If the post is not published, redirect to the blog page
   if (!post || !post.published) {
-    console.log('Post not found');
     return res.render('pages/404', {
       title: blog.title,
       blog,
     });
   }
 
-  // TODO: Refactor into post model
-  post.content_html = md.render(post.content);
   post.tags = post.tags.split(',');
 
   res.render('pages/post', {
