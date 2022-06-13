@@ -1,7 +1,30 @@
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 const urlSlug = require('url-slug');
 const db = require('../db/models');
 
 const queryPosts = async(filter, options) => {
+  if (filter && typeof filter === 'string') {
+    filter = {
+      [Op.or]: [{
+          title: {
+            [Op.like]: `%${filter}%`
+          }
+        },
+        {
+          content: {
+            [Op.like]: `%${filter}%`
+          }
+        },
+        {
+          tags: {
+            [Op.like]: `%${filter}%`
+          }
+        }
+      ]
+    }
+  }
+
   let posts = await db.Posts.findAll({
     where: filter,
     ...options,
@@ -9,7 +32,38 @@ const queryPosts = async(filter, options) => {
   return posts;
 };
 
+const getPostById = async(id) => {
+  let post = await db.Posts.findOne({
+    where: {
+      id,
+    },
+  });
+  return post;
+}
+
+const getPostByPermalink = async(permalink) => {
+  let post = await db.Posts.findOne({
+    where: {
+      permalink,
+    },
+  });
+  return post;
+}
+
 const createPost = async(body) => {
+  body = await setPostDefaults(body);
+  post = await db.Posts.create(body);
+  return post;
+}
+
+const updatePost = async(id, body) => {
+  let post = await db.Posts.findByPk(id);
+  body = await setPostDefaults(body);
+  post = await post.update(body);
+  return post;
+}
+
+const setPostDefaults = async(body) => {
   // If the permalink is not set, generate one
   if (!body.permalink) {
     body.permalink = urlSlug(body.title);
@@ -33,17 +87,13 @@ const createPost = async(body) => {
     body.published_date = new Date();
   }
 
-  post = await db.Posts.create(body);
-  return post;
+  return body;
 }
 
-const updatePost = async(id, body) => {
-  let post = await db.Posts.findByPk(id);
-  post = await post.update(body);
-  return post;
-}
 
 module.exports = {
+  getPostById,
+  getPostByPermalink,
   queryPosts,
   createPost,
   updatePost

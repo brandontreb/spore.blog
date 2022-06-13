@@ -1,0 +1,18 @@
+<h1>
+  <%- post.title %>
+</h1>
+<p>
+  <i>
+        <time><%- post.published_date_formatted %></time>
+    </i>
+</p>
+<content>
+  <%- post.content_html %>
+</content>
+<p>
+  <% post.tags.forEach(tag => { %>
+    <a href="/blog/?q=<%- tag %>">
+      #<%- tag %>
+    </a>
+    <% }); %>
+</p>

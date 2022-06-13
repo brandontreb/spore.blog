@@ -14,8 +14,8 @@ const createPost = {
     meta_image_url: Joi.string().allow(null, ''),
     tags: Joi.string().allow(null, ''),
     is_page: Joi.boolean().default(false),
-    show_in_feed: Joi.boolean().default(true),
-    published: Joi.boolean().default(true),
+    show_in_feed: Joi.boolean().default(false),
+    published: Joi.boolean().default(false),
   })
 };
 

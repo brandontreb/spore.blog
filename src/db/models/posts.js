@@ -1,4 +1,7 @@
 'use strict';
+
+const moment = require('moment');
+
 const {
   Model
 } = require('sequelize');
@@ -24,6 +27,24 @@ module.exports = (sequelize, DataTypes) => {
     is_page: DataTypes.BOOLEAN,
     show_in_feed: DataTypes.BOOLEAN,
     published: DataTypes.BOOLEAN,
+    published_date_formatted: {
+      type: DataTypes.VIRTUAL,
+      get() {
+        return `${moment(this.published_date).format("DD MMM, YYYY")}`;
+      },
+      set(value) {
+        throw new Error('Do not try to set the `published_date_formatted` value!');
+      }
+    },
+    published_date_formatted_picker: {
+      type: DataTypes.VIRTUAL,
+      get() {
+        return `${moment(this.published_date).format("YYYY-MM-DD")}`;
+      },
+      set(value) {
+        throw new Error('Do not try to set the `published_date_formatted` value!');
+      }
+    }
   }, {
     sequelize,
     modelName: 'Posts',

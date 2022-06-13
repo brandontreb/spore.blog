@@ -1,6 +1,13 @@
+a {
+  text-decoration: underline;
+}
+
+a.title {
+  text-decoration: none;
+}
+
 nav a {
   margin-right: 10px;
-  text-decoration: underline;
 }
 
 input[type="text"] {

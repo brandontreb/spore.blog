@@ -15,6 +15,21 @@
     <content>
       <h1>Posts</h1>
       <a href="/dashboard/posts/new">New post</a>
+      <ul>
+        <% posts.forEach(post => { %>
+          <li>
+            <span>
+              <i><time><%- post.published_date_formatted %></time></i>
+            </span>
+            <a href="/dashboard/posts/<%- post.id %>">
+              <%- post.title %>
+            </a>
+            <% if (!post.published) { %>
+              <small>(not published)</small>
+              <% } %>
+          </li>
+          <% }); %>
+      </ul>
     </content>
   </main>
 

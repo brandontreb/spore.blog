@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="<%- blog.language %>">
+
+<head>
+  <%- include('../partials/head'); %>
+</head>
+
+<body>
+  <header>
+    <%- include('../partials/header'); %>
+  </header>
+  <main>
+    <ul class="blog-posts">
+      <% posts.forEach(post => { %>
+        <li>
+          <span>
+                  <i>
+                      <time>
+                          <%- post.published_date_formatted %>
+                      </time>
+                  </i>
+              </span>
+          <a href="/<%- post.permalink %>/">
+            <%- post.title %>
+          </a>
+        </li>
+        <% }); %>
+    </ul>
+  </main>
+  <footer>
+    <%- include('../partials/footer'); %>
+  </footer>
+</body>
+
+</html>

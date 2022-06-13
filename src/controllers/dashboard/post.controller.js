@@ -4,13 +4,22 @@ const { postService } = require('../../services');
 const getPosts = catchAsync(async(req, res) => {
   let posts = await postService.queryPosts({}, {
     order: [
-      ['createdAt', 'DESC']
+      ['published_date', 'DESC']
     ]
   });
 
   res.render('dashboard/pages/posts', {
     posts,
     dash_title: 'Posts'
+  });
+});
+
+const getPost = catchAsync(async(req, res) => {
+  let post = await postService.getPostById(req.params.id);
+
+  res.render('dashboard/pages/post', {
+    post,
+    dash_title: 'Edit Post'
   });
 });
 
@@ -21,13 +30,20 @@ const newPost = catchAsync(async(req, res) => {
 })
 
 const createPost = catchAsync(async(req, res) => {
-  let body = req.body;
   let post = await postService.createPost(req.body);
-  res.redirect('/dashboard/posts');
+  res.redirect(`/dashboard/posts/${post.id}`);
+});
+
+const updatePost = catchAsync(async(req, res) => {
+  console.log(req.body)
+  let post = await postService.updatePost(req.params.id, req.body);
+  res.redirect(`/dashboard/posts/${post.id}`);
 });
 
 module.exports = {
+  getPost,
   getPosts,
   newPost,
-  createPost
+  createPost,
+  updatePost
 }

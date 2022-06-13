@@ -18,7 +18,7 @@
         <%- locals.post ? 'Edit Post' : 'New Post' %>
       </h1>
 
-      <form method="POST" action="/dashboard/posts/new<%- locals.post ? '_method=PUT' : '' %>">
+      <form method="POST" action="/dashboard/posts/<%- locals.post ? `${post.id}?_method=PUT` : 'new' %>">
         <p>
           <label for="title">Title:</label>
           <input type="text" id="title" name="title" value="<%- locals.post ? locals.post.title : '' %>">
@@ -29,7 +29,7 @@
         </p>
         <p>
           <label for="published_date">Date:</label>
-          <input type="date" id="published_date" name="published_date" value="<%- locals.post ? locals.post.published_date : '' %>">
+          <input type="date" id="published_date" name="published_date" value="<%- locals.post ? locals.post.published_date_formatted_picker : '' %>">
           <span class="helptext">eg: '2022-03-10' (leave empty to post now)</span>
         </p>
 
@@ -68,9 +68,16 @@
 
         <p>
           <button type="submit" onclick="document.getElementById('published').value = true;">Publish</button>
-          <button type="submit" onclick="document.getElementById('published').value = false;">Save as draft</button>
+          <button type="submit" onclick="document.getElementById('published').value = false;"><%- locals.post && locals.post.published ? "Unpublish" : "Save as draft" %></button>
         </p>
       </form>
+
+      <% if(locals.post) { %>
+        <p>
+          <a href="/<%- locals.post.permalink %>" target="_blank">View post</a>
+          <a href="/dashboard/posts/<%- locals.post.id %>?_method=DELETE">Delete post</a>
+        </p>
+        <% } %>
 
     </content>
   </main>

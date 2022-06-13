@@ -11,6 +11,9 @@ router
   .route('/new')
   .get(postController.newPost)
   .post(validate(postValidation.createPost), postController.createPost)
-  //   .put(validate(dashboardValidation.updateDashboard), dashboardController.updateDashboard);
+
+router.route('/:id')
+  .get(postController.getPost)
+  .put(validate(postValidation.createPost), postController.updatePost);
 
 module.exports = router;
