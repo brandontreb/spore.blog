@@ -17,4 +17,8 @@ router
 
 router.use('/posts', require('./post.route'));
 
+router.route('/styles')
+  .get(dashboardController.getStyles)
+  .put(validate(dashboardValidation.updateStyles), dashboardController.updateStyles);
+
 module.exports = router;

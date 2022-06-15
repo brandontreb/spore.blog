@@ -22,7 +22,12 @@ module.exports = (sequelize, DataTypes) => {
     meta_description: DataTypes.TEXT,
     nav: DataTypes.TEXT,
     nav_html: DataTypes.TEXT,
-    language: DataTypes.STRING
+    language: DataTypes.STRING,
+    favicon: DataTypes.STRING,
+    meta_image_url: DataTypes.STRING,
+    external_stylesheet_url: DataTypes.STRING,
+    custom_styles: DataTypes.TEXT,
+    overwrite_styles: DataTypes.BOOLEAN,
   }, {
     sequelize,
     modelName: 'Blog',

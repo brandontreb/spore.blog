@@ -6,7 +6,7 @@ const createPost = {
     id: Joi.string()
   },
   body: Joi.object().keys({
-    title: Joi.string().required(),
+    title: Joi.string().allow('').optional(),
     permalink: Joi.string().allow(null, ''),
     published_date: Joi.date().allow(null, ''),
     content: Joi.string().allow(null, ''),
@@ -19,6 +19,13 @@ const createPost = {
   })
 };
 
+const deletePost = {
+  params: {
+    id: Joi.string().required()
+  }
+}
+
 module.exports = {
-  createPost
+  createPost,
+  deletePost
 }

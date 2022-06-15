@@ -14,6 +14,7 @@ router
 
 router.route('/:id')
   .get(postController.getPost)
-  .put(validate(postValidation.createPost), postController.updatePost);
+  .put(validate(postValidation.createPost), postController.updatePost)
+  .delete(validate(postValidation.deletePost), postController.deletePost);
 
 module.exports = router;

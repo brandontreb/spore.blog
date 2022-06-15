@@ -4,6 +4,7 @@ const moment = require('moment');
 const MarkdownIt = require('markdown-it');
 const md = new MarkdownIt();
 const { encode } = require('html-entities');
+const { markdownToTxt } = require('markdown-to-txt');
 
 const {
   Model
@@ -44,26 +45,23 @@ module.exports = (sequelize, DataTypes) => {
       get() {
         return `${moment(this.published_date).format("ddd, DD MMM YYYY HH:mm:ss")} +0800`;
       },
-      set(value) {
-        throw new Error('Do not try to set the `published_date_formatted` value!');
-      }
     },
     published_date_formatted_picker: {
       type: DataTypes.VIRTUAL,
       get() {
         return `${moment(this.published_date).format("YYYY-MM-DD")}`;
       },
-      set(value) {
-        throw new Error('Do not try to set the `published_date_formatted` value!');
-      }
     },
     content_html: {
       type: DataTypes.VIRTUAL,
       get() {
         return md.render(this.content);
       },
-      set(value) {
-        throw new Error('Do not try to set the `content_html` value!');
+    },
+    content_text: {
+      type: DataTypes.VIRTUAL,
+      get() {
+        return markdownToTxt(this.content);
       }
     },
     content_html_encoded: {
@@ -71,9 +69,6 @@ module.exports = (sequelize, DataTypes) => {
       get() {
         return encode(md.render(this.content));
       },
-      set(value) {
-        throw new Error('Do not try to set the `content_html` value!');
-      }
     }
   }, {
     sequelize,

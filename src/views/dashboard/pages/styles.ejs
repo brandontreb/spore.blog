@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head'); %>
+</head>
+
+<body class="container">
+
+  <header>
+    <%- include('../partials/header'); %>
+  </header>
+
+  <main>
+    <content>
+      <h1>Styles</h1>
+      <form method="post" action="/dashboard/styles?_method=put">
+        <p>
+          <label for="favicon" style="line-height: 2.4;">Favicon: &nbsp;</label>
+          <input type="text" name="favicon" id="favicon" value="<%- blog.favicon %>" id="favicon" />
+          <span class="help-text"><a target="_blank" href="https://getemoji.com/">Get an emoji</a></span>
+        </p>
+        <p>
+          <label for="external_stylesheet_url">Extenal Stylesheet:</label>
+          <input type="text" id="external_stylesheet_url" name="external_stylesheet_url" value="<%- blog.external_stylesheet_url %>">
+          <span class="helptext">List of <a target="_blank" href="https://www.cssbed.com/">no-class css themes</a> (only paste CDN link)</span>
+        </p>
+        <p>
+          <label for="custom_styles">Custom Styles:</label>
+          <textarea id="custom_styles" name="custom_styles" rows="15"><%- blog.custom_styles %></textarea>
+        </p>
+        <p>
+          <ul>
+            <li>
+              <label for="overwrite_styles">
+                <input type="radio" name="overwrite_styles" value="true" <%- blog.overwrite_styles ? 'checked' : '' %> />
+                Overwrite styles
+              </label>
+            </li>
+            <li>
+              <label for="overwrite_styles">
+                <input type="radio" name="overwrite_styles" value="false" <%- !blog.overwrite_styles ? 'checked' : '' %> />
+                Extend existing styles
+              </label>
+            </li>
+          </ul>
+        </p>
+        <input type="submit" value="Save">
+      </form>
+    </content>
+  </main>
+
+  <footer>
+    <%- include('../partials/footer'); %>
+  </footer>
+
+</body>
+
+</html>

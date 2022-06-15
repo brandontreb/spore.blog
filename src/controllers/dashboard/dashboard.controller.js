@@ -33,9 +33,25 @@ const updateNav = catchAsync(async(req, res) => {
   res.redirect('/dashboard/nav');
 });
 
+const getStyles = catchAsync(async(req, res) => {
+  let blog = await blogService.getBlog();
+  res.render('dashboard/pages/styles', {
+    blog,
+    dash_title: 'Styles',
+  });
+});
+
+const updateStyles = catchAsync(async(req, res) => {
+  let body = req.body;
+  await blogService.updateBlog(body);
+  res.redirect('/dashboard/styles');
+});
+
 module.exports = {
   getDashboard,
   updateDashboard,
   getNav,
-  updateNav
+  updateNav,
+  getStyles,
+  updateStyles
 }

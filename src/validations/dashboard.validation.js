@@ -16,7 +16,18 @@ const updateNav = {
   })
 };
 
+const updateStyles = {
+  body: Joi.object().keys({
+    favicon: Joi.string().allow('').optional(),
+    meta_image_url: Joi.string().allow('').optional(),
+    external_stylesheet_url: Joi.string().allow('').optional(),
+    custom_styles: Joi.string().allow('').optional(),
+    overwrite_styles: Joi.boolean().required()
+  })
+}
+
 module.exports = {
   updateDashboard,
-  updateNav
+  updateNav,
+  updateStyles
 }

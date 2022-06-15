@@ -40,10 +40,21 @@ const updatePost = async(id, body) => {
   return post;
 }
 
+const deletePost = async(id) => {
+  let post = await db.Posts.findByPk(id);
+  post = await post.destroy();
+  return post;
+}
+
 const setPostDefaults = async(body, update = false) => {
   // If the permalink is not set, generate one
   if (!body.permalink) {
-    body.permalink = urlSlug(body.title);
+    if (body.title) {
+      body.permalink = urlSlug(body.title);
+    } else {
+      // If the title is not set, generate a random permalink
+      body.permalink = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    }
   }
 
   if (!update) {
@@ -69,11 +80,11 @@ const setPostDefaults = async(body, update = false) => {
   return body;
 }
 
-
 module.exports = {
   getPostById,
   getPostByPermalink,
   queryPosts,
   createPost,
-  updatePost
+  updatePost,
+  deletePost,
 }

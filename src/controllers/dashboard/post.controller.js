@@ -40,10 +40,16 @@ const updatePost = catchAsync(async(req, res) => {
   res.redirect(`/dashboard/posts/${post.id}`);
 });
 
+const deletePost = catchAsync(async(req, res) => {
+  let post = await postService.deletePost(req.params.id);
+  res.redirect('/dashboard/posts');
+});
+
 module.exports = {
   getPost,
   getPosts,
   newPost,
   createPost,
-  updatePost
+  updatePost,
+  deletePost
 }

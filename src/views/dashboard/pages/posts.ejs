@@ -23,7 +23,7 @@
             </span>
             <a href="/dashboard/posts/<%- post.id %>">
               <%- post.is_page ? '[Page] ' : '' %>
-                <%- post.title %>
+                <%- post.title || post.content_text.substring(0,50) %>
             </a>
             <% if (!post.published) { %>
               <small>(not published)</small>

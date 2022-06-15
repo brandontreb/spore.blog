@@ -21,7 +21,7 @@
                   </i>
               </span>
           <a href="/<%- post.permalink %>/">
-            <%- post.title %>
+            <%- post.title || post.content_text.substring(0,50) %>
           </a>
         </li>
         <% }); %>

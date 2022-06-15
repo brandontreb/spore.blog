@@ -1,4 +1,6 @@
 const db = require('../db/models');
+const MarkdownIt = require('markdown-it');
+const md = new MarkdownIt();
 
 const getBlog = async(id = 1) => {
   let blog = await db.Blog.findByPk(id);
@@ -13,6 +15,7 @@ const getBlog = async(id = 1) => {
       language: 'en',
       nav: '[Home](/)\n[Blog](/blog/)',
       nav_html: '<a href="/">Home</a>\n<a href="/blog/">Blog</a>',
+      favicon: '🌱',
     }
     blog = await db.Blog.create(blogObject);
   }
@@ -21,6 +24,7 @@ const getBlog = async(id = 1) => {
 
 const updateBlog = async(body, id = 1) => {
   let blog = await getBlog(id);
+  body.homepage_content_html = md.render(body.homepage_content);
   blog = await blog.update(body);
   return blog;
 }

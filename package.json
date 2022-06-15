@@ -64,6 +64,7 @@
     "joi": "^17.3.0",
     "jsonwebtoken": "^8.5.1",
     "markdown-it": "^13.0.1",
+    "markdown-to-txt": "^2.0.1",
     "method-override": "^3.0.0",
     "moment": "^2.24.0",
     "mongoose": "^5.7.7",

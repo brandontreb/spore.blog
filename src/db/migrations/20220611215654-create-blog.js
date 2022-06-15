@@ -35,6 +35,21 @@ module.exports = {
       language: {
         type: Sequelize.STRING
       },
+      favicon: {
+        type: Sequelize.STRING
+      },
+      meta_image_url: {
+        type: Sequelize.STRING
+      },
+      external_stylesheet_url: {
+        type: Sequelize.STRING
+      },
+      custom_styles: {
+        type: Sequelize.TEXT
+      },
+      overwrite_styles: {
+        type: Sequelize.BOOLEAN
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
