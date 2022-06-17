@@ -2,27 +2,30 @@ const express = require('express');
 const validate = require('../../middlewares/validate');
 const { dashboardValidation } = require('../../validations');
 const { dashboardController } = require('../../controllers/dashboard');
+const auth = require('../../middlewares/auth');
 
 const router = express.Router();
 
 router
   .route('/')
-  .get(dashboardController.getDashboard)
-  .put(validate(dashboardValidation.updateDashboard), dashboardController.updateDashboard);
+  .get(auth(true),dashboardController.getDashboard)
+  .put(auth(true),validate(dashboardValidation.updateDashboard), dashboardController.updateDashboard);
 
 router
   .route('/nav')
-  .get(dashboardController.getNav)
-  .put(validate(dashboardValidation.updateNav), dashboardController.updateNav);
+  .get(auth(true),dashboardController.getNav)
+  .put(auth(true),validate(dashboardValidation.updateNav), dashboardController.updateNav);
 
-router.use('/posts', require('./post.route'));
+router.use('/posts',auth(true), require('./post.route'));
 
 router.route('/styles')
-  .get(dashboardController.getStyles)
-  .put(validate(dashboardValidation.updateStyles), dashboardController.updateStyles);
+  .get(auth(true),dashboardController.getStyles)
+  .put(auth(true),validate(dashboardValidation.updateStyles), dashboardController.updateStyles);
 
 router.route('/account')
-  .get(dashboardController.getAccount)
-  .put(validate(dashboardValidation.updateAccount), dashboardController.updateAccount);
+  .get(auth(true),dashboardController.getAccount)
+  .put(auth(true),validate(dashboardValidation.updateAccount), dashboardController.updateAccount);
+
+router.use('/auth', require('./auth.route'));
 
 module.exports = router;

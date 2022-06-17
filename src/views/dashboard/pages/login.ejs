@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head'); %>
+</head>
+
+<body class="container">
+  <header>
+    <a class="title" href="/">
+      <h1>
+        <span class="title-spore">ᴥ</span> spore.blog
+      </h1>
+    </a>
+  </header>
+  <main>
+    <h1>Login</h1>
+    <content>
+      <form action="/dashboard/auth/login" method="post">
+        <p>
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+        </p>
+        <p>
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+        </p>
+        <p>
+          <!-- Remember Me-->
+          <input type="checkbox" id="remember" name="remember" checked>
+          <label for="remember">Remember Me</label>
+        </p>
+        <p>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </p>
+      </form>
+    </content>
+  </main>
+
+  <footer>
+    <%- include('../partials/footer'); %>
+  </footer>
+
+</body>
+
+</html>
