@@ -7,5 +7,8 @@ const router = express.Router();
 
 router.route('/login')
   .get(authController.getLogin)
+  .post(validate(authValidation.login), authController.loginWithEmailAndPassword);
+
+router.get('/logout', authController.logout);
 
 module.exports = router;

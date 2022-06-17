@@ -1,26 +1,24 @@
+<article class="h-entry post">
 <% if(!post.is_page) { %>
-  <h1>
-    <%- post.title %>
-  </h1>
-
-  <p>
-    <i>
-        <time><%- post.published_date_formatted %></time>
-    </i>
-  </p>
+  <header>
+    <h1 class="p-name">
+      <%- post.title %>
+    </h1>    
+    <time class="dt-published" datetime="<%- post.published_date %>"><%- post.published_date_formatted %></time>    
+  </header>
   <% } %>
-    <content>
+    <content class="e-content">
       <%- post.content_html %>
     </content>
-
     <% if(!post.is_page) { %>
       <p>
         <% post.tags.forEach(tag => { %>
           <% if(tag.length > 0) { %>
             <a href="/blog/?q=<%- tag %>">
-      #<%- tag %>
-        </a>
-            <% } %>
-              <% }); %>
+              #<%- tag %>
+            </a>
+          <% } %>
+        <% }); %>
       </p>
       <% } %>
+</article>

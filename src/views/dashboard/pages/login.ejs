@@ -12,6 +12,12 @@
         <span class="title-spore">ᴥ</span> spore.blog
       </h1>
     </a>
+    <!-- Show flash messages-->
+    <% if(flash.length > 0) { %>
+      <% flash.forEach(function(message) { %>
+        <p class="flash-message <%- message.type %> "><%= message.message %></p>
+      <% }); %>
+    <% } %>
   </header>
   <main>
     <h1>Login</h1>
@@ -27,7 +33,7 @@
         </p>
         <p>
           <!-- Remember Me-->
-          <input type="checkbox" id="remember" name="remember" checked>
+          <input type="checkbox" id="remember" name="remember" checked value=true>
           <label for="remember">Remember Me</label>
         </p>
         <p>

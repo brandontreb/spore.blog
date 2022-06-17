@@ -42,13 +42,13 @@ const hashPassword = (password) => {
   return bcrypt.hash(password, bcrypt.genSaltSync(8));
 }
 
-const checkPassword = (password) => {
-  return bcrypt.compare(password, this.password);
+const comparePassword = (password, passwordHash) => {
+  return bcrypt.compare(password, passwordHash);
 }
 
 module.exports = {
   getBlog,
   updateBlog,
   hashPassword,
-  checkPassword
+  comparePassword
 }

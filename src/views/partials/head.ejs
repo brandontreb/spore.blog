@@ -48,12 +48,11 @@
 <link rel="alternate" type="application/rss+xml" href="/feed/?type=rss" />
 <% if(!blog.overwrite_styles) { %>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
-  <% } %>
-    <style>
-      <% if(blog.external_stylesheet_url) {
-        %>@import '<%- blog.external_stylesheet_url %>';
-        <%
-      }
-      
-      %><%- blog.custom_styles %>
-    </style>
+  <link rel="stylesheet" href="/styles/spore.css">
+<% } %>
+<style>
+  <% if(blog.external_stylesheet_url) { %>     
+    @import '<%- blog.external_stylesheet_url %>';
+  <% }%>
+  <%- blog.custom_styles %>
+</style>

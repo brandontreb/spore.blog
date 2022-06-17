@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="<%- blog.language %>">
 
+<% 
+  const truncate = (str, len) => {
+    if (str.length > len) {
+      return str.substring(0, len) + '...';
+    }
+    return str;
+  }
+%>
+
 <head>
   <%- include('../partials/head'); %>
 </head>
@@ -10,22 +19,20 @@
     <%- include('../partials/header'); %>
   </header>
   <main>
-    <ul class="blog-posts">
-      <% posts.forEach(post => { %>
-        <li>
-          <span>
-                  <i>
-                      <time>
-                          <%- post.published_date_formatted %>
-                      </time>
-                  </i>
-              </span>
-          <a href="/<%- post.permalink %>/">
-            <%- post.title || post.content_text.substring(0,50) %>
-          </a>
-        </li>
+    <span class="blog-posts">
+      <% posts.forEach(post=> { %>
+        <p class="h-entry">                      
+          <a class="u-url" href="/<%- post.permalink %>/">
+            <time class="dt-published" datetime="<%- post.published_date %>"><%- post.published_date_formatted %></time>
+          </a>                                           
+          <% if(post.is_note) { %>
+            <span class="p-summary"><%- truncate(post.content_text, 92) %></span>
+          <% } else { %>              
+            <span class="p-name"><b><%- truncate(post.title, 45) %></b></span> <span class="p-summary"><%- truncate(post.content_text, 92) %></span>
+          <% } %>    
+        </p>
         <% }); %>
-    </ul>
+    </span>
   </main>
   <footer>
     <%- include('../partials/footer'); %>
