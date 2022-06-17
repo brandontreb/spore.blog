@@ -21,4 +21,8 @@ router.route('/styles')
   .get(dashboardController.getStyles)
   .put(validate(dashboardValidation.updateStyles), dashboardController.updateStyles);
 
+router.route('/account')
+  .get(dashboardController.getAccount)
+  .put(validate(dashboardValidation.updateAccount), dashboardController.updateAccount);
+
 module.exports = router;

@@ -30,6 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     tags: DataTypes.STRING,
     is_page: DataTypes.BOOLEAN,
     show_in_feed: DataTypes.BOOLEAN,
+    is_note: DataTypes.BOOLEAN,
     published: DataTypes.BOOLEAN,
     published_date_formatted: {
       type: DataTypes.VIRTUAL,
@@ -49,7 +50,8 @@ module.exports = (sequelize, DataTypes) => {
     published_date_formatted_picker: {
       type: DataTypes.VIRTUAL,
       get() {
-        return `${moment(this.published_date).format("YYYY-MM-DD")}`;
+        // console.log(moment(this.published_date).utcOffset(0, false).format("YYYY-MM-DD h:mm:ss a"))
+        return `${moment(this.published_date).utcOffset(0, false).format("YYYY-MM-DD")}`;
       },
     },
     content_html: {

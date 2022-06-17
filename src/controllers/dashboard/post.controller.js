@@ -35,13 +35,13 @@ const createPost = catchAsync(async(req, res) => {
 });
 
 const updatePost = catchAsync(async(req, res) => {
-  console.log(req.body)
+  console.log(req.body)    
   let post = await postService.updatePost(req.params.id, req.body);
   res.redirect(`/dashboard/posts/${post.id}`);
 });
 
 const deletePost = catchAsync(async(req, res) => {
-  let post = await postService.deletePost(req.params.id);
+  await postService.deletePost(req.params.id);
   res.redirect('/dashboard/posts');
 });
 

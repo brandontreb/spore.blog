@@ -13,7 +13,7 @@ const rss = catchAsync(async(req, res) => {
     limit: 10,
   });
 
-  res.set('Content-Type', 'application/rss+xml');
+  res.setHeader("Content-Type", "application/xml");
   res.render('feeds/rss', {
     blog,
     posts,

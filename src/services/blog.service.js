@@ -1,3 +1,4 @@
+const bcrypt = require("bcrypt");
 const db = require('../db/models');
 const MarkdownIt = require('markdown-it');
 const md = new MarkdownIt();
@@ -8,7 +9,7 @@ const getBlog = async(id = 1) => {
     const blogObject = {
       title: 'My Blog',
       email: 'brandontreb@gmail.com',
-      password: 'tr4v15',
+      password: hashPassword('password'),
       homepage_content: '# Welcome to my spore.blog\n\nChange this content in the dashboard.',
       homepage_content_html: '<h1> Welcome to my spore.blog</h1><p>Change this content in the dashboard.</p>',
       meta_description: 'A new blog for my spore.blog',
@@ -24,12 +25,30 @@ const getBlog = async(id = 1) => {
 
 const updateBlog = async(body, id = 1) => {
   let blog = await getBlog(id);
-  body.homepage_content_html = md.render(body.homepage_content);
+  if(body.homepage_content) {
+    body.homepage_content_html = md.render(body.homepage_content);
+  }
+  if(body.password) {
+    body.password = await hashPassword(body.password);
+  }
+
+  console.log(body);
+
   blog = await blog.update(body);
   return blog;
 }
 
+const hashPassword = (password) => {
+  return bcrypt.hash(password, bcrypt.genSaltSync(8));
+}
+
+const checkPassword = (password) => {
+  return bcrypt.compare(password, this.password);
+}
+
 module.exports = {
   getBlog,
-  updateBlog
+  updateBlog,
+  hashPassword,
+  checkPassword
 }

@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     overwrite_styles: DataTypes.BOOLEAN,
   }, {
     sequelize,
-    modelName: 'Blog',
+    modelName: 'Blog'    
   });
   return Blog;
 };

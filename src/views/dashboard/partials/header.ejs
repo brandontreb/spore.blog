@@ -8,8 +8,16 @@
   <a href="/dashboard/nav/">Nav</a>
   <a href="/dashboard/posts/">Posts</a>
   <a href="/dashboard/styles/">Styles</a>
+  <a href="/dashboard/account/">Account</a>
   <!-- <a href="/dashboard/email-list/">Email list</a>  
   <a href="/dashboard/analytics/">Analytics</a>
-  <a href="/dashboard/account/">Account</a> -->
+  -->
   <a href="/accounts/logout/">Sign out</a>
 </nav>
+
+<!-- Show flash messages-->
+<% if(flash.length > 0) { %>
+  <% flash.forEach(function(message) { %>
+    <p class="flash-message <%- message.type %> "><%= message.message %></p>
+  <% }); %>
+<% } %>

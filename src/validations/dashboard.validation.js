@@ -26,8 +26,17 @@ const updateStyles = {
   })
 }
 
+const updateAccount = {
+  body: Joi.object().keys({
+    email: Joi.string().required(),
+    password: Joi.string().allow('').optional(),
+    password_confirm: Joi.string().allow('').optional()
+  })
+}
+
 module.exports = {
   updateDashboard,
   updateNav,
-  updateStyles
+  updateStyles,
+  updateAccount
 }

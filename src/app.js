@@ -11,6 +11,7 @@ const { authLimiter } = require('./middlewares/rateLimiter');
 const routes = require('./routes');
 const { errorConverter, errorHandler } = require('./middlewares/error');
 const ApiError = require('./utils/ApiError');
+const session = require('express-session');
 
 const app = express();
 
@@ -46,6 +47,29 @@ app.use(compression());
 // enable cors
 app.use(cors());
 app.options('*', cors());
+
+// Session configuration
+// TODO: Move to config file
+app.use(session({
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    // 30 days
+    maxAge: 60 * 60 * 24 * 30 * 1000,
+    httpOnly: true,
+    secure: config.env === 'production',
+    sameSite: 'strict',
+  },
+}));
+
+// Add flash messages
+app.use(require('flash')());
+// Clear flash on each request
+app.get('/*', function(req,res,next) {
+  req.session.flash = [];
+  next();
+});
 
 // limit repeated failed requests to auth endpoints
 if (config.env === 'production') {

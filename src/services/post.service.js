@@ -77,6 +77,9 @@ const setPostDefaults = async(body, update = false) => {
     body.published_date = new Date();
   }
 
+  // Check for a title
+  body.is_note = !body.title || body.title.length === 0;
+
   return body;
 }
 

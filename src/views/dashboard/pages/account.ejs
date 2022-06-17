@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head'); %>
+</head>
+<body class="container">
+  <header>
+    <%- include('../partials/header'); %>
+  </header>
+  <main>
+    <content>
+      <h1>
+        <%- dash_title %>
+      </h1>
+      <form method="post" action="/dashboard/account?_method=put">
+        <p>
+          <label for="email">Email:</label>
+          <input type="text" id="email" name="email" value="<%- blog.email %>">
+        </p>
+        <p>
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password">          
+        </p>
+        <p>
+          <label for="password_confirm">Password Again:</label>
+          <input type="password" id="password_confirm" name="password_confirm">
+        </p>
+        <input type="submit" value="Save">
+      </form>
+    </content>
+  </main>
+  <footer>
+    <%- include('../partials/footer'); %>
+  </footer>
+</body>
+</html>

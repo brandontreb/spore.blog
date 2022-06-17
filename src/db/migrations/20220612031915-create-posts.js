@@ -36,6 +36,9 @@ module.exports = {
       show_in_feed: {
         type: Sequelize.BOOLEAN
       },
+      is_note: {
+        type: Sequelize.BOOLEAN
+      },
       published: {
         type: Sequelize.BOOLEAN
       },
