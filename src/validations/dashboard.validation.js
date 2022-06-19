@@ -1,5 +1,4 @@
 const Joi = require('joi');
-const { objectId } = require('./custom.validation');
 
 const updateDashboard = {
   body: Joi.object().keys({
@@ -26,17 +25,8 @@ const updateStyles = {
   })
 }
 
-const updateAccount = {
-  body: Joi.object().keys({
-    email: Joi.string().required(),
-    password: Joi.string().allow('').optional(),
-    password_confirm: Joi.string().allow('').optional()
-  })
-}
-
 module.exports = {
   updateDashboard,
   updateNav,
   updateStyles,
-  updateAccount
 }

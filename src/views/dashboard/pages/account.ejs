@@ -15,17 +15,36 @@
       <form method="post" action="/dashboard/account?_method=put">
         <p>
           <label for="email">Email:</label>
-          <input type="text" id="email" name="email" value="<%- blog.email %>">
+          <input type="email" id="email" name="email" value="<%- user.email %>">
         </p>
         <p>
-          <label for="password">Password:</label>
-          <input type="password" id="password" name="password">          
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" value="<%- user.username %>">
         </p>
         <p>
-          <label for="password_confirm">Password Again:</label>
-          <input type="password" id="password_confirm" name="password_confirm">
+          <label for="full_name">Full name:</label>
+          <input type="text" id="full_name" name="full_name" value="<%- user.full_name %>">
         </p>
-        <input type="submit" value="Save">
+        <p>
+          <label for="website">Website:</label>
+          <input type="text" id="website" name="website" value="<%- user.website   %>">
+        </p>
+        <p>
+          <label for="about">About me:</label>
+          <textarea name="about" id="about"><%- user.about %></textarea>
+        </p>
+        <details>
+          <summary>Change password</summary>
+          <p>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">          
+          </p>
+          <p>
+            <label for="password_confirm">Password Again:</label>
+            <input type="password" id="password_confirm" name="password_confirm">
+          </p>
+        </details>
+        <button type="submit" value="Save">Update</button>
       </form>
     </content>
   </main>

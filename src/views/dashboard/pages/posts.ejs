@@ -1,3 +1,12 @@
+<% 
+  const truncate = (str, len) => {
+    if (str.length > len) {
+      return str.substring(0, len) + '...';
+    }
+    return str;
+  }
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,24 +22,20 @@
 
   <main>
     <content>
-      <h1>Posts</h1>
-      <a href="/dashboard/posts/new">New post</a>
-      <ul>
+      <h1>Posts</h1>            
         <% posts.forEach(post => { %>
-          <li>
-            <span>
-              <i><time><%- post.published_date_formatted %></time></i>
-            </span>
-            <a href="/dashboard/posts/<%- post.id %>">
-              <%- post.is_page ? '[Page] ' : '' %>
-                <%- post.title || post.content_text.substring(0,50) %>
-            </a>
-            <% if (!post.published) { %>
-              <small>(not published)</small>
-              <% } %>
-          </li>
+          <p class="h-entry">                      
+            <a class="u-url" href="/dashboard/posts/<%- post.id %>/">
+              <time class="dt-published" datetime="<%- post.published_date %>"><%- post.published_date_formatted %></time>
+            </a>                                           
+            <% if(post.is_note) { %>
+              <span class="p-summary"><%- truncate(post.content_text, 92) %></span>
+            <% } else { %>              
+              <span class="p-name"><b><%- truncate(post.title, 45) %></b></span>
+            <% } %>    
+          </p>
           <% }); %>
-      </ul>
+      
     </content>
   </main>
 

@@ -14,25 +14,7 @@
   <main>
     <content>
       <h1>Home Page</h1>
-      <form method="post" action="/dashboard?_method=put">
-        <p>
-          <label for="title">Title:</label>
-          <input type="text" id="title" name="title" value="<%- title %>">
-        </p>
-        <p>
-          <label for="homepage_content">Homepage Content (markdown):</label>
-          <textarea id="homepage_content" name="homepage_content"><%- homepage_content %></textarea>
-        </p>
-        <p>
-          <label for="meta_description">Meta description:</label>
-          <textarea name="meta_description" rows="2" id="id_meta_description"><%- meta_description %></textarea>
-          <span class="helptext">Max 200 characters</span>
-        </p>
-        <p>
-          Lang: <input type="text" id="language" name="language" value="<%- language %>">
-        </p>
-        <input type="submit" value="Save">
-      </form>
+      <p class="flash-message"><b>Welcome</b> You are signed in as <b>Zerocool</b></p>
     </content>
   </main>
 

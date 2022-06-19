@@ -13,10 +13,9 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Blog.init({
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
+  Blog.init({    
     title: DataTypes.STRING,
+    url: DataTypes.STRING,
     homepage_content: DataTypes.TEXT,
     homepage_content_html: DataTypes.TEXT,
     meta_description: DataTypes.TEXT,

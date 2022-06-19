@@ -48,35 +48,11 @@ const updateStyles = catchAsync(async(req, res) => {
   res.redirect('/dashboard/styles');
 });
 
-const getAccount = catchAsync(async(req, res) => {
-  console.log(res.locals.flash);
-  let blog = await blogService.getBlog();
-  res.render('dashboard/pages/account', {
-    blog,
-    dash_title: 'Account',
-  });
-});
-
-const updateAccount = catchAsync(async(req, res) => {
-  let body = req.body;
-
-  if(body.password && body.password !== body.password_confirm) {
-    req.flash('error', 'Passwords do not match');
-    res.redirect('/dashboard/account');
-    return;
-  }
-
-  await blogService.updateBlog(body);
-  res.redirect('/dashboard/account');
-});
-
 module.exports = {
   getDashboard,
   updateDashboard,
   getNav,
   updateNav,
   getStyles,
-  updateStyles,
-  getAccount,
-  updateAccount
+  updateStyles,  
 }

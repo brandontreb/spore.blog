@@ -4,8 +4,7 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 const getBlog = catchAsync(async(req, res) => {
-  let blog = await blogService.getBlog();
-  blog.url = req.protocol + '://' + req.get('host') + req.originalUrl
+  let blog = await blogService.getBlog();  
   res.render('pages/index', {
     title: blog.title,
     blog,
@@ -62,7 +61,6 @@ const getPosts = catchAsync(async(req, res) => {
 const getPost = catchAsync(async(req, res) => {
   let blog = await blogService.getBlog();
   let post = await postService.getPostByPermalink(req.params.permalink);
-  blog.url = req.protocol + '://' + req.get('host') + req.originalUrl
 
   // If the post is not published, redirect to the blog page
   if (!post || !post.published) {

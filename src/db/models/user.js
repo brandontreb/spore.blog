@@ -1,0 +1,36 @@
+'use strict';
+const crypto = require('crypto')
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class User extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
+    }
+  }
+  User.init({
+    email: DataTypes.STRING,
+    username: DataTypes.STRING,
+    password: DataTypes.STRING,
+    full_name: DataTypes.STRING,
+    website: DataTypes.STRING,
+    about: DataTypes.TEXT,
+    image_url: DataTypes.STRING,
+    email_hash: {
+      type: DataTypes.VIRTUAL,
+      get() {
+        return crypto.createHash('md5').update(this.email).digest('hex');
+      }
+    }
+  }, {
+    sequelize,
+    modelName: 'User',
+  });
+  return User;
+};

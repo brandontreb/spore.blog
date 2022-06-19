@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head'); %>
+</head>
+
+<body class="container">
+
+  <header>
+    <%- include('../partials/header'); %>
+  </header>
+
+  <main>
+    <content>
+      <h1>Home Page</h1>
+      <form method="post" action="/dashboard/settings?_method=put">
+        <p>
+          <label for="title">Blog Title:</label>
+          <input type="text" id="title" name="title" value="<%- blog.title %>">
+        </p>
+        <p>
+          <label for="url">Blog URL:</label>
+          <input type="text" id="url" name="url" value="<%- blog.url %>">
+        </p>
+        <p>
+          <label for="homepage_content">Homepage Content (markdown):</label>
+          <textarea id="homepage_content" name="homepage_content"><%- blog.homepage_content %></textarea>
+        </p>
+        <p>
+          <label for="meta_description">Meta description:</label>
+          <textarea name="meta_description" rows="2" id="id_meta_description"><%- blog.meta_description %></textarea>
+          <span class="helptext">Max 200 characters</span>
+        </p>
+        <p>
+          Lang: <input type="text" id="language" name="language" value="<%- blog.language %>">
+        </p>
+        <button type="submit" value="Save">Update</button>
+      </form>
+    </content>
+  </main>
+
+  <footer>
+    <%- include('../partials/footer'); %>
+  </footer>
+
+</body>
+
+</html>

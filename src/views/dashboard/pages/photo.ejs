@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head'); %>
+</head>
+<body class="container">
+  <header>
+    <%- include('../partials/header'); %>
+  </header>
+  <main>
+    <content>
+      <h1>
+        <%- dash_title %>
+      </h1>
+      <form method="post" action="/dashboard/account/photo">
+        <label>New profile photo</label>
+        <input type="file" name="profile_photo" required/>
+        <button type="submit" value="upload">Upload</button>
+      </form>
+      <hr>
+      <p>
+        <p><label>Current profile photo</label></p>
+        <% if(user.profile_photo) { %>
+          <img src="/uploads/<%- user.profile_photo %>" alt="profile photo" width="100" height="100"/>
+          <!-- Delete form-->
+          <form method="post" action="/dashboard/account/photo?_method=delete">            
+            <button type="submit" value="delete">Delete</button>
+          </form>
+        <% } else { %>
+          <!-- load from gravatar-->
+          <img src="https://www.gravatar.com/avatar/<%- user.email_hash %>?s=100" alt="profile photo" width="100" height="100"/>
+        <% } %>
+      </p>
+    </content>
+  </main>
+  <footer>
+    <%- include('../partials/footer'); %>
+  </footer>
+</body>
+</html>

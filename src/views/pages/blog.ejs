@@ -19,7 +19,8 @@
     <%- include('../partials/header'); %>
   </header>
   <main>
-    <span class="blog-posts">
+    <content class="blog-posts">
+      <h1>Blog</h1>
       <% posts.forEach(post=> { %>
         <p class="h-entry">                      
           <a class="u-url" href="/<%- post.permalink %>/">
@@ -32,7 +33,7 @@
           <% } %>    
         </p>
         <% }); %>
-    </span>
+      </content>
   </main>
   <footer>
     <%- include('../partials/footer'); %>

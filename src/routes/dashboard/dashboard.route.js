@@ -16,16 +16,13 @@ router
   .get(auth(true),dashboardController.getNav)
   .put(auth(true),validate(dashboardValidation.updateNav), dashboardController.updateNav);
 
-router.use('/posts',auth(true), require('./post.route'));
-
 router.route('/styles')
   .get(auth(true),dashboardController.getStyles)
   .put(auth(true),validate(dashboardValidation.updateStyles), dashboardController.updateStyles);
 
-router.route('/account')
-  .get(auth(true),dashboardController.getAccount)
-  .put(auth(true),validate(dashboardValidation.updateAccount), dashboardController.updateAccount);
-
+router.use('/posts',auth(true), require('./post.route'));
+router.use('/settings', require('./settings.route'));  
+router.use('/account', require('./account.route'));
 router.use('/auth', require('./auth.route'));
 
 module.exports = router;
