@@ -26,7 +26,7 @@ module.exports = {
       about: {
         type: Sequelize.TEXT
       },
-      image_url: {
+      profile_photo: {
         type: Sequelize.STRING
       },
       createdAt: {

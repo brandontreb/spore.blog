@@ -33,6 +33,17 @@
           <label for="about">About me:</label>
           <textarea name="about" id="about"><%- user.about %></textarea>
         </p>
+        <p>
+        <% if(user.profile_photo) { %>          
+            <img src="<%- blog.url %>/<%- user.profile_photo %>" alt="profile photo" width="100" height="100"/>                
+        <% } else { %>
+          <!-- load from gravatar-->          
+            <img src="<%- user.profile_photo_gravatar %>" alt="profile photo" width="100" height="100"/>          
+        <% } %>
+          <br />
+          <a href="/dashboard/account/photo">Edit</a>
+        </p>
+
         <details>
           <summary>Change password</summary>
           <p>

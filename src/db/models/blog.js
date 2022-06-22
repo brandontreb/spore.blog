@@ -15,7 +15,22 @@ module.exports = (sequelize, DataTypes) => {
   }
   Blog.init({    
     title: DataTypes.STRING,
-    url: DataTypes.STRING,
+    url: {
+      type: DataTypes.STRING,
+      get: function() {        
+        return this.getDataValue('url').replace(/\/$/, '');
+      }
+    },
+    bare_url: {
+      type: DataTypes.VIRTUAL,
+      get: function() {
+        let url = this.getDataValue('url');        
+        url = url.replace(/^https?:\/\//, '').replace(/\/$/, '').replace(/:\d+$/, '').replace(/^www\./, '');        
+        url = url.split('?')[0];        
+        url = url.replace(/\/$/, '');
+        return url;
+      }
+    },
     homepage_content: DataTypes.TEXT,
     homepage_content_html: DataTypes.TEXT,
     meta_description: DataTypes.TEXT,

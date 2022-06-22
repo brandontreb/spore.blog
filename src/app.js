@@ -77,6 +77,7 @@ if (config.env === 'production') {
 }
 
 // View engine setup
+app.use('/content/uploads', express.static('content/uploads'));
 app.use(express.static('src/public'));
 app.set('view engine', 'ejs');
 app.set('views', 'src/views');

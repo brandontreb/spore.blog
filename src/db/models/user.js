@@ -21,7 +21,13 @@ module.exports = (sequelize, DataTypes) => {
     full_name: DataTypes.STRING,
     website: DataTypes.STRING,
     about: DataTypes.TEXT,
-    image_url: DataTypes.STRING,
+    profile_photo:DataTypes.STRING,
+    profile_photo_gravatar: {
+      type: DataTypes.VIRTUAL,
+      get() {
+        return `https://www.gravatar.com/avatar/${this.email_hash}?s=100`;
+      }
+    },
     email_hash: {
       type: DataTypes.VIRTUAL,
       get() {

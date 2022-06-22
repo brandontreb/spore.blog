@@ -13,3 +13,6 @@ coverage
 
 # Database
 *.sqlite3
+
+# Media
+content/uploads/*

@@ -7,10 +7,10 @@ const auth = (required) => async(req, res, next) => {
       // return res.redirect('/dashboard/auth/login');
     }
   }  
-  req.user = {
-    id: 1,
-    email: 'foo@bar.com'
-  }
+  
+  let {userService} = require('../services');
+  let user = await userService.getUser(1);
+  req.user = user;
   res.locals.isLoggedIn = session.isLoggedIn;
   next();
 };

@@ -13,6 +13,13 @@ const updateAccount = {
   })
 }
 
+const updatePhoto = {
+  // body: Joi.object().keys({
+  //   profile_photo: Joi.object().required(),
+  // })
+}
+
 module.exports = {
-  updateAccount
+  updateAccount,
+  updatePhoto
 }

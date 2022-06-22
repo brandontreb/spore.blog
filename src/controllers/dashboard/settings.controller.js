@@ -1,10 +1,8 @@
 const catchAsync = require('../../utils/catchAsync');
-const MarkdownIt = require('markdown-it');
-const md = new MarkdownIt();
 const { blogService } = require('../../services');
 
 const getSettings = catchAsync(async(req, res) => {
-  let blog = await blogService.getBlog();
+  let blog = req.blog;
   res.render('dashboard/pages/settings', {
     blog,
     dash_title: 'Blog Settings',

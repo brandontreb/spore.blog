@@ -29,16 +29,33 @@ const updateAccount = catchAsync(async(req, res) => {
 });
 
 const getPhoto = catchAsync(async(req, res) => {
-  let user = req.user;
+  let user = req.user;  
   res.render('dashboard/pages/photo', {
     user,
     dash_title: 'Profile Photo',
   });
 });
 
+const updatePhoto = catchAsync(async(req, res) => {
+  let user = req.user;
+  await userService.updateUser(user.id, {
+    profile_photo: req.file.path
+  });
+  res.redirect('/dashboard/account/photo');
+});
+
+const deletePhoto = catchAsync(async(req, res) => {
+  let user = req.user;
+  await userService.updateUser(user.id, {
+    profile_photo: null
+  });
+  res.redirect('/dashboard/account/photo');
+});
 
 module.exports = {
   getAccount,
   updateAccount,
-  getPhoto
+  getPhoto,
+  updatePhoto,
+  deletePhoto
 }

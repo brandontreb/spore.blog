@@ -38,9 +38,7 @@ nav p{
 }
 
 nav a {
-  margin-right: 10px;  
-  /* margin-top: -8px; */
-  /* border-bottom: 1px solid var(--primary); */  
+  margin-right: 10px;    
 }
 
 nav a:hover {
@@ -118,11 +116,28 @@ button svg {
   margin-left: -15px;
 }
 
-/* label {  
-  text-align: left;
-  clear: both;
-  float:left;  
-  margin-top: 8px;
-  margin-right: 8px;
-  width:100px;
-} */
+label {  
+  color: var(--secondary);
+  font-size: 0.8em;
+}
+
+details {
+  background-color: #fff;
+}
+
+/* Utility */
+
+.hidden {
+  display: none;
+}
+
+#char-count {
+  color: var(--secondary);
+  font-size: 0.8em;
+  width: 100%;
+  text-align: center;
+}
+
+.text-danger {
+  color: red !important;
+}

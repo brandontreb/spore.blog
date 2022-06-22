@@ -30,12 +30,15 @@ const newPost = catchAsync(async(req, res) => {
 })
 
 const createPost = catchAsync(async(req, res) => {
+  let user = await req.user;
+  let blog = await req.blog;
   let post = await postService.createPost(req.body);
+
+  req.flash('success', `Posted to @${user.username}@${blog.bare_url}`);
   res.redirect(`/dashboard/posts/${post.id}`);
 });
 
 const updatePost = catchAsync(async(req, res) => {
-  console.log(req.body)    
   let post = await postService.updatePost(req.params.id, req.body);
   res.redirect(`/dashboard/posts/${post.id}`);
 });
