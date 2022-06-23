@@ -2,7 +2,11 @@
 
 const moment = require('moment');
 const MarkdownIt = require('markdown-it');
-const md = new MarkdownIt();
+const md = new MarkdownIt({
+  html: true,
+  linkify: true,
+  typographer: true
+});
 const { encode } = require('html-entities');
 const { markdownToTxt } = require('markdown-to-txt');
 
@@ -35,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
     published_date_formatted: {
       type: DataTypes.VIRTUAL,
       get() {
-        return `${moment(this.published_date).format("DD MMM, YYYY")}`;
+        return `${moment(this.published_date).utcOffset(0, false).format("DD MMM, YYYY")}`;
       },
       set(value) {
         throw new Error('Do not try to set the `published_date_formatted` value!');
@@ -44,7 +48,7 @@ module.exports = (sequelize, DataTypes) => {
     published_date_formatted_rss: {
       type: DataTypes.VIRTUAL,
       get() {
-        return `${moment(this.published_date).format("ddd, DD MMM YYYY HH:mm:ss")} +0800`;
+        return `${moment(this.published_date).utcOffset(0, false).format("ddd, DD MMM YYYY HH:mm:ss")} +0800`;
       },
     },
     published_date_formatted_picker: {

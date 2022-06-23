@@ -31,16 +31,20 @@ module.exports = {
         type: Sequelize.STRING
       },
       is_page: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
       show_in_feed: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        defaultValue: true
       },
       is_note: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        defaultValue: true
       },
       published: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        defaultValue: true
       },
       createdAt: {
         allowNull: false,

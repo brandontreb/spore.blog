@@ -26,7 +26,7 @@ document.getElementById('idTitle'))">
           this,
           document.getElementById('idMediaPreview'))">        
 
-        <p class="hidden" id="idTitle">
+        <p class="<%- locals.post && locals.post.title ? '' : 'hidden' %>" id="idTitle">
           <label for="title">Title:</label>
           <input type="text" id="title" name="title" value="<%- locals.post ? locals.post.title : '' %>">
         </p>
@@ -36,9 +36,9 @@ document.getElementById('idTitle'))">
           <textarea id="content" name="content" rows="10"><%- locals.post ? locals.post.content : '' %></textarea>
           <span id="idCharCount"><%- locals.post ? locals.post.content.length : 0 %></span>&nbsp;
           <span class="helptext"><a href="https://www.markdownguide.org/basic-syntax/" target="_blank">Markdown
-              cheatsheet</a></span>
+              reference</a></span>
           <!-- Show character count-->
-          <button onclick="document.getElementById('idMedia').click();return false;">
+          <button type="button" onclick="document.getElementById('idMedia').click();return false;">
             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
               viewBox="0 0 500 500" style="enable-background:new 0 0 500 500;" xml:space="preserve" width="20" height="20">
             
@@ -122,9 +122,9 @@ document.getElementById('idTitle'))">
         <p>
         <form method="post" action="/dashboard/posts/<%- locals.post.id %>?_method=DELETE" name="form-delete"
           id="form-delete">
-          <a href="/<%- locals.post.permalink %>" target="_blank">View post</a>
-          <a href="# " onclick="return confirm( 'Are you sure you want to delete this post?') ? 
-            document.getElementById('form-delete').submit() : false;">Delete post</a>
+          <a href="/<%- locals.post.permalink %>" target="_blank">View post</a> | 
+          <a class="text-danger" href="# " onclick="return confirm( 'Are you sure you want to delete this post?') ? 
+            document.getElementById('form-delete').submit() : false;">Delete</a>
         </form>
         </p>
         <% } %>
