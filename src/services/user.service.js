@@ -6,12 +6,12 @@ const createUser = async (userBody) => {
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(password, salt);    
     userBody.password = hash;
-    const user = await db.User.create(userBody);
+    const user = await db.Users.create(userBody);
     return user;
 };
 
 const updateUser = async (userId, userBody) => {
-    const user = await db.User.findByPk(userId);
+    const user = await db.Users.findByPk(userId);
     if (!user) {
         throw new Error('User not found');
     }
@@ -27,7 +27,7 @@ const updateUser = async (userId, userBody) => {
 }
 
 const getUser = async (userId) => {
-  const user = await db.User.findByPk(userId);
+  const user = await db.Users.findByPk(userId);
 
     if(!user) {
         let userBody = {

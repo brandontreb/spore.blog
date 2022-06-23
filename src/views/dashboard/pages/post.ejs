@@ -30,7 +30,7 @@ document.getElementById('idTitle'))">
         <p>
           <label for="content">Content (markdown):</label>
           <textarea id="content" name="content" rows="10"><%- locals.post ? locals.post.content : '' %></textarea>
-          <span id="idCharCount">0</span>&nbsp;
+          <span id="idCharCount"><%- locals.post ? locals.post.content.length : 0 %></span>&nbsp;
           <span class="helptext"><a href="https://www.markdownguide.org/basic-syntax/" target="_blank">Markdown
               cheatsheet</a></span>
           <!-- Show character count-->
@@ -79,12 +79,22 @@ document.getElementById('idTitle'))">
             <input type="checkbox" id="show_in_feed" name="show_in_feed" value="true" <%- (locals.post &&
               !locals.post.show_in_feed) ? '' : 'checked' %>>
           </p>
+          <p>
+            <label for="draft">Draft:</label>
+            <input type="checkbox" <%- (locals.post && !locals.post.published) ? 'checked' : '' %> 
+              onChange="if(this.checked) {
+                document.getElementById('published').value = 'false';
+              } else {
+                document.getElementById('published').value = 'true';
+              }">                            
+          </p>
         </details>
 
-        <input type="hidden" name="published" id="published">
+        <input type="hidden" name="published" id="published" value="true">
 
         <p>
-          <button type="submit" onclick="document.getElementById('published').value = true;">Post</button>
+          <button type="submit" id="idButtonPost">Post</button>
+          <!-- <button type="submit" onclick="document.getElementById('published').value = true;">Post</button> -->
           <!-- <button type="submit" onclick="document.getElementById('published').value = false;">
             <%- locals.post && locals.post.published ? "Unpublish" : "Save as draft" %>
           </button> -->

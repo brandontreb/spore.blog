@@ -4,7 +4,7 @@ const MarkdownIt = require('markdown-it');
 const md = new MarkdownIt();
 
 const getBlog = async(id = 1) => {
-  let blog = await db.Blog.findByPk(id);
+  let blog = await db.Blogs.findByPk(id);
   if (!blog) {
     const blogObject = {
       title: 'My Blog',
@@ -18,7 +18,7 @@ const getBlog = async(id = 1) => {
       nav_html: '<a href="/">Home</a>\n<a href="/blog/">Blog</a>',
       favicon: '🌱',
     }
-    blog = await db.Blog.create(blogObject);
+    blog = await db.Blogs.create(blogObject);
   }
   return blog;
 }

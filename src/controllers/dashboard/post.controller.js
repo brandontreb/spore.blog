@@ -29,22 +29,22 @@ const newPost = catchAsync(async(req, res) => {
   });
 })
 
-const createPost = catchAsync(async(req, res) => {
-  let user = await req.user;
-  let blog = await req.blog;
+const createPost = catchAsync(async(req, res) => {  
   let post = await postService.createPost(req.body);
-
-  req.flash('success', `Posted to @${user.username}@${blog.bare_url}`);
+  req.flash('success', `Post created!`);
   res.redirect(`/dashboard/posts/${post.id}`);
 });
 
 const updatePost = catchAsync(async(req, res) => {
-  let post = await postService.updatePost(req.params.id, req.body);
+  let body = req.body;  
+  let post = await postService.updatePost(req.params.id, body);
+  req.flash('success', `Post updated!`);
   res.redirect(`/dashboard/posts/${post.id}`);
 });
 
 const deletePost = catchAsync(async(req, res) => {
   await postService.deletePost(req.params.id);
+  req.flash('success', `Post deleted!`);
   res.redirect('/dashboard/posts');
 });
 
