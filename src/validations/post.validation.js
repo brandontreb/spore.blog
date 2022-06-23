@@ -14,7 +14,8 @@ const createPost = {
     tags: Joi.string().allow(null, ''),
     is_page: Joi.boolean().default(false),
     show_in_feed: Joi.boolean().default(false),
-    published: Joi.boolean().default(false),
+    published: Joi.boolean().default(false),    
+    media_files: Joi.alternatives().try(Joi.array().items(Joi.string()), Joi.string()),
   })
 };
 

@@ -8,6 +8,7 @@ const getBlog = async(id = 1) => {
   if (!blog) {
     const blogObject = {
       title: 'My Blog',
+      url: 'http://localhost:3000',
       email: 'brandontreb@gmail.com',
       password: hashPassword('password'),
       homepage_content: '# Welcome to my spore.blog\n\nChange this content in the dashboard.',

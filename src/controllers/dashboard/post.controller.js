@@ -1,5 +1,19 @@
 const catchAsync = require('../../utils/catchAsync');
 const { postService } = require('../../services');
+const multer  = require('multer');
+let upload = multer({
+    storage: multer.diskStorage({
+       destination: (req, file, cb) => {
+        console.log(file)
+          cb(null, 'content/uploads')
+     },
+     filename: (req, file, cb) => {        
+            let fileExtension = file.originalname.split('.')[1] // get file extension from original file name            
+            console.log(fileExtension);
+            cb(null, file.fieldname + '-' + Date.now() + '.' + fileExtension)
+         }
+      })
+})
 
 const getPosts = catchAsync(async(req, res) => {
   let posts = await postService.queryPosts({}, {
@@ -30,13 +44,38 @@ const newPost = catchAsync(async(req, res) => {
 })
 
 const createPost = catchAsync(async(req, res) => {  
-  let post = await postService.createPost(req.body);
+  let blog = req.blog;
+  let body = req.body;
+  let media_files = req.files;  
+  
+  // Add an img src to the body 
+  if (media_files) {
+    body.media_files = media_files.map(file => file.filename);
+    media_files.forEach(file => {
+      console.log(file);
+      body.content = `${body.content}\n\n![${file.originalname}](${blog.url}/${file.path})`;
+    });
+  }
+
+  let post = await postService.createPost(body);
   req.flash('success', `Post created!`);
   res.redirect(`/dashboard/posts/${post.id}`);
 });
 
 const updatePost = catchAsync(async(req, res) => {
-  let body = req.body;  
+  let blog = req.blog;
+  let body = req.body;
+  let media_files = req.files;  
+  
+  // Add an img src to the body 
+  if (media_files) {
+    body.media_files = media_files.map(file => file.filename);
+    media_files.forEach(file => {
+      console.log(file);
+      body.content = `${body.content}\n\n![${file.originalname}](${blog.url}/${file.path})`;
+    });
+  }
+  
   let post = await postService.updatePost(req.params.id, body);
   req.flash('success', `Post updated!`);
   res.redirect(`/dashboard/posts/${post.id}`);

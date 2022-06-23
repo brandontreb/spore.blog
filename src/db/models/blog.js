@@ -16,10 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   Blog.init({    
     title: DataTypes.STRING,
     url: {
-      type: DataTypes.STRING,
-      get: function() {        
-        return this.getDataValue('url').replace(/\/$/, '');
-      }
+      type: DataTypes.STRING,      
     },
     bare_url: {
       type: DataTypes.VIRTUAL,

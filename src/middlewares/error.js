@@ -35,7 +35,10 @@ const errorHandler = (err, req, res, next) => {
     logger.error(err);
   }
 
-  res.status(statusCode).send(response);
+  // res.status(statusCode).send(response);
+  // flash error and redirect to original url
+  res.flash('error', err.message);
+  res.redirect(req.originalUrl);  
 };
 
 module.exports = {

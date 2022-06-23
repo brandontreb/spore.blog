@@ -1,15 +1,33 @@
-var count = 0;
 const countCharactersInTextView = (textView, countView, titleView) => {
   textView.addEventListener('input', () => {
     const text = textView.value;
-    count = text.length;    
+    const count = text.length;
     countView.innerHTML = count;
 
-    if(count > 280) {
+    if (count > 280) {
       countView.classList.add('text-danger');
       titleView.classList.remove('hidden');
-    } else {      
+    } else {
       countView.classList.remove('text-danger');
     }
   });
+}
+
+const showSelectedImage = (image, imageView) => {
+  const files = image.files;
+  
+  if (files && files.length) {
+    imageView.style.display = "block";
+    for(let i = 0; i < files.length; i++) {
+      let file = files[i];
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.addEventListener("load", function () {
+        if(this.result) {     
+          imageView.innerHTML = `${imageView.innerHTML}<img src="${this.result}" />`;
+        }
+      });
+    };
+  }
+
 }

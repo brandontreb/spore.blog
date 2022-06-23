@@ -89,6 +89,33 @@ footer {
   width: 100%;
 }
 
+#idMediaPreview img {
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  object-fit: cover;
+}
+
+.hidden {
+  display: none;
+}
+
+#char-count {
+  color: var(--secondary);
+  font-size: 0.8em;
+  width: 100%;
+  text-align: center;
+}
+
+.text-danger {
+  color: red !important;
+}
+
 /* Forms */
 
 input, textarea {
@@ -125,19 +152,3 @@ details {
   background-color: #fff;
 }
 
-/* Utility */
-
-.hidden {
-  display: none;
-}
-
-#char-count {
-  color: var(--secondary);
-  font-size: 0.8em;
-  width: 100%;
-  text-align: center;
-}
-
-.text-danger {
-  color: red !important;
-}
