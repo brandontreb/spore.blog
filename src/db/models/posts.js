@@ -31,6 +31,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'blog_id',
         as: 'blog'
       });
+
+      this.hasMany(models.Media, {
+        foreignKey: 'post_id',
+        as: 'media'
+      });
     }
   }
   Posts.init({

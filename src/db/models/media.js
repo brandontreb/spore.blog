@@ -11,13 +11,19 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsTo(models.Posts, {
+        foreignKey: 'post_id',
+        as: 'post'
+      });
     }
   }
   Media.init({
     type: DataTypes.STRING,
     originalFilename: DataTypes.STRING,
     path: DataTypes.STRING,
-    contentType: DataTypes.STRING
+    mimeType: DataTypes.STRING,
+    filename: DataTypes.STRING,
+    size: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Media',

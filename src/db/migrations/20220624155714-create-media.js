@@ -8,6 +8,17 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      post_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Posts',
+          key: 'id'
+        }
+      },
+      altText: {
+        type: Sequelize.STRING
+      },
       type: {
         type: Sequelize.STRING
       },
@@ -17,8 +28,14 @@ module.exports = {
       path: {
         type: Sequelize.STRING
       },
-      contentType: {
+      mimeType: {
         type: Sequelize.STRING
+      },
+      filename: {
+        type: Sequelize.STRING
+      },
+      size: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -33,4 +50,4 @@ module.exports = {
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Media');
   }
-};
+};    

@@ -50,7 +50,13 @@ document.getElementById('idTitle'))">
             </svg>
             Upload
           </button>
-          <div id="idMediaPreview" class="hidden"></div>
+          <div id="idMediaPreview" class="<%- locals.post && locals.post.media ? '' : 'hidden'; %>">
+            <% if(locals.post && locals.post.media){ %>
+              <% for(let media of post.media){ %>
+                <img src="<%- blog.url %>/<%- media.path %>" alt="<%- media.name %>">
+              <% } %>
+            <% } %>
+          </div>
         </p>
 
         <details>

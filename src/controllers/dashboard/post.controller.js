@@ -16,6 +16,7 @@ const getPosts = catchAsync(async(req, res) => {
 
 const getPost = catchAsync(async(req, res) => {
   let post = await postService.getPostById(req.params.id);
+  console.log(post)
 
   res.render('dashboard/pages/post', {
     post,
@@ -40,13 +41,12 @@ const createPost = catchAsync(async(req, res) => {
   
   // Add an img src to the body 
   if (media_files) {
-    body.media_files = media_files.map(file => file.filename);
+    body.media = media_files;
     media_files.forEach(file => {
-      console.log(file);
+      // console.log(file);
       body.content = `${body.content}\n\n![${file.originalname}](${blog.url}/${file.path})`;
     });
   }
-
 
   let post = await postService.createPost(body);
   req.flash('success', `Post created!`);
@@ -55,15 +55,13 @@ const createPost = catchAsync(async(req, res) => {
 
 const updatePost = catchAsync(async(req, res) => {
   let blog = req.blog;
-  let user = req.user;
   let body = req.body;
   let media_files = req.files;  
   
   // Add an img src to the body 
   if (media_files) {
-    body.media_files = media_files.map(file => file.filename);
-    media_files.forEach(file => {
-      console.log(file);
+    body.media = media_files.map(file => file.filename);
+    media_files.forEach(file => {      
       body.content = `${body.content}\n\n![${file.originalname}](${blog.url}/${file.path})`;
     });
   }

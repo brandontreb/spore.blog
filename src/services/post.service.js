@@ -1,5 +1,6 @@
 const urlSlug = require('url-slug');
 const db = require('../db/models');
+const mediaService = require('./media.service');
 
 const queryPosts = async(filter, options) => {
   let posts = await db.Posts.findAll({
@@ -9,11 +10,12 @@ const queryPosts = async(filter, options) => {
   return posts;
 };
 
-const getPostById = async(id) => {
+const getPostById = async(id, include = ["media"]) => {
   let post = await db.Posts.findOne({
     where: {
       id,
     },
+    include: include
   });
   return post;
 }
@@ -28,9 +30,9 @@ const getPostByPermalink = async(permalink) => {
 }
 
 const createPost = async(body) => {
-  body = await setPostDefaults(body);
-  console.log(body);
+  body = await setPostDefaults(body);  
   post = await db.Posts.create(body);
+  await associateMediaFilesWithPost(post, body.media);
   return post;
 }
 
@@ -38,6 +40,7 @@ const updatePost = async(id, body) => {
   let post = await db.Posts.findByPk(id);
   body = await setPostDefaults(body, true);
   post = await post.update(body);
+  await associateMediaFilesWithPost(post, body.media);
   return post;
 }
 
@@ -83,6 +86,28 @@ const setPostDefaults = async(body, update = false) => {
 
   return body;
 }
+
+const associateMediaFilesWithPost = async(post, mediaFiles) => {
+  // Create the media objects if necessary
+  if (mediaFiles) {
+    console.log('Creating media objects');
+    console.log(mediaFiles);
+    mediaFiles.forEach(async(media) => {      
+      let mediaBody = {
+        post_id: post.id,
+        type: 'image', // TODO: Hardcoded for now, update when more media supported
+        originalFilename: media.originalname,
+        path: media.path,
+        mimeType: media.mimetype,
+        filename: media.filename,
+        size: media.size        
+      };
+      console.log(mediaBody);
+      await mediaService.createMedia(mediaBody);
+    });
+  }
+}
+
 
 module.exports = {
   getPostById,
