@@ -6,7 +6,7 @@ const md = new MarkdownIt();
 const getBlog = async(id = 1) => {
   let blog = await db.Blogs.findByPk(id);
   if (!blog) {
-    const blogObject = {
+    const blogObject = {        
       title: 'My Blog',
       url: 'http://localhost:3000',
       email: 'brandontreb@gmail.com',
@@ -19,7 +19,7 @@ const getBlog = async(id = 1) => {
       nav_html: '<a href="/">Home</a>\n<a href="/blog/">Blog</a>',
       favicon: '🌱',
     }
-    blog = await db.Blogs.create(blogObject);
+    blog = await db.Blogs.create(blogObject);    
   }
   return blog;
 }

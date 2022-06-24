@@ -22,9 +22,20 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsTo(models.Users, {
+        foreignKey: 'user_id',
+        as: 'author'
+      });
+
+      this.belongsTo(models.Blogs, {
+        foreignKey: 'blog_id',
+        as: 'blog'
+      });
     }
   }
   Posts.init({
+    // blog_id: DataTypes.INTEGER,
+    // user_id: DataTypes.INTEGER,
     title: DataTypes.STRING,
     permalink: DataTypes.STRING,
     published_date: DataTypes.DATE,

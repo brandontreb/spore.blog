@@ -29,6 +29,7 @@ const getPostByPermalink = async(permalink) => {
 
 const createPost = async(body) => {
   body = await setPostDefaults(body);
+  console.log(body);
   post = await db.Posts.create(body);
   return post;
 }

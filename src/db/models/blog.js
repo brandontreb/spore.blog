@@ -11,9 +11,18 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      // this.hasMany(models.Users, {
+      //   foreignKey: 'user_id',
+      //   as: 'users'
+      // });
+
+      // this.hasMany(models.Posts, {
+      //   foreignKey: 'blog_id',
+      //   as: 'posts'
+      // });
     }
   }
-  Blog.init({    
+  Blog.init({        
     title: DataTypes.STRING,
     url: {
       type: DataTypes.STRING,      

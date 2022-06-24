@@ -1,19 +1,5 @@
 const catchAsync = require('../../utils/catchAsync');
 const { postService } = require('../../services');
-const multer  = require('multer');
-let upload = multer({
-    storage: multer.diskStorage({
-       destination: (req, file, cb) => {
-        console.log(file)
-          cb(null, 'content/uploads')
-     },
-     filename: (req, file, cb) => {        
-            let fileExtension = file.originalname.split('.')[1] // get file extension from original file name            
-            console.log(fileExtension);
-            cb(null, file.fieldname + '-' + Date.now() + '.' + fileExtension)
-         }
-      })
-})
 
 const getPosts = catchAsync(async(req, res) => {
   let posts = await postService.queryPosts({}, {
@@ -45,7 +31,11 @@ const newPost = catchAsync(async(req, res) => {
 
 const createPost = catchAsync(async(req, res) => {  
   let blog = req.blog;
+  let user = req.user;
   let body = req.body;
+  body.blog_id = blog.id;
+  body.user_id = user.id;
+  
   let media_files = req.files;  
   
   // Add an img src to the body 
@@ -57,6 +47,7 @@ const createPost = catchAsync(async(req, res) => {
     });
   }
 
+
   let post = await postService.createPost(body);
   req.flash('success', `Post created!`);
   res.redirect(`/dashboard/posts/${post.id}`);
@@ -64,6 +55,7 @@ const createPost = catchAsync(async(req, res) => {
 
 const updatePost = catchAsync(async(req, res) => {
   let blog = req.blog;
+  let user = req.user;
   let body = req.body;
   let media_files = req.files;  
   

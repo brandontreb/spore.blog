@@ -31,6 +31,7 @@ const getUser = async (userId) => {
 
     if(!user) {
         let userBody = {
+            blog_id: 1,
             email: 'brandontreb@gmail.com',
             password: "tr4v15",            
             full_name: "Dade Murphy",
