@@ -46,8 +46,6 @@ const getPosts = catchAsync(async(req, res) => {
     ]
   }
 
-  console.log(filter);
-
   let posts = await postService.queryPosts(filter, {
     order: [
       ['published_date', 'DESC']

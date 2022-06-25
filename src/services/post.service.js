@@ -20,11 +20,12 @@ const getPostById = async(id, include = ["media"]) => {
   return post;
 }
 
-const getPostByPermalink = async(permalink) => {
+const getPostByPermalink = async(permalink, include = ["media"]) => {
   let post = await db.Posts.findOne({
     where: {
       permalink,
     },
+    include: include
   });
   return post;
 }

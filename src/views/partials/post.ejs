@@ -9,6 +9,11 @@
   <% } %>
     <content class="e-content">
       <%- post.content_html %>
+      <% if(post.media){ %>
+        <% for(let media of post.media){ %>
+          <p><img src="<%- blog.url %>/<%- media.path %>" alt="<%- media.altText %>"></p>
+        <% } %>
+      <% } %>
     </content>
     <% if(!post.is_page) { %>
       <p>

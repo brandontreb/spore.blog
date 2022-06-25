@@ -34,37 +34,20 @@ const createPost = catchAsync(async(req, res) => {
   let blog = req.blog;
   let user = req.user;
   let body = req.body;
-  body.blog_id = blog.id;
-  body.user_id = user.id;
-  
   let media_files = req.files;  
-  
-  // Add an img src to the body 
-  if (media_files) {
-    body.media = media_files;
-    media_files.forEach(file => {
-      // console.log(file);
-      body.content = `${body.content}\n\n![${file.originalname}](${blog.url}/${file.path})`;
-    });
-  }
+  body.blog_id = blog.id;
+  body.user_id = user.id;  
+  body.media = media_files || [];
 
   let post = await postService.createPost(body);
   req.flash('success', `Post created!`);
   res.redirect(`/dashboard/posts/${post.id}`);
 });
 
-const updatePost = catchAsync(async(req, res) => {
-  let blog = req.blog;
+const updatePost = catchAsync(async(req, res) => {  
   let body = req.body;
   let media_files = req.files;  
-  
-  // Add an img src to the body 
-  if (media_files) {
-    body.media = media_files.map(file => file.filename);
-    media_files.forEach(file => {      
-      body.content = `${body.content}\n\n![${file.originalname}](${blog.url}/${file.path})`;
-    });
-  }
+  body.media = media_files || [];
   
   let post = await postService.updatePost(req.params.id, body);
   req.flash('success', `Post updated!`);
