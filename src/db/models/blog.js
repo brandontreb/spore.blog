@@ -11,21 +11,20 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      // this.hasMany(models.Users, {
-      //   foreignKey: 'user_id',
-      //   as: 'users'
-      // });
-
-      // this.hasMany(models.Posts, {
-      //   foreignKey: 'blog_id',
-      //   as: 'posts'
-      // });
+      this.hasMany(models.Posts, {
+        foreignKey: 'blog_id',
+        as: 'posts'
+      });
     }
   }
   Blog.init({        
     title: DataTypes.STRING,
     url: {
-      type: DataTypes.STRING,      
+      type: DataTypes.STRING,     
+      get: function() {
+        // remove any trailing slash
+        return this.getDataValue('url').replace(/\/$/, '');        
+      } 
     },
     bare_url: {
       type: DataTypes.VIRTUAL,

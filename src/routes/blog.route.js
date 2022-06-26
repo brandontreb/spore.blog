@@ -8,6 +8,6 @@ router.get('/blog', blogController.getPosts);
 router.get('/feed.xml', feedController.xml);
 router.get('/feed.json', feedController.json);
 
-router.get('/:permalink', blogController.getPost);
+router.get('/:year?/:month?/:day?/:permalink',blogController.getPost);
 
 module.exports = router;

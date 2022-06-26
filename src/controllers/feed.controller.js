@@ -11,6 +11,10 @@ const xml = catchAsync(async(req, res) => {
       ['published_date', 'DESC'],
     ],
     limit: 10,
+    include: [
+      'media',
+      'blog'
+    ]
   });
 
   res.setHeader("Content-Type", "application/xml");
@@ -30,6 +34,10 @@ const json = catchAsync(async(req, res) => {
       ['published_date', 'DESC'],
     ],
     limit: 10,
+    include: [
+      'media',
+      'blog'
+    ]
   });
   
   let response = {
@@ -45,7 +53,7 @@ const json = catchAsync(async(req, res) => {
     let item = {
       id: post.url,
       url: post.url,      
-      content_html: post.content,
+      content_html: post.content_html,
       date_published: post.published_date,
       date_modified: post.updatedAt,      
     };

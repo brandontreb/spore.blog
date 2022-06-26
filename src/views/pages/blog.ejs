@@ -23,7 +23,7 @@
       <h1>Blog</h1>
       <% posts.forEach(post=> { %>
         <p class="h-entry">                      
-          <a class="u-url" href="/<%- post.permalink %>/">
+          <a class="u-url" href="<%- post.url %>/">
             <time class="dt-published" datetime="<%- post.published_date %>"><%- post.published_date_formatted %></time>
           </a>                                           
           <% if(post.is_note) { %>

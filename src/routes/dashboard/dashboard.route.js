@@ -6,6 +6,10 @@ const auth = require('../../middlewares/auth');
 
 const router = express.Router();
 
+router.route('/install')
+  .get(dashboardController.install)
+  .post(validate(dashboardValidation.install), dashboardController.install);
+
 router
   .route('/')
   .get(auth(true),dashboardController.getDashboard)

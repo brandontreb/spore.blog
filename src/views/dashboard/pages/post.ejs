@@ -128,7 +128,7 @@ document.getElementById('idTitle'))">
         <p>
         <form method="post" action="/dashboard/posts/<%- locals.post.id %>?_method=DELETE" name="form-delete"
           id="form-delete">
-          <a href="/<%- locals.post.permalink %>" target="_blank">View post</a> | 
+          <a href="<%- locals.post.url %>" target="_blank">View post</a> | 
           <a class="text-danger" href="# " onclick="return confirm( 'Are you sure you want to delete this post?') ? 
             document.getElementById('form-delete').submit() : false;">Delete</a>
         </form>

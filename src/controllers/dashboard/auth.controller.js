@@ -13,20 +13,9 @@ const getLogin = catchAsync(async (req, res) => {
 
 const loginWithEmailAndPassword = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
-  const blog = await blogService.getBlog();
+  const user = await authService.loginUserWithEmailAndPassword(email, password);
 
-  if (blog.email !== email) {
-    console.log('email not found');
-    req.flash('error', 'Invalid email or password');
-    return res.redirect('/dashboard/auth/login');
-  }
-
-  const isMatch = await blogService.comparePassword(password, blog.password);
-  if (!isMatch) {
-    req.flash('error', 'Invalid email or password');
-    return res.redirect('/dashboard/auth/login');
-  }
-
+  req.session.user = user;
   req.session.isLoggedIn = true;
   req.session.save(err => {
     if (err) {

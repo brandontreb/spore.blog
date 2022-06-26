@@ -57,7 +57,7 @@ app.use(session({
   cookie: {
     // 30 days
     maxAge: 60 * 60 * 24 * 30 * 1000,
-    httpOnly: true,
+    httpOnly: config.env === 'production',
     secure: config.env === 'production',
     sameSite: 'strict',
   },
@@ -87,6 +87,7 @@ app.use(routes);
 
 // send back a 404 error for any unknown api request
 app.use((req, res, next) => {
+  console.log(req.url);
   next(new ApiError(httpStatus.NOT_FOUND, 'Not found'));
 });
 

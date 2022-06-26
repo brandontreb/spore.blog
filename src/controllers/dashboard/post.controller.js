@@ -15,8 +15,7 @@ const getPosts = catchAsync(async(req, res) => {
 });
 
 const getPost = catchAsync(async(req, res) => {
-  let post = await postService.getPostById(req.params.id);
-  console.log(post)
+  let post = await postService.getPostById(req.params.id,['media','blog'] );  
 
   res.render('dashboard/pages/post', {
     post,

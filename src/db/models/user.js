@@ -1,5 +1,6 @@
 'use strict';
 const crypto = require('crypto')
+const bcrypt = require('bcrypt');
 const {
   Model
 } = require('sequelize');
@@ -26,9 +27,32 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   User.init({
-    email: DataTypes.STRING,
-    username: DataTypes.STRING,
-    password: DataTypes.STRING,
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        isEmail: true
+      },
+      set: function (val) {
+        this.setDataValue('email', val.toLowerCase());
+      }
+    },
+    username: {
+      type: DataTypes.STRING,
+      unique: true,
+      allowNull: false,
+      set: function (val) {
+        this.setDataValue('username', val.toLowerCase());
+      }
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      set (value) {
+        this.setDataValue('password', bcrypt.hashSync(value, 12));
+      }
+    },
     full_name: DataTypes.STRING,
     website: DataTypes.STRING,
     about: DataTypes.TEXT,
@@ -49,5 +73,10 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Users',
   });
+
+  User.prototype.comparePassword = function (password) {
+    return bcrypt.compareSync(password, this.password);
+  }
+
   return User;
 };

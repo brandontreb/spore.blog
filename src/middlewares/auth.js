@@ -4,14 +4,13 @@ const auth = (required) => async(req, res, next) => {
   
   if (required) {
     if (!session.isLoggedIn) {
-      // return res.redirect('/dashboard/auth/login');
+      return res.redirect('/dashboard/auth/login');
     }
   }  
   
   let {userService} = require('../services');
-  let user = await userService.getUser(1);
-  req.user = user;
-  res.locals.isLoggedIn = session.isLoggedIn;
+  let user = await userService.getUser(req.session.user.id);
+  req.user = user;  
   next();
 };
 

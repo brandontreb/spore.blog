@@ -49,7 +49,8 @@ const getPosts = catchAsync(async(req, res) => {
   let posts = await postService.queryPosts(filter, {
     order: [
       ['published_date', 'DESC']
-    ]
+    ],
+    include: 'blog'
   });
   res.render('pages/blog', {
     title: `Posts | ${blog.title}`,
@@ -59,8 +60,9 @@ const getPosts = catchAsync(async(req, res) => {
 });
 
 const getPost = catchAsync(async(req, res) => {
+  console.log(req.params)
   let blog = await blogService.getBlog();
-  let post = await postService.getPostByPermalink(req.params.permalink);
+  let post = await postService.getPostByPermalink(req.params.permalink, ['media', 'blog']);
 
   // If the post is not published, redirect to the blog page
   if (!post || !post.published) {

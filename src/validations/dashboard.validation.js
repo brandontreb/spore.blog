@@ -25,8 +25,20 @@ const updateStyles = {
   })
 }
 
+const install = {
+  body: Joi.object().keys({
+    blog_title: Joi.string().required(),
+    blog_url: Joi.string().required(),
+    username: Joi.string().required(),
+    email: Joi.string().email().required(),
+    password: Joi.string().required(),
+    password_again: Joi.string().required(),    
+  })
+}
+
 module.exports = {
   updateDashboard,
   updateNav,
   updateStyles,
+  install
 }

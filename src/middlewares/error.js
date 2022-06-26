@@ -37,8 +37,12 @@ const errorHandler = (err, req, res, next) => {
 
   // res.status(statusCode).send(response);
   // flash error and redirect to original url
-  res.flash('error', err.message);
-  res.redirect(req.originalUrl);  
+  if(statusCode !== httpStatus.NOT_FOUND) {
+    res.flash('error', err.message);
+    res.redirect(req.originalUrl);  
+  } else {
+    res.status(statusCode).render('pages/404', response);
+  }
 };
 
 module.exports = {

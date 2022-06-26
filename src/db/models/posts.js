@@ -77,7 +77,13 @@ module.exports = (sequelize, DataTypes) => {
     content_html: {
       type: DataTypes.VIRTUAL,
       get() {
-        return md.render(this.content);
+        let content = this.content;
+        if(this.media) {
+          for(let media of this.media) {
+            content =`${content}\n\n<p><img src="${this.blog.url}/${media.path}" alt="${media.altText || ""}"></p>`;
+          }
+        }
+        return md.render(content);
       },
     },
     content_text: {
@@ -89,8 +95,16 @@ module.exports = (sequelize, DataTypes) => {
     content_html_encoded: {
       type: DataTypes.VIRTUAL,
       get() {
-        return encode(md.render(this.content));
+        return encode(this.content_html);
       },
+    },
+    url: {
+      type: DataTypes.VIRTUAL,
+      get() {
+        // Get year published
+        let dateString = moment(this.published_date).utcOffset(0, false).format("YYYY/MM/DD");
+        return `${this.blog.url}/${dateString}/${this.permalink}`;
+      }
     }
   }, {
     sequelize,
