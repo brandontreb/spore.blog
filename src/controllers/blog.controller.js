@@ -5,9 +5,16 @@ const Op = Sequelize.Op;
 
 const getBlog = catchAsync(async(req, res) => {
   let blog = await blogService.getBlog();  
+  let posts = await postService.queryPosts({}, {
+    order: [
+      ['published_date', 'DESC']
+    ],
+    include: ['blog','media']
+  });
   res.render('pages/index', {
-    title: blog.title,
-    blog,
+    title: `${blog.title}`,
+    posts,
+    blog
   });
 });
 
@@ -72,9 +79,9 @@ const getPost = catchAsync(async(req, res) => {
     });
   }
 
-  post.tags = post.tags.split(',');
+  post.tags = post.tags.split(',').map(tag => tag.trim());
 
-  res.render('pages/post', {
+  res.render('pages/single', {
     blog,
     post,
     title: post.title,

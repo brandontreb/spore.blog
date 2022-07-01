@@ -35,14 +35,14 @@ const errorHandler = (err, req, res, next) => {
     logger.error(err);
   }
 
-  // res.status(statusCode).send(response);
+  res.status(statusCode).send(response);
   // flash error and redirect to original url
-  if(statusCode !== httpStatus.NOT_FOUND) {
-    res.flash('error', err.message);
-    res.redirect(req.originalUrl);  
-  } else {
-    res.status(statusCode).render('pages/404', response);
-  }
+  // if(statusCode !== httpStatus.NOT_FOUND) {
+  //   res.flash('error', err.message);
+  //   res.redirect(req.originalUrl);  
+  // } else {
+  //   res.status(statusCode).render('pages/404', response);
+  // }
 };
 
 module.exports = {

@@ -77,7 +77,7 @@ module.exports = (sequelize, DataTypes) => {
     content_html: {
       type: DataTypes.VIRTUAL,
       get() {
-        let content = this.content;
+        let content = this.content;      
         if(this.media) {
           for(let media of this.media) {
             content =`${content}\n\n<p><img src="${this.blog.url}/${media.path}" alt="${media.altText || ""}"></p>`;

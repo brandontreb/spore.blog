@@ -1,0 +1,48 @@
+.separator {
+  display: block;
+  margin: 42px 0 48px 0;
+  width: 100%;
+}
+
+span.divider {
+    display: block;
+    width: 100%;
+    background-color: #eee;
+    height: 1px;
+    margin: 0 auto;
+}
+
+@media (prefers-color-scheme: dark) {
+  span.divider {
+    background-color: #2B343B;
+  }
+}
+
+.avatar {
+  float: left;
+  margin-right: 20px;    
+}
+
+.avatar img {
+  object-fit: contain;
+}
+
+.dt-published {
+  display: block;
+  font-size: 0.8em;
+  color: #aaa;
+}
+
+footer {
+  text-align: center;
+}
+
+/* Post */
+
+.post-single .p-name{
+  text-align: center;
+}
+
+.post-single .u-url {
+  text-align: center;
+}

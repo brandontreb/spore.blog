@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <%- include('partials/head') %>
+    <%- locals.theme.head %>
+</head>
+
+<body>
+  <header>
+    <%- include('partials/header'); %>
+  </header>
+
+  <content class="blog-posts">
+    <% locals.posts.forEach(post=> { %>
+      <article class="post">
+        <!-- Heading -->
+        <% if(!post.is_note) { %>          
+          <h1 class="p-name">
+            <%- post.title %>
+          </h1>
+        <% } %>
+        <!-- Article -->
+        <p class="h-entry">
+          <%- post.content_html %>
+        </p>
+
+        <!-- Tags-->
+        <p>
+          <% post.tags.split(",").forEach(tag => { %>
+            <% if(tag.length > 0) { %>
+              <a href="/blog/?q=<%- tag %>">
+                #<%- tag %>
+              </a>&nbsp;
+            <% } %>
+          <% }); %>
+        </p>
+
+          <a class="u-url" href="<%- post.url %>/">
+            <time class="dt-published" datetime="<%- post.published_date %>">
+              <%- post.published_date_formatted %>
+            </time>
+          </a>
+          <span class="separator">
+            <span class="divider"></span>
+          </span>
+      </article>
+      <% }); %>
+  </section>
+  <br><br>
+
+  <!-- Footer -->
+  <footer>
+    <%- include('partials/footer'); %>
+  </footer>
+</body>
+
+</html>

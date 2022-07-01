@@ -19,9 +19,11 @@
       <% }); %>
     <% } %>
   </header>
-  <main>
-    <h1>Login</h1>
-    <content>
+  <main>    
+    <content class="row">
+      <span class="col-3">&nbsp;</span>
+      <span class="col-6">
+        <h1>Login</h1>
       <form action="/dashboard/auth/login" method="post">
         <p>
           <label for="email">Email or Username</label>
@@ -40,12 +42,10 @@
           <button type="submit" class="btn btn-primary">Submit</button>
         </p>
       </form>
+      </span>
+      <span class="col-3">&nbsp;</span>
     </content>
-  </main>
-
-  <footer>
-    <%- include('../partials/footer'); %>
-  </footer>
+  </main>  
 
 </body>
 

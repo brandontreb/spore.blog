@@ -1,0 +1,16 @@
+<span class="avatar">
+<% if(user.profile_photo) { %>          
+  <img src="<%- blog.url %>/<%- user.profile_photo %>" alt="profile photo" width="100" height="100"/>                
+<% } else { %>
+<!-- load from gravatar-->          
+  <img src="<%- user.profile_photo_gravatar %>" alt="profile photo" width="100" height="100"/>          
+<% } %>
+</span>
+<a class="title" href="/">
+  <h1>
+    <%- blog.title %>
+  </h1>
+</a>
+<nav>
+  <%- blog.nav_html %>
+</nav>

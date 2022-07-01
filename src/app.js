@@ -59,7 +59,7 @@ app.use(session({
     maxAge: 60 * 60 * 24 * 30 * 1000,
     httpOnly: config.env === 'production',
     secure: config.env === 'production',
-    sameSite: 'strict',
+    // sameSite: 'strict',
   },
 }));
 
@@ -81,6 +81,10 @@ app.use('/content/uploads', express.static('content/uploads'));
 app.use(express.static('src/public'));
 app.set('view engine', 'ejs');
 app.set('views', 'src/views');
+
+app.get('/content/themes/:name/:name.css', (req, res) => {  
+  res.sendFile(`/content/themes/${req.params.name}/${req.params.name}.css`, {root: './'});  
+});
 
 // view routes
 app.use(routes);

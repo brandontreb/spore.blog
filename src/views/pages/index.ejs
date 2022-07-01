@@ -1,22 +1,13 @@
+<% if(!locals.theme) { %>  
 <!DOCTYPE html>
 <html lang="<%- blog.language %>">
-
 <head>
-  <%- include('../partials/head'); %>
+  No Theme
 </head>
-
 <body>
-  <header>
-    <%- include('../partials/header'); %>
-  </header>
-  <main>
-    <content>
-      <%- blog.homepage_content_html %>
-    </content>
-  </main>
-  <footer>
-    <%- include('../partials/footer'); %>
-  </footer>
+  No Theme Found
 </body>
-
 </html>
+<% } else { %>
+  <%- include(`../../../content/themes/${locals.theme.slug}/index`); %>
+<% } %>

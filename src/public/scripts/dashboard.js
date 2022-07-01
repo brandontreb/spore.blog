@@ -6,7 +6,7 @@ const countCharactersInTextView = (textView, countView, titleView) => {
 
     if (count > 280) {
       countView.classList.add('text-danger');
-      titleView.classList.remove('hidden');
+      titleView.classList.remove('u-hidden');
     } else {
       countView.classList.remove('text-danger');
     }

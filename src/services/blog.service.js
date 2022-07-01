@@ -2,7 +2,7 @@ const db = require('../db/models');
 const MarkdownIt = require('markdown-it');
 const md = new MarkdownIt();
 
-const getBlog = async (include=[]) => {
+const getBlog = async (include=['user']) => {
   try {
     let blog = await db.Blogs.findOne({
       order: [
@@ -22,16 +22,14 @@ const createBlog = async (body) => {
   return blog;
 }
 
-const updateBlog = async (body, id = 1) => {
-  let blog = await getBlog(id);
+const updateBlog = async (body) => {
+  let blog = await getBlog();
   if (body.homepage_content) {
     body.homepage_content_html = md.render(body.homepage_content);
   }
   if (body.password) {
     body.password = await hashPassword(body.password);
-  }
-
-  console.log(body);
+  }  
 
   blog = await blog.update(body);
   return blog;
