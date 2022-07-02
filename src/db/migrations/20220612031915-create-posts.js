@@ -19,6 +19,9 @@ module.exports = {
       title: {
         type: Sequelize.STRING
       },
+      slug: {
+        type: Sequelize.STRING
+      },
       permalink: {
         type: Sequelize.STRING
       },

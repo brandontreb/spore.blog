@@ -1,3 +1,6 @@
+body {
+  color: #666;
+}
 .separator {
   display: block;
   margin: 42px 0 48px 0;
@@ -27,14 +30,21 @@ span.divider {
   object-fit: contain;
 }
 
-.dt-published {
-  display: block;
+.dt-published {  
   font-size: 0.8em;
   color: #aaa;
 }
 
+.post-single .dt-published {
+  display: block;
+}
+
 footer {
   text-align: center;
+}
+
+.title {
+  text-decoration: none;
 }
 
 /* Post */
@@ -45,4 +55,16 @@ footer {
 
 .post-single .u-url {
   text-align: center;
+  text-decoration: none;
+}
+
+.post a {
+  color: #333;
+  text-decoration: none;
+}
+
+/* Utility */
+
+.u-hidden {
+  display: none;
 }

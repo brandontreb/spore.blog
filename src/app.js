@@ -50,18 +50,34 @@ app.options('*', cors());
 
 // Session configuration
 // TODO: Move to config file
+app.set('trust proxy', 1)
 app.use(session({
+  key: 'spore.blog.session',
   secret: 'secret',
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
   cookie: {
     // 30 days
     maxAge: 60 * 60 * 24 * 30 * 1000,
-    httpOnly: config.env === 'production',
+    httpOnly: true,
     secure: config.env === 'production',
-    // sameSite: 'strict',
+    sameSite: 'strict',
   },
 }));
+
+console.log({
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    // 30 days
+    maxAge: 60 * 60 * 24 * 30 * 1000,
+    httpOnly: true,
+    secure: config.env === 'production',
+    sameSite: 'strict',
+  },
+})
+
 
 // Add flash messages
 app.use(require('flash')());

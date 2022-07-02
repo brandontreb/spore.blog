@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="<%- blog.language %>">
-
 <% 
   const truncate = (str, len) => {
     if (str.length > len) {
@@ -9,19 +6,24 @@
     return str;
   }
 %>
+<!DOCTYPE html>
+<html>
 
 <head>
-  <%- include('../partials/head'); %>
+  <%- include('partials/head') %>
+    <%- locals.theme.head %>
 </head>
 
 <body>
   <header>
-    <%- include('../partials/header'); %>
+    <%- include('partials/header'); %>
   </header>
+
+ 
   <main>
     <content class="blog-posts">
-      <h1>Blog</h1>
-      <% posts.forEach(post=> { %>
+      <h1>Archive</h1>
+      <% locals.posts.forEach(post=> { %>
         <p class="h-entry">                      
           <a class="u-url" href="<%- post.url %>/">
             <time class="dt-published" datetime="<%- post.published_date %>"><%- post.published_date_formatted %></time>
@@ -34,9 +36,16 @@
         </p>
         <% }); %>
       </content>
+      <span class="separator">
+        <span class="divider"></span>
+      </span>
   </main>
+
+  <br><br>
+
+  <!-- Footer -->
   <footer>
-    <%- include('../partials/footer'); %>
+    <%- include('partials/footer'); %>
   </footer>
 </body>
 

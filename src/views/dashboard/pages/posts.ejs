@@ -31,6 +31,9 @@
             <% if(!post.published) { %>
               <span>[draft]</span>
             <% } %>
+            <% if(post.is_page) { %>
+              <span>[page]</span>
+            <% } %>
             <% if(post.is_note) { %>
               <span><%- truncate(post.content_text, 92) %></span>
             <% } else { %>              

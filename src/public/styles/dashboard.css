@@ -1,6 +1,6 @@
 :root {
-  --secondary: hsl(205deg, 15%, 41%);  
-  --background-color: #fff;
+   
+  /* --background-color: #fff;
   --color: hsl(205deg, 20%, 32%);
   --h1-color: hsl(205deg, 30%, 15%);
   --h2-color: #24333e;
@@ -10,9 +10,11 @@
   --h6-color: #4d606d;
   --primary: hsl(195deg, 85%, 41%);  
   --primary-inverse: #fff;
-  --secondary: hsl(205deg, 15%, 41%);  
-  --secondary-inverse: #fff;  
+  --secondary: hsl(205deg, 15%, 41%);   */
+  
 
+  --secondary: hsl(205deg, 15%, 41%); 
+  --secondary-inverse: #fff;  
   --links: hsl(195deg, 85%, 41%);
   --button-base: #EFEFEF;
   --button-border: #CCC;
@@ -79,8 +81,13 @@ time {
   color: red !important;
 }
 
-/* Forms */
+.button-secondary {
+  background-color: var(--secondary);
+  border-color: var(--secondary);
+  color: var(--secondary-inverse);
+}
 
+/* Forms */
 input, textarea {
   background: none;
   border: 1px solid lightgray;

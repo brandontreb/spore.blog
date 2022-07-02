@@ -20,10 +20,10 @@ const getPostById = async(id, include = ["media"]) => {
   return post;
 }
 
-const getPostByPermalink = async(permalink, include = ["media"]) => {
+const getPostBySlug = async(slug, include = ["media"]) => {
   let post = await db.Posts.findOne({
     where: {
-      permalink,
+      slug,
     },
     include: include
   });
@@ -34,14 +34,19 @@ const createPost = async(body) => {
   body = await setPostDefaults(body);  
   post = await db.Posts.create(body);
   await associateMediaFilesWithPost(post, body.media);
+  let permalink = await generatePermalink(post);
+  await post.update({permalink});
   return post;
 }
 
 const updatePost = async(id, body) => {
   let post = await db.Posts.findByPk(id);
-  body = await setPostDefaults(body, true);
-  post = await post.update(body);
-  await associateMediaFilesWithPost(post, body.media);
+  body = await setPostDefaults(body, true);  
+  post = await post.update(body);  
+  let permalink = await generatePermalink(post);
+  await post.update({permalink});
+
+  await associateMediaFilesWithPost(post, body.media);  
   return post;
 }
 
@@ -52,28 +57,28 @@ const deletePost = async(id) => {
 }
 
 const setPostDefaults = async(body, update = false) => {
-  // If the permalink is not set, generate one
-  if (!body.permalink) {
+  // If the slug is not set, generate one
+  if (!body.slug) {
     if (body.title) {
-      body.permalink = urlSlug(body.title);
+      body.slug = urlSlug(body.title);
     } else {
-      // If the title is not set, generate a random permalink
-      body.permalink = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+      // If the title is not set, generate a random slug
+      body.slug = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
     }
   }
 
   if (!update) {
-    // Ensure that the permalink is unique
-    let permalink = body.permalink;
+    // Ensure that the slug is unique
+    let slug = body.slug;
     let post = await db.Posts.findOne({
       where: {
-        permalink,
+        slug,
       },
     });
-    // If the permalink is not unique, add a number to the end
+    // If the slug is not unique, add a number to the end
     if (post) {
       let number = Math.floor(1000 + Math.random() * 9000);
-      body.permalink = `${permalink}-${number}`;
+      body.slug = `${slug}-${number}`;
     }
   }
 
@@ -90,9 +95,7 @@ const setPostDefaults = async(body, update = false) => {
 
 const associateMediaFilesWithPost = async(post, mediaFiles) => {
   // Create the media objects if necessary
-  if (mediaFiles) {
-    console.log('Creating media objects');
-    console.log(mediaFiles);
+  if (mediaFiles) {    
     mediaFiles.forEach(async(media) => {      
       let mediaBody = {
         post_id: post.id,
@@ -102,17 +105,25 @@ const associateMediaFilesWithPost = async(post, mediaFiles) => {
         mimeType: media.mimetype,
         filename: media.filename,
         size: media.size        
-      };
-      console.log(mediaBody);
+      };      
       await mediaService.createMedia(mediaBody);
     });
   }
 }
 
+const generatePermalink = async(post) => {
+  // Generate a permalink from post.published_date and post.slug
+
+  const date = post.published_date.toISOString().split('T')[0].replaceAll('-', '/');
+
+  let permalink = `/${date}/${post.slug}`;
+  console.log(permalink);
+  return permalink;
+}
 
 module.exports = {
   getPostById,
-  getPostByPermalink,
+  getPostBySlug,
   queryPosts,
   createPost,
   updatePost,

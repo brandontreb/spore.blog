@@ -6,7 +6,7 @@ const createPost = {
   },
   body: Joi.object().keys({
     title: Joi.string().allow('').optional(),
-    permalink: Joi.string().allow(null, ''),
+    slug: Joi.string().allow(null, ''),
     published_date: Joi.date().allow(null, ''),
     content: Joi.string().allow(null, ''),
     meta_description: Joi.string().allow(null, ''),

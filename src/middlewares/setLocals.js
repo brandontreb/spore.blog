@@ -3,13 +3,16 @@ const {blogService} = require('../services');
 const setLocals = () => async(req, res, next) => {
   let blog = await blogService.getBlog();
 
-  if(!blog && req.originalUrl !== '/dashboard/install') {
-    return res.redirect('/dashboard/install');
+  if(!blog) {
+    if(req.originalUrl !== '/dashboard/install') {
+      return res.redirect('/dashboard/install');
+    }
+    return next();
   }
 
   req.blog = blog;
   res.locals.blog = blog;
-  res.locals.user = blog.user;
+  res.locals.user = blog ? blog.user : null;
 
   // TODOL Save this to db
   res.locals.theme = {
@@ -22,6 +25,7 @@ const setLocals = () => async(req, res, next) => {
   <link rel="alternate" type="application/json" title="${res.locals.user.username}" href="${blog.url}/feed.json" />
   <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
   <link rel="stylesheet" href="/content/themes/${res.locals.theme.slug}/${res.locals.theme.slug}.css">
+  <link href="mailto:${res.locals.user.email}" rel="me">
   `;
 
   next();

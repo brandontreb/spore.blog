@@ -44,7 +44,7 @@ document.getElementById('idTitle'))">
               </div>
               <div class="col-6">
                 <span class="u-float-right">
-                  <button type="button" onclick="document.getElementById('idMedia').click();return false;">                  
+                  <button class="button-secondary" type="button" onclick="document.getElementById('idMedia').click();return false;">                  
                     Upload               
                   </button>
                   
@@ -82,18 +82,18 @@ document.getElementById('idTitle'))">
           </p>
 
           <p>
-            <label for="permalink">Permalink:</label>
-            <input type="text" id="permalink" name="permalink" value="<%- locals.post ? locals.post.permalink : '' %>">
+            <label for="slug">URL Slug:</label>
+            <input type="text" id="slug" name="slug" value="<%- locals.post ? locals.post.slug : '' %>">
           </p>
 
           <p>
-            <label for="permalink">Meta Description:</label>
+            <label for="meta_description">Meta Description:</label>
             <input type="text" id="meta_description" name="meta_description"
               value="<%- locals.post ? locals.post.meta_description : '' %>">
           </p>
 
           <p>
-            <label for="permalink">Meta Image URL:</label>
+            <label for="meta_image_url">Meta Image URL:</label>
             <input type="text" id="meta_image_url" name="meta_image_url"
               value="<%- locals.post ? locals.post.meta_image_url : '' %>">
           </p>

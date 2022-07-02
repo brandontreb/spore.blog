@@ -3,9 +3,19 @@ const { blogService, postService } = require('../services');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
-const getBlog = catchAsync(async(req, res) => {
+const getIndex = catchAsync(async(req, res) => {
+  var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+
+  console.log(fullUrl);
+
   let blog = await blogService.getBlog();  
-  let posts = await postService.queryPosts({}, {
+  let posts = await postService.queryPosts({
+    [Op.and]: [{
+        published: true,
+        is_page: false
+      }      
+    ]
+  }, {
     order: [
       ['published_date', 'DESC']
     ],
@@ -18,7 +28,7 @@ const getBlog = catchAsync(async(req, res) => {
   });
 });
 
-const getPosts = catchAsync(async(req, res) => {
+const getArchive = catchAsync(async(req, res) => {
   let blog = await blogService.getBlog();
   let filter = {};
 
@@ -59,17 +69,16 @@ const getPosts = catchAsync(async(req, res) => {
     ],
     include: 'blog'
   });
-  res.render('pages/blog', {
-    title: `Posts | ${blog.title}`,
+  res.render('pages/archive', {
+    title: `Archive | ${blog.title}`,
     posts,
     blog
   });
 });
 
 const getPost = catchAsync(async(req, res) => {
-  console.log(req.params)
   let blog = await blogService.getBlog();
-  let post = await postService.getPostByPermalink(req.params.permalink, ['media', 'blog']);
+  let post = await postService.getPostBySlug(req.params.slug, ['media', 'blog']);
 
   // If the post is not published, redirect to the blog page
   if (!post || !post.published) {
@@ -89,7 +98,7 @@ const getPost = catchAsync(async(req, res) => {
 });
 
 module.exports = {
-  getBlog,
+  getIndex,
   getPost,
-  getPosts
+  getArchive
 }

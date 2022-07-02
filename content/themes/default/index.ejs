@@ -17,7 +17,9 @@
         <!-- Heading -->
         <% if(!post.is_note) { %>          
           <h1 class="p-name">
-            <%- post.title %>
+            <a class="u-url" href="<%- post.url %>/">
+              <%- post.title %>
+            </a>
           </h1>
         <% } %>
         <!-- Article -->
@@ -36,7 +38,7 @@
           <% }); %>
         </p>
 
-          <a class="u-url" href="<%- post.url %>/">
+          <a class="u-url" href="<%- post.url %>">
             <time class="dt-published" datetime="<%- post.published_date %>">
               <%- post.published_date_formatted %>
             </time>
@@ -47,6 +49,7 @@
       </article>
       <% }); %>
   </section>
+  <%- include('partials/author'); %>
   <br><br>
 
   <!-- Footer -->

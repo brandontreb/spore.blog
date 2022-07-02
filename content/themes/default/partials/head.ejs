@@ -45,8 +45,9 @@
   }
 </script>
 
-<link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+<% if(!blog.overwrite_styles) { %>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+<% } %>
 <style>
   <% if(blog.external_stylesheet_url) { %>     
     @import '<%- blog.external_stylesheet_url %>';

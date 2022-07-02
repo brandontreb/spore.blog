@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,     
       get: function() {
         // remove any trailing slash
-        return this.getDataValue('url').replace(/\/$/, '');        
+        return this.getDataValue('url').replace(/\/$/, '').trim();        
       } 
     },
     bare_url: {

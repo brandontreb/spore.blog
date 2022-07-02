@@ -42,6 +42,7 @@ module.exports = (sequelize, DataTypes) => {
     // blog_id: DataTypes.INTEGER,
     // user_id: DataTypes.INTEGER,
     title: DataTypes.STRING,
+    slug: DataTypes.STRING,
     permalink: DataTypes.STRING,
     published_date: DataTypes.DATE,
     content: DataTypes.TEXT,
@@ -100,10 +101,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     url: {
       type: DataTypes.VIRTUAL,
-      get() {
-        // Get year published
-        let dateString = moment(this.published_date).utcOffset(0, false).format("YYYY/MM/DD");
-        return `${this.blog.url}/${dateString}/${this.permalink}`;
+      get() {        
+        return `${this.blog.url}${this.permalink}`;
       }
     }
   }, {

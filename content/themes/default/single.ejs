@@ -12,22 +12,21 @@
   </header>
 
   <content class="blog-posts">
-    <article class="post-single">
-      <!-- Heading -->
+    <article class="h-entry post-single">
+      <!-- Heading -->      
       <% if(!locals.post.is_note) { %>
         <h1 class="p-name">
           <%- locals.post.title %>
         </h1>
-        <% } %>
-
+        <% } %>        
         <a class="u-url" href="<%- locals.post.url %>/">
           <time class="dt-published" datetime="<%- locals.post.published_date %>">
             <%- locals.post.published_date_formatted %>
           </time>
-        </a>
+        </a>            
 
           <!-- Article -->
-          <p class="h-entry">
+          <p class="e-content">
             <%- locals.post.content_html %>
           </p>
 
@@ -38,7 +37,11 @@
                 <a href="/blog/?q=<%- tag %>">#<%- tag %></a>&nbsp;
               <% } %>
             <% }); %>
-          </p>          
+          </p>       
+          
+          
+          <%- include('partials/author') %>
+
           <span class="separator">
             <span class="divider"></span>
           </span>
