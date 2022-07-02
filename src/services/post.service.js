@@ -34,18 +34,24 @@ const createPost = async(body) => {
   body = await setPostDefaults(body);  
   post = await db.Posts.create(body);
   await associateMediaFilesWithPost(post, body.media);
-  let permalink = await generatePermalink(post);
-  await post.update({permalink});
+  if(!body.permalink) {
+    let permalink = await generatePermalink(post);
+    await post.update({permalink});
+  }
   return post;
 }
 
 const updatePost = async(id, body) => {
   let post = await db.Posts.findByPk(id);
   body = await setPostDefaults(body, true);  
-  post = await post.update(body);  
-  let permalink = await generatePermalink(post);
-  await post.update({permalink});
 
+  // Only update the permalink if the slug changes  
+  if(body.slug && body.slug !== post.slug) {
+    let permalink = await generatePermalink(post, body.slug);
+    body.permalink = permalink;
+  }
+
+  post = await post.update(body);      
   await associateMediaFilesWithPost(post, body.media);  
   return post;
 }
@@ -111,12 +117,9 @@ const associateMediaFilesWithPost = async(post, mediaFiles) => {
   }
 }
 
-const generatePermalink = async(post) => {
-  // Generate a permalink from post.published_date and post.slug
-
+const generatePermalink = async(post, slug) => {  
   const date = post.published_date.toISOString().split('T')[0].replaceAll('-', '/');
-
-  let permalink = `/${date}/${post.slug}`;
+  let permalink = `/${date}/${slug}`;
   console.log(permalink);
   return permalink;
 }
