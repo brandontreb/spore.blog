@@ -25,7 +25,8 @@ const setLocals = () => async(req, res, next) => {
   <link rel="alternate" type="application/json" title="${res.locals.user.username}" href="${blog.url}/feed.json" />
   <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
   <link rel="stylesheet" href="/content/themes/${res.locals.theme.slug}/${res.locals.theme.slug}.css">
-  <link href="mailto:${res.locals.user.email}" rel="me">
+  <link rel="me" href="mailto:${res.locals.user.email}">
+  <link rel="webmention" href="${blog.url}/api/v1/webmention">
   `;
 
   next();

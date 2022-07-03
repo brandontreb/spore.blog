@@ -1,0 +1,1 @@
+module.exports.webmentionController = require('./webmention.controller');

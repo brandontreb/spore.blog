@@ -65,20 +65,6 @@ app.use(session({
   },
 }));
 
-console.log({
-  secret: 'secret',
-  resave: false,
-  saveUninitialized: true,
-  cookie: {
-    // 30 days
-    maxAge: 60 * 60 * 24 * 30 * 1000,
-    httpOnly: true,
-    secure: config.env === 'production',
-    sameSite: 'strict',
-  },
-})
-
-
 // Add flash messages
 app.use(require('flash')());
 // Clear flash on each request

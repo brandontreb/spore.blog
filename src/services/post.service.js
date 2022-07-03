@@ -34,7 +34,7 @@ const createPost = async(body) => {
   body = await setPostDefaults(body);  
   post = await db.Posts.create(body);
   await associateMediaFilesWithPost(post, body.media);
-  if(!body.permalink) {
+  if(!body.permalink || body.permalink === '') {
     let permalink = await generatePermalink(post);
     await post.update({permalink});
   }
