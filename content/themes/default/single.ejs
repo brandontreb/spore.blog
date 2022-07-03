@@ -13,22 +13,20 @@
 
   <content class="blog-posts">
     <article class="h-entry post-single">
-      <!-- Heading -->      
-      <% if(!locals.post.is_note) { %>
-        <h1 class="p-name">
+      <!-- Heading -->            
+        <h1 class="p-name <%- locals.post.title.length === 0 ? 'u-hidden' : '' %>">
           <%- locals.post.title %>
-        </h1>
-        <% } %>        
+        </h1>        
         <a class="u-url" href="<%- locals.post.url %>/">
-          <time class="dt-published" datetime="<%- locals.post.published_date %>">
+          <time class="dt-published" datetime="<%- locals.post.published_date.toISOString() %>">
             <%- locals.post.published_date_formatted %>
           </time>
         </a>            
 
           <!-- Article -->
-          <p class="e-content">
+          <div class="e-content">
             <%- locals.post.content_html %>
-          </p>
+          </div>
 
           <!-- Tags-->
           <p>
@@ -45,6 +43,7 @@
           <span class="separator">
             <span class="divider"></span>
           </span>
+          
     </article>
     <br><br>
 

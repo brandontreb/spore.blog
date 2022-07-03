@@ -1,19 +1,28 @@
 <!-- Author-->
-<section id="post-meta" class="u-hidden p-author h-card">
-  <a href="/" class="u-url">
-  
+<!-- <section id="post-meta" class="u-hidden p-author h-card">
+  <a href="<%- locals.blog.url %>" class="u-url"></a>
   <% if(locals.user.profile_photo) { %>          
       <img class="u-photo avatar" src="<%- blog.url %>/<%- locals.user.profile_photo %>" alt="profile photo" width="100" height="100"/>                
-  <% } else { %>
-    <!-- load from gravatar-->          
+  <% } else { %>            
       <img class="u-photo avatar" src="<%- locals.user.profile_photo_gravatar %>" alt="profile photo" width="100" height="100"/>          
   <% } %>
-  
   <div>
-    <span class="p-name dark"><%- locals.user.name %></span>
+    <span class="p-name"><%- locals.user.full_name %></span>
     <span><a href="<%- blog.url %>">@<%- locals.user.username %>@<%- locals.blog.bare_url %></a></span>
     <p class="p-note"><%- locals.user.about %></p>
-  </div>
+  </div>  
+</section> -->
 
+<div class="left p-author h-card">
+  <a href="<%- locals.blog.url %>" class="u-url">
+    <span class="p-name"><%- locals.user.full_name.length ? locals.user.full_name : locals.user.username %></span>
+    <% if(locals.user.profile_photo) { %>
+      <img class="u-photo avatar" src="<%- blog.url %>/<%- locals.user.profile_photo %>" width="100"
+        height="100" />
+    <% } else { %>
+        <img class="u-photo avatar" src="<%- locals.user.profile_photo_gravatar %>" width="100"
+          height="100" />
+    <% } %>
+    <p class="p-note"><%- locals.user.about %></p>
   </a>
-</section>
+</div>
