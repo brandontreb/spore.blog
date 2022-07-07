@@ -64,24 +64,7 @@ const processWebmention = async (source, target) => {
           target: target,
           source: source,
           post_id: post.id,
-          name: entry.name,
-          published: entry.published,
-          content_value: entry.content.value,
-          content_html: entry.content.html,
-          summary: entry.summary,
-          url: entry.url,
-          author: entry.author,
-          category: entry.category,
-          syndication: entry.syndication,
-          syndicateTo: entry.syndicateTo,
-          photo: entry.photo,
-          audio: entry.audio,
-          video: entry.video,
-          replyTo: entry.replyTo,
-          likeOf: entry.likeOf,
-          repostOf: entry.repostOf,
-          embed: entry.embed,
-          children: entry.children
+          entry: entry
         };
         if(webmention.length > 0) {
           webmention = webmention[0];

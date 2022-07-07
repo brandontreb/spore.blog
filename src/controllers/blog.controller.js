@@ -12,7 +12,8 @@ const getIndex = catchAsync(async(req, res) => {
   let posts = await postService.queryPosts({
     [Op.and]: [{
         published: true,
-        is_page: false
+        is_page: false,
+        replyTo: null
       }      
     ]
   }, {
@@ -57,7 +58,8 @@ const getArchive = catchAsync(async(req, res) => {
   filter = {
     [Op.and]: [{
         published: true,
-        is_page: false
+        is_page: false,
+        replyTo: null
       },
       filter
     ]
@@ -87,8 +89,6 @@ const getPost = catchAsync(async(req, res) => {
       blog,
     });
   }
-
-  post.tags = post.tags.split(',').map(tag => tag.trim());
 
   res.render('pages/single', {
     blog,

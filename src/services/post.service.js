@@ -42,7 +42,7 @@ const getPostByPermalink = async (permalink, include = ["media", "blog"]) => {
 
 const createPost = async (body) => {
   body = await setPostDefaults(body);
-  post = await db.Posts.create(body);  
+  post = await db.Posts.create(body);
   await associateMediaFilesWithPost(post, body.media);
   return post;
 }
@@ -50,7 +50,7 @@ const createPost = async (body) => {
 const updatePost = async (id, body) => {
   let post = await db.Posts.findByPk(id);
   body = await setPostDefaults(body, true);
-  post = await post.update(body);  
+  post = await post.update(body);
   await associateMediaFilesWithPost(post, body.media);
   return post;
 }
@@ -96,6 +96,14 @@ const setPostDefaults = async (body, update = false) => {
 
   // Check for a title
   body.is_note = !body.title || body.title.length === 0;
+
+  // Check for an @ reply
+  const regex = /@https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g;
+  let replyTo = body.content.match(regex);
+  if(replyTo) {
+    replyTo = replyTo[0].replace('@', '');
+    body.replyTo = replyTo;
+  }
 
   return body;
 }

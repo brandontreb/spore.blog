@@ -44,9 +44,7 @@ module.exports = (sequelize, DataTypes) => {
       // });
     }
   }
-  Posts.init({
-    // blog_id: DataTypes.INTEGER,
-    // user_id: DataTypes.INTEGER,
+  Posts.init({    
     title: DataTypes.STRING,
     slug: DataTypes.STRING,
     permalink: DataTypes.STRING,
@@ -54,10 +52,11 @@ module.exports = (sequelize, DataTypes) => {
     content: DataTypes.TEXT,
     meta_description: DataTypes.STRING,
     meta_image_url: DataTypes.STRING,
-    tags: DataTypes.STRING,
-    is_page: DataTypes.BOOLEAN,
+    tags: DataTypes.STRING,    
+    replyTo: DataTypes.STRING,
     show_in_feed: DataTypes.BOOLEAN,
     is_note: DataTypes.BOOLEAN,
+    is_page: DataTypes.BOOLEAN,    
     published: DataTypes.BOOLEAN,
     published_date_formatted: {
       type: DataTypes.VIRTUAL,
@@ -85,6 +84,12 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.VIRTUAL,
       get() {
         let content = this.content;      
+
+        // Remove the @url if this is a reply
+        content = content.replace(/@https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g, (match) => {                  
+          return '';
+        });
+
         if(this.media) {
           for(let media of this.media) {
             content =`${content}\n\n<p><img class="u-photo" src="${this.blog.url}/${media.path}" alt="${media.altText || ""}"></p>`;
@@ -123,6 +128,12 @@ module.exports = (sequelize, DataTypes) => {
           const href = link.attribs.href;          
           links.push(href);
         }
+
+        // Add the reply to link if present
+        if(this.replyTo) {
+          links.push(this.replyTo);
+        }
+
         return links;
       }
     }

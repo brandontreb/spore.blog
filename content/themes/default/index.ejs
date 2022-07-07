@@ -31,7 +31,7 @@
         <p>
           <% post.tags.split(",").forEach(tag => { %>
             <% if(tag.length > 0) { %>
-              <a href="/blog/?q=<%- tag %>">
+              <a href="/archive/?q=<%- tag %>">
                 #<%- tag %>
               </a>&nbsp;
             <% } %>

@@ -45,6 +45,9 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         defaultValue: false
       },
+      replyTo: {
+        type: Sequelize.STRING,        
+      },
       show_in_feed: {
         type: Sequelize.BOOLEAN,
         defaultValue: true

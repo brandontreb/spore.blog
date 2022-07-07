@@ -23,19 +23,26 @@
           </time>
         </a>            
 
+        <!-- Reply -->
+        <% if (locals.post.replyTo) { %>
+          <p>in reply to: <a class="u-in-reply-to" href="<%- locals.post.replyTo %>"><%- locals.post.replyTo %></a></p>
+        <% } %>
+
           <!-- Article -->
           <div class="e-content">
             <%- locals.post.content_html %>
           </div>
 
-          <!-- Tags-->
+          <!-- Tags-->          
           <p>
-            <% post.tags.forEach(tag => { %>
+            <% post.tags.split(",").forEach(tag => { %>
               <% if(tag.length > 0) { %>
-                <a href="/blog/?q=<%- tag %>">#<%- tag %></a>&nbsp;
+                <a href="/archive/?q=<%- tag %>">
+                  #<%- tag %>
+                </a>&nbsp;
               <% } %>
             <% }); %>
-          </p>       
+          </p>   
           
           
           <%- include('partials/author') %>
