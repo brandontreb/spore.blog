@@ -4,10 +4,6 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 const getIndex = catchAsync(async(req, res) => {
-  var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
-
-  console.log(fullUrl);
-
   let blog = await blogService.getBlog();  
   let posts = await postService.queryPosts({
     [Op.and]: [{
@@ -97,8 +93,32 @@ const getPost = catchAsync(async(req, res) => {
   });
 });
 
+const getReplies = catchAsync(async(req, res) => {
+  let blog = await blogService.getBlog();  
+  let posts = await postService.queryPosts({
+    [Op.and]: [{
+        published: true,
+        is_page: false,
+        replyTo: {[Op.ne]: null}
+      }      
+    ]
+  }, {
+    order: [
+      ['published_date', 'DESC']
+    ],
+    include: ['blog','media']
+  });
+  console.log(posts);
+  res.render('pages/replies', {
+    title: `Replies | ${blog.title}`,
+    posts,
+    blog
+  });
+});
+
 module.exports = {
   getIndex,
   getPost,
-  getArchive
+  getArchive,
+  getReplies
 }

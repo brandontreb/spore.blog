@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <%- include('partials/head') %>
+    <%- locals.theme.head %>
+</head>
+
+<body>
+  <header>
+    <%- include('partials/header'); %>
+  </header>
+
+  <content class="blog-posts">
+    <% locals.posts.forEach(post=> { %>
+      <article class="post">        
+        <!-- Article -->
+        <p>in reply to: <a class="u-in-reply-to" href="<%- post.replyTo %>"><%- post.replyTo %></a></p>
+        <p class="h-entry">
+          <%- post.content_html %>
+        </p>        
+          <a class="u-url" href="<%- post.url %>">
+            <time class="dt-published" datetime="<%- post.published_date %>">
+              <%- post.published_date_formatted %>
+            </time>
+          </a>
+          <span class="separator">
+            <span class="divider"></span>
+          </span>
+      </article>
+      <% }); %>
+  </section>
+  <%- include('partials/author'); %>
+  <br><br>
+
+  <!-- Footer -->
+  <footer>
+    <%- include('partials/footer'); %>
+  </footer>
+</body>
+
+</html>

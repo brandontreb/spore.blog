@@ -36,8 +36,8 @@ const install = catchAsync(async (req, res) => {
     homepage_content_html: '<h1> Welcome to my spore.blog</h1><p>Change this content in the dashboard.</p>',
     meta_description: 'A new blog for my spore.blog',
     language: 'en',
-    nav: '[Home](/)\n[Archive](/archive/)',
-    nav_html: '<a href="/">Home</a>\n<a href="/archive/">Blog</a>',
+    nav: '[Home](/)\n[Archive](/archive/)[Replies](/replies/)',
+    nav_html: '<a href="/">Home</a>\n<a href="/replies/">Replies</a>',
     favicon: '🌱'    
   }
 
