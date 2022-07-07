@@ -20,6 +20,8 @@ const setLocals = () => async(req, res, next) => {
     slug: 'default',
   };
 
+  const fullUrl = encodeURIComponent(req.protocol + '://' + req.get('host') + req.originalUrl);
+
   // Load the theme elements
   res.locals.theme.head = `
   <link rel="alternate" type="application/json" title="${res.locals.user.username}" href="${blog.url}/feed.json" />
@@ -27,6 +29,7 @@ const setLocals = () => async(req, res, next) => {
   <link rel="stylesheet" href="/content/themes/${res.locals.theme.slug}/${res.locals.theme.slug}.css">
   <link rel="me" href="mailto:${res.locals.user.email}">
   <link rel="webmention" href="${blog.url}/api/v1/webmention">
+  <script src="/scripts/conversation.js?url=${fullUrl}" async defer></script>
   `;
 
   next();
