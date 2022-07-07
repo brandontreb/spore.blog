@@ -9,6 +9,7 @@ const md = new MarkdownIt({
 });
 const { encode } = require('html-entities');
 const { markdownToTxt } = require('markdown-to-txt');
+const cheerio = require('cheerio');
 
 const {
   Model
@@ -36,6 +37,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'post_id',
         as: 'media'
       });
+
+      // this.hasMany(models.Responses, {
+      //   foreignKey: 'post_id',
+      //   as: 'responses'
+      // });
     }
   }
   Posts.init({
@@ -81,7 +87,7 @@ module.exports = (sequelize, DataTypes) => {
         let content = this.content;      
         if(this.media) {
           for(let media of this.media) {
-            content =`${content}\n\n<p><img src="${this.blog.url}/${media.path}" alt="${media.altText || ""}"></p>`;
+            content =`${content}\n\n<p><img class="u-photo" src="${this.blog.url}/${media.path}" alt="${media.altText || ""}"></p>`;
           }
         }
         return md.render(content);
@@ -103,6 +109,21 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.VIRTUAL,
       get() {        
         return `${this.blog.url}${this.permalink}`;
+      }
+    },
+    links: {
+      type: DataTypes.VIRTUAL,
+      get() {
+        const html = this.content_html;
+        const $ = cheerio.load(html);
+        const linkObjects = $('a');
+        const links = [];
+        for(let i = 0; i < linkObjects.length; i++) {
+          const link = linkObjects[i];
+          const href = link.attribs.href;          
+          links.push(href);
+        }
+        return links;
       }
     }
   }, {

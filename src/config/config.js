@@ -33,6 +33,8 @@ if (error) {
 }
 
 module.exports = {
+  name: 'spore.blog',
+  version: '1.0.0',
   env: envVars.NODE_ENV,
   port: envVars.PORT,
   mongoose: {

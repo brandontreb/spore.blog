@@ -1,5 +1,5 @@
 const catchAsync = require('../../utils/catchAsync');
-const { postService } = require('../../services');
+const { postService, indiewebService } = require('../../services');
 
 const getPosts = catchAsync(async(req, res) => {
   let posts = await postService.queryPosts({}, {
@@ -39,16 +39,30 @@ const createPost = catchAsync(async(req, res) => {
   body.media = media_files || [];
 
   let post = await postService.createPost(body);
+
+  // Webmentions
+  let targets = post.links;
+  const source = `${blog.url}${post.permalink}`;
+  await indiewebService.sendWebmentions(source, targets);
+
   req.flash('success', `Post created!`);
   res.redirect(`/dashboard/posts/${post.id}`);
 });
 
 const updatePost = catchAsync(async(req, res) => {  
   let body = req.body;
+  let blog = req.blog;
   let media_files = req.files;  
   body.media = media_files || [];
   
   let post = await postService.updatePost(req.params.id, body);
+  
+  // Webmentions
+  let targets = post.links;
+  console.log(targets);
+  const source = `${blog.url}${post.permalink}`;
+  await indiewebService.sendWebmentions(source, targets);
+
   req.flash('success', `Post updated!`);
   res.redirect(`/dashboard/posts/${post.id}`);
 });
