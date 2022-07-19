@@ -53,7 +53,7 @@ const json = catchAsync(async(req, res) => {
     let item = {
       id: post.url,
       url: post.url,      
-      content_html: post.content_html,
+      content_html: post.content_html_with_media,
       date_published: post.published_date,
       date_modified: post.updatedAt,      
     };

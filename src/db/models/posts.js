@@ -89,7 +89,15 @@ module.exports = (sequelize, DataTypes) => {
         content = content.replace(/@https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g, (match) => {                  
           return '';
         });
-
+        
+        return md.render(content);
+      },
+    },
+    content_html_with_media: {
+      type: DataTypes.VIRTUAL,
+      get() {
+        let content = this.content_html;      
+    
         if(this.media) {
           for(let media of this.media) {
             content =`${content}\n\n<p><img class="u-photo" src="${this.blog.url}/${media.path}" alt="${media.altText || ""}"></p>`;
@@ -108,6 +116,12 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.VIRTUAL,
       get() {
         return encode(this.content_html);
+      },
+    },
+    content_html_with_media_encoded: {
+      type: DataTypes.VIRTUAL,
+      get() {
+        return encode(this.content_html_with_media);
       },
     },
     url: {

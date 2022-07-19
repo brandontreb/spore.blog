@@ -28,4 +28,6 @@ router.route('/photo')
   .post(auth(true),validate(accountValidation.updatePhoto), upload.single('profile_photo'), accountController.updatePhoto)
   .delete(auth(true),accountController.deletePhoto);
 
+router.use('/import', require('./import.route'));
+
 module.exports = router;

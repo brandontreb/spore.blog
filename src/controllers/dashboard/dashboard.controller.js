@@ -36,8 +36,8 @@ const install = catchAsync(async (req, res) => {
     homepage_content_html: '<h1> Welcome to my spore.blog</h1><p>Change this content in the dashboard.</p>',
     meta_description: 'A new blog for my spore.blog',
     language: 'en',
-    nav: '[Home](/)\n[Archive](/archive/)[Replies](/replies/)',
-    nav_html: '<a href="/">Home</a>\n<a href="/replies/">Replies</a>',
+    nav: '[Home](/)\n[Archive](/archive/)\n[Replies](/replies/)',
+    nav_html: '<a href="/">Home</a>\n<a href="/archive">Archive</a>\n<a href="/replies/">Replies</a>',
     favicon: '🌱'    
   }
 
@@ -47,7 +47,8 @@ const install = catchAsync(async (req, res) => {
     blog_id: blog.id,
     email: email,
     password: password,                
-    username: username,    
+    username: username,   
+    full_name: username, 
     website: blog.url
   }
 

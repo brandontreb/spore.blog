@@ -49,6 +49,8 @@
     "prettier"
   ],
   "dependencies": {
+    "adm-zip": "^0.5.9",
+    "axios": "^0.27.2",
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
     "cheerio": "^1.0.0-rc.12",
@@ -62,6 +64,7 @@
     "express-rate-limit": "^5.0.0",
     "express-session": "^1.17.3",
     "flash": "^1.1.0",
+    "front-matter": "^4.0.2",
     "helmet": "^4.1.0",
     "html-entities": "^2.3.3",
     "http-status": "^1.4.0",

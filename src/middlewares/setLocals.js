@@ -24,6 +24,9 @@ const setLocals = () => async(req, res, next) => {
 
   // Load the theme elements
   res.locals.theme.head = `
+  <link rel="authorization_endpoint" href="${blog.url}/dashboard/auth/login">
+  <link rel="token_endpoint" href="${blog.url}/api/v1/micropub/token">
+  <link rel="micropub" href="${blog.url}/api/v1/micropub">
   <link rel="alternate" type="application/json" title="${res.locals.user.username}" href="${blog.url}/feed.json" />
   <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
   <link rel="stylesheet" href="/content/themes/${res.locals.theme.slug}/${res.locals.theme.slug}.css">

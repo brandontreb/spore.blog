@@ -42,9 +42,14 @@ const getPostByPermalink = async (permalink, include = ["media", "blog"]) => {
 
 const createPost = async (body) => {
   body = await setPostDefaults(body);
-  post = await db.Posts.create(body);
-  await associateMediaFilesWithPost(post, body.media);
-  return post;
+  try {
+    post = await db.Posts.create(body);
+    await associateMediaFilesWithPost(post, body.media);
+    return post;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
 }
 
 const updatePost = async (id, body) => {
@@ -90,8 +95,15 @@ const setPostDefaults = async (body, update = false) => {
       body.slug = `${slug}-${number}`;
     }
 
-    const date = body.published_date.toISOString().split('T')[0].replaceAll('-', '/');
-    body.permalink = `/${date}/${slug}`;
+    if(!body.permalink) {
+      const date = body.published_date.toISOString().split('T')[0].replaceAll('-', '/');
+      body.permalink = `/${date}/${slug}`;
+    } else {
+      // add a / to the beginning of the permalink if it doesn't have one
+      if (body.permalink.indexOf('/') !== 0) {
+        body.permalink = `/${body.permalink}`;
+      }
+    }
   }
 
   // Check for a title
@@ -134,4 +146,5 @@ module.exports = {
   createPost,
   updatePost,
   deletePost,
+  associateMediaFilesWithPost
 }
