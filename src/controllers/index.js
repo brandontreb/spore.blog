@@ -1,0 +1,1 @@
+module.exports.micropubController = require('./micropub.controller');

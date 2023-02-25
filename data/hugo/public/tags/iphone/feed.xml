@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>iPhone on Brandontreb</title>
+    <link>https://brandon_swoop.ngrok.io/tags/iphone/</link>
+    <description>Recent content in iPhone on Brandontreb</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>brandontreb@gmail.com (Zero Cool)</managingEditor>
+    <webMaster>brandontreb@gmail.com (Zero Cool)</webMaster>
+    <lastBuildDate>Fri, 31 Jan 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://brandon_swoop.ngrok.io/tags/iphone/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Becoming A Software Consultant: My Backstory</title>
+      <link>https://brandon_swoop.ngrok.io/2014/01/31/becoming-software-consultant-backstory/</link>
+      <pubDate>Fri, 31 Jan 2014 00:00:00 +0000</pubDate>
+      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <guid>https://brandon_swoop.ngrok.io/2014/01/31/becoming-software-consultant-backstory/</guid>
+      <description>I recently published a post about my first year of being an independent iPhone development consultant. The feedback from my readers was incredible, however there was one important thread on Hacker News that I wanted to address. The issues were:
+One of my common hangups with these kind of posts is the lack of history as to what lead people to these consulting gigs. Where were you before, and how long were you there?</description>
+    </item>
+    
+    <item>
+      <title>What I Learned In My First Year Of iOS Consulting</title>
+      <link>https://brandon_swoop.ngrok.io/2014/01/01/learned-first-year-ios-consulting/</link>
+      <pubDate>Wed, 01 Jan 2014 00:00:00 +0000</pubDate>
+      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <guid>https://brandon_swoop.ngrok.io/2014/01/01/learned-first-year-ios-consulting/</guid>
+      <description>Wow, I can’t believe it has already been a full year since I struck it out on my own. Last year, I published a post after my first month on doing contract iOS development. Needless to say, I have grown and learned quite a bit over the past year and I wanted to share some of those experiences.
+Income While I won’t share exact numbers, I left my 6 figure/year job to pursue the indie/consulting life.</description>
+    </item>
+    
+    <item>
+      <title>The Top 5 Places To Find Good Software Developers/Contractors</title>
+      <link>https://brandon_swoop.ngrok.io/2013/08/20/the-top-5-places-to-find-good-developerscontractors-to-work-on-your-projects/</link>
+      <pubDate>Tue, 20 Aug 2013 00:00:00 +0000</pubDate>
+      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <guid>https://brandon_swoop.ngrok.io/2013/08/20/the-top-5-places-to-find-good-developerscontractors-to-work-on-your-projects/</guid>
+      <description>One thing I am often asked is “Where can I find good developers/contractors/subcontractors?” While I have found talent many different ways, I wanted to share my top 5 with you.
+This post should be useful to you if you have a project and are looking to find a developer OR are a developer looking to subcontract some of your work. I am sharing these based solely on my experiences with them and hope you find value in this list.</description>
+    </item>
+    
+    <item>
+      <title>iPhone Programming Tutorial: Creating An Image Gallery Like Over &amp;#8211; Part 1</title>
+      <link>https://brandon_swoop.ngrok.io/2013/08/12/screen-shot-2013-07-21-at-9.26.07-pm-184x300.png/</link>
+      <pubDate>Mon, 12 Aug 2013 00:00:00 +0000</pubDate>
+      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <guid>https://brandon_swoop.ngrok.io/2013/08/12/screen-shot-2013-07-21-at-9.26.07-pm-184x300.png/</guid>
+      <description>Recently, I have had to build an app (download link) that required the user to choose a photo from their photo library. Rather than just throwing up a UIImagePickerController like many apps, I decided to add a little bit of style. Being inspired by Over’s ultra simplistic (and beautiful) photo selection interface, I decided to fancy things up a bit.
+For this tutorial, I will start with a Fresh iOS6 View-Based application that uses Storyboards and ARC.</description>
+    </item>
+    
+    <item>
+      <title>5 Third Party iOS Libraries I Have Found Useful Lately</title>
+      <link>https://brandon_swoop.ngrok.io/2012/08/24/5-third-party-ios-libraries-i-have-found-useful-lately/</link>
+      <pubDate>Fri, 24 Aug 2012 00:00:00 +0000</pubDate>
+      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <guid>https://brandon_swoop.ngrok.io/2012/08/24/5-third-party-ios-libraries-i-have-found-useful-lately/</guid>
+      <description>As I mature as a developer, I try to rely on other people’s code more an more. Why build something from scratch when a solution already exists that you can fit in your project. In Pocket MUD Pro, I used 13 3rd party libraries and am using quite a bit more in the project that I’m currently working on. I figured that I would share some of the libraries that I have been using so that it might save you some time in the future.</description>
+    </item>
+    
+    <item>
+      <title>Beginning Jailbroken iOS Development &amp;#8211; Building And Deployment</title>
+      <link>https://brandon_swoop.ngrok.io/2011/04/22/beginning-jailbroken-ios-development-building-and-deployment/</link>
+      <pubDate>Fri, 22 Apr 2011 00:00:00 +0000</pubDate>
+      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <guid>https://brandon_swoop.ngrok.io/2011/04/22/beginning-jailbroken-ios-development-building-and-deployment/</guid>
+      <description>Welcome to the next installment of my jailbroken iOS development series. If you haven’t already done so, read my previous post to get up to speed.
+Beginning Jailbroken iOS Development – Getting The Tools
+Now that your environment has been set up, it’s time to start hacking your project, building, and deploying it. This tutorial will be fairly quick and will just demonstrate how to build a .deb file and install it on your device.</description>
+    </item>
+    
+    <item>
+      <title>My Journey To Create The inPulseNotifier For Jailbroken iPhones &amp;#8211; Part 2</title>
+      <link>https://brandon_swoop.ngrok.io/2011/04/13/my-journey-to-create-the-inpulsenotifier-for-jailbroken-iphones-part-2/</link>
+      <pubDate>Wed, 13 Apr 2011 00:00:00 +0000</pubDate>
+      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <guid>https://brandon_swoop.ngrok.io/2011/04/13/my-journey-to-create-the-inpulsenotifier-for-jailbroken-iphones-part-2/</guid>
+      <description>This post is a continuation from my previous post found here.
+A MobileSubstrate Tweak? After I completed a basic app that allowed me to send various notification types from my iPhone to my inPulse watch, I quickly realized that this would not work if I wanted to hook into the iPhone’s notification system. A Google search revealed to me that I had to make MobileSubstrate hack to overwrite the default notification functionally.</description>
+    </item>
+    
+    <item>
+      <title>My Journey To Create The inPulseNotifier For Jailbroken iPhones &amp;#8211; Part 1</title>
+      <link>https://brandon_swoop.ngrok.io/2011/04/12/my-journey-to-create-the-inpulsenotifier-for-jailbroken-iphones-part-1/</link>
+      <pubDate>Tue, 12 Apr 2011 00:00:00 +0000</pubDate>
+      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <guid>https://brandon_swoop.ngrok.io/2011/04/12/my-journey-to-create-the-inpulsenotifier-for-jailbroken-iphones-part-1/</guid>
+      <description>Many of you may have seen my tweets or blog posts regarding my development of a native iOS interface for the inPulse Watch. I just wanted to share a bit with you about the development process and talk about my updates moving forward.
+What is the inPulse Watch? For those of you who don’t know, the inPulse watch is a programmable wristwatch with a bluetooth controller. It can run a single app at a time on top of it’s firmware that is installed on the watch via a bluetooth interface with your computer.</description>
+    </item>
+    
+    <item>
+      <title>Beginning Jailbroken iOS Development &amp;#8211; Getting The Tools</title>
+      <link>https://brandon_swoop.ngrok.io/2011/04/11/beginning-jailbroken-ios-development-getting-the-tools/</link>
+      <pubDate>Mon, 11 Apr 2011 00:00:00 +0000</pubDate>
+      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <guid>https://brandon_swoop.ngrok.io/2011/04/11/beginning-jailbroken-ios-development-getting-the-tools/</guid>
+      <description>Developing for jailbroken is actually quite similar to regular iOS development with one addition. More Power! oh oh oh (said in a Tim Taylor voice (sorry for non-Americans that don’t get the reference)). With your device jailbroken, you have the ability to hook in to pretty much every class that Apple writes allowing you quite a bit of control over the iPhone’s functionality.
+In today’s tutorial, I will simply be discussing the best way to get up and running with the tools necessary to write a jailbroken iPhone app.</description>
+    </item>
+    
+    <item>
+      <title>Jailbroken iPhone Development &amp;#8211; Would You Be Into It?</title>
+      <link>https://brandon_swoop.ngrok.io/2011/04/07/jailbroken-iphone-development-would-you-be-into-it/</link>
+      <pubDate>Thu, 07 Apr 2011 00:00:00 +0000</pubDate>
+      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <guid>https://brandon_swoop.ngrok.io/2011/04/07/jailbroken-iphone-development-would-you-be-into-it/</guid>
+      <description>As of recent I have had a ton of interest in doing development for Jailbroken iPhones. I love the power, being able to hack anything on the device. It opens up a whole new world of possibilities.
+My most current project (inPulseNotifier) is a Mobile Substrate hack which allows the iPhone to interface with an inPulse watch. It uses BTStack and boots up during the init method of your springboard.</description>
+    </item>
+    
+    <item>
+      <title>Huge Update To Smart Lockscreen Creator &#43; Promo Codes</title>
+      <link>https://brandon_swoop.ngrok.io/2011/03/08/huge-update-to-smart-lockscreen-creator-promo-codes/</link>
+      <pubDate>Tue, 08 Mar 2011 00:00:00 +0000</pubDate>
+      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <guid>https://brandon_swoop.ngrok.io/2011/03/08/huge-update-to-smart-lockscreen-creator-promo-codes/</guid>
+      <description>I have just updated Smart Lockscreen Creator and am giving away 10 copies!
+Download It Here
+I know you probably aren’t reading this as you race to see if any of the promos aren’t taken but…
+Here is what’s new: Misc
+Added ability to generate a new image on startup. Just turn Auto-Start on in the settings Weather
+Toggle Fahrenheit and Celsius Added missing weather images Updated weather icons Improved performance and stability of retrieving weather Customization</description>
+    </item>
+    
+    <item>
+      <title>Free App Per Day Service</title>
+      <link>https://brandon_swoop.ngrok.io/2010/12/28/free.jpeg/</link>
+      <pubDate>Tue, 28 Dec 2010 00:00:00 +0000</pubDate>
+      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <guid>https://brandon_swoop.ngrok.io/2010/12/28/free.jpeg/</guid>
+      <description>As many of you may know, I created a site called Fresh Apps. This site started as sort of a Digg for developer submitted iPhone apps. Since then, we have added plenty of new features and have grown a community of over 10,000 iPhone users.
+Recently, I have noticed a few services sprout up that basically have a schedule of apps that shift from paid to free for a given day.</description>
+    </item>
+    
+    <item>
+      <title>New Year, New Blog Theme</title>
+      <link>https://brandon_swoop.ngrok.io/2010/12/27/new-year-new-blog-theme/</link>
+      <pubDate>Mon, 27 Dec 2010 00:00:00 +0000</pubDate>
+      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <guid>https://brandon_swoop.ngrok.io/2010/12/27/new-year-new-blog-theme/</guid>
+      <description>I seem to change my WordPress theme more often than I change my socks. I just tend to get very bored with my blog aesthetics. Not to mention, I will always find someone out there with a cooler blog theme than mine.
+After setting up a blog site for the pastor of my church (http://brownbishop.com), I fell in love with the Standard WordPress Theme. Not only is the theme absolutely beautiful out of the box, it’s also a theme framework giving you TONS of configuration options including custom layouts, social network integration, and analytics integration.</description>
+    </item>
+    
+    <item>
+      <title>Ludum Dare Competition: Week 2 Update</title>
+      <link>https://brandon_swoop.ngrok.io/2010/10/20/screen-shot-2010-10-19-at-2.37.00-pm-500x350.png/</link>
+      <pubDate>Wed, 20 Oct 2010 00:00:00 +0000</pubDate>
+      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <guid>https://brandon_swoop.ngrok.io/2010/10/20/screen-shot-2010-10-19-at-2.37.00-pm-500x350.png/</guid>
+      <description>So another week has gone by and I have made quite a bit of progress, here are the additions since I last posted.
+Texturing Lighting Skybox Better Terrain generation Environment Fog Basic navigation So judging by the screenshot, you might really be thinking that I’m working on Minecraft for the iPhone (I used textures that someone created for Minecraft). While this isn’t my intention, it is starting to look like my engine would be perfect for a simple port.</description>
+    </item>
+    
+    <item>
+      <title>Calculator Creator Released &#43; Promo Codes</title>
+      <link>https://brandon_swoop.ngrok.io/2010/10/14/icon512x512.png/</link>
+      <pubDate>Thu, 14 Oct 2010 00:00:00 +0000</pubDate>
+      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <guid>https://brandon_swoop.ngrok.io/2010/10/14/icon512x512.png/</guid>
+      <description>I have recently been developing an iPhone app in my free time called Calculator Creator. This application has been an idea of mine for quite some time and I finally found the time to complete it. Here is the complete description of the app. The last calculation app you will need to buy! With Calculator Creator, you are easily able to build your own &amp;#8220;Calculators&amp;#8221; as long as you know their equations.</description>
+    </item>
+    
+    <item>
+      <title>PoV&amp;#8217;s Challenge: Week 1</title>
+      <link>https://brandon_swoop.ngrok.io/2010/10/07/screen-shot-2010-10-06-at-10.48.28-pm-362x500.png/</link>
+      <pubDate>Thu, 07 Oct 2010 00:00:00 +0000</pubDate>
+      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <guid>https://brandon_swoop.ngrok.io/2010/10/07/screen-shot-2010-10-06-at-10.48.28-pm-362x500.png/</guid>
+      <description>After a week of studying my butt off with OpenGL ES, I have finally started work on my game engine for my Pov’s Challenge game.
+As you can tell from the screenshot below, I have been playing entirely too much Minecraft and have cube art on the brain.
+It’s not much right now, but I do have a basic cube rendering engine that takes in a level file and renders the environment.</description>
+    </item>
+    
+    <item>
+      <title>Game Dev Challenge &#43; OpenGL ES Resource List</title>
+      <link>https://brandon_swoop.ngrok.io/2010/09/30/3dimage.jpg/</link>
+      <pubDate>Thu, 30 Sep 2010 00:00:00 +0000</pubDate>
+      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <guid>https://brandon_swoop.ngrok.io/2010/09/30/3dimage.jpg/</guid>
+      <description>The other day, I was reading Ludum Dare and saw a very interesting post. It was a call to action for all game developers to get serious and actually put something out there. Here is a link to the post:
+PoV’s Challenge: Make a game, sell 1 copy
+The idea is for would-be indie game developers to create a game in the month of October and sell at least one copy.</description>
+    </item>
+    
+    <item>
+      <title>App Store (Link Share) Affiliate Link Generator</title>
+      <link>https://brandon_swoop.ngrok.io/2010/09/21/screen-shot-2010-09-21-at-8.30.33-am.png/</link>
+      <pubDate>Tue, 21 Sep 2010 00:00:00 +0000</pubDate>
+      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <guid>https://brandon_swoop.ngrok.io/2010/09/21/screen-shot-2010-09-21-at-8.30.33-am.png/</guid>
+      <description>A while back, I wrote a post called ”Money You Might Be Missing Out On” where I discussed the Linkshare API. Well, I took it upon myself to create a simple tool that I have been using in my blog posts to quickly generate affiliate iTunes links for iPhone apps. Here is a screenshot of the app.
+The generator is quite simple and perfect for bloggers that are discussing apps. Here is how it works.</description>
+    </item>
+    
+    <item>
+      <title>iPhone In Action Book</title>
+      <link>https://brandon_swoop.ngrok.io/2009/08/29/iphone-in-action-300x300.jpg/</link>
+      <pubDate>Sat, 29 Aug 2009 00:00:00 +0000</pubDate>
+      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <guid>https://brandon_swoop.ngrok.io/2009/08/29/iphone-in-action-300x300.jpg/</guid>
+      <description>A couple months ago, I was asked by someone on Twitter if they could &amp;#8220;introduce me to someone&amp;#8221;. I found this question a little odd so I responded with &amp;#8220;like a girl or a developer?&amp;#8221;. I often tweet about my wife, so I was hoping he was not referring to a girl. He replied with &amp;#8220;no, someone at Manning Publishing, they are looking for an author for their book iPhone In Action&amp;#8221;.</description>
+    </item>
+    
+    <item>
+      <title>Free Leaderboard Solution for iPhone Game Developers</title>
+      <link>https://brandon_swoop.ngrok.io/2009/03/24/free-leaderboard-solution-for-iphone-game-developers/</link>
+      <pubDate>Tue, 24 Mar 2009 00:00:00 +0000</pubDate>
+      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <guid>https://brandon_swoop.ngrok.io/2009/03/24/free-leaderboard-solution-for-iphone-game-developers/</guid>
+      <description>What makes most multiplayer games more exciting that single player games? It’s competition! People love to compete with eachother.
+And how can competition be achieved in single player games? Leaderboards.
+A leaderboard is basically a table ranking players based on their scores in the game. This allows players to see how they stack up against other players.
+The Problem
+Many programmers either know how to do web development or system development.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta content="Zero Cool" name="author">
+
+  <title>Brandontreb
+		- quality</title>
+
+  <link href="/assets/css/style.css?1" rel="stylesheet">
+  <link href="/assets/css/highlight.css?1" rel="stylesheet">
+  <link href="/assets/css/alpine.css?1" rel="stylesheet">
+  <style>
+
+.site-title {
+	display: inline-block;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 1.35;
+	padding-left: 5px;
+	margin-top: 0px;
+	margin-bottom: 5px;
+	padding-top: 5px;
+	padding-bottom: 10px;
+}
+
+nav.main-nav a.cta {
+	background: #ffffff;
+	color: #f29c38;
+	padding: 6px 14px;
+	border: 2px solid #f29c38;
+	border-radius: 20px;
+	white-space: nowrap;
+	box-shadow: none;
+}
+
+nav.main-nav a.cta:hover {
+	background: #fffee4;
+	color: #f29c38;
+	margin-left: 12px;
+}
+
+</style>
+
+  <link rel="stylesheet" href="/custom.css?1">
+
+	<link rel="shortcut icon" href="https://micro.blog/brandontreb/favicon.png" type="image/x-icon" />
+    
+    
+      <link href="https://brandon_swoop.ngrok.io/podcast.xml" rel="alternate" type="application/rss+xml" title="Podcast" />
+      <link rel="alternate" type="application/json" title="Brandontreb" href="https://brandon_swoop.ngrok.io/feed.json" />
+      <link rel="EditURI" type="application/rsd+xml" href="https://brandon_swoop.ngrok.io/rsd.xml" />
+    
+
+	
+	<link rel="me" href="https://micro.blog/brandontreb" />
+		
+	
+	<link rel="me" href="https://twitter.com/brandontreb" />
+	
+	
+	<link rel="me" href="https://github.com/brandontreb" />
+	
+	
+	
+	<link rel="authorization_endpoint" href="https://indieauth.com/auth" />
+	
+	
+	<link rel="token_endpoint" href="https://tokens.indieauth.com/token" />
+	
+	
+	<link rel="micropub" href="https://brandon_swoop.ngrok.io/micropub" />
+	
+	
+	<link rel="microsub" href="https://micro.blog/microsub/" />
+	
+	
+	<link rel="webmention" href="https://webmention.io/brandontreb.com/webmention" />
+	
+	
+    
+    
+</head>
+
+<body>
+  <nav class="main-nav">
+
+	<div class="site-title">
+		<img src="https://avatars.githubusercontent.com/u/92844?v=4" width="25" height="25" class="site-image">		
+		<a href="/">Brandontreb</a>
+	</div>
+
+	<div class="site-menus">
+
+	
+
+	<a class="normal" href="/"> <span class="arrow">←</span> Home</a>
+
+	
+
+	
+		<a href="/archive/">Archive</a>
+	
+		<a href="/replies/">Replies</a>
+	
+		<a href="/photos/">Photos</a>
+	
+
+	
+
+	</div>
+</nav>
+
+
+
+  <section id="wrapper" >
+	
+  <ul id="post-list">
+
+
+	
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2015/07/28/the-value-of-quality-assurance/">The Value Of Quality Assurance</a></h2>
+  </header>
+  <section class="post-body">
+	<p>It&rsquo;s late, you have been hacking all night to get the client a build.  Finally, around 2:30 am, you hit submit and publish something to the client and go to bed.  When you wake up in the morning, the first thing you see in your inbox is an email titled &ldquo;Completely Broken!!1!&rdquo;.</p>
+<p>How could this be? You stayed up late, you hacked, you tested and you sweat over this build to find that it crashes for the client when they try to do something obvious.</p>
+<p>As developers, we often can&rsquo;t see the forrest through the trees.  What this means is, we get so deep into the code working on a new feature or fixes that we often don&rsquo;t notice when we break things. This doesn&rsquo;t mean that we are bad developers, it just means we think differently about development.  It also means we can&rsquo;t personally handle <strong>everything</strong>.</p>
+<p>However, from a client&rsquo;s perspective, failures like this can really tarnish your brand.  They start to get the impression that you are unprofessional and even worse, start to doubt your abilities as a developer.</p>
+<h3 id="enter-qa">Enter QA</h3>
+<p>QA (short for quality assurance) is an idea that someone other than the developer tests the build before the client ever sees it.  These people are responsible for</p>
+<ul>
+<li>Regression testing (as in the scenario above)</li>
+<li>Generating a test plan/matrix</li>
+<li>Ensuring parity (if needed) between multi-platform applications</li>
+</ul>
+<p>If the QA team is doing it&rsquo;s job, the client won&rsquo;t every see these obvious failures mentioned above.  This can greatly improve the client&rsquo;s perception of you/your team.</p>
+<h3 id="basic-process">Basic Process</h3>
+<p>OK, QA sounds great, how do I get started?  Well, it&rsquo;s actually relatively simple. First off, I assume you are doing <em>some flavor</em> of agile, and hopefully logging tickets for each task.  If not, you should (even if you are a one man show).  Here is a rough flow that my team follows:</p>
+<ol>
+<li>Developers determine which tickets to work on for the current sprint</li>
+<li>Developers complete a ticket and move it to a &ldquo;dev complete&rdquo; column in the task manager (Jira, Trello, Pivotal Tracker, etc&hellip;)</li>
+<li>Developers deliver a build internally</li>
+<li>The QA team takes the build and goes through their testing matrix to check for regressions.</li>
+</ol>
+<ul>
+<li>If a regression is found, a bug ticket is created for the responsible developer</li>
+</ul>
+<ol start="5">
+<li>New features are added to the QA test matrix and tested</li>
+</ol>
+<ul>
+<li>If the feature has bugs or doesn&rsquo;t work as intended, the ticket is rejected and pushed back to the developer</li>
+</ul>
+<ol start="6">
+<li>Once everything passes, the build is green-lit to be sent to the client (usually one build per sprint)</li>
+</ol>
+<p>Like anything, you may develop your own version of the above, however this should be a detailed enough outline to get you started.</p>
+<h3 id="pushback">Pushback</h3>
+<p>In my experience, clients will generally give you some pushback when you say that you are billing them for QA hours.  They will say things like &ldquo;It&rsquo;s OK, I can test the build myself.&rdquo; or &ldquo;I understand, things won&rsquo;t be perfect. We will through this together&rdquo;.</p>
+<p>While this all sounds good at the surface, the fact of the matter is, it almost always will end unfavorable.  The client might have some level of tolerance early on, but as you start sending them more and more builds, each potentially missing/breaking features, they will become less patient.  I have seen this happen plenty of times even with the most tech savvy of clients.  Here are a few ways you can build QA into your billing process:</p>
+<p><strong>Add it as a line item</strong></p>
+<p>This is where you will most likely see the most opposition.  Make sure to explain to the client that their time is valuable and you don&rsquo;t want to waste it.  Also, ensure that the cost of QA is drastically less than the cost of engineering or you will get questions like &ldquo;Why am I paying you full price to test?&rdquo;.</p>
+<p>Be sure to tell the client that QA is just part of your team&rsquo;s process. You simply don&rsquo;t operate any other way as you <strong>know</strong> that this is the best approach for both parties.  Hopefully, this will establish your expertise in the domain and the client will respect you for that.</p>
+<p><strong>Bake it into the cost of engineering</strong></p>
+<p>Often times, you may not bother with too many line items.  You may just have something like <strong>Engineering $200/hour</strong>.  When/If the client gives any pushback about cost compared to other shops, simply inform them of all they are getting inside of that hour (Engineering, Consulting, QA, Project management, Office management, etc&hellip;).  It actually works out to be a much greater value for them than paying say $125/hour for a &ldquo;code monkey&rdquo;.</p>
+<h3 id="final-thoughts">Final Thoughts</h3>
+<p>I absolutely believe that QA is crucial to the success of any software agency or freelancer. Not only does it allow you to come across as more professional, it also helps keep you sharp as a developer. While I&rsquo;m not suggesting QA is a silver bullet (I still believe in Unit / Automated testing), I feel that everyone should at least have some layer baked into their process.</p>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2015/07/28/the-value-of-quality-assurance/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2015-07-28 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Jul 28</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+
+
+</ul>
+
+
+
+
+  </section>
+  <footer id="footer">
+
+<section id="wrapper">
+  <ul>
+    <li><a href="/feed.xml">RSS</a></li>
+    <li><a href="/feed.json">JSON Feed</a></li>
+    <li><a href="/surprise-me/">Surprise me!</a></li>
+        
+    
+    
+    
+    
+    
+    
+        
+
+  </ul>
+  <form method="get" id="search" action="https://duckduckgo.com/">
+    <input type="hidden" name="sites" value="https://brandon_swoop.ngrok.io/"/>
+    <input type="hidden" name="k8" value="#444444"/>
+    <input type="hidden" name="k9" value="#ee4792"/>
+    <input type="hidden" name="kt" value="h"/>
+    <input class="field" type="text" name="q" maxlength="255" placeholder="To search, type and hit Enter…"/>
+    <input type="submit" value="Search" style="display: none;" />
+  </form>
+</section>
+
+</footer>
+  
+		
+</body>
+</html>

@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="generator" content="Hugo 0.110.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta content="Zero Cool" name="author">
+
+  <title>Brandontreb
+		- Home</title>
+
+  <link href="/assets/css/style.css?1" rel="stylesheet">
+  <link href="/assets/css/highlight.css?1" rel="stylesheet">
+  <link href="/assets/css/alpine.css?1" rel="stylesheet">
+  <style>
+
+.site-title {
+	display: inline-block;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 1.35;
+	padding-left: 5px;
+	margin-top: 0px;
+	margin-bottom: 5px;
+	padding-top: 5px;
+	padding-bottom: 10px;
+}
+
+nav.main-nav a.cta {
+	background: #ffffff;
+	color: #f29c38;
+	padding: 6px 14px;
+	border: 2px solid #f29c38;
+	border-radius: 20px;
+	white-space: nowrap;
+	box-shadow: none;
+}
+
+nav.main-nav a.cta:hover {
+	background: #fffee4;
+	color: #f29c38;
+	margin-left: 12px;
+}
+
+</style>
+
+  <link rel="stylesheet" href="/custom.css?1">
+
+	<link rel="shortcut icon" href="https://micro.blog/brandontreb/favicon.png" type="image/x-icon" />
+    
+    
+      <link href="https://brandon_swoop.ngrok.io/podcast.xml" rel="alternate" type="application/rss+xml" title="Podcast" />
+      <link rel="alternate" type="application/json" title="Brandontreb" href="https://brandon_swoop.ngrok.io/feed.json" />
+      <link rel="EditURI" type="application/rsd+xml" href="https://brandon_swoop.ngrok.io/rsd.xml" />
+    
+
+	
+	<link rel="me" href="https://micro.blog/brandontreb" />
+		
+	
+	<link rel="me" href="https://twitter.com/brandontreb" />
+	
+	
+	<link rel="me" href="https://github.com/brandontreb" />
+	
+	
+	
+	<link rel="authorization_endpoint" href="https://indieauth.com/auth" />
+	
+	
+	<link rel="token_endpoint" href="https://tokens.indieauth.com/token" />
+	
+	
+	<link rel="micropub" href="https://brandon_swoop.ngrok.io/micropub" />
+	
+	
+	<link rel="microsub" href="https://micro.blog/microsub/" />
+	
+	
+	<link rel="webmention" href="https://webmention.io/brandontreb.com/webmention" />
+	
+	
+    
+    
+</head>
+
+<body>
+  <nav class="main-nav">
+
+	<div class="site-title">
+		<img src="https://avatars.githubusercontent.com/u/92844?v=4" width="25" height="25" class="site-image">		
+		<a href="/">Brandontreb</a>
+	</div>
+
+	<div class="site-menus">
+
+	
+
+	
+		<a href="/archive/">Archive</a>
+	
+		<a href="/replies/">Replies</a>
+	
+		<a href="/photos/">Photos</a>
+	
+
+	
+
+	</div>
+</nav>
+
+
+
+
+
+  <section id="wrapper"  >
+	
+
+<ul id="post-list">
+
+
+	
+	
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2010/03/12/wordpress-programming-tip-enable-database-error-reporting-for-custom-queries/">WordPress Programming Tip: Enable Database Error Reporting For Custom Queries</a></h2>
+  </header>
+  <section class="post-body">
+	<p>So this one should seem pretty obvious, but it wasn’t apparent to me at first.  It was only after digging through the wp-db.php file that I discovered how to enable error reporting.</p>
+<h4 id="the-problem">The Problem</h4>
+<p>As you may have discovered, the wp_query() function isn’t a “one size fit’s all” solution.  Often times, you may need to query the WordPress database using a custom MySQL query.  Especially  if you are using WordPress for anything other than a blog (ie <a href="http://freshapps.com">freshapps.com</a>).</p>
+<p>When writing custom queries, it can often be frustrating if you make a mistake in the SQL syntax as WordPress will simply display no results.  For example:</p>
+<div class="wp_syntax">
+  <table>
+    <tr>
+      <td class="code">
+        <pre class="php" style="font-family:monospace;"><span style="color: #000088;">$results</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$wpdb</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">get_results</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">"SELECT * FROM <span style="color: #006699; font-weight: bold;">$wpdb-&gt;posts</span> 
+   WHERE post_title = ‘foo bar baz"</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<span style="color: #990000;">print_r</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$results</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+<span style="color: #666666; font-style: italic;">// Outputs Array ( )</span></pre>
+      </td>
+    </tr>
+  </table>
+</div>
+<p>Since we have made an error in our SQL statement (I didn’t add the second single quote), WordPress will suppress it and simply return an empty array. This is not very helpful for debugging.</p>
+<h4 id="the-solution">The Solution</h4>
+<p>The solution is actually quite simple. The global $wpdb object has a property called show_errors. Setting this property to true will cause WordPress to output the SQL errors to the screen for a given query.</p>
+<p>Here it is with our example above</p>
+<div class="wp_syntax">
+  <table>
+    <tr>
+      <td class="code">
+        <pre class="php" style="font-family:monospace;"><span style="color: #666666; font-style: italic;">// Enables Wordpress’s DB Error reporting</span>
+<span style="color: #000088;">$wpdb</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">show_errors</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">true</span><span style="color: #339933;">;</span>
+&nbsp;
+<span style="color: #000088;">$results</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$wpdb</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">get_results</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">"SELECT * FROM <span style="color: #006699; font-weight: bold;">$wpdb-&gt;posts</span> 
+   WHERE post_title = ‘foo bar baz"</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<span style="color: #990000;">print_r</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$results</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+<span style="color: #666666; font-style: italic;">// Outputs </span>
+<span style="color: #666666; font-style: italic;">// WordPress database error: [You have an error in your </span>
+<span style="color: #666666; font-style: italic;">// SQL syntax; check the manual that corresponds to your </span>
+<span style="color: #666666; font-style: italic;">// MySQL server version for the right syntax to use near </span>
+<span style="color: #666666; font-style: italic;">// ”foo bar baz’ at line 1]</span>
+<span style="color: #666666; font-style: italic;">// SELECT * FROM wp_posts WHERE post_title = ‘foo bar baz</span></pre>
+      </td>
+    </tr>
+  </table>
+</div>
+<p>Now we know what went wrong with our query rather than just receiving empty results.</p>
+<p>Let me know if you have any questions or comments.</p>
+<p>Happy WPCoding!</p>
+<div class="zemanta-pixie" style="margin-top:10px;height:15px">
+  <a class="zemanta-pixie-a" href="http://reblog.zemanta.com/zemified/a1d99446-c73f-4722-97e6-3e584300069e/" title="Reblog this post [with Zemanta]"><img class="zemanta-pixie-img" src="http://img.zemanta.com/reblog_e.png?x-id=a1d99446-c73f-4722-97e6-3e584300069e" alt="Reblog this post [with Zemanta]" style="border:none;float:right" /></a><span class="zem-script more-related pretty-attribution"></span>
+</div>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="WordPress Programming Tip: Enable Database Error Reporting For Custom Queries" data-url="http://brandontreb.com/wordpress-programming-tip-enable-database-error-reporting-for-custom-queries"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2010/03/12/wordpress-programming-tip-enable-database-error-reporting-for-custom-queries/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2010-03-12 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Mar 12</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2010/01/29/screen-shot-2010-01-29-at-2.39.44-pm-500x498.png/">Emacs For OSX Is Out!</a></h2>
+  </header>
+  <section class="post-body">
+	<p style="text-align: left;">
+  <a href="http://emacsformacosx.com/"><img class="size-medium wp-image-769 alignnone" title="Screen shot 2010-01-29 at 2.39.44 PM" src="/uploads/2010/Screen-shot-2010-01-29-at-2.39.44-PM-500x498.png" alt="" width="500" height="498" /></a>
+</p>
+<p style="text-align: center;">
+  For all you Vi using, Emacs haters out there, I will fight you!
+</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Emacs For OSX Is Out!" data-url="http://brandontreb.com/emacs-for-osx-is-out"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2010/01/29/screen-shot-2010-01-29-at-2.39.44-pm-500x498.png/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2010-01-29 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Jan 29</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2010/01/27/appletabletb113-500x332.jpg/">The iPad Is Out And It Sounds Like iPod While Plugging Your Nose</a></h2>
+  </header>
+  <section class="post-body">
+	<p style="text-align: center;">
+  <img class="aligncenter size-medium wp-image-762" title="appletabletb113" src="/uploads/2010/appletabletb113-500x332.jpg" alt="" width="500" height="332" />
+</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="The iPad Is Out And It Sounds Like iPod While Plugging Your Nose" data-url="http://brandontreb.com/the-ipad-is-out-and-it-sounds-like-ipod-while-plugging-your-nose"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2010/01/27/appletabletb113-500x332.jpg/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2010-01-27 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Jan 27</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2010/01/21/kindel-dev-gameboy-500x333.png/">Watch Out Apple, The Kindle Dev Kit Is Almost Live</a></h2>
+  </header>
+  <section class="post-body">
+	<p style="text-align: center;">
+  <a href="http://brandontreb.com/wp-content/uploads/2010/01/kindel-dev-gameboy.png"><img class="size-medium wp-image-743 aligncenter" title="kindel-dev-gameboy" src="/uploads/2010/kindel-dev-gameboy-500x333.png" alt="" width="500" height="333" /></a>
+</p>
+<p>With the success of the <a class="zem_slink" title="App Store" rel="homepage" href="http://www.apple.com/iphone/appstore/">Apple App Store</a>, it seems that everyone is wanting a piece of the pie.</p>
+<p>Amazon is now looking to throw their hat into the ring and is releasing their own dev kit for their ever so popular Kindle.</p>
+<p><a href="http://www.amazon.com/gp/feature.html/?ie=UTF8&amp;docId=1000476231">http://www.amazon.com/gp/feature.html/?ie=UTF8&amp;docId=1000476231</a></p>
+<p>It appears that big name game developers Electronic Arts is also getting involved (WTH?!?!)</p>
+<p>This just seems like it will be an epic fail. Who really wants to play video games on their Kindle? Maybe they can port <a href="http://brandontreb.com/code-monkey-music-video/">Kirby’s Dreamland</a> from the original Game Boy <img src="http://brandontreb.com/wp-includes/images/smilies/simple-smile.png" alt=":)" class="wp-smiley" style="height: 1em; max-height: 1em;" /> .</p>
+<h6 class="zemanta-related-title" style="font-size: 1em;">
+  Related articles by Zemanta
+</h6>
+<ul class="zemanta-article-ul">
+  <li class="zemanta-article-ul-li">
+    <a href="http://gizmodo.com/5453395/amazon-opens-kindle-up-for-development-app-store-ahoy">Amazon Opens Kindle Up for Development: App Store Ahoy [Kindle]</a> (gizmodo.com)
+  </li>
+  <li class="zemanta-article-ul-li">
+    <a href="http://news.cnet.com/8301-13577_3-10438661-36.html?part=rss&subj=news&tag=2547-1_3-0-20">Amazon: Kindle app store on the way</a> (news.cnet.com)
+  </li>
+</ul>
+<div class="zemanta-pixie" style="margin-top: 10px; height: 15px;">
+  <a class="zemanta-pixie-a" title="Reblog this post [with Zemanta]" href="http://reblog.zemanta.com/zemified/f48c6302-1cf7-4b20-aa9c-3b2147192e8f/"><img class="zemanta-pixie-img" style="border: none; float: right;" src="http://img.zemanta.com/reblog_e.png?x-id=f48c6302-1cf7-4b20-aa9c-3b2147192e8f" alt="Reblog this post [with Zemanta]" /></a><span class="zem-script more-related pretty-attribution"></span>
+</div>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Watch Out Apple, The Kindle Dev Kit Is Almost Live" data-url="http://brandontreb.com/watch-out-apple-the-kindle-dev-kit-is-almost-live"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2010/01/21/kindel-dev-gameboy-500x333.png/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2010-01-21 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Jan 21</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2010/01/20/code-monkey-music-video/">Code Monkey Music Video</a></h2>
+  </header>
+  <section class="post-body">
+	<p>Watching this video makes me appreciate the fact that I work from home.</p>
+<center>
+  <br /> <br />
+</center>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Code Monkey Music Video" data-url="http://brandontreb.com/code-monkey-music-video"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2010/01/20/code-monkey-music-video/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2010-01-20 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Jan 20</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2010/01/04/300px-red_box_video_rental_automat.jpg/">Hacking Redbox &amp;#8211; How To Get Free DVDs</a></h2>
+  </header>
+  <section class="post-body">
+	<div class="zemanta-img" style="width: 310px; margin: 1em;">
+  <div class="wp-caption aligncenter" style="width: 310px">
+    <a href="http://commons.wikipedia.org/wiki/Image:Red_Box_Video_Rental_Automat.jpg"><img src="/uploads/2010/300px-Red_Box_Video_Rental_Automat.jpg" alt="Red Box, Video Rental Automat, found in a Wal-…" width="300" height="356" /></a> 
+<pre><code>&lt;p class=&quot;wp-caption-text&quot;&gt;
+  Image via Wikipedia
+&lt;/p&gt;
+</code></pre>
+  </div>
+</div>
+<p>I was at Wally-World the other day getting a movie from RedBox with my wife when I noticed some guy enter in a code into the machine. The code was BREAKROOM. After watching him for a moment, I realized this code entitled him a free DVD rental.</p>
+<p>Now, RedBox is pretty stinking cheap ($1.50/night), but if you’re an avid movie watcher, this really adds up.</p>
+<p>So, I did some searching on the Google machine and sure enough, there are new RedBox codes that go into circulation every day. Each one giving you a free DVD.</p>
+<p>The site that offers the RedBox codes is <a href="http://www.insideredbox.com/redbox-codes/">http://www.insideredbox.com/redbox-codes/</a></p>
+<p>Users submit the codes and update the site with the last time they were used. That way, you always know which codes are currently working.</p>
+<p>You simply need to enter the coupon code from the main screen or just before checkout at your local Redbox kiosk. When you do, you will receive a one-day free rental. Any additional days you keep the movie will be charged at the usual $1.50/day.</p>
+<p>Update: <a href="http://twitter.com/diemer">@diemer</a> on Twitter pointed out to me that inside Redbox also has an iPhone app. The link for the app is <a href="http://itunes.apple.com/us/app/inside-redbox-pro/id306217360?mt=8">http://itunes.apple.com/us/app/inside-redbox-pro/id306217360?mt=8</a></p>
+<p>I may actually cancel my Netflix account now…</p>
+<div class="zemanta-pixie" style="margin-top: 10px; height: 15px;">
+  <a class="zemanta-pixie-a" title="Reblog this post [with Zemanta]" href="http://reblog.zemanta.com/zemified/ef29dfb8-87cb-4d2b-9100-d8798440ec70/"><img class="zemanta-pixie-img" style="border: none; float: right;" src="http://img.zemanta.com/reblog_e.png?x-id=ef29dfb8-87cb-4d2b-9100-d8798440ec70" alt="Reblog this post [with Zemanta]" /></a>
+</div>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Hacking Redbox - How To Get Free DVDs" data-url="http://brandontreb.com/hacking-redbox-how-to-get-free-dvds"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2010/01/04/300px-red_box_video_rental_automat.jpg/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2010-01-04 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Jan 4</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2009/12/17/great-list-of-algorithm-programming-tutorials/">Great List Of Algorithm Programming Tutorials</a></h2>
+  </header>
+  <section class="post-body">
+	<p>Recently TopCoder.com posted a list of algorithm tutorials from some of their “top coders”.</p>
+<p>The tutorials are very comprehensive and pretty much sum my undergraduate computer science degree up in one page <img src="http://brandontreb.com/wp-includes/images/smilies/simple-smile.png" alt=":)" class="wp-smiley" style="height: 1em; max-height: 1em;" /> This page is a great resource for anyone that does any amount of coding…</p>
+<p>Some of the tutorials include:</p>
+<ul>
+<li>Greedy algorithms</li>
+<li>Various sort and search techniques</li>
+<li>Data structures</li>
+<li>Graph theory</li>
+</ul>
+<p>Here is the link to the Top Coder Tutorials:</p>
+<p><a href="http://www.topcoder.com/tc?d1=tutorials&amp;d2=alg_index&amp;module=Static">http://www.topcoder.com/tc?d1=tutorials&amp;d2=alg_index&amp;module=Static</a></p>
+<div class="zemanta-pixie" style="margin-top: 10px; height: 15px;">
+  <a class="zemanta-pixie-a" title="Reblog this post [with Zemanta]" href="http://reblog.zemanta.com/zemified/218488e3-5baf-4c43-9999-247610c49e95/"><img class="zemanta-pixie-img" style="border: none; float: right;" src="http://img.zemanta.com/reblog_e.png?x-id=218488e3-5baf-4c43-9999-247610c49e95" alt="Reblog this post [with Zemanta]" /></a><span class="zem-script more-related pretty-attribution"></span>
+</div>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Great List Of Algorithm Programming Tutorials" data-url="http://brandontreb.com/great-list-of-algorithm-programming-tutorials"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2009/12/17/great-list-of-algorithm-programming-tutorials/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2009-12-17 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Dec 17</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2009/12/14/xcode-shortcut/">XCode Shortcut</a></h2>
+  </header>
+  <section class="post-body">
+	<p>When in XCode on a MacBook Pro, doing a 3-finger swipe up will switch between the .h and .m files.</p>
+<p><strong>⌘-option-up will do the same thing</strong></p>
+<p>Productivity++</p>
+<div class="zemanta-pixie" style="margin-top: 10px; height: 15px;">
+  <a class="zemanta-pixie-a" title="Reblog this post [with Zemanta]" href="http://reblog.zemanta.com/zemified/d1495139-6d75-42c2-bf27-46298f91b9e4/"><img class="zemanta-pixie-img" style="border: none; float: right;" src="http://img.zemanta.com/reblog_e.png?x-id=d1495139-6d75-42c2-bf27-46298f91b9e4" alt="Reblog this post [with Zemanta]" /></a><span class="zem-script more-related pretty-attribution"></span>
+</div>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="XCode Shortcut" data-url="http://brandontreb.com/xcode-shortcut"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2009/12/14/xcode-shortcut/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2009-12-14 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Dec 14</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2009/12/04/programming-tip-of-the-day-2-difference-between-i-and-i/">Programming Tip Of The Day #2 &amp;#8211; Difference Between i&#43;&#43; and &#43;&#43;i</a></h2>
+  </header>
+  <section class="post-body">
+	<p>To some, this should seem a bit obvious and if I am insulting your intelligence by discussing it, I am sorry. But, one of the main reasons I want to discuss this topic is, I was asked this question in a job interview for Lockheed Martin.</p>
+<p><strong>What is the difference between i++ and ++i?</strong></p>
+<p>The answer is actually quite simple.</p>
+<h3 id="span-stylecolor-00ccffispan-first-evaluates-the-value-of-i-and-then-increments-it"><span style="color: #00ccff;">i++</span> first evaluates the value of i and then increments it</h3>
+<h3 id="span-stylecolor-00ccffispan-increments-the-value-of-i-and-then-evaluates-it"><span style="color: #00ccff;">++i</span> increments the value of i and then evaluates it</h3>
+<p>Here is a brief example to demonstrate what I mean.</p>
+<div class="wp_syntax">
+  <table>
+    <tr>
+      <td class="code">
+        <pre class="php" style="font-family:monospace;"><span style="color: #666666; font-style: italic;">// Example: i++ </span>
+<span style="color: #000088;">$i</span> <span style="color: #339933;">=</span> <span style="color: #cc66cc;">5</span><span style="color: #339933;">;</span>
+<span style="color: #b1b100;">echo</span> <span style="color: #0000ff;">"The value of i is "</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$i</span><span style="color: #339933;">++</span> <span style="color: #339933;">;</span>
+<span style="color: #666666; font-style: italic;">// Output "The value of i is 5"</span>
+<span style="color: #666666; font-style: italic;">// i = 6</span>
+&nbsp;
+<span style="color: #666666; font-style: italic;">// Example: ++i </span>
+<span style="color: #000088;">$i</span> <span style="color: #339933;">=</span> <span style="color: #cc66cc;">5</span><span style="color: #339933;">;</span>
+<span style="color: #b1b100;">echo</span> <span style="color: #0000ff;">"The value of i is "</span> <span style="color: #339933;">.</span> <span style="color: #339933;">++</span><span style="color: #000088;">$i</span><span style="color: #339933;">;</span>
+<span style="color: #666666; font-style: italic;">// Output "The value of i is 6"</span>
+<span style="color: #666666; font-style: italic;">// i = 6</span></pre>
+      </td>
+    </tr>
+  </table>
+</div>
+<p>So, now if you are ever asked about this in an interview, you will have a response.</p>
+<p>Happy programming!</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Programming Tip Of The Day #2 - Difference Between i++ and ++i" data-url="http://brandontreb.com/programming-tip-of-the-day-2-difference-between-i-and-i"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2009/12/04/programming-tip-of-the-day-2-difference-between-i-and-i/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2009-12-04 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Dec 4</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2009/12/03/programming-tip-of-the-day-1-ternary-operator/">Programming Tip Of The Day #1 &amp;#8211; Ternary Operator</a></h2>
+  </header>
+  <section class="post-body">
+	<p>So, I though I’d start this series called Programming Tip Of The Day to write about useful things I come across in programming. Both to educate my readers and as a personal archive of ideas and tips.</p>
+<p>I will kick it off today with a quick rant about the <strong>ternary operator</strong>. I &lt;3 the ternary operator. It’s quick, efficient and saves a lot of ugly code.</p>
+<p>For those of you who don’t know, the ternary operator is made up of 3 elements: The condition and two results. It is of the form:</p>
+<h2 id="condition--result-if-true--result-if-false">(condition) ? (result if true) : (result if false);</h2>
+<p>This is much nicer than an if statement. So here is a brief example about how a ternary operator can replace an if-statement.</p>
+<h3 id="if-statement">if-statement</h3>
+<div>
+  <pre>&lt;code class=’c’>if(isSnowing) {
+    iMustBe = "cold";
+} else {
+    iMustBe = "warm";
+}&lt;/code></pre>
+</div>
+<h3 id="same-thing-using-ternary">Same thing using ternary</h3>
+<div>
+  <pre>&lt;code class=’c’>iMustBe = isSnowing ? "cold" : "warm";&lt;/code></pre>
+</div>
+<p>That is so much easier to read (IMHO). You can even do clever things in printing. Here is a small example in PHP for using the ternary operator when doing an echo.</p>
+<div>
+  <pre>&lt;code class=’php’>&lt;?php
+  echo "I am a ".((height &gt; 72) ? "tall" : "short")." person!";
+?&gt;&lt;/code></pre>
+</div>
+<p>Most languages support the ternary operator. Check out <a href="http://en.wikipedia.org/wiki/Ternary_operation">this wiki page</a> if you want more info.</p>
+<p>Happy programming!</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Programming Tip Of The Day #1 - Ternary Operator" data-url="http://brandontreb.com/programming-tip-of-the-day-1-ternary-operator"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2009/12/03/programming-tip-of-the-day-1-ternary-operator/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2009-12-03 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Dec 3</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+
+
+</ul>
+
+
+	
+
+
+
+  </section>
+  <footer id="footer">
+
+<section id="wrapper">
+  <ul>
+    <li><a href="/feed.xml">RSS</a></li>
+    <li><a href="/feed.json">JSON Feed</a></li>
+    <li><a href="/surprise-me/">Surprise me!</a></li>
+        
+    
+    
+    
+    
+    
+    
+        
+
+  </ul>
+  <form method="get" id="search" action="https://duckduckgo.com/">
+    <input type="hidden" name="sites" value="https://brandon_swoop.ngrok.io/"/>
+    <input type="hidden" name="k8" value="#444444"/>
+    <input type="hidden" name="k9" value="#ee4792"/>
+    <input type="hidden" name="kt" value="h"/>
+    <input class="field" type="text" name="q" maxlength="255" placeholder="To search, type and hit Enter…"/>
+    <input type="submit" value="Search" style="display: none;" />
+  </form>
+</section>
+
+</footer>
+  
+		
+</body>
+</html>

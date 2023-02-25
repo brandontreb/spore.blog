@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>apps on Brandontreb</title>
+    <link>https://brandon_swoop.ngrok.io/tags/apps/</link>
+    <description>Recent content in apps on Brandontreb</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>brandontreb@gmail.com (Zero Cool)</managingEditor>
+    <webMaster>brandontreb@gmail.com (Zero Cool)</webMaster>
+    <lastBuildDate>Tue, 27 Jan 2015 00:00:00 +0000</lastBuildDate><atom:link href="https://brandon_swoop.ngrok.io/tags/apps/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Your App Idea Most Likely Falls Into One Of Three Categories</title>
+      <link>https://brandon_swoop.ngrok.io/2015/01/27/app-idea-likely-falls-one-three-categories/</link>
+      <pubDate>Tue, 27 Jan 2015 00:00:00 +0000</pubDate>
+      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <guid>https://brandon_swoop.ngrok.io/2015/01/27/app-idea-likely-falls-one-three-categories/</guid>
+      <description>During my years of mobile development, I have heard the phrase “I have an idea for an app!” hundreds, if not thousands of times. Sometimes it would be from family members, sometimes my dentist during a cleaning, and sometimes from a naked dude standing in the sauna at the gym. Everyone pitches app ideas to me.
+What I have learned from hearing so many pitches is this: apps really fall into one of three (sometimes four) categories.</description>
+    </item>
+    
+  </channel>
+</rss>

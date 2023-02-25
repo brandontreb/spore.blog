@@ -1,0 +1,21 @@
+{{ define "main" }}
+<style>
+  html.preparing-surprise {
+    visibility: hidden;
+  }
+</style>
+<script>
+  document.documentElement.classList.add('preparing-surprise');
+</script>
+<h1>Surprising You...</h1>
+{{ $list := where .Site.Pages.ByDate.Reverse "Type" "post" }}
+{{ range $list  }}  
+<a href="{{ .Permalink }}" class="surprise-me-link">{{ .Permalink }}</a>  
+{{ end }}
+
+<script>
+  const sample = (array) => array[Math.floor(Math.random() * array.length)];
+  const links = [...document.querySelectorAll('.surprise-me-link')];
+  window.location = sample(links).href;
+</script>
+{{ end }}

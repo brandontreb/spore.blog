@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta content="Zero Cool" name="author">
+
+  <title>Brandontreb
+		- Mac</title>
+
+  <link href="/assets/css/style.css?1" rel="stylesheet">
+  <link href="/assets/css/highlight.css?1" rel="stylesheet">
+  <link href="/assets/css/alpine.css?1" rel="stylesheet">
+  <style>
+
+.site-title {
+	display: inline-block;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 1.35;
+	padding-left: 5px;
+	margin-top: 0px;
+	margin-bottom: 5px;
+	padding-top: 5px;
+	padding-bottom: 10px;
+}
+
+nav.main-nav a.cta {
+	background: #ffffff;
+	color: #f29c38;
+	padding: 6px 14px;
+	border: 2px solid #f29c38;
+	border-radius: 20px;
+	white-space: nowrap;
+	box-shadow: none;
+}
+
+nav.main-nav a.cta:hover {
+	background: #fffee4;
+	color: #f29c38;
+	margin-left: 12px;
+}
+
+</style>
+
+  <link rel="stylesheet" href="/custom.css?1">
+
+	<link rel="shortcut icon" href="https://micro.blog/brandontreb/favicon.png" type="image/x-icon" />
+    
+    
+      <link href="https://brandon_swoop.ngrok.io/podcast.xml" rel="alternate" type="application/rss+xml" title="Podcast" />
+      <link rel="alternate" type="application/json" title="Brandontreb" href="https://brandon_swoop.ngrok.io/feed.json" />
+      <link rel="EditURI" type="application/rsd+xml" href="https://brandon_swoop.ngrok.io/rsd.xml" />
+    
+
+	
+	<link rel="me" href="https://micro.blog/brandontreb" />
+		
+	
+	<link rel="me" href="https://twitter.com/brandontreb" />
+	
+	
+	<link rel="me" href="https://github.com/brandontreb" />
+	
+	
+	
+	<link rel="authorization_endpoint" href="https://indieauth.com/auth" />
+	
+	
+	<link rel="token_endpoint" href="https://tokens.indieauth.com/token" />
+	
+	
+	<link rel="micropub" href="https://brandon_swoop.ngrok.io/micropub" />
+	
+	
+	<link rel="microsub" href="https://micro.blog/microsub/" />
+	
+	
+	<link rel="webmention" href="https://webmention.io/brandontreb.com/webmention" />
+	
+	
+    
+    
+</head>
+
+<body>
+  <nav class="main-nav">
+
+	<div class="site-title">
+		<img src="https://avatars.githubusercontent.com/u/92844?v=4" width="25" height="25" class="site-image">		
+		<a href="/">Brandontreb</a>
+	</div>
+
+	<div class="site-menus">
+
+	
+
+	<a class="normal" href="/"> <span class="arrow">←</span> Home</a>
+
+	
+
+	
+		<a href="/archive/">Archive</a>
+	
+		<a href="/replies/">Replies</a>
+	
+		<a href="/photos/">Photos</a>
+	
+
+	
+
+	</div>
+</nav>
+
+
+
+  <section id="wrapper" >
+	
+  <ul id="post-list">
+
+
+	
+	
+		<li>
+<article>
+  
+	<p>New computer day!</p>
+<p><img src="/uploads/2020/1e441b58-4ffc-4d0e-8802-0c18c982bc82.jpeg" alt=""></p>
+  
+  
+  <a href="https://brandon_swoop.ngrok.io/2020/10/31/67074/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2020-10-31 18:37:54 &#43;0000" class="dt-published">→ 6:37 PM, Oct 31</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2010/12/02/screen-shot-2010-12-02-at-9.52.15-pm.png/">Creating A Twitter Client For OSX &amp;#8211; Part 1</a></h2>
+  </header>
+  <section class="post-body">
+	<p>With the upcoming release of the Mac App Store, I can only imagine another gold rush is upon us. Clever Indie developers making money hand over fist while the store as well as developers find their identities. With that being said, I feel that there is a serious lack of interesting (maintained) Twitter clients for OSX. I say “maintained” because Tweetie for OSX is just fantastic, however Twitter said they don’t have any plans for it at this time. So, I want to provide devs with the tools to create an amazing Twitter client for the Mac that I will want to use <img src="http://brandontreb.com/wp-includes/images/smilies/simple-smile.png" alt=":)" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>Quite some time ago, I began (and never completed) a series on <a href="http://brandontreb.com/objective-c-programming-tutorial-creating-a-twitter-client-part-1/">writing a Twitter client for OSX</a>. It was very well received by the development community, however once Twitter switched over to OAUTH, I became too lazy to update it <img src="http://brandontreb.com/wp-includes/images/smilies/frownie.png" alt=":(" class="wp-smiley" style="height: 1em; max-height: 1em;" /> . So, I figured a tutorial series for <a href="http://idevblogaday">#iDevBlogADay</a> would be the perfect opportunity to complete it.</p>
+<p>So we are going to start from the ground up. In today’s tutorial, we are going walk through getting the initial resources and setting up Twitter to authenticate our application. We will also post a basic tweet.</p>
+<h4 id="setting-up-twitter">Setting Up Twitter</h4>
+<p>In order for your application to interface with Twitter, you must register it with them over at <a href="http://developer.twitter.com">http://developer.twitter.com</a>.</p>
+<ol>
+<li>Go to <a href="http://developer.twitter.com">http://developer.twitter.com</a> and sign up if needed</li>
+<li>Click on <a href="http://developer.twitter.com/apps">Your Apps</a></li>
+<li>Click <a href="http://developer.twitter.com/apps/new">Register A New App</a> and fill out all of the information about your client</li>
+<li>You’re all set!</li>
+</ol>
+<h4 id="getting-necessary-resources">Getting Necessary Resources</h4>
+<p>I spent a bit of time researching the various options for handling OAUTH and all of the fun stuff that goes along with Twitter integration and found that <a href="https://github.com/mattgemmell/MGTwitterEngine/">MGTwitterEngine</a> was the least painful to implement. I say least painful because it has a few quirks of it’s own along with not having the best documentation in the world.</p>
+<p>So after battling for a bit to get the thing compiled, I have figured out the setup process :). You could also read <a href="https://github.com/mattgemmell/MGTwitterEngine/wiki/Building-and-testing-MGTwitterEngine">Matt’s installation instructions</a>, but I will regurgitate them here a little differently and hopefully be more clear. So here it is:</p>
+<ol>
+<li>Make sure you have git installed. If not, <a href="http://code.google.com/p/git-osx-installer/">download it for OSX here</a>.</li>
+<li>cd to the directory that you want to clone the files to</li>
+<li>Clone the MGTwitterEngine repository. Type:<br>
+$ <strong>git clone git://github.com/mattgemmell/MGTwitterEngine.git</strong></li>
+<li>cd into the MGTwitterEngine folder (we will install the dependancies at this level)</li>
+<li>Now install the dependancies (<a href="https://github.com/schwa/TouchJSON">TouchJSON</a> and <a href="https://github.com/ctshryock/oauthconsumer">OAUTHConsumer</a>). Note: There is an option to use yajl (yet another json library), but I found it a pain to integrate, so we will just throw it out.<br>
+$ <strong>git clone git://github.com/schwa/TouchJSON.git</strong><br>
+$ <strong>git clone git://github.com/ctshryock/oauthconsumer.git</strong></li>
+</ol>
+<p>Altogether, this is the order of commands you should have:</p>
+<div>
+  <pre>&lt;code class=’bash’>$ cd ~/Desktop
+$ git clone git://github.com/mattgemmell/MGTwitterEngine.git
+$ cd MGTwitterEngine
+$ git clone git://github.com/schwa/TouchJSON.git
+$ git clone git://github.com/ctshryock/oauthconsumer.git&lt;/code></pre>
+</div>
+<h4 id="building-mgtwitterengine-what-a-freakin-pain">Building MGTwitterEngine (What a freakin pain)</h4>
+<p>I find it interesting that this project is riddled with errors directly upon download. So much work went into it, yet it’s so challenging to get working.</p>
+<p>Now open up MGTwitterEngine.xcodeproj. You will notice that there are quite a few missing files (they show in red). That’s fine. DELETE THEM ALL…</p>
+<ol>
+<li>Delete the <strong>yajl</strong> group with everything in it</li>
+<li>Delete the <strong>Twitter YAJL Parsers</strong> group and everything in it</li>
+<li>Delete <strong>OAToken_KeychainExtensions.m</strong> and <strong>OAToken_KeychainExtensions.h</strong> (they are not used)</li>
+<li>Delete <strong>CJSONDataSerializer.h</strong> and <strong>CJSONDataSerializer.m</strong></li>
+<li>Delete <strong>CSerializedJSONData.h</strong> and <strong>CSerializedJSONData.m</strong></li>
+<li>Click the arrow on the OAuthConsumer group and you will notice that the <strong>Crypto</strong> is missing. We still need this group, but it’s in the wrong place. Delete this group and then open up your MGTwitterEngine folder in Finder. Navigate to <strong>MGTwitterEngine-&gt;oauthconsumer</strong>. Drag the <strong>Crypto</strong> folder into your project.</li>
+<li>We need to change the C Language Dialect to C99. To do this right click on MGTwitterEngine in XCode and click Get Info. Scroll down to C Language Dialect and click the drop down changing it to C99<br>
+<a href="/uploads/2010/Screen-shot-2010-12-02-at-9.22.12-PM.png"><img class="alignnone size-full wp-image-1097" title="Screen shot 2010-12-02 at 9.22.12 PM" src="/uploads/2010/Screen-shot-2010-12-02-at-9.22.12-PM.png" alt="" width="474" height="64" /></a></li>
+<li>Finally, we need to tell MGTwitterEngine that we want to use TouchJSON instead of yajl. To do this open up <strong>MGTwitterEngineGlobalHeader.h</strong> and set TOUCHJSON_AVAILABLE to 1.</li>
+<li>If you still have any hair left at this point, click Build and Run to and check out the output in the Console</li>
+<li>If you don’t feel like jumping through all of these hoops you can download my MGTwitterEngine project with all of this fun stuff completed. <a href="http://brandontreb.com/wp-content/uploads/2010/12/MGTwitterEngine.zip">Download it here</a>.</li>
+</ol>
+<h4 id="testing-mgtwitterengine">Testing MGTwitterEngine</h4>
+<p>For today’s tutorial, we will just be displaying our timeline and updating our status using the demo file provided by MGTwitterEngine. In the next tutorial, we will actually be integrating the engine into a new project. So, open up <strong>AppController.m</strong> in the <strong>Demo</strong> group. Matt has given us some nice variables to fill in, in order to make this thing work. Let’s update to applicationDidFinishLaunching method to look like the code below:</p>
+<div>
+  <pre>&lt;code class=’objc’>- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+{
+        // Put your Twitter username and password here:
+        NSString *username = @"brandontreb";
+    NSString *consumerKey = @"aKKEsJHTDNsv4xVlMHmMqw";
+    NSString *consumerSecret = @"oldpeoplenakedcriscotwister";
+<pre><code>    // Create a TwitterEngine and set our login details.
+    twitterEngine = [[MGTwitterEngine alloc] initWithDelegate:self];
+[twitterEngine setUsesSecureConnection:NO];
+[twitterEngine setConsumerKey:consumerKey secret:consumerSecret];
+[twitterEngine setUsername:username];
+
+token = [[OAToken alloc] initWithKey:@&quot;16369316-GgqA00WO0poCAj0XAFhJYDDRthVvWMxTnVyKdfWa1&quot;
+                              secret:@&quot;StrongEnoughForAManButMadeForAWoman&quot;];
+[twitterEngine setAccessToken:token];
+[twitterEngine getHomeTimelineSinceID:0 startingAtPage:0 count:20];
+</code></pre>
+<p>}&lt;/code&gt;</pre></p>
+</div>
+<p>So obviously I changed my consumer secret and Access Token Secret. You will need to fill this out with your information. Here is how to obtain them.</p>
+<p><strong>Consumer Key &amp; Consumer Secret</strong></p>
+<p>When logged into <a href="http://developer.twitter.com/apps/">http://developer.twitter.com/apps/</a> , click on the application that you created in the first step:</p>
+<p><a href="/uploads/2010/Screen-shot-2010-12-02-at-9.51.55-PM.png"><img class="alignnone size-full wp-image-1101" title="Screen shot 2010-12-02 at 9.51.55 PM" src="/uploads/2010/Screen-shot-2010-12-02-at-9.51.55-PM.png" alt="" width="322" height="133" /></a></p>
+<p>Scroll down and you should see the Consumer Key and the Consumer Secret.</p>
+<p><a href="/uploads/2010/Screen-shot-2010-12-02-at-9.50.46-PM.png"><img class="alignnone size-full wp-image-1102" title="Screen shot 2010-12-02 at 9.50.46 PM" src="/uploads/2010/Screen-shot-2010-12-02-at-9.50.46-PM.png" alt="" width="399" height="158" /></a></p>
+<p><strong>Access Token &amp; Access Token Secret</strong></p>
+<p>In the right column, you should see a link titled “My Access Token”. Click on it.</p>
+<p><a href="/uploads/2010/Screen-shot-2010-12-02-at-9.52.05-PM.png"><img class="alignnone size-full wp-image-1103" title="Screen shot 2010-12-02 at 9.52.05 PM" src="/uploads/2010/Screen-shot-2010-12-02-at-9.52.05-PM.png" alt="" width="218" height="38" /></a></p>
+<p>Now you should see YOUR Access Token and Access Token Secret</p>
+<p><a href="/uploads/2010/Screen-shot-2010-12-02-at-9.52.15-PM.png"><img class="alignnone size-full wp-image-1104" title="Screen shot 2010-12-02 at 9.52.15 PM" src="/uploads/2010/Screen-shot-2010-12-02-at-9.52.15-PM.png" alt="" width="444" height="156" /></a></p>
+<h4 id="have-fun">Have Fun!</h4>
+<p>After you copy the tokens, keys, and secrets into the app, you should be able start making calls to Twitter using the engine. Build and run the application at this point and watch your home timeline get output to the console. One thing I want to point out is we are displaying an NSDictionary. That means MGTwitterEngine did all of the parsing for us (using TouchJSON), which is super rad.</p>
+<p>One more thing to try for fun is to update your status. It will even show that you updated it from YOUR application on Twitter. Add the following line and run it again.</p>
+<div>
+  <pre>&lt;code class=’objc’>[twitterEngine sendUpdate:@"@brandontreb is a code gangster!  Check out his #iDevBlogADay post on making your own Twitter client here http://bit.ly/gGrZvI"];&lt;/code></pre>
+</div>
+<p>Well, that does it for today. Join me next week when I will show you how to move the engine into your own project and we will begin displaying tweets in a basic table view.</p>
+<p>Happy Coding!</p>
+<p><a href="http://brandontreb.com/creating-a-twitter-client-for-osx-part-2-displaying-tweets/">Click Here To Go To Part 2</a></p>
+<p style="font-family: ‘Lucida Grande’;">
+  &#8212;-
+</p></p> 
+<div style="font-family: ‘Lucida Grande’;">
+  <span style="font-family: ‘Lucida Grande’;"><strong><span style="font-weight: normal;"><span style="font-family: arial, verdana, tahoma, sans-serif; font-size: 13px; line-height: 20px;"><em>﻿﻿This post is part of <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://idevblogaday.com/">iDevBlogADay</a>, a group of indie iOS development blogs featuring two posts per day. You can keep up with iDevBlogADay through the <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://idevblogaday.com/">web site</a>, <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://feeds.feedburner.com/idevblogaday">RSS feed</a>, or <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://twitter.com/#search?q=%23idevblogaday">Twitter</a>.</em></span></span></strong></span>
+</div></p> 
+<div style="font-family: ‘Lucida Grande’;">
+  <span style="font-family: ‘Lucida Grande’;"><strong><span style="font-weight: normal;"><span style="font-family: arial, verdana, tahoma, sans-serif; font-size: 13px; line-height: 20px;"><em><br /> <br /> </em></span></span></strong></span>
+</div></p> 
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Creating A Twitter Client For OSX - Part 1" data-url="http://brandontreb.com/creating-a-twitter-client-for-osx-part-1"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2010/12/02/screen-shot-2010-12-02-at-9.52.15-pm.png/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2010-12-02 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Dec 2</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2010/11/11/core-data-quicktip-inverse-relationships/">Core Data QuickTip: Inverse Relationships</a></h2>
+  </header>
+  <section class="post-body">
+	<p>One thing I always wondered about Core Data is why the compiler would warn you if you didn’t specify the inverse relationship. After reading through Apple’s docs, they essentially say its to make your database more robust by reinforcing those relationships. Plus, you never know when you may have one thing and need to get to the other.</p>
+<p>After working on a project with an Enormous Core Data database, I found one very useful thing about inverses. When you specify one side of the relationship, core data automatically hooks up the other. Allow me to explain in code.</p>
+<p>Let’s say we have a person object with many pets…</p>
+<div>
+  <pre>&lt;code class=’objc’>Person *john = [[Person alloc] init];
+Pet *pet = [[Pet alloc] init];
+<p>// Add the one to many relationship from john to pets
+[john addPetObject:pet];</p>
+<p>// Add the inverse relationship
+[pet setPerson:john];&lt;/code&gt;</pre></p>
+</div>
+<p>So, I was doing this in all of my code and then forgot to one time. However, to my surprise, everything still worked. Why, because once you set up one of the relationships, Core Data automatically handles the other. So, the above code is redundant and could just as easily have been.</p>
+<div>
+  <pre>&lt;code class=’objc’>[john addPetObject:pet];&lt;/code></pre>
+</div>
+<p>OR</p>
+<div>
+  <pre>&lt;code class=’objc’>[pet setPerson:john];&lt;/code></pre>
+</div>
+<p>and both directions of the relationship would have been established.</p>
+<p>Not super exciting, but I found it to be pretty handy and also saved me quite a bit of extra code.</p>
+<p>Happy Coding!</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Core Data QuickTip: Inverse Relationships" data-url="http://brandontreb.com/core-data-quicktip-inverse-relationships"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2010/11/11/core-data-quicktip-inverse-relationships/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2010-11-11 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Nov 11</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2009/12/14/xcode-shortcut/">XCode Shortcut</a></h2>
+  </header>
+  <section class="post-body">
+	<p>When in XCode on a MacBook Pro, doing a 3-finger swipe up will switch between the .h and .m files.</p>
+<p><strong>⌘-option-up will do the same thing</strong></p>
+<p>Productivity++</p>
+<div class="zemanta-pixie" style="margin-top: 10px; height: 15px;">
+  <a class="zemanta-pixie-a" title="Reblog this post [with Zemanta]" href="http://reblog.zemanta.com/zemified/d1495139-6d75-42c2-bf27-46298f91b9e4/"><img class="zemanta-pixie-img" style="border: none; float: right;" src="http://img.zemanta.com/reblog_e.png?x-id=d1495139-6d75-42c2-bf27-46298f91b9e4" alt="Reblog this post [with Zemanta]" /></a><span class="zem-script more-related pretty-attribution"></span>
+</div>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="XCode Shortcut" data-url="http://brandontreb.com/xcode-shortcut"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2009/12/14/xcode-shortcut/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2009-12-14 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Dec 14</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2009/07/29/xcode-shortcuts-300x300.png/">XCode Shortcut Cheat Sheet</a></h2>
+  </header>
+  <section class="post-body">
+	<p style="text-align: left;">
+  <a href="http://www.1729.us/xcode/Xcode%20Shortcuts.png"><img class="alignleft size-thumbnail wp-image-383" title="Xcode Shortcuts" src="/uploads/2009/Xcode-Shortcuts-300x300.png" alt="Xcode Shortcuts" width="216" height="216" /></a>Through my travels through the internets, I have stumbled upon this amazing reference. It&#8217;s a complete set of XCode shortcut commands. Learning some of these commands has drastically improved my efficiency when developing in XCode.
+</p>
+<p style="text-align: left;">
+  As a big fan of not using the mouse (yes I&#8217;m and Emacs guy), this is invaluable. <a href="http://www.1729.us/xcode/Xcode%20Shortcuts.png">Download the full size image here</a>. Enjoy!
+</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="XCode Shortcut Cheat Sheet" data-url="http://brandontreb.com/xcode-shortcut-cheat-sheet"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2009/07/29/xcode-shortcuts-300x300.png/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2009-07-29 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Jul 29</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2009/07/28/screenshot_01.jpg/">Creating A Twitter Client In Objective-C Client Part 2</a></h2>
+  </header>
+  <section class="post-body">
+	<h2 id="this-tutorial-has-moved-i-have-updated-it-to-support-twitter8217s-oauth-you-can-find-the-first-tutorial-in-there-series-by-clicking-the-link-below">This tutorial has moved! I have updated it to support Twitter’s Oauth, you can find the first tutorial in there series by clicking the link below</h2>
+<h2 id="creating-a-twitter-client-for-osx--part-11"><a href="http://brandontreb.com/creating-a-twitter-client-for-osx-part-1/">Creating A Twitter Client For OSX – Part 1</a></h2>
+<p>This is part 2 in our series about creating a Twitter client in Objective-C. In case you missed it, here is a <a href="http://brandontreb.com/objective-c-programming-tutorial-creating-a-twitter-client-part-1/">link to part 1</a> of this series.</p>
+<p>In the last tutorial I showed you how to retrieve data from Twitter and display the XML in the Console. Today, we will be focusing on sending messages to Twitter via <a href="http://en.wikipedia.org/wiki/POST_(HTTP)">POST</a>. We will be implementing the code to update our Twitter status. So let’s just dig right in.</p>
+<h2 id="1-updating-the-twitterrequest-header-file">1. Updating The TwitterRequest Header File</h2>
+<p>Open up TwitterRequest.h and add the following code (Click the image to enlarge)</p>
+<p><a href="/uploads/2009/screenshot_16.png"><img class="size-full wp-image-362 alignnone" title="screenshot_16" src="/uploads/2009/screenshot_16.png" alt="screenshot_16" width="666" height="395" /></a></p>
+<p>We have added two properties. The first <strong>isPost</strong> will be true when we are calling a method that requires a POST to Twitter. This will be methods such as update_status, follow, etc… Next, the variable <strong>requestBody</strong> will hold the POST arguments that will be sent to Twitter. These will be things such as status text or friend id.</p>
+<p>Finally, we will be adding a method called <strong>statuses_update</strong>. The reason I named it this is because that is what the method is called in the <a href="http://apiwiki.twitter.com/Twitter-API-Documentation">Twitter API</a>. Like our <strong>friends_timeline</strong> method, it takes a delegate and selector to call when the request is complete.</p>
+<p><strong>Important:</strong> I didn’t highlight this in the screenshot but make sure you change <strong>theRequest</strong> from an <strong>NSURLRequest</strong> to <strong>NSMutableURLRequest</strong>. It will give us some additional methods to set up the POST.</p>
+<h2 id="2-updating-the-twitter-request-class">2. Updating The Twitter Request Class</h2>
+<p>Open up **TwitterRequest.m **and add the following code (Click the image to enlarge):</p>
+<p><a href="/uploads/2009/screenshot_17.png"><img class="size-full wp-image-363 alignnone" title="screenshot_17" src="/uploads/2009/screenshot_17.png" alt="screenshot_17" width="670" height="293" /></a></p>
+<p>I’ll start by explaining the <strong>status_update</strong> method. We first set the global <strong>isPost</strong> property to true. This will tell the request method to make a POST. The next 2 lines set the callback stuff as we did before. The only new line here is setting the <strong>requestBody</strong> variable. This is just a string that looks like “status=new twitter status”.</p>
+<p>The addition to the **request **method is what will allow us to POST to Twitter. First, we check if the <strong>isPost</strong> property is set. This will be true if <strong>request</strong> is called from our **status_update **method. Next, we call the <strong>setHTTPMethod</strong> of the request to POST. This is pretty obvious.</p>
+<p>The following line let’s Twitter know the type of data that we are sending to it. Next, we call <strong>setHTTPBody</strong> to set the body of the request. At some point we will want to URL Encode this string, but that will be for a different tutorial. Just don’t use any special characters such as &amp; and = in your update to Twitter right now. All that is happening on this line is we convert the string to NSData using the **dataUsingEncoding **method of NSString and set it to the HTTPBody.</p>
+<p>The last line just sets the Content-Length property to the length of our string. This is needed to correctly do a POST.</p>
+<h2 id="3-calling-the-statuses_update-method-to-update-your-twitter-status">3. Calling The statuses_update Method To Update Your Twitter Status</h2>
+<p>Open up <strong>ApplicationDelegate.m</strong> and add the following code (click the image to enlarge):</p>
+<p><a href="/uploads/2009/screenshot_03.jpg"><img class="size-full wp-image-367 alignnone" title="screenshot_03" src="/uploads/2009/screenshot_03.jpg" alt="screenshot_03" width="659" height="217" /></a></p>
+<p>One thing to notice here is I commented out the line to get the friends timeline. This is because having both requests running at the same time with the same request object could cause conflicts. The best way to approch this to create an entirly new TwitterRequest object. I just wanted to keep it short.</p>
+<p>This is pretty straight forward. We call the <strong>statuses_update</strong> method the same way we called the <strong>friends_timeline</strong> method except pass in the update text. The information received back from Twitter will look something like this:</p>
+<p><a href="/uploads/2009/screenshot_01.jpg"><img class="size-full wp-image-368 alignnone" title="screenshot_01" src="/uploads/2009/screenshot_01.jpg" alt="screenshot_01" width="616" height="564" /></a></p>
+<p>It’s basically all of your personal profile information.</p>
+<p>That’s it for today. If you have any comments or questions, feel free to leave them in the comments of this post or <a href="http://twitter.com/brandontreb">write me on Twitter</a>. You can also download the source for this version below.</p>
+<p><a href="http://brandontreb.com/wp-content/uploads/2009/07/Chirpie1.zip">Twitter Mac Client Tutorial 2 – Source</a></p>
+<p>Happy Coding!</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Creating A Twitter Client In Objective-C Client Part 2" data-url="http://brandontreb.com/creating-a-twitter-client-in-objective-c-client-part-2"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2009/07/28/screenshot_01.jpg/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2009-07-28 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Jul 28</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+
+
+</ul>
+
+
+
+
+  </section>
+  <footer id="footer">
+
+<section id="wrapper">
+  <ul>
+    <li><a href="/feed.xml">RSS</a></li>
+    <li><a href="/feed.json">JSON Feed</a></li>
+    <li><a href="/surprise-me/">Surprise me!</a></li>
+        
+    
+    
+    
+    
+    
+    
+        
+
+  </ul>
+  <form method="get" id="search" action="https://duckduckgo.com/">
+    <input type="hidden" name="sites" value="https://brandon_swoop.ngrok.io/"/>
+    <input type="hidden" name="k8" value="#444444"/>
+    <input type="hidden" name="k9" value="#ee4792"/>
+    <input type="hidden" name="kt" value="h"/>
+    <input class="field" type="text" name="q" maxlength="255" placeholder="To search, type and hit Enter…"/>
+    <input type="submit" value="Search" style="display: none;" />
+  </form>
+</section>
+
+</footer>
+  
+		
+</body>
+</html>

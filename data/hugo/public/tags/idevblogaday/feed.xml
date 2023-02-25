@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>iDevBlogADay on Brandontreb</title>
+    <link>https://brandon_swoop.ngrok.io/tags/idevblogaday/</link>
+    <description>Recent content in iDevBlogADay on Brandontreb</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>brandontreb@gmail.com (Zero Cool)</managingEditor>
+    <webMaster>brandontreb@gmail.com (Zero Cool)</webMaster>
+    <lastBuildDate>Tue, 20 Aug 2013 00:00:00 +0000</lastBuildDate><atom:link href="https://brandon_swoop.ngrok.io/tags/idevblogaday/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Top 5 Places To Find Good Software Developers/Contractors</title>
+      <link>https://brandon_swoop.ngrok.io/2013/08/20/the-top-5-places-to-find-good-developerscontractors-to-work-on-your-projects/</link>
+      <pubDate>Tue, 20 Aug 2013 00:00:00 +0000</pubDate>
+      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <guid>https://brandon_swoop.ngrok.io/2013/08/20/the-top-5-places-to-find-good-developerscontractors-to-work-on-your-projects/</guid>
+      <description>One thing I am often asked is “Where can I find good developers/contractors/subcontractors?” While I have found talent many different ways, I wanted to share my top 5 with you.
+This post should be useful to you if you have a project and are looking to find a developer OR are a developer looking to subcontract some of your work. I am sharing these based solely on my experiences with them and hope you find value in this list.</description>
+    </item>
+    
+    <item>
+      <title>Lua Scripting The UI For Pocket MUD Pro</title>
+      <link>https://brandon_swoop.ngrok.io/2012/05/29/lua-scripting-the-ui-for-pocket-mud-pro/</link>
+      <pubDate>Tue, 29 May 2012 00:00:00 +0000</pubDate>
+      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <guid>https://brandon_swoop.ngrok.io/2012/05/29/lua-scripting-the-ui-for-pocket-mud-pro/</guid>
+      <description>I have just updated my MUD client [Pocket MUD Pro] to be a universal library. It was surprisingly easy to add the iPad support as most of the application was comprised of UITableViews.
+The main “MUD” view was the most challenging part as it contains a couple UIWebViews, UIButons, and a UITextField. However, I chose to do something I feel is pretty cool.
+Scripting The UI With Lua If I haven’t said it enough, I love lua.</description>
+    </item>
+    
+    <item>
+      <title>Beginning Jailbroken iOS Development &amp;#8211; Your First Tweak</title>
+      <link>https://brandon_swoop.ngrok.io/2011/08/24/beginning-jailbroken-ios-development-your-first-tweak/</link>
+      <pubDate>Wed, 24 Aug 2011 00:00:00 +0000</pubDate>
+      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <guid>https://brandon_swoop.ngrok.io/2011/08/24/beginning-jailbroken-ios-development-your-first-tweak/</guid>
+      <description>This is the 3rd installment of my jailbroken iOS development series. If you haven’t already, make sure you read the following tutorials to get up to speed.
+Beginning Jailbroken iOS Development – Getting The Tools Beginning Jailbroken iOS Development – Building And Deployment Today I’m going to show you how to patch any internal Apple method that you want. In this demo, we are going to hook into the init method of Springboard and show a UIAlertView upon starting your phone up.</description>
+    </item>
+    
+    <item>
+      <title>AppBlogger: A Tool For iOS App Developers And Bloggers</title>
+      <link>https://brandon_swoop.ngrok.io/2011/01/13/screen-shot-2011-01-13-at-7.25.52-pm.png/</link>
+      <pubDate>Thu, 13 Jan 2011 00:00:00 +0000</pubDate>
+      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <guid>https://brandon_swoop.ngrok.io/2011/01/13/screen-shot-2011-01-13-at-7.25.52-pm.png/</guid>
+      <description>Imagine that you have just found the coolest app in the world and just can’t wait to tell all of your followers about it. So, you head to the admin panel of your blogging engine (hopefully WordPress) and begin to write your review. Now, you want to insert some screenshots, icons, descriptions, app store links, etc… So, what do you do? You head on over to Bing and type in google.</description>
+    </item>
+    
+    <item>
+      <title>Image Manipulation: Retrieving And Updating Pixel Values For A UIImage</title>
+      <link>https://brandon_swoop.ngrok.io/2011/01/06/jobs.png/</link>
+      <pubDate>Thu, 06 Jan 2011 00:00:00 +0000</pubDate>
+      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <guid>https://brandon_swoop.ngrok.io/2011/01/06/jobs.png/</guid>
+      <description>Grayscale Jobs With the recent success of cool photo manipulation apps such as Camera+ and Instagram, it got me wondering. How do these photo apps modify the pixel data of the image.
+After doing a bit of research on the subject, I found countless posts on Stack Overflow and the Developer forums about various methods to get and set the pixel values of a UIImage. Most of them unanswered or partially answered.</description>
+    </item>
+    
+    <item>
+      <title>Promoting Your Other Apps Within Your Apps</title>
+      <link>https://brandon_swoop.ngrok.io/2010/11/25/screen-shot-2010-11-25-at-11.51.07-am-500x266.png/</link>
+      <pubDate>Thu, 25 Nov 2010 00:00:00 +0000</pubDate>
+      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <guid>https://brandon_swoop.ngrok.io/2010/11/25/screen-shot-2010-11-25-at-11.51.07-am-500x266.png/</guid>
+      <description>First off, Happy Thanksgiving to my American readers. And a happy Thursday to everyone else. I’m sitting here on Thursday morning drinking coffee and eating Sticky Buns (kind of like gooey doughnuts). It’s been a hectic week of family and travel, so please forgive me if this is not the most verbose post.
+Showing your other applications within each of your applications (wow, the word application is starting to lose meaning) can have a tremendous impact on your sales.</description>
+    </item>
+    
+  </channel>
+</rss>

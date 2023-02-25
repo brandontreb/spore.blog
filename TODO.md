@@ -1,0 +1,4 @@
+- site config
+ - theme_seconds dynamically updated
+- Local version of config copied to hugo folder
+- 404 page detects if its a post that needs building with refresh timeout / refresh button

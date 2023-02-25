@@ -1,0 +1,61 @@
+baseURL: https://brandon_swoop.ngrok.io
+languageCode: en-us
+title: Brandontreb
+theme: theme-alpine
+Author:
+  name: Zero Cool
+  username: brandontreb
+  email: brandontreb@gmail.com
+  avatar: https://avatars.githubusercontent.com/u/92844?v=4
+  url: https://brandontreb.com
+params:
+  github_username: brandontreb
+  twitter_username: brandontreb
+  instagram_username: null
+  microblog_username: brandontreb
+  buymeacoffee: null
+  authorization_endpoint: https://indieauth.com/auth
+  token_endpoint: https://tokens.indieauth.com/token
+  micropub_endpoint: https://brandon_swoop.ngrok.io/micropub
+  webmention_endpoint: https://webmention.io/brandontreb.com/webmention
+  theme_seconds: 1
+menu:
+  main:
+    - name: Archive
+      url: /archive/
+      weight: 1
+    - name: Replies
+      url: /replies/
+      weight: 2
+    - name: Photos
+      url: /photos/
+      weight: 3
+permalinks:
+  /posts: /:year/:month/:day/:filename
+outputFormats:
+  RSS:
+    mediatype: application/rss+xml
+    baseName: feed
+  JSON:
+    mediatype: application/json
+    baseName: feed
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+  section:
+    - HTML
+Services:
+  RSS:
+    Limit: 20
+  JSON:
+    Limit: 20
+LastMod:
+  - LastMod
+  - :fileModTime
+  - publishDate
+markup:
+  goldmark:
+    renderer:
+      unsafe: true

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta content="Zero Cool" name="author">
+
+  <title>Brandontreb
+		- WordPress Coding: Programmatically Add Post Tags (and other meta info)</title>
+
+  <link href="/assets/css/style.css?1" rel="stylesheet">
+  <link href="/assets/css/highlight.css?1" rel="stylesheet">
+  <link href="/assets/css/alpine.css?1" rel="stylesheet">
+  <style>
+
+.site-title {
+	display: inline-block;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 1.35;
+	padding-left: 5px;
+	margin-top: 0px;
+	margin-bottom: 5px;
+	padding-top: 5px;
+	padding-bottom: 10px;
+}
+
+nav.main-nav a.cta {
+	background: #ffffff;
+	color: #f29c38;
+	padding: 6px 14px;
+	border: 2px solid #f29c38;
+	border-radius: 20px;
+	white-space: nowrap;
+	box-shadow: none;
+}
+
+nav.main-nav a.cta:hover {
+	background: #fffee4;
+	color: #f29c38;
+	margin-left: 12px;
+}
+
+</style>
+
+  <link rel="stylesheet" href="/custom.css?1">
+
+	<link rel="shortcut icon" href="https://micro.blog/brandontreb/favicon.png" type="image/x-icon" />
+    
+    
+      <link href="https://brandon_swoop.ngrok.io/podcast.xml" rel="alternate" type="application/rss+xml" title="Podcast" />
+      <link rel="alternate" type="application/json" title="Brandontreb" href="https://brandon_swoop.ngrok.io/feed.json" />
+      <link rel="EditURI" type="application/rsd+xml" href="https://brandon_swoop.ngrok.io/rsd.xml" />
+    
+
+	
+	<link rel="me" href="https://micro.blog/brandontreb" />
+		
+	
+	<link rel="me" href="https://twitter.com/brandontreb" />
+	
+	
+	<link rel="me" href="https://github.com/brandontreb" />
+	
+	
+	
+	<link rel="authorization_endpoint" href="https://indieauth.com/auth" />
+	
+	
+	<link rel="token_endpoint" href="https://tokens.indieauth.com/token" />
+	
+	
+	<link rel="micropub" href="https://brandon_swoop.ngrok.io/micropub" />
+	
+	
+	<link rel="microsub" href="https://micro.blog/microsub/" />
+	
+	
+	<link rel="webmention" href="https://webmention.io/brandontreb.com/webmention" />
+	
+	
+    
+    
+</head>
+
+<body>
+  <nav class="main-nav">
+
+	<div class="site-title">
+		<img src="https://avatars.githubusercontent.com/u/92844?v=4" width="25" height="25" class="site-image">		
+		<a href="/">Brandontreb</a>
+	</div>
+
+	<div class="site-menus">
+
+	
+
+	<a class="normal" href="/"> <span class="arrow">←</span> Home</a>
+
+	
+
+	
+		<a href="/archive/">Archive</a>
+	
+		<a href="/replies/">Replies</a>
+	
+		<a href="/photos/">Photos</a>
+	
+
+	
+
+	</div>
+</nav>
+
+
+
+  <section id="wrapper"  >
+	
+<article class="h-entry post">
+  <header>
+	
+    <h1 class="p-name">WordPress Coding: Programmatically Add Post Tags (and other meta info)</h1>
+    
+    <h2 class="headline">
+      <time class="dt-published" datetime="2010-03-17 00:00:00 &#43;0000">
+        <a class="u-url dates" href="https://brandon_swoop.ngrok.io/2010/03/17/wordpress-coding-programmatically-add-post-tags-and-other-meta-info/">Mar 17, 2010</a>
+      </time>
+    </h2>
+  </header>
+  <section class="e-content post-body">
+      <img alt="" src="http://haacked.com/images/haacked_com/WindowsLiveWriter/CategoriesvsTags_833F/561962_price_tag[3].jpg" title="Tags" class="aligncenter" width="600" />  
+I was recently working on a script that imports from a custom blogging platform into WordPress and had some need to programmatically add post keywords.
+<p>The script to do this is actually quite simple and can be used to update any post attribute.</p>
+<p>Here is the code:</p>
+<div class="wp_syntax">
+  <table>
+    <tr>
+      <td class="code">
+        <pre class="php" style="font-family:monospace;"><span style="color: #666666; font-style: italic;">// Create the post array</span>
+<span style="color: #000088;">$post</span> <span style="color: #339933;">=</span> <span style="color: #990000;">array</span><span style="color: #009900;">&#40;</span>
+    ‘ID’ <span style="color: #339933;">=&gt;</span> <span style="color: #cc66cc;">5</span><span style="color: #339933;">,</span>
+    ‘tags_input’ <span style="color: #339933;">=&gt;</span> ‘foo<span style="color: #339933;">,</span>bar<span style="color: #339933;">,</span>baz’<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>     
+&nbsp;
+<span style="color: #666666; font-style: italic;">// Update the post</span>
+wp_update_post<span style="color: #009900;">&#40;</span><span style="color: #000088;">$post</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre>
+      </td>
+    </tr>
+  </table>
+</div>
+<p>This will assign the keywords “foo”, “bar”, and “baz” to the post with ID 5. This task seems trivial, however it’s very powerful when you think about automation. For example, you could write a script to scrape a google search for your target keyword and find related keywords for each of your posts automatically. Hrm… plugin idea?</p>
+<p>Give it a shot. More info on available parameters can be found on <a href="http://codex.wordpress.org/Function_Reference/wp_insert_post">WordPress’ site here</a></p>
+<p>Here are some of the other fields that you are able to update this way:</p>
+<div class="wp_syntax">
+  <table>
+    <tr>
+      <td class="code">
+        <pre class="php" style="font-family:monospace;">defaults <span style="color: #339933;">=</span> <span style="color: #990000;">array</span><span style="color: #009900;">&#40;</span>
+‘post_status’ <span style="color: #339933;">=&gt;</span> ‘draft’<span style="color: #339933;">,</span> 
+‘post_type’ <span style="color: #339933;">=&gt;</span> ‘post’<span style="color: #339933;">,</span>
+‘post_author’ <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$user_ID</span><span style="color: #339933;">,</span>
+‘ping_status’ <span style="color: #339933;">=&gt;</span> get_option<span style="color: #009900;">&#40;</span>‘default_ping_status’<span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> 
+‘post_parent’ <span style="color: #339933;">=&gt;</span> <span style="color: #cc66cc;"></span><span style="color: #339933;">,</span>
+‘menu_order’ <span style="color: #339933;">=&gt;</span> <span style="color: #cc66cc;"></span><span style="color: #339933;">,</span>
+‘to_ping’ <span style="color: #339933;">=&gt;</span>  ”<span style="color: #339933;">,</span>
+‘pinged’ <span style="color: #339933;">=&gt;</span> ”<span style="color: #339933;">,</span>
+‘post_password’ <span style="color: #339933;">=&gt;</span> ”<span style="color: #339933;">,</span>
+‘guid’ <span style="color: #339933;">=&gt;</span> ”<span style="color: #339933;">,</span>
+‘post_content_filtered’ <span style="color: #339933;">=&gt;</span> ”<span style="color: #339933;">,</span>
+‘post_excerpt’ <span style="color: #339933;">=&gt;</span> ”<span style="color: #339933;">,</span>
+‘import_id’ <span style="color: #339933;">=&gt;</span> <span style="color: #cc66cc;"></span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre>
+      </td>
+    </tr>
+  </table>
+</div>
+<p>Happy WPCoding!</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Wordpress Coding: Programmatically Add Post Tags (and other meta info)" data-url="http://brandontreb.com/wordpress-coding-programmatically-add-post-tags-and-other-meta-info"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+      
+  </section>
+
+  
+
+  <section id="post-meta" class="clearfix p-author h-card">
+    <a href="/" class="u-url">
+  	
+		<img class="u-photo avatar" src="https://avatars.githubusercontent.com/u/92844?v=4" width="96" height="96">
+		<div>
+		  <span class="p-name dark">Zero Cool</span>
+		  <span><a href="https://micro.blog/brandontreb">@brandontreb</a></span>
+		</div>
+	
+    </a>
+  </section>
+</article>
+
+  </section>
+  <footer id="footer">
+
+<section id="wrapper">
+  <ul>
+    <li><a href="/feed.xml">RSS</a></li>
+    <li><a href="/feed.json">JSON Feed</a></li>
+    <li><a href="/surprise-me/">Surprise me!</a></li>
+        
+    
+    
+    
+    
+    
+    
+        
+
+  </ul>
+  <form method="get" id="search" action="https://duckduckgo.com/">
+    <input type="hidden" name="sites" value="https://brandon_swoop.ngrok.io/"/>
+    <input type="hidden" name="k8" value="#444444"/>
+    <input type="hidden" name="k9" value="#ee4792"/>
+    <input type="hidden" name="kt" value="h"/>
+    <input class="field" type="text" name="q" maxlength="255" placeholder="To search, type and hit Enter…"/>
+    <input type="submit" value="Search" style="display: none;" />
+  </form>
+</section>
+
+</footer>
+  
+		
+</body>
+</html>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>nda on Brandontreb</title>
+    <link>https://brandon_swoop.ngrok.io/tags/nda/</link>
+    <description>Recent content in nda on Brandontreb</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>brandontreb@gmail.com (Zero Cool)</managingEditor>
+    <webMaster>brandontreb@gmail.com (Zero Cool)</webMaster>
+    <lastBuildDate>Fri, 28 Feb 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://brandon_swoop.ngrok.io/tags/nda/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Being An Indie Software Developer And Signing NDAs</title>
+      <link>https://brandon_swoop.ngrok.io/2014/02/28/indie-software-developer-signing-ndas/</link>
+      <pubDate>Fri, 28 Feb 2014 00:00:00 +0000</pubDate>
+      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <guid>https://brandon_swoop.ngrok.io/2014/02/28/indie-software-developer-signing-ndas/</guid>
+      <description>Very frequently, I receive emails that go something like this:
+“Hey Brandon, I have a killer project idea. Do you want to work on it? Please sign the NDA so we can talk.”
+Early on when I first started consulting, I would have responded with something like “Sure send it over!” and signed the thing without hesitation. As of late, I have changed my view on NDAs; at least in this type of situation.</description>
+    </item>
+    
+  </channel>
+</rss>
