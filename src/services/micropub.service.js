@@ -143,6 +143,7 @@ const sendWebmentions = async(source, targets) => {
 }
 
 const micropubDocumentToHugo = (document) => {
+  logger.debug('Converting micropub document to hugo format %o', document);
   const { properties, mp } = document;  
 
   let content = properties.content && properties.content[0] ? properties.content[0] : '';
@@ -151,20 +152,76 @@ const micropubDocumentToHugo = (document) => {
   let name = properties.name && properties.name[0] ? properties.name[0] : null;
   let published = properties.published && properties.published[0] ? properties.published[0] : moment().format();
   let category = properties.category && properties.category.length > 0 ? properties.category : null;  
-  let slug = mp && mp.slug && mp.slug.length ? mp.slug[0] : utils.slugify(name && name.length ? name : utils.randomStringOfLength(8));    
+  let slug = mp && mp.slug && mp.slug.length ? mp.slug[0] : utils.slugify(name && name.length ? name : utils.randomStringOfLength(16));    
+  let postType = getPostType(properties);
 
-  return {
+  let additionalPropertyKeys = Object.keys(properties).filter(key => !['content', 'name', 'published', 'category'].includes(key));
+  logger.debug('Additional property keys %o', additionalPropertyKeys);
+  // get values of additional properties
+  let additionalProperties = {};
+  additionalPropertyKeys.forEach(key => {
+    additionalProperties[key] = properties[key][0];
+  });
+  logger.debug('Additional properties %o', additionalPropertyKeys);
+
+  let hugo = {
     frontMatter: {
       title: name,
       date: published,
       slug: slug,
       tags: category,
-      type: 'post',
-      post_type: 'note', // TODO: Make this dynamic
+      type: postType === 'reply' ? 'reply' : 'post',
+      post_type: postType,
+      ...additionalProperties
     },
     content
   }
+
+  addReplyToFrontMatter(hugo, properties);
+
+  return hugo;
 };
+
+const getPostType = (properties) => {
+  let type = 'note';
+  // If a title is set, it's a post
+  if (properties.name && properties.name.length && properties.name[0].length) {
+    type = 'article';
+  }
+  if (properties['like-of']) {
+    type = 'like';
+  }
+  if (properties['repost-of']) {
+    type = 'repost';
+  }
+  if (properties['in-reply-to']) {
+    type = 'reply';
+  }
+  if (properties['bookmark-of']) {
+    type = 'bookmark';
+  }
+  if (properties['quotation-of']) {
+    type = 'quotation';
+  }
+  if (properties['photo']) {
+    type = 'photo';
+  }
+  if (properties['video']) {
+    type = 'video';
+  }
+  if (properties['audio']) {
+    type = 'audio';
+  }
+
+  return type;
+}
+
+const addReplyToFrontMatter = (hugo, properties) => {
+  if(properties['in-reply-to']) {
+    hugo.frontMatter.reply_to_url = properties['in-reply-to'][0];
+    hugo.frontMatter.reply_to_hostname = new URL(properties['in-reply-to'][0]).hostname;
+  }  
+}
 
 module.exports = {
   processJsonEncodedBody,

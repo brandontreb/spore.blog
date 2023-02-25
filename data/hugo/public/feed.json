@@ -11,6 +11,111 @@
     },
     "items" : [
     {
+        "date_published" : "2023-02-24T21:20:24-07:00",
+        "date_modified" : "2023-02-24T21:20:24-07:00",
+        "id" : "https://brandon_swoop.ngrok.io/2023/02/24/oumzrikiqv8iajtw/",
+        "url" : "https://brandon_swoop.ngrok.io/2023/02/24/oumzrikiqv8iajtw/",
+        "content_html" : "\u003cp\u003eshutup and drive\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-02-24T21:19:02-07:00",
+        "date_modified" : "2023-02-24T21:19:02-07:00",
+        "id" : "https://brandon_swoop.ngrok.io/2023/02/24/u6xnfdcw/",
+        "url" : "https://brandon_swoop.ngrok.io/2023/02/24/u6xnfdcw/",
+        "content_html" : "\u003cp\u003eposts are cool\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-02-24T21:07:37-07:00",
+        "date_modified" : "2023-02-24T21:07:37-07:00",
+        "id" : "https://brandon_swoop.ngrok.io/replies/2023/02/24/ponsixsu/",
+        "url" : "https://brandon_swoop.ngrok.io/replies/2023/02/24/ponsixsu/",
+        "content_html" : "\u003cp\u003esick\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-02-24T21:06:47-07:00",
+        "date_modified" : "2023-02-24T21:06:47-07:00",
+        "id" : "https://brandon_swoop.ngrok.io/replies/2023/02/24/vvj4t1aj/",
+        "url" : "https://brandon_swoop.ngrok.io/replies/2023/02/24/vvj4t1aj/",
+        "content_html" : "\u003cp\u003esick\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-02-24T21:05:29-07:00",
+        "date_modified" : "2023-02-24T21:05:29-07:00",
+        "id" : "https://brandon_swoop.ngrok.io/replies/2023/02/24/bkqzutmx/",
+        "url" : "https://brandon_swoop.ngrok.io/replies/2023/02/24/bkqzutmx/",
+        "content_html" : "\u003cp\u003esick\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-02-24T21:04:24-07:00",
+        "date_modified" : "2023-02-24T21:04:24-07:00",
+        "id" : "https://brandon_swoop.ngrok.io/replies/2023/02/24/cwqylgqs/",
+        "url" : "https://brandon_swoop.ngrok.io/replies/2023/02/24/cwqylgqs/",
+        "content_html" : "\u003cp\u003esick\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-02-24T21:03:26-07:00",
+        "date_modified" : "2023-02-24T21:03:26-07:00",
+        "id" : "https://brandon_swoop.ngrok.io/replies/2023/02/24/l3vm02cc/",
+        "url" : "https://brandon_swoop.ngrok.io/replies/2023/02/24/l3vm02cc/",
+        "content_html" : "\u003cp\u003esick\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-02-24T21:01:41-07:00",
+        "date_modified" : "2023-02-24T21:01:41-07:00",
+        "id" : "https://brandon_swoop.ngrok.io/replies/2023/02/24/h3ipnzek/",
+        "url" : "https://brandon_swoop.ngrok.io/replies/2023/02/24/h3ipnzek/",
+        "content_html" : "\u003cp\u003esick\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-02-24T20:57:42-07:00",
+        "date_modified" : "2023-02-24T20:57:42-07:00",
+        "id" : "https://brandon_swoop.ngrok.io/replies/2023/02/24/9nhw54re/",
+        "url" : "https://brandon_swoop.ngrok.io/replies/2023/02/24/9nhw54re/",
+        "content_html" : "\u003cp\u003esick\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-02-24T20:55:24-07:00",
+        "date_modified" : "2023-02-24T20:55:24-07:00",
+        "id" : "https://brandon_swoop.ngrok.io/2023/02/24/4w2stidn/",
+        "url" : "https://brandon_swoop.ngrok.io/2023/02/24/4w2stidn/",
+        "content_html" : "\u003cp\u003eis this a reply\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-02-24T20:53:49-07:00",
+        "date_modified" : "2023-02-24T20:53:49-07:00",
+        "id" : "https://brandon_swoop.ngrok.io/2023/02/24/jylw507k/",
+        "url" : "https://brandon_swoop.ngrok.io/2023/02/24/jylw507k/",
+        "content_html" : "\u003cp\u003etesting this reply\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-02-24T20:51:49-07:00",
+        "date_modified" : "2023-02-24T20:51:49-07:00",
+        "id" : "https://brandon_swoop.ngrok.io/2023/02/24/try-to-be-nice/",
+        "url" : "https://brandon_swoop.ngrok.io/2023/02/24/try-to-be-nice/",
+        "content_html" : "\u003cp\u003eAre you a hobo\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-02-24T20:51:14-07:00",
+        "date_modified" : "2023-02-24T20:51:14-07:00",
+        "id" : "https://brandon_swoop.ngrok.io/2023/02/24/zo7eoqx9/",
+        "url" : "https://brandon_swoop.ngrok.io/2023/02/24/zo7eoqx9/",
+        "content_html" : "\u003cp\u003ehahahahahaa\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-02-24T19:41:03-07:00",
+        "date_modified" : "2023-02-24T19:41:03-07:00",
+        "id" : "https://brandon_swoop.ngrok.io/2023/02/24/lsvo89mx/",
+        "url" : "https://brandon_swoop.ngrok.io/2023/02/24/lsvo89mx/",
+        "content_html" : "\u003cp\u003etesting a reply\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-02-24T19:40:06-07:00",
+        "date_modified" : "2023-02-24T19:40:06-07:00",
+        "id" : "https://brandon_swoop.ngrok.io/2023/02/24/y7bd4vf6/",
+        "url" : "https://brandon_swoop.ngrok.io/2023/02/24/y7bd4vf6/",
+        "content_html" : "\u003cp\u003etesting a reply\u003c/p\u003e\n"
+    },
+    {
         "title" : "i meant to try html",
         "date_published" : "2023-02-24T19:28:37-07:00",
         "date_modified" : "2023-02-24T19:28:37-07:00",
@@ -48,112 +153,6 @@
         "id" : "https://brandon_swoop.ngrok.io/2023/02/24/rxlosmhv/",
         "url" : "https://brandon_swoop.ngrok.io/2023/02/24/rxlosmhv/",
         "content_html" : "\u003cp\u003eRebuild it yo\u003c/p\u003e\n"
-    },
-    {
-        "date_published" : "2023-02-24T18:05:49-07:00",
-        "date_modified" : "2023-02-24T18:05:49-07:00",
-        "id" : "https://brandon_swoop.ngrok.io/2023/02/24/4l9di4zg/",
-        "url" : "https://brandon_swoop.ngrok.io/2023/02/24/4l9di4zg/",
-        "content_html" : "\u003cp\u003ei love notes\u003c/p\u003e\n"
-    },
-    {
-        "date_published" : "2023-02-24T18:05:12-07:00",
-        "date_modified" : "2023-02-24T18:05:12-07:00",
-        "id" : "https://brandon_swoop.ngrok.io/2023/02/24/c54vmx3k/",
-        "url" : "https://brandon_swoop.ngrok.io/2023/02/24/c54vmx3k/",
-        "content_html" : "\u003cp\u003efoo bing\u003c/p\u003e\n"
-    },
-    {
-        "date_published" : "2023-02-25T01:01:22Z",
-        "date_modified" : "2023-02-25T01:01:22Z",
-        "id" : "https://brandon_swoop.ngrok.io/2023/02/25/ymbwpphh/",
-        "url" : "https://brandon_swoop.ngrok.io/2023/02/25/ymbwpphh/",
-        "content_html" : "\u003cp\u003ea new note!\u003c/p\u003e\n"
-    },
-    {
-        "date_published" : "2023-02-25T01:01:02Z",
-        "date_modified" : "2023-02-25T01:01:02Z",
-        "id" : "https://brandon_swoop.ngrok.io/2023/02/25/jlvgij26/",
-        "url" : "https://brandon_swoop.ngrok.io/2023/02/25/jlvgij26/",
-        "content_html" : "\u003cp\u003ea new note\u003c/p\u003e\n"
-    },
-    {
-        "title" : "Switching To Hugo",
-        "date_published" : "2023-02-25T00:59:57Z",
-        "date_modified" : "2023-02-25T00:59:57Z",
-        "id" : "https://brandon_swoop.ngrok.io/2023/02/25/s/",
-        "url" : "https://brandon_swoop.ngrok.io/2023/02/25/s/",
-        "content_html" : "\u003cp\u003e[object Object]\u003c/p\u003e\n"
-    },
-    {
-        "date_published" : "2023-02-25T00:57:53Z",
-        "date_modified" : "2023-02-25T00:57:53Z",
-        "id" : "https://brandon_swoop.ngrok.io/2023/02/25/a8wyngss/",
-        "url" : "https://brandon_swoop.ngrok.io/2023/02/25/a8wyngss/",
-        "content_html" : "\u003cp\u003elorem ipsum dolor\u003c/p\u003e\n"
-    },
-    {
-        "date_published" : "2023-02-25T00:57:28Z",
-        "date_modified" : "2023-02-25T00:57:28Z",
-        "id" : "https://brandon_swoop.ngrok.io/2023/02/25/fipxkjdq/",
-        "url" : "https://brandon_swoop.ngrok.io/2023/02/25/fipxkjdq/",
-        "content_html" : "\u003cp\u003elorem ipsum dolor\u003c/p\u003e\n"
-    },
-    {
-        "date_published" : "2023-02-25T00:56:43Z",
-        "date_modified" : "2023-02-25T00:56:43Z",
-        "id" : "https://brandon_swoop.ngrok.io/2023/02/25/9sipsmww/",
-        "url" : "https://brandon_swoop.ngrok.io/2023/02/25/9sipsmww/",
-        "content_html" : "\u003cp\u003elorem ipsum dolor\u003c/p\u003e\n"
-    },
-    {
-        "date_published" : "2023-02-25T00:55:51Z",
-        "date_modified" : "2023-02-25T00:55:51Z",
-        "id" : "https://brandon_swoop.ngrok.io/2023/02/25/7vzjftib/",
-        "url" : "https://brandon_swoop.ngrok.io/2023/02/25/7vzjftib/",
-        "content_html" : "\u003cp\u003elorem ipsum dolor\u003c/p\u003e\n"
-    },
-    {
-        "date_published" : "2023-02-25T00:54:50Z",
-        "date_modified" : "2023-02-25T00:54:50Z",
-        "id" : "https://brandon_swoop.ngrok.io/2023/02/25/ujowonn9/",
-        "url" : "https://brandon_swoop.ngrok.io/2023/02/25/ujowonn9/",
-        "content_html" : "\u003cp\u003ehello world!\u003c/p\u003e\n"
-    },
-    {
-        "date_published" : "2023-02-13T20:10:42Z",
-        "date_modified" : "2023-02-13T20:10:42Z",
-        "id" : "https://brandon_swoop.ngrok.io/2023/02/13/qlitsgt0jag8c7v4hwtok/",
-        "url" : "https://brandon_swoop.ngrok.io/2023/02/13/qlitsgt0jag8c7v4hwtok/",
-        "content_html" : "\u003cblockquote\u003e\n\u003cp\u003e“Everything in moderation, including moderation.”\n-My grandpa Bob (quoting Oscar Wilde)\u003c/p\u003e\n\u003c/blockquote\u003e\n\u003cp\u003eI love this quote and this philosophy. It has really served me well in life.\u003c/p\u003e\n"
-    },
-    {
-        "date_published" : "2023-02-13T02:05:44Z",
-        "date_modified" : "2023-02-13T02:05:44Z",
-        "id" : "https://brandon_swoop.ngrok.io/2023/02/13/5cru64k094dursgy57v0ks/",
-        "url" : "https://brandon_swoop.ngrok.io/2023/02/13/5cru64k094dursgy57v0ks/",
-        "content_html" : "\u003cp\u003eMy poor wife just lost $50 on a Craigslist scam.\u003c/p\u003e\n\u003cp\u003eI literally can’t stop laughing 😂\u003c/p\u003e\n"
-    },
-    {
-        "date_published" : "2023-02-13T00:35:18Z",
-        "date_modified" : "2023-02-13T00:35:18Z",
-        "id" : "https://brandon_swoop.ngrok.io/2023/02/13/krkctso6hpa89j5magcj0y/",
-        "url" : "https://brandon_swoop.ngrok.io/2023/02/13/krkctso6hpa89j5magcj0y/",
-        "content_html" : "\u003cp\u003eI’m having so much fun playing Link’s Awakening.\u003c/p\u003e\n\u003cp\u003eThis is one of my favorite scenes in the entire game.\u003c/p\u003e\n\u003cp\u003e\u003cimg src=\"/uploads/2023/1676248517662.kipn2rws3rh24m043b0s9.jpg\" alt=\"\"\u003e\u003c/p\u003e\n"
-    },
-    {
-        "date_published" : "2023-02-11T15:45:04Z",
-        "date_modified" : "2023-02-11T15:45:04Z",
-        "id" : "https://brandon_swoop.ngrok.io/2023/02/11/58h7jrzlffrzksmkzpu7zm/",
-        "url" : "https://brandon_swoop.ngrok.io/2023/02/11/58h7jrzlffrzksmkzpu7zm/",
-        "content_html" : "\u003cp\u003eI opened my phone’s browser after my 14 year old was using it and found this.\u003c/p\u003e\n\u003cp\u003eHe and his friends are definitely up to something.\u003c/p\u003e\n\u003cp\u003e\u003cimg src=\"/uploads/2023/1676130304102.s8kqynycwfsqaymhkknj.png\" alt=\"\"\u003e\u003c/p\u003e\n"
-    },
-    {
-        "date_published" : "2023-02-11T00:16:01Z",
-        "date_modified" : "2023-02-11T00:16:01Z",
-        "id" : "https://brandon_swoop.ngrok.io/2023/02/11/a008epcmzcgfnepqx231vk/",
-        "url" : "https://brandon_swoop.ngrok.io/2023/02/11/a008epcmzcgfnepqx231vk/",
-        "content_html" : "\u003cp\u003eFriday 🏂\u003c/p\u003e\n\u003cp\u003e\u003cimg src=\"/uploads/2023/1676074560998.mnaxg2mk7ftexhg2n88j.jpg\" alt=\"\"\u003e\u003c/p\u003e\n"
     }
     ]
 }

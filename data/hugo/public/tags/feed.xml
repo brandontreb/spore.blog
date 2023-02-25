@@ -8,7 +8,16 @@
     <language>en-us</language>
     <managingEditor>brandontreb@gmail.com (Zero Cool)</managingEditor>
     <webMaster>brandontreb@gmail.com (Zero Cool)</webMaster>
-    <lastBuildDate>Sat, 25 Feb 2023 00:59:57 +0000</lastBuildDate><atom:link href="https://brandon_swoop.ngrok.io/tags/feed.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 24 Feb 2023 20:51:49 -0700</lastBuildDate><atom:link href="https://brandon_swoop.ngrok.io/tags/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ralf</title>
+      <link>https://brandon_swoop.ngrok.io/tags/ralf/</link>
+      <pubDate>Fri, 24 Feb 2023 20:51:49 -0700</pubDate>
+      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <guid>https://brandon_swoop.ngrok.io/tags/ralf/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>bar</title>
       <link>https://brandon_swoop.ngrok.io/tags/bar/</link>
@@ -177,15 +186,6 @@
       <pubDate>Fri, 16 Dec 2022 03:04:32 +0000</pubDate>
       <author>brandontreb@gmail.com (Zero Cool)</author>
       <guid>https://brandon_swoop.ngrok.io/tags/fire/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>sandias</title>
-      <link>https://brandon_swoop.ngrok.io/tags/sandias/</link>
-      <pubDate>Fri, 16 Dec 2022 03:04:32 +0000</pubDate>
-      <author>brandontreb@gmail.com (Zero Cool)</author>
-      <guid>https://brandon_swoop.ngrok.io/tags/sandias/</guid>
       <description></description>
     </item>
     

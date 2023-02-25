@@ -17,18 +17,9 @@ const create = catchAsync(async (req, res) => {
   hugoService.createPost(frontMatter, content);  
   // Rebuild the site
   hugoService.generateSite();
-    
-  // Generate the url to the post
-  let date = new Date(frontMatter.date);
-  let year = date.getFullYear();
-  let month = date.getMonth() + 1;
-  if(month <= 9)
-    month = '0'+month;
-  let day = date.getDate();
-  if(day <= 9)
-    day = '0'+day;
-  let dateString = `${year}/${month}/${day}`;
-  const url = `${config.hugo.config.baseURL}/${dateString}/${frontMatter.slug}/`;
+  // Get the url of the post
+  let url = hugoService.getPostUrl(frontMatter);
+
   logger.debug(`Redirecting to url: ${url}`)
 
   // Redirect to the post

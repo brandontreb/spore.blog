@@ -128,117 +128,47 @@ nav.main-nav a.cta:hover {
   
   <section class="post-body">
   <header>
-	<h2><a href="https://brandon_swoop.ngrok.io/2011/07/30/cocos2d-tutorial-dynamically-coloring-sprites/">Cocos2D Tutorial &amp;#8211; Dynamically Coloring Sprites</a></h2>
+	<h2><a href="https://brandon_swoop.ngrok.io/2012/01/19/fluid-for-mac/">Fluid For Mac</a></h2>
   </header>
   <section class="post-body">
-	<p><img src="http://f.cl.ly/items/42231G3d1P3d1b3H2Q2g/Screen%20shot%202011-07-30%20at%204.39.28%20PM.png" alt="Custom Bitizens"></p>
-<p>Have you ever seen a game (such as Tiny Tower) that contains similar sprites that only vary by certain attributes (coloring, shading, accessories, etc…)? I would often wonder how long it would take the artists to create each permutation of these sprites. After discovering that you can call a method on a CCSprite called setColor, I realized how most of this customization is done in code.</p>
-<p>This tutorial will be a continuation of my last post about <a href="http://brandontreb.com/Pixel-Art-Character-Tutorial-Create-A-Bitizen">creating your own Bitizen in Photoshop</a>. So, if you don’t already have a Bitizen character to work with, I suggest you follow that tutorial OR download my template <a href="http://cl.ly/2u3h0g2F2H2b1S280519/bitizen.psd">here</a>.</p>
-<h4 id="white-out">White Out</h4>
-<p>As I mentioned above, we are going to be using the setColor method of CCSprite to dynamically color each part of our Bitizen. The way it works is each pixel’s color is multiplied by the value passed into setColor giving it a “tint”. So, pixels that are all white will be fully tinted and pixels that are all black will have no change.</p>
-<p>So, our first goal is to create an “all white” version of our Bitizen. Don’t worry about shading for now, I will cover that in a moment. I just started with our Bitizen as a base and created new layers for each of the “white” components.</p>
-<p>You should end up with 5 new layers:</p>
+	<p>As of OSX Lion, I have started to seriously loathe some of the build-it Mac apps (such as Mail, and iCal). While I previously had no issues with them, they now seem to be very clunky and crash quite often. Being a developer, I thought “why don’t I write an app that wraps web apps for you so you basically get “native web apps” that have icons and are launchable?”.</p>
+<p>After a quick Google search, I realized <strong><a href="http://fluidapp.com/">this already exists!</a></strong>. The app is called Fluid and it does an incredible job of what I described above and more.</p>
+<img src="http://fluidapp.com/images/dock_large.png" width="400" />
+<p>Here are the feature highlights.</p>
 <ul>
-<li>white-head</li>
-<li>white-skin</li>
-<li>white-hair</li>
-<li>white-pants</li>
-<li>white-shoes</li>
+<li>Create a “native” Mac app for any web app</li>
+<li>Custom icon for each “native” app you create</li>
+<li>Full screen mode</li>
+<li>User scripps. These are my favorite. They allow you to update the badge count based on information in the browser. See below for a sample user script.</li>
 </ul>
-<p>For each layer, trace over the corresponding colored layer. For the “white-skin” layer, make sure to trace over the hands as well as the face. This will ensure that your Bitizen’s color is consistent. When you are done, your Bitizen should look something like this:</p>
-<p><img src="http://f.cl.ly/items/0Z08222Z1v233i1G3H1o/Screen%20shot%202011-07-30%20at%204.52.03%20PM.png" alt="White Bitizen"></p>
-<p>Looks pretty bland… The next step is to add our shading. We will be using only black with varying alpha in order to achieve the desired shading. So, make sure to play with it a bit and get the shading to your liking. Add a new shading layer for each component (or simply draw on top of the current layer with the black pencil).</p>
-<p>Your bitizen should look something like this after doing all of the shading:</p>
-<p><img src="http://f.cl.ly/items/3f2P3F1b2Z1y1W0W2V3V/Screen%20shot%202011-07-30%20at%203.47.09%20PM.png" alt="Shaded Bitzen"></p>
-<h4 id="chop-it-up">Chop It Up</h4>
-<p>The final thing we need to do with our graphic is chop up the pieces so that they can be individually colored. Convert each of the white-* layers to Smart Objects, copy them to a new document, and save them. You should end up with 5 .png files (head.png,skin.png,hair.png,pants.png,shoes.png).</p>
-<p>I increased the size of my Bitizen by 4 before doing this step. You might consider increasing their size as well. Remember that the size increase you choose will change some of the values when we recreate the Bitizen in Cocos2D. So, if you want to follow along, make sure your Bitizen is 60×100 before exporting the various parts.</p>
-<p>One thing to note is we are going to bring these into Cocos2D as 5 different sprites. There are some optimizations that you could do using sprite sheets, however I want to make things as clear as possible. So, we are going the long way.</p>
-<p><a href="http://cl.ly/1I102a1F2L323C1R2Y2h">You can download my completed white bitizen here</a>.</p>
-<h4 id="rebuilding-the-bitizen-in-cocos2d">Rebuilding The Bitizen In Cocos2D</h4>
-<p>Once you have imported the 5 Bitizen image files into Cocos2D, you need to reconstruct them in code. This involves adding each sprite to the layer.</p>
-<p>Here is the code to display the skin/head+hands in our layer. As a note, I simply created a new Cocos2D project and am using the retina only mode for my display using [director enableRetinaDisplay:YES]. The offsets will change quite a bit if you are choosing to support non-retina.</p>
+<p><strong>Sample User Script For Twitter</strong></p>
 <div>
-  <pre>&lt;code class=’objc’>int spriteX = 240;
-int spriteY = 160;
-<p>CCSprite *skin = [CCSprite spriteWithFile:@&ldquo;skin.png&rdquo;];
-[skin setPosition:ccp(spriteX, spriteY)];
-[self addChild:skin];&lt;/code&gt;</pre></p>
+  <pre>&lt;code class=’javascript’>(function () {
+        if (window.fluid) {
+            setInterval(function updateBadge() {
+                var counts = /\d+/.exec(document.title);
+                if (counts && counts[0] &gt; 0) {
+                    window.fluid.dockBadge = counts[0] &gt; 99 ? ‘99+’ : counts[0];
+                } else {
+                    window.fluid.dockBadge = ”;
+                }
+            }, 2000);
+        }
+    })();&lt;/code></pre>
 </div>
-<p>This will draw our white(shaded) head on the screen. That’s pretty boring so let’s draw the rest of the body. Update your code to look like the following:</p>
-<div>
-  <pre>&lt;code class=’objc’>int spriteX = 240;
-int spriteY = 160;
-<p>CCSprite *skin = [CCSprite spriteWithFile:@&ldquo;skin.png&rdquo;];
-[skin setPosition:ccp(spriteX, spriteY)];
-[self addChild:skin];</p>
-<p>int hairOffset = 11;</p>
-<p>CCSprite *hair = [CCSprite spriteWithFile:@&ldquo;hair.png&rdquo;];
-[hair setPosition:ccp(spriteX, spriteY+hairOffset)];
-[self addChild:hair];</p>
-<p>int shirtYOffset = -9;
-int shirtXOffset = 1;</p>
-<p>CCSprite *shirt = [CCSprite spriteWithFile:@&ldquo;shirt.png&rdquo;];
-[shirt setPosition:ccp(spriteX + shirtXOffset, spriteY+shirtYOffset)];
-[self addChild:shirt];</p>
-<p>int pantsYOffset = -15;
-int pantsXOffset = 1;</p>
-<p>CCSprite *pants = [CCSprite spriteWithFile:@&ldquo;pants.png&rdquo;];
-[pants setPosition:ccp(spriteX + pantsXOffset, spriteY+pantsYOffset)];
-[self addChild:pants];</p>
-<p>int shoesYOffset = -17;
-int shoesXOffset = 1;</p>
-<p>CCSprite *shoes = [CCSprite spriteWithFile:@&ldquo;shoes.png&rdquo;];
-[shoes setPosition:ccp(spriteX + shoesXOffset, spriteY+shoesYOffset)];
-[self addChild:shoes];&lt;/code&gt;</pre></p>
-</div>
-<p>Now, you should see the lonely ghost of a Bitizen standing in the center of your screen.</p>
-<p><img src="http://f.cl.ly/items/090s2v0F1B3d3k3v3V1R/Screen%20shot%202011-07-30%20at%205.10.34%20PM.png" alt="Ghost Bitizen"></p>
-<p>Still boring… Time to spice him up with some color.</p>
-<h4 id="tinting-cocos2d-sprites">Tinting Cocos2D Sprites</h4>
-<p>As I mentioned before, tinting Cocos2D sprites is very simple. I would recommend keeping all sprites that you wish to tint a shade of white/gray otherwise some crazy things will happen.</p>
-<p>The setColor method takes an array of integers from 0-255. This array contains 3 numbers (1st for red, 2nd for green, 3rd for blue). For example, we can pass all <font color="red">Red</font> to the setColor method by sending it {255,0,0}.</p>
-<p>Let’s start by tinting our Bitizen’s shirt a random color. Change the code that displays the shirt to look like this:</p>
-<div>
-  <pre>&lt;code class=’objc’>CCSprite *shirt = [CCSprite spriteWithFile:@"shirt.png"];
-[shirt setPosition:ccp(spriteX + shirtXOffset, spriteY+shirtYOffset)];
-ccColor3B shirtColor = {arc4random() % 255,arc4random() % 255,arc4random() % 255};
-[shirt setColor:shirtColor];
-[self addChild:shirt];&lt;/code></pre>
-</div>
-<p>Now, every time you run the application, the Bitizen should have a different shirt color. You can apply this principle to each of your sprites to completely customize your Bitizen.</p>
-<p>What if you only want to limit certain colors? (you ask). Well, that’s a great question. I solved this by creating an array of ccColor3Bs. Basically an array of arrays. And then I index into this array and set the color accordingly. Here is an example of setting a random skin color to avoid having blue people (unless maybe you are making Smurfs).</p>
-<div>
-  <pre>&lt;code class=’objc’>ccColor3B skinColors[] = { 
-    {247,224,194},
-    {255,232,214},
-    {136,119,82},
-    {245,232,205},
-    {144,110,38}
-};
-CCSprite *skin = [CCSprite spriteWithFile:@"skin.png"];
-[skin setPosition:ccp(spriteX, spriteY)];
-ccColor3B skinColor = skinColors[arc4random() % 5];
-[skin setColor:skinColor];
-[self addChild:skin];&lt;/code></pre>
-</div>
-<p>I have an array of 5 different arrays and randomly index into it using skinColors[arc4random() % 5]. This will give me a random color within my skin color group.</p>
-<p>After running this through a loop and adding random colors to some of the other sprites, I ended up creating the image you see at the top of this post.</p>
-<h4 id="conclusion">Conclusion</h4>
-<p>I hope that this tutorial has found you well and I have demystified the magic that is dynamic sprites. You may download the source code for this tutorial (include the code to generate the screenshot above) <a href="http://cl.ly/3h3R2D1p2w2y2X3t0R32">here</a>.</p>
-<p>If you have any questions or comments, please feel free to leave them in the comments section of this post. Also, make sure you <a href="http://feeds.feedburner.com/brandontreb">subscribe to my RSS feed</a> for more great tutorials!</p>
-<p>Happy Coding!</p>
-<p><span style="font-family: ‘Lucida Grande’;"><strong><span style="font-weight: normal;"><span style="font-family: arial, verdana, tahoma, sans-serif; font-size: 13px; line-height: 20px;"><em>﻿﻿This post is part of <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://idevblogaday.com/">iDevBlogADay</a>, a group of indie iOS development blogs featuring two posts per day. You can keep up with iDevBlogADay through the <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://idevblogaday.com/">web site</a>, <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://feeds.feedburner.com/idevblogaday">RSS feed</a>, or <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://twitter.com/#search?q=%23idevblogaday">Twitter</a>.</em></span></span></strong></span></p>
+<p><a href="http://userscripts.org/scripts/review/88425">Source</a></p>
+<p>Fluid is free with some minimal features, but I urge you to drop the $4.99 to gain full screen mode and user scripts. It’s well worth it. I am not affiliated with them in any way, just a happy customer.</p>
+<p><a href="http://fluidapp.com/">Download Fluid</a></p>
 <div style="">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Cocos2D Tutorial - Dynamically Coloring Sprites" data-url="http://brandontreb.com/cocos2d-tutorial-dynamically-coloring-sprites"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Fluid For Mac" data-url="http://brandontreb.com/fluid-for-mac"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
 </div>
   
   </section>
   </section>
   
-  <a href="https://brandon_swoop.ngrok.io/2011/07/30/cocos2d-tutorial-dynamically-coloring-sprites/" class="u-url">
+  <a href="https://brandon_swoop.ngrok.io/2012/01/19/fluid-for-mac/" class="u-url">
 	<aside class="dates">
-	  <time datetime="2011-07-30 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Jul 30</time>
+	  <time datetime="2012-01-19 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Jan 19</time>
 	</aside>
   </a>
 </article>
@@ -251,71 +181,41 @@ ccColor3B skinColor = skinColors[arc4random() % 5];
   
   <section class="post-body">
   <header>
-	<h2><a href="https://brandon_swoop.ngrok.io/2011/07/16/pixel-art-character-tutorial-creating-and-customizing-a-bitizen/">Pixel Art Character Tutorial &amp;#8211; Creating And Customizing A Bitizen</a></h2>
+	<h2><a href="https://brandon_swoop.ngrok.io/2012/01/16/amazon-a-terrible-solution-to-a-huge-problem/">Amazon &amp;#8211; A Terrible Solution To A Huge Problem</a></h2>
   </header>
   <section class="post-body">
-	<center>
-  <img src="http://f.cl.ly/items/1R171P3K050O2m1H210C/Toy-Story-brandontreb.com.png" />
-</center>
-<p>This will be a continuation of my last pixel art tutorial about <a href="http://brandontreb.com/Configuring-Photoshop-For-Pixel-Art">configuring Photoshop for Pixel Art</a>. For the past month or so, both my wife an I have been pretty addicted to this amazing game called <a href="http://itunes.apple.com/us/app/tiny-tower/id422667065?mt=8">Tiny Tower</a> created by <a href="http://nimblebit.com/">Nimble Bits</a>. The biggest draw for me to this game isn’t the fact that it has great simulation style game mechanics, it’s the fact that it was created using <strong>Pixel Art</strong>.</p>
-<p>As I mentioned in my other post, I have a serious passion for pixel art and have been doing everything I can to learn about it and improve my skills. One great thing about it is, <strong>anyone can do it</strong>. You don’t have to be this amazing artist to be able to create interesting pixel art.</p>
-<h4 id="getting-started">Getting Started</h4>
-<p>They say that imitation is the best form of flattery, so we are going to flatter the heck out of the Nimble Bits guys are learn how to make our own Bitizen characters from Tiny Tower. I have found that a good starting place for learning pixel art (or anything really), is to start with something that already exists, copy it, then modify it. Once you do that a few times and get comfortable, then you should have the confidence to branch out into creating your own artwork.</p>
-<p>When creating a game (or complex piece of pixel artwork) that involves a ton of different characters, it will save a ton of time and energy if you create a “base character”. What I mean by “base character” is one that is very bland and plain. Something that is easily customizable. So, that’s what this tutorial is about, we are going to create a bland white guy for Tiny Tower.</p>
-<p>One thing I want to point out before we start is, I have lowered the resolution of the character a bit and am not putting in as much detail as the Nimble Bits team. This is just for simplicity’s sake in order to get my point across and make things easier on you.</p>
-<h4 id="new-document">New Document</h4>
-<p>Start out by creating a 15x25px document. I know, it’s very small, but we don’t need much. Make sure you have Photoshop <a href="http://brandontreb.com/Configuring-Photoshop-For-Pixel-Art">configured</a> for pixel art. At this point, I’d suggest creating all of the layers for your bitizen. <strong>Why use layers?</strong> you might ask. Great question. Well, in order to quickly modify our base character, we want to have a separate layer for each of his features/body parts. So, create the following layers.</p>
-<ul>
-<li>Head</li>
-<li>Mouth</li>
-<li>Hair</li>
-<li>Eyes</li>
-<li>Shirt</li>
-<li>Pants</li>
-<li>Feet</li>
-<li>Arms</li>
-</ul>
-<p>Now, you can confidently modify any part of your Bitizen without the risk of destroying the rest. As I reference each part below, make sure you switch to the correct layer when drawing.</p>
-<h4 id="creating-the-head">Creating The Head</h4>
-<p>The head is perhaps the most complicated part of the Bitizen due to its odd shape and shading. The shape is due to the fact that the Bitizen is always looking in the forward direction.</p>
-<p>Start with a skin tone color (I have used #f7e0c2) and create a 10 x 6 rectangle in the center of your view like this:</p>
-<p><img src="http://f.cl.ly/items/211O2O1P37131Q2m2Z2P/Screen%20shot%202011-07-16%20at%201.22.24%20PM.png" alt="Bitizen head"></p>
-<p>Now, that the base head is in place, it’s time to draw the chin and neck. With the same color, indent one pixel in on the bottom and draw straight across. Finally, indent 3 more pixels in, and draw 4 pixels across. This is what your head should look like at this point.</p>
-<p><img src="http://f.cl.ly/items/401p2x3t1d1B2n2A1W0Y/Screen%20shot%202011-07-16%20at%201.25.11%20PM.png" alt="Head and Chin"></p>
-<p><strong>Shading</strong></p>
-<p>Shading with pixel art is simply a matter of drawing with a darker shade of your main color. With the color chooser in PS and the skin tone still selected, drag the color down to a slightly darker shade and lowlight a 1 pixel line on the right side of the face. In our example the Bitizen is looking to his right, so his left will be shaded.</p>
-<p>Then, add some more shading as you see necessary. If you look at mine, I have used a bit of shading to extend the head a little bit.</p>
-<p><img src="http://f.cl.ly/items/3y3z2Z1n3f0d3T1h3Q46/Screen%20shot%202011-07-16%20at%201.31.16%20PM.png" alt="Head Shading"></p>
-<p><strong>Hair, Mouth And Eyes</strong></p>
-<p>The mouth and eyes are very simple with our Bitizens. The eyes are just single black pixels and the mouth is just a 4 pixel line using a darker shade of the skin tone.</p>
-<p>Hair can be whatever you like. I have chosen a very simple hairstyle that you see quite often in the game with a simple shade of brown. I have also applied the same shading technique to the hair that I did to the face and neck. When you are finished, it should really start looking like a person.</p>
-<p><img src="http://f.cl.ly/items/2n181w081O20042v3U0g/Screen%20shot%202011-07-16%20at%201.35.22%20PM.png" alt="Hair and eyes"></p>
-<h4 id="creating-the-body-legs-and-feet">Creating The Body, Legs and Feet</h4>
-<p>For the body, start with 6 x 5 rectangle set to the color that you want to make the shirt. I chose #63cfea. For the pants, simply draw a solid line. Finally, the feet are just two 2px lines spread apart by two more pixels. If you notice in the game, to animate the movement of these guys, they simply alternate between this position and a centered 4px line. It just goes to show you how much things can be simplified when you use pixel art.</p>
-<p><img src="http://f.cl.ly/items/3B203J0j2R3T0p0s3r39/Screen%20shot%202011-07-16%20at%201.43.55%20PM.png" alt="Body and legs"></p>
-<p>To finish up our Bitizen, we add single pixel dots for hands and a couple pixels for arms. After that, we add a collar and some simple shading.</p>
-<p>Here is what the completed Bitizen looks like:</p>
-<p><img src="http://f.cl.ly/items/0M1F0I0O0F3q3E2n3w0I/Screen%20shot%202011-07-16%20at%201.51.49%20PM.png" alt="Completed Bitizen"></p>
+	<p>tl;dr; Don’t buy a Kindle Fire for your kid until they resolve the parental control issues. Wifi password protection is their current solution, and it sucks.</p>
+<p>Like many parents, I thought it would be a good idea to get a tablet device for my son so that he could play some <em>educational</em> games and watch some Netflix (in moderation of course). After doing quite a bit of research, I settled on the Kindle Fire. Before the Apple fanboys give me crap, know that I am one, I have an iPad, it’s too expensive for my son.</p>
+<p>Honestly, I really love the fire. I think it has the <em>least terrible</em> Android interface of any of the devices. It’s intuitive and my 3 year old was able to grasp navigation right away. In addition to navigation, he quickly figured out how to acquire new content (apps, video, children’s books) thanks to Amazon’s “One-Click Ordering”. Obviously, Amazon thought the process they use on the web transfered well to a tablet device and was not willing to compromise on that. That’s neither here nor there. You can find plenty of posts about user’s complaining about the <strong>initial</strong> lack of parental controls.</p>
+<h4 id="the-update">The Update</h4>
+<p>Shortly after receiving some pretty rough reviews for their interface, Amazon rolled out their first update which brought us to 6.2.1. In addition to fixing some of there terribly choppy UI, they rolled out their “fix” for the lack of parental controls.</p>
+<p>I noticed a new security setting that I had hoped would allow the device to require a password for content purchase, but it turns out the setting is to password protect enabling wifi.</p>
+<p><strong>Password protect enabling wifi? Really?</strong></p>
+<p>This is laughable at best. What a worthless feature. I could not figure out why anyone would ever want that. And then I had a conversation with “tech support”.</p>
+<h4 id="their-8220solution8221-confirmed">Their “Solution” Confirmed</h4>
+<p>After seeing an email from Amazon the other day showing my purchase for $17.99 for Team Umizoomi Season 1 (whatever the crap that is), which obviously my son purchased, I set out to chat with customer support. The conversation went something like this:</p>
+<blockquote>
+<p>…</p>
+<p><strong>Me:</strong> Refund!? No parental controls!</p>
+<p><strong>Outsourced Guy:</strong> Enable Wifi Password = protection!</p>
+<p><strong>Me:</strong> No, watch Netflix! Browse Web! Stupid Solution</p>
+<p><strong>Outsourced Guy:</strong> Yes Netflix Need Wifi. Did I solve your problem?</p>
+<p><strong>Me:</strong> ?</p>
+<p><strong>Outsourced Guy:</strong> Phone Number. Call Video Support</p>
+</blockquote>
+<p>So there you have it. Amazon actually pushes this as their solution to the lack of parental controls. My suspicions were confirmed by Outsourced Guy.</p>
 <h4 id="conclusion">Conclusion</h4>
-<p>The one thing to remember when creating pixel art for game is to keep it simple. Simplify everything. Take for example the Toy Story characters I made at the top of this post. They are <em>very</em> simplistic yet you recognize who they are right away. My 2.5 year old son was yelling “Woody! Buzz!” the entire time I was creating them. I think this is one of the largest challenges; sticking to “less is more”.</p>
-<p>There are some other fun things we can do to customize these guys. We can even do it in code! Next time, I will show you how to take a “base character” and customize its colors using Cocos 2D. This can save you even more time and energy when trying to make dynamic characters for your game.</p>
-<p>If you are feeling lazy and want to simply download my bitizen base, click the following link:</p>
-<p><a href="http://cl.ly/2u3h0g2F2H2b1S280519/bitizen.psd">Download my bitizen.psd template</a></p>
-<p>On a final note, <strong>don’t just copy these guys for YOUR game</strong>! I know it might seem tempting to give em a different shirt and plop them in your super rad fart machine RPG, but these guys are the product of the hard work of the guys at Nimble Bits.</p>
-<p>If you have any questions or tips, please feel free to leave them in the comments.</p>
-<p>I would also <strong>LOVE</strong> to see some of the custom bitizens you guys come up with. Please link to them in the comments if you end up creating some.</p>
-<p>Happy Coding!</p>
-<p><span style="font-family: ‘Lucida Grande’;"><strong><span style="font-weight: normal;"><span style="font-family: arial, verdana, tahoma, sans-serif; font-size: 13px; line-height: 20px;"><em>﻿﻿This post is part of <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://idevblogaday.com/">iDevBlogADay</a>, a group of indie iOS development blogs featuring two posts per day. You can keep up with iDevBlogADay through the <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://idevblogaday.com/">web site</a>, <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://feeds.feedburner.com/idevblogaday">RSS feed</a>, or <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://twitter.com/#search?q=%23idevblogaday">Twitter</a>.</em></span></span></strong></span></p>
+<p>It’s sad that a huge company such as Amazon feels that <em>their process</em> is more important than listening to their customers. Although their devices have been selling like <em>fire</em> (badum ch!), they need to address such gaping issues if they are to maintain their edge in the “affordable” tablet space. Especially as the younger generations start embracing the technology.</p>
 <div style="">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Pixel Art Character Tutorial - Creating And Customizing A Bitizen" data-url="http://brandontreb.com/pixel-art-character-tutorial-creating-and-customizing-a-bitizen"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Amazon - A Terrible Solution To A Huge Problem" data-url="http://brandontreb.com/amazon-a-terrible-solution-to-a-huge-problem"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
 </div>
   
   </section>
   </section>
   
-  <a href="https://brandon_swoop.ngrok.io/2011/07/16/pixel-art-character-tutorial-creating-and-customizing-a-bitizen/" class="u-url">
+  <a href="https://brandon_swoop.ngrok.io/2012/01/16/amazon-a-terrible-solution-to-a-huge-problem/" class="u-url">
 	<aside class="dates">
-	  <time datetime="2011-07-16 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Jul 16</time>
+	  <time datetime="2012-01-16 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Jan 16</time>
 	</aside>
   </a>
 </article>
@@ -328,56 +228,182 @@ ccColor3B skinColor = skinColors[arc4random() % 5];
   
   <section class="post-body">
   <header>
-	<h2><a href="https://brandon_swoop.ngrok.io/2011/07/02/configuring-photoshop-for-pixel-art/">Configuring Photoshop For Pixel Art</a></h2>
+	<h2><a href="https://brandon_swoop.ngrok.io/2012/01/03/why-i-went-back-to-jekyll-also-rackspace-sucks/">Why I Went Back To Jekyll &amp;#8211; Also Rackspace Sucks</a></h2>
   </header>
   <section class="post-body">
-	<p>First things first. My wife and I had welcomed a new baby boy into the world on Monday so you guys are going to have to see the obligatory “dad” pics.</p>
-<p>Here they are</p>
-<p><img src="http://images.instagram.com/media/2011/06/30/a63ad6fab0dc4839a604e885a8a85f50_7.jpg" alt="Jack"></p>
-<p><img src="http://images.instagram.com/media/2011/07/01/e77e30a4d504437ba75df8a7129f7d9d_7.jpg" alt="Jack"></p>
-<p>Ok, now that’s past us, let’s chat about pixel art. I have always been a HUGE fan of pixel art both in games and as a form of art. As an aspiring game developer (games coming soon 😉 ), I found pixel art a great fit for me. Not only is is aesthetically pleasing, it also allows developers to create “better” art than developer art. All it takes is a little patience.</p>
-<p>Today, I’m going to share with you how I have configured Photoshop to create some pixel art and eventually show you how to make your own Bitizens from <a href="http://itunes.apple.com/us/app/tiny-tower/id422667065?mt=8">Tiny Tower</a> in a follow up post.</p>
-<p>Some of you might argue that Photoshop is not the way to go and that there are <em>better</em> tools for Pixel art. I have tried quite a few and keep coming back to PS because of some of it’s great features (shapes, layering, masks, gradients, noise filters, etc…). We can use a lot of these tools to our advantage when creating pixel art, PS just needs to be set up correctly.</p>
-<p>Just a heads up before I start, I’m using Adobe Photoshop CS3 for Mac.</p>
-<h4 id="change-the-way-photoshop-scales-images">Change The Way Photoshop Scales Images</h4>
-<p><img src="/img/post_images/2011/07/bitizens-compare.png" alt=""></p>
-<p>First, we need to change the way PS scales images. This is useful for when you are ready to export your sprites for production. By default, PS uses a Bicubic algorithm when you want to enlarge an image. This generally produces a very blurry effect. It’s quite useful in many cases, but terrible for pixel art. Here, we need to tell PS to use a “Nearest Neighbor” scaling algorithm. This will preserver all of our edges without PS mucking with the blending.</p>
-<p>To change this setting, navigate to <strong>Photoshop-&gt;Preferences-&gt;General</strong></p>
-<p><img src="http://f.cl.ly/items/023E3D060e2T420f013j/Screen%20shot%202011-07-02%20at%2010.34.22%20AM.png" alt="Nearest Neighbor"></p>
-<p>The only setting you need to modify is “Image Interpolation”. Make sure to change it to “Nearest Neighbor”.</p>
-<h4 id="enabling-a-grid">Enabling A Grid</h4>
-<p>When creating pixel art, it is very useful to have a grid in place in order to determine where to place your next pixel. Without it, you are just blindly placing them. To turn on and configure a grid in PS, navigate to <strong>Photoshop-&gt;Preferences-&gt;Guides, Grid, Slices &amp; Count…</strong></p>
-<p><img src="http://f.cl.ly/items/3c1g0r1g1n3S020z3G1K/Screen%20shot%202011-07-02%20at%2010.42.00%20AM.png" alt="1px gridlines"></p>
-<p>Make sure to set <strong>Gridline every</strong> to 1 and <strong>Subdivisions</strong> to 1. This will create a 1px grid on for you to use as a guide.</p>
-<p>Once you have configured the grid, click on <strong>View-&gt;Show-&gt;Grid</strong> to display it. You might have to do this for every document.</p>
-<h4 id="configuring-the-pencil-tool">Configuring the Pencil Tool</h4>
-<p>When creating pixel art in PS, the pencil tool is your best friend. You will use it ~95% of the time when drawing. We need to make sure that the pencil draws single pixel dots without any interpolation. With the pencil tool selected, click the dropdown next to <strong>brush</strong>, tap the <strong>arrow</strong> and then select <strong>basic brushes</strong>. When prompted to replace current brushes, click <strong>OK</strong>.</p>
-<p><img src="http://f.cl.ly/items/3G3M3s0M0O2H3J332x0M/Screen%20shot%202011-07-02%20at%2010.57.03%20AM.png" alt="Basic Brushes"></p>
-<p>Next, select the 1 px brush (it should be in the top left). Most of the time, you will want to draw with single pixels.</p>
-<p><img src="http://f.cl.ly/items/3L132f1e2y2z0Y291e0i/Screen%20shot%202011-07-02%20at%2010.53.40%20AM.png" alt="1 px brush"></p>
-<h4 id="creating-a-new-document">Creating A New Document</h4>
-<p>Deciding on a document size can be tricky. You generally want to create your document as small as possible to avoid having to do more work than you need. The size depends on how “pixellated” you want your art to look after scaling. Basically, using the scaling we chose above (nearest neighbor), the “pixels” will just increase in size.</p>
-<p>Here is a blown up view of our 15×25 image that we will use in the next tutorial to create a Bitizen from Tiny Tower.</p>
-<p><img src="http://f.cl.ly/items/110e2542012Y3I3Y2L1i/Screen%20shot%202011-07-02%20at%2012.31.54%20PM.png" alt="New Document"></p>
-<p>Since the zoom level isn’t too high, we are seeing grid slices every 2 pixels rather than 1. As you zoom, you will see the grid size increasing.</p>
-<h4 id="multiple-zoom-levels-in-view">Multiple Zoom Levels In View</h4>
-<p>One cool trick with PS is, it allows you to have multiple windows of the same document open. The reason this is handy is you can see various zoom levels for your artwork all at once. While drawing each pixel zoomed in, you can see the result in the desired resolution. This helps out dramatically when you are trying to fine tune your work.</p>
-<p>To do this, go to <strong>Window-&gt;Arrange-&gt;New Window for [projectname.psd]</strong> Now you can control the zoom level of each window individually.</p>
-<img src="http://f.cl.ly/items/0o2A0E3h0K470v02273G/Screen%20shot%202011-07-02%20at%2012.39.07%20PM.png" width="450" />
-<p>In the next post, I will go over how to make these Bitizens as well as some tips for customization as an example for creating dynamic characters. We will also go over some of the basic techniques that were used.</p>
-<p>If you have any comments, questions, or Photoshop Pixel Art Tips, please feel free to post them in the comments.</p>
+	<p>Recently, I was pretty humbled when a post of mine titled <a href="http://brandontreb.com/wordpress-to-jekyll-and-back-again/">WordPress To Jekyll And Back Again</a> made it to the front page of Hacker News. I was a little down on Jekyll for the reasons listed in that post and was feeling pretty good about my WordPress install.</p>
+<p>At the time, I was running my own virtual instance on Rackspace cloud hosting (we’ll get to this momentarily). I also had all of the caching and optimization plugins installed and welcomed the Hacker News traffic.</p>
+<p>As you can imagine, the influx of HN traffic crashed the server multiple times and I was (with good reason) mocked in the comments (“must be because he’s ‘back to WordPress’”). So, I asked for advice and further “beefed up” my setup switching from Apache to Nginx, upping the ram, and switching caching plugins. WordPress is a beast and hard to optimize. That’s not even the kicker as to why I switched away.</p>
+<h4 id="a-call-from-rackspace8230">A Call From Rackspace…</h4>
+<p>About a month ago, I realized my blog was down. I figured that it might have been that I was featured somewhere else which was crashing it (again I was rolling my eyes at WordPress). But then, I got a call and email from a <em>very</em> helpful Rackspace employee. The email went like this:</p>
+<blockquote>
+<p>Despite the very best efforts of or our Engineering and Datacenter Operations Teams, unfortunately the host machine that your cloud server ‘Websites’ resides on was not able to be recovered. At this point, we are looking at complete data loss.</p>
+</blockquote>
+<p>and… Rackspace, in this poorly phrased email, was basically like. “Well, sucks to be you, hope you had a backup!”. Well, I admit this is partially my fault for not having a backup as I am a bit of a n00b when it comes to server admin, but I had been hosting for years on (don’t judge me) GoDaddy before that and a couple years on Rackspace. I had no idea that hosting companies didn’t have backups of their own. It would seem that this might be crucial to their business.</p>
+<p>Needless to say, I lost everything including a jewelry site that I ran (not many sales), an iPhone leaderboard site (not very popular), 2 of my buddies WordPress blogs, and my current WordPress blog.</p>
+<h4 id="jekyll-to-the-rescue">Jekyll To The Rescue</h4>
+<p>I was pretty angry at Rackspace and myself for never making a backup, but then it hit me that <em>most</em> of my posts had been converted to Jekyll and were backed up in a github repository. I was able to restore my blog within a few minutes (now hosted on GitHub) and recover the WordPress posts from the <a href="http://feeds.feedburner.com/brandontreb">Feedburner cache</a> of my site.</p>
+<p>As for my buddies’ sites… I feel for them <img src="http://brandontreb.com/wp-includes/images/smilies/frownie.png" alt=":(" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<h4 id="new-list-of-why-jekyll-is-awesome">New List Of Why Jekyll Is Awesome</h4>
+<ul>
+<li><strong>Automatically backed up</strong> – This is huge. If not for switching to Jekyll at one point, I would have lost <strong>years</strong> worth of content. If you have every tried to back up WordPress, it’s a huge frackin pain since the database dump usually gets HUGE.</li>
+<li><strong>Free To Host</strong> – I’m not sure why I was so stubborn about doing my own hosting. I am now hosting on <a href="https://github.com/brandontreb/brandontreb.github.com">GitHub</a> and it couldn’t be more stable and fast.</li>
+<li><strong>Mobile Blogging</strong> – This was my largest gripe about Jekyll. I was jealous that I couldn’t blog from my iPhone like WordPress users. Well, I have found a pretty decent solution (tutorial to follow), which involves a combo of Prompt, Screen, and Vim.</li>
+<li><strong>Content Oriented</strong> – WordPress makes it super easy to dump tons of images into your posts. While blogging with Jekyll (inside of Vim in my case), it’s a little bit more of a pain to add your own images. That being said you must be choosy forcing you to focus more on the content and less on using visual crutches.</li>
+<li><strong>Blog Anywhere</strong> – This was another limitation I was placing on Jekyll in my last post. However, I just wasn’t using Jekyll to its full potential. I was building my site locally and rsyncing it up to my server. This process was a little tedious and discouraged me from writing many new posts. Now, hosting with github, posting is as simple as a quick push to the repo.</li>
+<li><strong>Ninja Fast</strong> – This one should be obvious.</li>
+</ul>
+<h4 id="conclusion">Conclusion</h4>
+<p>I am quite happy blogging with Jekyll. As far as I’m concerned there is no reason to ever host my own blog again (as long as Github doesn’t ditch pages 😉 ). Also, if you currently have stuff on Rackspace, <strong>go make a backup now</strong> (or ditch them altogether). Thanks for reading and <a href="http://feeds.feedburner.com/brandontreb">look out</a> for my next post about mobile blogging with Jekyll.</p>
+<p>Happy Blogging!</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Why I Went Back To Jekyll - Also Rackspace Sucks" data-url="http://brandontreb.com/why-i-went-back-to-jekyll-also-rackspace-sucks"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2012/01/03/why-i-went-back-to-jekyll-also-rackspace-sucks/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2012-01-03 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Jan 3</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2011/12/31/new-year-new-theme-focus-on-the-content/">New Year &amp;#8211; New Theme: Focus On The Content</a></h2>
+  </header>
+  <section class="post-body">
+	<p>As you may have noticed, my blog has a new (much cleaner) theme. For 2012, my blogging goals are to focus much more on content rather than flashy visuals.</p>
+<p>I have also minimized my set up to save blogging costs (I now blog for FREE) and to simplify things greatly. Here is my new setup:</p>
+<ul>
+<li><a href="http://jekyllrb.com">Jekyll</a> as my “blog engine”</li>
+<li><a href="http://www.wptux.com/206/wp-typo">The WPTypo WordPress Theme</a> I ported this to Jekyll</li>
+<li><a href="https://github.com/brandontreb/brandontreb.github.com">GitHub</a> for hosting (it’s free).</li>
+<li>Vim – I’m using this as my “blog editor”. There are some incredible plugins that I am using to help facilitate blogging using Jekyll (post on how I do this to follow)</li>
+</ul>
+<p>That’s about it. I am now free from server costs and my blog is <strong>always</strong> backed up and easily accessible.</p>
+<p>2011 has been a very successful year in terms of blogging for me. In addition to writing here and on <a href="http://icodeblog.com">iCodeBlog</a>, I have recently started blogging for Mobile Tuts + on the <a href="http://envato.com">Envato Network</a>. You can check out my 7 part game series on creating a caterpillar game using Cocos2D <a href="http://mobile.tutsplus.com/series/build-a-caterpillar-game-with-cocos2d/">here</a>.</p>
+<p>I can’t wait to start posting some great content in this new year. Given my new setup, I literally have to adhere to the title of this post as blogging in VIM doesn’t really lend itself to visuals ;).</p>
+<p>Happy New Year and Happy Hacking in 2012!</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="New Year - New Theme: Focus On The Content" data-url="http://brandontreb.com/new-year-new-theme-focus-on-the-content"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2011/12/31/new-year-new-theme-focus-on-the-content/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2011-12-31 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Dec 31</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2011/12/07/svprogresshud-is-quickly-becoming-my-favorite-ios-library/">SVProgressHUD Is Quickly Becoming My Favorite iOS Library</a></h2>
+  </header>
+  <section class="post-body">
+	<p>From the first time I saw this effect in the Tweetie (now <a href="http://itunes.apple.com/us/app/twitter/id333903271?mt=8">Twitter for iPhone</a>), I was crazy about it. I had written my own hacks to make something <em>close</em>, but it was always terrible. Within the past few months, I have been using a perfect/elegant solution to this problem called <a href="https://github.com/samvermette/SVProgressHUD">SVProgressHUD</a>.</p></p>
+<img src="https://a248.e.akamai.net/assets.github.com/img/07e5ce2827299e152cd8f57ebb6eecf7ce9feedd/687474703a2f2f662e636c2e6c792f6974656d732f32333159324130743074314a30423072334e30702f737670726f6772657373687564332e706e67" width="550" />
+<p>Using this in your project is as easy as calling:</p>
+<div class="wp_syntax">
+  <div class="code">
+    <pre class="objc" style="font-family:monospace;"><span style="color: #11740a; font-style: italic;">// showing</span>
+<span style="color: #002200;">&#91;</span>SVProgressHUD showWithStatus<span style="color: #002200;">:</span><span style="color: #bf1d1a;">@</span><span style="color: #bf1d1a;">"Logging in…"</span><span style="color: #002200;">&#93;</span>;
+<span style="color: #11740a; font-style: italic;">// hiding</span>
+<span style="color: #002200;">&#91;</span>SVProgressHUD dismiss<span style="color: #002200;">&#93;</span>;</pre>
+  </div>
+</div>
+<p><a href="https://github.com/samvermette/SVProgressHUD">Clone SVProgressHUD On Github</a></p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="SVProgressHUD Is Quickly Becoming My Favorite iOS Library" data-url="http://brandontreb.com/svprogresshud-is-quickly-becoming-my-favorite-ios-library"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2011/12/07/svprogresshud-is-quickly-becoming-my-favorite-ios-library/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2011-12-07 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Dec 7</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2011/11/29/tether-your-iphone-without-jailbreaking-or-paying-for-it/">Tether Your iPhone Without Jailbreaking (Or Paying For It)</a></h2>
+  </header>
+  <section class="post-body">
+	<img alt="" src="https://github.com/tcurdt/iProxy/raw/master/Documentation/screenshots/screen12.png" title="iProxy" class="alignright"  height="340" />
+<p>With all of the buzz around the <a href="http://tether.com">iTether</a> App, I figured I’d offer a more permanent solution since Apple will surely yank this soon</p>
+<p>Last year, a developer published his code for an http <a href="http://en.wikipedia.org/wiki/SOCKS">SOCKS</a> proxy called iProxy. This will give your iPhone the ability to create a SOCKS server in which your laptop can connect to via the Bonjur protocol.</p>
+<p>Once connect, all of your computer’s http traffic will be routed through the server on your iPhone essentially giving you <strong>free tethering</strong>. Since this isn’t using the iPhone’s built-in tethering method, I’d assume At&amp;t could not detect it*. After looking at the code, it becomes pretty obvious how the SOCKS proxy works and makes me kick myself that I didn’t write it (or find this code sooner).</p>
+<p>The <a href="https://github.com/tcurdt/iProxy/wiki/Configuring-iProxy">setup</a> is a little complex, but you only need to do it once. I would love to hear in the comments if any of you has had some experience with this. I will also share my own as soon as I can get it installed later today.</p>
+<p>Download the project over at <a href="https://github.com/tcurdt/iProxy">github</a>.</p>
+<p>Happy Coding!</p>
+<p><sub>*This has not been verified by me</sub></p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Tether Your iPhone Without Jailbreaking (Or Paying For It)" data-url="http://brandontreb.com/tether-your-iphone-without-jailbreaking-or-paying-for-it"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2011/11/29/tether-your-iphone-without-jailbreaking-or-paying-for-it/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2011-11-29 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Nov 29</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2011/11/22/caterpillar-1-1-released/">Caterpillar 1.1 Released</a></h2>
+  </header>
+  <section class="post-body">
+	<p>I have just released the update to my Centipede clone called <a href="http://itunes.apple.com/us/app/caterpillar-hd/id479439790?mt=8">Caterpillar</a>. For those of you who don’t know, I am doing a 6 part series on how to create this game over at <a href="http://mobile.tutsplus.com/tutorials/iphone/building-a-caterpiller-game-with-cocos2d/">MobileTuts+</a>.</p></p>
+<p>This update adds some interesting functionality on which I will be blogging about in the near future.</p>
+<p>I have added iAds to my cocos2D project and when the iAds fail to serve (which is about 75% of the time), I replace them with Admob ads. This was achieved by creating a new Admob ad view inside of the <code>bannerView:didFailToReceiveAdWithError:</code> delegate method.</p>
+<p>I will either post a full tutorial about doing this Here or on Mobile Tuts. Either way, I’ll keep you posted.</p>
+<p>Also, be sure to <a href="http://itunes.apple.com/us/app/caterpillar-hd/id479439790?mt=8">download the game</a>, test it out, and lemme know if you have suggestions. Version 1.1 addressed quite a few issues from feedback (namely poor controls).</p>
 <p>Happy coding!</p>
-<p><span style="font-family: ‘Lucida Grande’;"><strong><span style="font-weight: normal;"><span style="font-family: arial, verdana, tahoma, sans-serif; font-size: 13px; line-height: 20px;"><em>﻿﻿This post is part of <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://idevblogaday.com/">iDevBlogADay</a>, a group of indie iOS development blogs featuring two posts per day. You can keep up with iDevBlogADay through the <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://idevblogaday.com/">web site</a>, <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://feeds.feedburner.com/idevblogaday">RSS feed</a>, or <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://twitter.com/#search?q=%23idevblogaday">Twitter</a>.</em></span></span></strong></span></p>
 <div style="">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Configuring Photoshop For Pixel Art" data-url="http://brandontreb.com/configuring-photoshop-for-pixel-art"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Caterpillar 1.1 Released" data-url="http://brandontreb.com/caterpillar-1-1-released"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
 </div>
   
   </section>
   </section>
   
-  <a href="https://brandon_swoop.ngrok.io/2011/07/02/configuring-photoshop-for-pixel-art/" class="u-url">
+  <a href="https://brandon_swoop.ngrok.io/2011/11/22/caterpillar-1-1-released/" class="u-url">
 	<aside class="dates">
-	  <time datetime="2011-07-02 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Jul 2</time>
+	  <time datetime="2011-11-22 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Nov 22</time>
 	</aside>
   </a>
 </article>
@@ -390,44 +416,25 @@ ccColor3B skinColor = skinColors[arc4random() % 5];
   
   <section class="post-body">
   <header>
-	<h2><a href="https://brandon_swoop.ngrok.io/2011/06/18/announcing-ios-4-in-action-free-chapter/">Announcing iOS 4 In Action &#43; Free Chapter!</a></h2>
+	<h2><a href="https://brandon_swoop.ngrok.io/2011/11/21/wordpress-plugin-for-ios-developers-and-bloggers/">WordPress Plugin For iOS Developers And Bloggers</a></h2>
   </header>
   <section class="post-body">
-	<img src="http://www.manning.com/jharrington/jharrington_cover150.jpg" class="size-full wp-image-1387 alignleft" />
-<p>Wow, I can’t believe it has been over a year since the release of my book <a href="http://manning.com/trebitowski/">iPhone And iPad In Action</a>. Since then, we have sold over 6,000 copies and have just have released in numerous languages!</p>
-<p>As with all iOS (tech books really), my book was almost outdated the moment it hit the shelves due to Apple’s constant SDK release cycle. My book ended with “here is what’s coming in iOS 4…”, and didn’t hit the shelves until after iOS 4 was released.</p>
-<p>I was asked last year by <a href="http://manning.com">Manning Publishing</a> to write the 3rd version of the book to include all of the 4.0 SDK changes. Due to some huge changes in my life, I was unable to accept and they had to find the 4th author to work on the book.</p>
-<p>Earlier this month, <a href="http://www.manning.com/jharrington/">Jocelyn Harrington</a> released the 3rd version of the book titled “iOS 4 In Action”. Here is a bit about this version from their site.</p>
+	<p>This plugin looks to be super useful for people wanting to blog about iOS apps. It even supports the affiliate urls.</p>
 <blockquote>
-<p>Written for Xcode 4, iOS 4 in Action guides you from setting up your development environment,<br>
-through coding your first app, all the way to selling in the App Store. Work through sample<br>
-applications including a chat client, a video game, an interactive map, background audio,<br>
-and more as you explore the iOS 4 SDK.</p>
+<p>In any post or page, insert the following shortcode: [ios-app id=”1234”] (where “1234″ is your application’s App Store ID).<br>
+You can also specify a download link like this: [ios-app id=”1234” download_url=”http://www.yourlinktrackerurl.com”]</p>
 </blockquote>
-<p>Here are some highlights about what’s inside.</p>
-<ul>
-<li>Full coverage of iOS SDK 4.3</li>
-<li>Mastering Xcode 4</li>
-<li>Multitasking for iPhone and iPad</li>
-<li>Game Center, iAd, and AirPrint</li>
-<li>Local and push notification</li>
-<li>Implementing in-app purchasing</li>
-</ul>
-<p>This is a significant update and I’m really excited to get my copies in the mail. As soon as I do so, I’ll do a couple giveaways on my blog. Make sure you stick around or <a href="http://feeds.feedburner.com/brandontreb">subscribe to the RSS feed</a> so you don’t miss it!</p>
-<h4 id="freebie">Freebie</h4>
-<p>Manning is allowing anyone to download the full <a href="http://www.manning.com/jharrington/iOS4iASample-ch21.pdf">Chapter 21</a> on multitasking now for free! <a href="http://www.manning.com/jharrington/iOS4iASample-ch21.pdf">Go grab your copy</a>!</p>
-<p>Happy Coding!</p>
-<p><span style="font-family: ‘Lucida Grande’;"><strong><span style="font-weight: normal;"><span style="font-family: arial, verdana, tahoma, sans-serif; font-size: 13px; line-height: 20px;"><em>﻿﻿This post is part of <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://idevblogaday.com/">iDevBlogADay</a>, a group of indie iOS development blogs featuring two posts per day. You can keep up with iDevBlogADay through the <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://idevblogaday.com/">web site</a>, <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://feeds.feedburner.com/idevblogaday">RSS feed</a>, or <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://twitter.com/#search?q=%23idevblogaday">Twitter</a>.</em></span></span></strong></span></p>
+<p><a href="https://github.com/markrickert/App-Display-Page">Download The Plugin Here</a></p>
 <div style="">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Announcing iOS 4 In Action + Free Chapter!" data-url="http://brandontreb.com/announcing-ios-4-in-action-free-chapter"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="WordPress Plugin For iOS Developers And Bloggers" data-url="http://brandontreb.com/wordpress-plugin-for-ios-developers-and-bloggers"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
 </div>
   
   </section>
   </section>
   
-  <a href="https://brandon_swoop.ngrok.io/2011/06/18/announcing-ios-4-in-action-free-chapter/" class="u-url">
+  <a href="https://brandon_swoop.ngrok.io/2011/11/21/wordpress-plugin-for-ios-developers-and-bloggers/" class="u-url">
 	<aside class="dates">
-	  <time datetime="2011-06-18 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Jun 18</time>
+	  <time datetime="2011-11-21 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Nov 21</time>
 	</aside>
   </a>
 </article>
@@ -440,549 +447,40 @@ and more as you explore the iOS 4 SDK.</p>
   
   <section class="post-body">
   <header>
-	<h2><a href="https://brandon_swoop.ngrok.io/2011/06/04/autonomous-steering-behaviors-in-corona-sdk-games/">Autonomous Steering Behaviors In Corona SDK Games</a></h2>
+	<h2><a href="https://brandon_swoop.ngrok.io/2011/11/16/voices-that-matter-conference-highlights/">Voices That Matter Conference: Highlights</a></h2>
   </header>
   <section class="post-body">
-	<p>Wow, it’s already been 5 months since I was last blogging for #iDevBlogADay. The time has flown by!</p>
-<p>Recently, I have been dabbling with <a href="http://www.anscamobile.com/corona/">Corona SDK</a> and have been getting really excited about the possibilities. For those of you who don’t know, Corona SDK is a multi platform game engine that allows you to write your code in Lua and deploy on iOS and Android devices.</p>
-<p>Today I want to chat with you about Autonomous Steering Behaviors and show you how I have implemented a few of them in a small game that I’m working on.</p>
-<p>Here is a short demo video of what we will be creating</p>
-<center>
-  <br /> 
-  <p>
-    <a href="http://vimeo.com/24649841">Boids Demo</a> from <a href="http://vimeo.com/user2413855">Brandon Trebitowski</a> on <a href="http://vimeo.com">Vimeo</a>.
-  </p>
-  <p>
-    </center>
-  </p>
-  <h4>
-    What Are Autonomous Steering Behaviors
-  </h4>
-  <p>
-    The name does sound pretty fancy. At the core they are just behaviors that define how a character interacts with the world around them in a life-like manner. Some of the main behaviors include wandering, path following, flocking, pursing and evading. The theory and algorithms for all of these behaviors and more can be found in a paper published by Craig Reynolds in the 80&#8217;s called <a href="http://www.red3d.com/cwr/steer/">Steering Behaviors For Autonomous Characters</a>.
-  </p>
-  <p>
-    While I admit I didn&#8217;t quite read all of it, the paper contains some incredible gems in terms of making your character AI seem much more life like.
-  </p>
-  <p>
-    There are plenty of examples (especially in games) where these behaviors come in handy. Perhaps the easiest behavior to implement is wander. Say for example you have an NPC (non player character) that walks around a village. The wander algorithm is a perfect fit to make it seem like that NPC is actually &#8220;thinking&#8221; about where he&#8217;s going and keeps your animations looking smooth.
-  </p>
-  <p>
-    The seek and evade is another interesting algorithm. Often times in our games, we want enemies to chase after us without it seeming like they have the exact shortest path to use. It adds a bit of randomness and makes your enemies seem much more realistic.
-  </p>
-  <h4>
-    How Can I Use Them In My Corona SDK Game?
-  </h4>
-  <p>
-    After doing a bit of research, I found this <a href="http://www.shiffman.net/teaching/nature/steering/">incredible site by daniel shiffman</a> that detailed some of the algorithms using processing. This at least took the words from the paper and made them in to some code. I really suggest that you read up on that page to get a solid understanding of what we are doing here. Rather than simply regurgitating what Daniel wrote, I&#8217;m going to focus on showing you how his code can be ported for use in your Corona SDK games.
-  </p>
-  <p>
-    The first challenge was, the code relies heavily on using 2D vectors. Now, I didn&#8217;t see a nice built-in way to do this in Corona or Lua for that matter. So I decided to roll my own Vector2D class. For those Corona SDK veterans reading this, feel free to blast me in the comments if I&#8217;m reinventing the wheel with this and just failed to fully read the documentation. Otherwise, enjoy this Vector2D class!
-  </p>
-  <p>
-    <a href="https://gist.github.com/1006414">Here is the link</a> to the gist containing that file.
-  </p>
-  <p>
-    Here is a short snippet of that class just to add to the aesthetics of this post:
-  </p>
-  <div>
-    <pre>&lt;code class=’lua’>function Vector2D:new(x, y)  – The constructor
-  local object = { x = x, y = y }
-  setmetatable(object, { __index = Vector2D })  – Inheritance
-  return object
-end
-<p>function Vector2D:normalize()
-local temp
-temp = self:magnitude()
-if temp &gt; 0 then
-self.x = self.x / temp
-self.y = self.y / temp
-end
-end</p>
-<p>function Vector2D:dot(vec)
-return self.x * vec.x + self.y * vec.y
-end&lt;/code&gt;</pre></p>
-  </div>
-  <p>
-    Basically it&#8217;s a lua &#8220;object&#8221; that has an x and y with some helper methods for doing vector math. The lower case methods act on the current self object and the upper case methods act as static class level methods meant to return a new vector. The file is a little sloppy but it gets the job done.
-  </p>
-  <h4>
-    Creating A Boid
-  </h4>
-  <p>
-    In the paper, an autonomous character is called a Boid. There are basically 2 actions that we need to implement that are needed in most of the behaviors. They are <strong>steer</strong> and <strong>seek</strong>. <strong>Steer</strong> is the basis for all of the autonomous behaviors. Given a Vector2D as the target, it will return a new Vector2D for the boid&#8217;s acceleration in the direction of the target. We simply wrap this call in the <strong>seek</strong> method. Now, any behavior can call <strong>seek</strong> in order to direct the boid towards a target.
-  </p>
-  <p>
-    <a href="https://github.com/brandontreb/Boids/blob/master/Boid.lua">Here is a link to our Boid on github</a>
-  </p>
-  <p>
-    A snippet of the wander function
-  </p>
-  <div>
-    <pre>&lt;code class=’lua’>function Boid:wander()
-    local wanderR = 16.0
-    local wanderD = 60.0
-    local change  = 0.5
-<pre><code>local negChange = math.random(2)
-local randomNum = math.random() * change
-if negChange == 2 then
-    self.wanderTheta = self.wanderTheta - randomNum
-else 
-    self.wanderTheta = self.wanderTheta + randomNum
-end 
-
-local circleLoc = self.vel:copy()
-
-circleLoc:normalize() 
-circleLoc:mult(wanderD)
-circleLoc:add(self.loc)
-
-local circleOffset = Vector2D:new(wanderR*math.cos(self.wanderTheta), 
-    wanderR*math.sin(self.wanderTheta))
-local target = circleLoc:copy()
-target:add(circleOffset)
-
-self.acc:add(self:steer(target))
-</code></pre>
-<p>end&lt;/code&gt;</pre></p>
-  </div>
-  <p>
-    What I have done is taken the code from <a href="http://www.shiffman.net/itp/classes/nature/week06_s09/wander/">Daniel Shiffman&#8217;s processing project</a> and ported it directly to lua. As of right now, I have only implemented wander, however you can see how easy it is to implement other behaviors using the same techniques. Since Daniel has processing code for each of them, it&#8217;s a simple matter of making them work in your lua class.
-  </p>
-  <p>
-    The way wander works is, it picks random points on a circle to steer towards. These random points only vary by a fraction of a radian (defined by the <strong>change</strong> variable above) from the current steer point. The larger the change value is, the more your boid will appear jittery. This value must be tweaked to fit the wander style for your game. Based on my testing, .5 seems to generate a pretty smooth wander path.
-  </p>
-  <h4>
-    Putting It All Together
-  </h4>
-  <p>
-    In your own code you might want to build directly on top of my boid class or subclass it for each boid type. In the following example, I&#8217;m going to show you how to simply run our boid class and watch some dots wander around (hang on to your hats).
-  </p>
-  <p>
-    <a href="https://github.com/brandontreb/Boids/blob/master/main.lua">Here is a link to main.lua on github</a>, but I have also pasted it here so we can talk about it.
-  </p>
-  <div>
-    <pre>&lt;code class=’lua’>local Boid = require(‘Boid’)
-<p>– Define some limiting constants
-MAX_FORCE = 1.75
-MAX_SPEED = 2.0</p>
-<p>local wanderers = {}</p>
-<p>function animate(event)
-for i=1,#wanderers do
-local wanderer = wanderers[i]
-wanderer:wander()
-wanderer:run()
-end
-end</p>
-<p>function Main()
-math.randomseed( os.time() )</p>
-<pre><code>for i=1,10 do
-    local loc = Vector2D:new(display.contentWidth / 2,display.contentWidth / 2)
-    local wanderer = Boid:new(loc,MAX_FORCE,MAX_SPEED)
-    table.insert(wanderers,wanderer)
-end
-
-Runtime:addEventListener( &quot;enterFrame&quot;, animate );
-</code></pre>
-<p>end</p>
-<p>Main()&lt;/code&gt;</pre></p>
-  </div>
-  <p>
-    Here we declare an array of wanderers. In the Main() method we initialize each one, insert them into the array, and add a hook to call our animate method for each frame. Inside of the animate method, we simply tell each wanderer to wander and then run itself. The boid class will take care of the rest.
-  </p>
-  <p>
-    One thing to note is, the boids are unaware of each other at this time. That requires a cohesion method. I have it written and might post it up at a later time; I just want to keep things simple for now. Please feel free to ask me questions in the comments or <a href="http://twitter.com/brandontreb">write me on Twitter</a>.
-  </p>
-  <p>
-    You can download or fork the full source for this project <a href="https://github.com/brandontreb/Boids">here</a>.
-  </p>
-  <p>
-    Happy Coding!
-  </p>
-  <p>
-    <span style="font-family: ‘Lucida Grande’;"><strong><span style="font-weight: normal;"><span style="font-family: arial, verdana, tahoma, sans-serif; font-size: 13px; line-height: 20px;"><em>﻿﻿This post is part of <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://idevblogaday.com/">iDevBlogADay</a>, a group of indie iOS development blogs featuring two posts per day. You can keep up with iDevBlogADay through the <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://idevblogaday.com/">web site</a>, <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://feeds.feedburner.com/idevblogaday">RSS feed</a>, or <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://twitter.com/#search?q=%23idevblogaday">Twitter</a>.</em></span></span></strong></span>
-  </p>
-  <div style="">
-    <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Autonomous Steering Behaviors In Corona SDK Games" data-url="http://brandontreb.com/autonomous-steering-behaviors-in-corona-sdk-games"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
-  </div>
-  
-  </section>
-  </section>
-  
-  <a href="https://brandon_swoop.ngrok.io/2011/06/04/autonomous-steering-behaviors-in-corona-sdk-games/" class="u-url">
-	<aside class="dates">
-	  <time datetime="2011-06-04 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Jun 4</time>
-	</aside>
-  </a>
-</article>
-</li>
-<span class="separator"><span class="divider"></span></span>
-
-	
-		<li>
-<article>
-  
-  <section class="post-body">
-  <header>
-	<h2><a href="https://brandon_swoop.ngrok.io/2011/05/27/check-out-autocorrector-promo-codes/">Check Out AutoCorrector &#43; Promo Codes!</a></h2>
-  </header>
-  <section class="post-body">
-	<p><img src="/img/post_images/2011/05/iPhone Screenshot 1.jpeg" width="250" style="float:left;padding:5px;margin:5px;" /> So, this blog post might sound like a lame press release, but I actually do want to talk about a cool app some buddies of mine created. Just read it in a cheesy used car salesman voice and it will be a lot <del>less</del> more enjoyable.</p>
-<h4 id="the-problem">The Problem</h4>
-<p>Have you ever tried to type shorthand text to a friend and it come out completely wrong? For example: AFK -&gt; AFT, AKA -&gt; Aja. Or maybe your friend has an uncommon nickname that auto corrects to something hilarious…</p>
-<h4 id="enter-autocorrector">Enter AutoCorrector</h4>
-<p><a href="http://twitter.com/cruffenach">@cruffenach</a> , <a href="http://twitter.com/matt_tuzzolo">@matt_tuzzolo </a>, and <a href="http://twitter.com/damian_r">@damian_r</a> just released an app for the iPhone called <a href="http://bit.ly/imG1JN">AutoCorrector</a>! It’s an app that allows you add words to your iPhone’s auto correct dictionary. Once added, the iPhone will stop pestering you to auto correct uncommon/shorthand words that you frequently type.</p>
-<h4 id="how-it-works">How It Works</h4>
-<p>Adding words directly to the dictionary would be against the Apple SDK terms of use as it would require your app to run outside of it’s “sandbox”. However, clever @cruffenach realized that when you add comma separated words to a contact’s nickname in the address book, they get added automatically to the iPhone’s dictionary.</p>
-<p>This actually makes a lot of sense when you think about it. If you have a friend with a nickname, chances are you will want to address that person at some point by that nickname. It would get very annoying if you iPhone tried to autocorrect you every time you tried to type that friend’s name.</p>
-<p>Auto corrector simply uses the AddressBook framework to maintain a contact with a nickname containing a list of words you have added. When you add a new word, it simply updates this contact.</p>
-<h4 id="why-use-auto-corrector">Why Use Auto Corrector?</h4>
-<p>Sure you could just do this manually, however it’s a pain and requires too many steps (6 taps vs. 2 taps for AC). Also, auto corrector provides a beautiful interface for entering and managing words you have added.</p>
-<p><strong>Word Packs!</strong><br>
-Bundled with AC, comes the SMS shorthand word pack with 116 words ready to install instantly. In the near future, the guys plan on creating a ton more word packs as well as provide a portal for community packs.</p>
-<p>I’m pretty excited about this app and really think it has a good future.</p>
-<p><a href="http://bit.ly/imG1JN">Download it here</a></p>
-<p>What do you think? Would/did you buy it?</p>
-<p><strong>Edit</strong><br>
-Here are some promo codes!</p>
-<pre>4YMPYNFJEWNE
-MY6FTY49M4F6
-H9KYWH9J4YPY
-XW4EXHM67R34
-AR6JN3RJYFE6
-</pre>
-<div style="">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Check Out AutoCorrector + Promo Codes!" data-url="http://brandontreb.com/check-out-autocorrector-promo-codes"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
-</div>
-  
-  </section>
-  </section>
-  
-  <a href="https://brandon_swoop.ngrok.io/2011/05/27/check-out-autocorrector-promo-codes/" class="u-url">
-	<aside class="dates">
-	  <time datetime="2011-05-27 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, May 27</time>
-	</aside>
-  </a>
-</article>
-</li>
-<span class="separator"><span class="divider"></span></span>
-
-	
-		<li>
-<article>
-  
-  <section class="post-body">
-  <header>
-	<h2><a href="https://brandon_swoop.ngrok.io/2011/04/22/beginning-jailbroken-ios-development-building-and-deployment/">Beginning Jailbroken iOS Development &amp;#8211; Building And Deployment</a></h2>
-  </header>
-  <section class="post-body">
-	<p>Welcome to the next installment of my jailbroken iOS development series. If you haven’t already done so, read my previous post to get up to speed.</p>
-<p><a href="/beginning-jailbroken-ios-development-getting-the-tools/">Beginning Jailbroken iOS Development – Getting The Tools</a></p>
-<p>Now that your environment has been set up, it’s time to start hacking your project, building, and deploying it. This tutorial will be fairly quick and will just demonstrate how to build a .deb file and install it on your device. This will not cover creating a Cydia repository for public access (this is for a later tutorial).</p>
-<h4 id="introduction">Introduction</h4>
-<p>Start by creating a simple project. Refer to the <a href="/beginning-jailbroken-ios-development-getting-the-tools/">previous tutorial</a> to determine how to do this. I will use the example of the #1 iphone/application and will be calling it fooProject.</p>
-<div>
-  <pre>&lt;code class=’bash’>$/opt/theos/bin/nic.pl
-NIC 1.0 - New Instance Creator
-——————————
-  [1.] iphone/application
-  [2.] iphone/library
-  [3.] iphone/preference_bundle
-  [4.] iphone/tool
-  [5.] iphone/tweak
-Choose a Template (required): 1
-Project Name (required): fooProject
-Package Name [com.yourcompany.fooproject]:    
-Author/Maintainer Name [Brandon Trebitowski]: 
-Instantiating iphone/application in fooproject/…
-Done.&lt;/code></pre>
-</div>
-<p>This will create a new directory for our project with the following files.</p>
-<ol>
-<li><strong>control</strong>: Contains information about your application/tweak. This is the info you see when you install something from Cydia (name, author, version, etc…)</li>
-<li><strong>[applicationName]Application.mm</strong>: This is essentially your appDelegate file. It creates a window, adds your RootViewController and displays it.</li>
-<li><strong>main.m</strong> : Same main file that you would use in an iPhone project. Just initializes your [applicationName]Application.mm file on launch.</li>
-<li><strong>Makefile</strong>: contains the necessary build commands to compile your project. I’ll go over this in detail in a bit</li>
-<li><strong>Resources</strong>: This folder contains your info.plist and is also where you can place all of your images</li>
-<li><strong>RootViewController.h/mm</strong>: A simple view controller</li>
-</ol>
-<h4 id="the-makefile">The Makefile</h4>
-<p>theos provides some great tools that simplify the build process as much as possible. I know some of you might shudder at the sound of a Makefile, but trust me, it’s very painless.</p>
-<p>Let’s first take a look at the anatomy of the Makefile that was generated.</p>
-<div>
-  <pre>&lt;code class=’bash’>include theos/makefiles/common.mk&lt;/code></pre>
-</div>
-<p>This line simply tells theos to include the common make commands in your build script to save you some work.</p>
-<div>
-  <pre>&lt;code class=’bash’>APPLICATION_NAME = fooProject&lt;/code></pre>
-</div>
-<p>The name of the application we are building. The Makefile will use this constant to do a number of things under the hood. Don’t modify this unless your application changes names.</p>
-<div>
-  <pre>&lt;code class=’bash’>[applicationName]_FILES = main.m fooProjectApplication.mm RootViewController.mm&lt;/code></pre>
-</div>
-<p>This is the meat of the Makefile. It’s the list of m (or mm in this case) files that need to be compiled. *Note: you do not add your .h files here. So, whenever you add a new .m file to the project, make sure to append it to this list or it won’t get built.</p>
-<div>
-  <pre>&lt;code class=’bash’>[applicationName]_FRAMEWORKS = UIKit Foundation QuartzCore AudioToolbox CoreGraphics&lt;/code></pre>
-</div>
-<p>This line is not included by default, but is needed if you want to use ANY frameworks; be them Apple’s or h4x0red ones.</p>
-<div>
-  <pre>&lt;code class=’bash’>include $(THEOS_MAKE_PATH)/application.mk&lt;/code></pre>
-</div>
-<p>More defaults to help theos build your project.</p>
-<h4 id="setting-up-your-environment">Setting up Your Environment</h4>
-<p>Do you remember in the last tutorial that we had to set an environment variable in order to use theos? Well, we need to set a couple more to build and deploy.</p>
-<p>Here are the 3 that you MUST have.</p>
-<div>
-  <pre>&lt;code class=’bash’>export THEOS=/opt/theos/
-export SDKVERSION=4.3
-export THEOS_DEVICE_IP=192.168.1.122&lt;/code></pre>
-</div>
-<img src="/img/post_images/2011/04/sbsettings.png" style="float:right;padding:5px" />
-<p>The first line, you should have already done. Otherwise you would not have been able to run the nic tool above. The second defines your current SDK version. This will tell theos where to look for your frameworks and whatnot. (ex If you only have 4.2 installed, set this to 4.2). Finally, the last line, tells theos the ip address of your device.</p>
-<p>Once theos does the package install, it will sftp the package to your device for installation. One thing to note here is your iPhone MUST be on the same network as the computer you are developing on.</p>
-<p>If you don’t know your device’s ip address, it’s in the SBSettings menu. If you don’t have SBSettings, go download it from Cydia and think about why you would have a jailbroken device without this app installed…</p>
-<div style="clear:both">
-  &nbsp;
-</div>
-<h4 id="building-the-project">Building The Project</h4>
-<p>Building is just as easy as running the make command inside of your project’s root directory.</p>
-<p>Here is an example of building my fooProject app using the command:</p>
-<p><strong>make</strong>.</p>
-<div>
-  <pre>&lt;code class=’bash’>$ make
-Making all for application fooProject…
- Compiling main.m…
- Compiling fooProjectApplication.mm…
- Compiling RootViewController.mm…
- Linking application fooProject…
- Stripping fooProject…
- Signing fooProject…&lt;/code></pre>
-</div>
-<p>If your project contains errors, they will be flushed out here. Also, theos treats warnings as errors (as should you) 😉 . So, if you have any warnings you won’t be able to build.</p>
-<p>When you are ready to distribute your application, you must build a .deb package. Luckily, theos does this for us with a simple command:</p>
-<p><strong>make package</strong>.</p>
-<div>
-  <pre>&lt;code class=’bash’>make package
-Making all for application fooProject…
-make[2]: Nothing to be done for ‘internal-application-compile’.
-Making stage for application fooProject…
- Copying resource directories into the application wrapper…
-dpkg-deb: building package ‘com.yourcompany.fooproject’ in ‘/Users/brandontreb/Desktop/fooproject/com.yourcompany.fooproject_0.0.1-1_iphoneos-arm.deb’.&lt;/code></pre>
-</div>
-<p>You should now see a file like <em>com.yourcompany.fooproject_0.0.1-1_iphoneos-arm.deb</em> in your project’s root directory. One great feature of theos is it handles versioning automatically. So subsequent builds will increment the build number. If you change your version in the info.plist file, it will start the build counter over (2-1, 2-2, etc…).</p>
-<p>At this point, you <em>could</em> sftp this file to your device and run:</p>
-<div>
-  <pre>&lt;code class=’bash’>dpkg -i com.yourcompany.fooproject_0.0.1-1_iphoneos-arm.deb&lt;/code></pre>
-</div>
-<p>as root to test the installation. However, that is quite a bit of a pain. Luckily, theos will do all of this for you by simply using the command:</p>
-<p><strong>make package install</strong></p>
-<div>
-  <pre>&lt;code class=’bash’>$ make package install
-Making all for application fooProject…
-make[2]: Nothing to be done for `internal-application-compile’.
-Making stage for application fooProject…
- Copying resource directories into the application wrapper…
-dpkg-deb: building package ‘com.yourcompany.fooproject’ in ‘/Users/brandontreb/Desktop/fooproject/com.yourcompany.fooproject_0.0.1-3_iphoneos-arm.deb’.
-install.copyFile "/Users/brandontreb/Desktop/fooproject/com.yourcompany.fooproject_0.0.1-3_iphoneos-arm.deb" "com.yourcompany.fooproject_0.0.1-3_iphoneos-arm.deb"
-root@192.168.1.122’s password: 
-com.yourcompany.fooproject_0.0.1-3_iphoneos-arm.deb                                                                                                                                                                                                                              100% 4434     4.3KB/s   00:00    
-install.exec "dpkg -i com.yourcompany.fooproject_0.0.1-3_iphoneos-arm.deb"
-root@192.168.1.122’s password: 
-Selecting previously deselected package com.yourcompany.fooproject.
-(Reading database … 2006 files and directories currently installed.)
-Unpacking com.yourcompany.fooproject (from com.yourcompany.fooproject_0.0.1-3_iphoneos-arm.deb) …
-Setting up com.yourcompany.fooproject (0.0.1-3) …&lt;/code></pre>
-</div>
-<p>You will have to enter your password several times during the process. The default is <strong>alpine</strong>.</p>
-<p>After this has been run, you will need to restart (or respring) your iPhone. Respringing takes a simple button tap if you have SBSettings installed (have you installed it yet?).</p>
-<h4 id="conclusion">Conclusion</h4>
-<p>You now have all of the tools needed to start hacking your very first jailbroken iOS application. In the next tutorial, we are going to learn about MobileSubstrate hacks and how to overwrite Apple functionality. I will give a basic example of how to display an alert message every time your device boots up.</p>
-<p>Until next time, happy hacking!</p>
-<div style="">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Beginning Jailbroken iOS Development - Building And Deployment" data-url="http://brandontreb.com/beginning-jailbroken-ios-development-building-and-deployment"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
-</div>
-  
-  </section>
-  </section>
-  
-  <a href="https://brandon_swoop.ngrok.io/2011/04/22/beginning-jailbroken-ios-development-building-and-deployment/" class="u-url">
-	<aside class="dates">
-	  <time datetime="2011-04-22 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Apr 22</time>
-	</aside>
-  </a>
-</article>
-</li>
-<span class="separator"><span class="divider"></span></span>
-
-	
-		<li>
-<article>
-  
-  <section class="post-body">
-  <header>
-	<h2><a href="https://brandon_swoop.ngrok.io/2011/04/14/half-off-iphone-and-android-books-from-manning-publishing-today/">Half Off iPhone And Android Books From Manning Publishing Today</a></h2>
-  </header>
-  <section class="post-body">
-	<p>Last year I wrote the second edition of <a href="http://manning.com/trebitowski">iPhone and iPad In Action</a>. It was published by <a href="http://manning.com/">Manning Publishing</a> and today they are offering half off all of their mobile software development books!</p>
-<p>Simply use the code:</p>
-<h2 id="dotd0414">dotd0414</h2>
-<p>when you check out at <a href="http://manning.com">manning.com</a> for a half price discount on the following titles:</p>
-<ul style="LIST-STYLE-TYPE: disc; MARGIN-TOP: 0px;">
-  <span style="LINE-HEIGHT: 120%; COLOR: #727272; FONT-SIZE: 10pt; text-align:left; FONT-FAMILY: Lucida Grande, Arial, Helvetica, Geneva, Verdana, sans-serif;"> </p> 
-  <li>
-    <a style="FONT-STYLE: italic; COLOR: #727272; TEXT-DECORATION: none" href="http://www.manning.com/trebitowski/" shape=rect track="on" linktype="link">iPhone and iPad in Action <b>That&#8217;s mine!</b></a>
-  </li>
-  <li>
-    <a style="FONT-STYLE: italic; COLOR: #727272; TEXT-DECORATION: none" href="http://www.manning.com/jharrington/" shape=rect track="on" linktype="link">iOS 4 in Action</a>
-  </li>
-  <li>
-    <a style="FONT-STYLE: italic; COLOR: #727272; TEXT-DECORATION: none" href="http://www.manning.com/cahill/" shape=rect track="on" linktype="link">iPhone in Practice</a>
-  </li>
-  <li>
-    <a style="FONT-STYLE: italic; COLOR: #727272; TEXT-DECORATION: none" href="http://www.manning.com/collins/" shape=rect track="on" linktype="link">Android in practice</a>
-  </li>
-  <li>
-    <a style="FONT-STYLE: italic; COLOR: #727272; TEXT-DECORATION: none" href="http://www.manning.com/franco/" shape=rect track="on" linktype="link">Hello! iPhone</a>
-  </li>
-  <li>
-    <a style="FONT-STYLE: italic; COLOR: #727272; TEXT-DECORATION: none" href="http://www.manning.com/crawford/" shape=rect track="on" linktype="link">iPad in Practice</a>
-  </li>
-  <li>
-    <a style="FONT-STYLE: italic; COLOR: #727272; TEXT-DECORATION: none" href="http://www.manning.com/harwani/" shape=rect track="on" linktype="link">Quick & Easy iPhone Programming</a>
-  </li>
-  <li>
-    <a style="FONT-STYLE: italic; COLOR: #727272; TEXT-DECORATION: none" href="http://www.manning.com/ableson2/" shape=rect track="on" linktype="link">Android in Action, Second Edition</a>
-  </li>
-  <li>
-    <a style="font-style: italic; color: rgb(114, 114, 114); text-decoration: none;" track="on" href="http://www.manning.com/ferraro/" shape="rect" linktype="link">Location-Aware Applications</a>&nbsp;
-  </li>
-  <li>
-    <a style="font-style: italic; color: rgb(114, 114, 114); text-decoration: none;" track="on" href="http://www.manning.com/fairbairn/" shape="rect" linktype="link">Objective-C Fundamentals</a>&nbsp;
-  </li>
-  <li>
-    <a style="font-style: italic; color: rgb(114, 114, 114); text-decoration: none;" track="on" href="http://www.manning.com/garcia2/" shape="rect" linktype="link">Sencha Touch in Action</a>&nbsp;
-  </li>
-  <li>
-    <a style="font-style: italic; color: rgb(114, 114, 114); text-decoration: none;" track="on" href="http://www.manning.com/perga/" shape="rect" linktype="link">Windows Phone 7 in Action</a>&nbsp;
-  </li>
-  <p>
-    </span></ul> 
-<pre><code>&lt;p&gt;
-  This deal is only available for today &lt;b&gt;April 14th&lt;/b&gt;, so go right now&amp;#8230;
-&lt;/p&gt;
-
-&lt;div style=&quot;&quot;&gt;
-  &lt;a href=&quot;http://twitter.com/share&quot; class=&quot;twitter-share-button&quot; data-count=&quot;horizontal&quot; data-text=&quot;Half Off iPhone And Android Books From Manning Publishing Today&quot; data-url=&quot;http://brandontreb.com/half-off-iphone-and-android-books-from-manning-publishing-today&quot;  data-via=&quot;brandontreb&quot; data-related=&quot;brandontreb:&quot;&gt;Tweet&lt;/a&gt;
-&lt;/div&gt;
-</code></pre>
-  
-  </section>
-  </section>
-  
-  <a href="https://brandon_swoop.ngrok.io/2011/04/14/half-off-iphone-and-android-books-from-manning-publishing-today/" class="u-url">
-	<aside class="dates">
-	  <time datetime="2011-04-14 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Apr 14</time>
-	</aside>
-  </a>
-</article>
-</li>
-<span class="separator"><span class="divider"></span></span>
-
-	
-		<li>
-<article>
-  
-  <section class="post-body">
-  <header>
-	<h2><a href="https://brandon_swoop.ngrok.io/2011/04/13/my-journey-to-create-the-inpulsenotifier-for-jailbroken-iphones-part-2/">My Journey To Create The inPulseNotifier For Jailbroken iPhones &amp;#8211; Part 2</a></h2>
-  </header>
-  <section class="post-body">
-	<p>This post is a continuation from my previous post <a href="/my-journey-to-create-the-inpulsenotifier-for-jailbroken-iphones-part-1/">found here</a>.</p>
-<h4 id="a-mobilesubstrate-tweak">A MobileSubstrate Tweak?</h4>
-<p>After I completed a basic app that allowed me to send various notification types from my iPhone to my inPulse watch, I quickly realized that this would not work if I wanted to hook into the iPhone’s notification system. A Google search revealed to me that I had to make MobileSubstrate hack to overwrite the default notification functionally.</p>
-<p>** What the heck is Mobile Substrate? **</p>
-<p>Here is the description according to <a href="http://iphonedevwiki.net/index.php/MobileSubstrate">iPhoneDevWiki.net</a>.</p>
+	<p>This past weekend, I attended the voices that matter conference as a sponsor for a new product my team is working called <a href="http://maasive.co">MaaSive</a>. We had an absolute blast at the conference and I learned quite a bit from all of the speakers.</p>
+<p>Here were a few of my favorite parts:</p>
+<h4 id="keynote-by-graeme-devine">Keynote by Graeme Devine</h4>
+<p>For those of you who don’t know Graeme is a legend in the game development industry. He was responsible for titles such as Quake 3, 7th guest, and Halo Wars. His presentation entitled “Social Gaming is Dead” was spot on. In it Graeme talked about how game developers have become less focused on the quality of games and more focused on “how do I make a profit?”. A statement that has stuck out to me is:</p>
 <blockquote>
-<p>MobileSubstrate is the de facto framework that allows 3rd-party developers to provide run-time<br>
-patches (“MobileSubstrate extensions”) to system functions, similar to Application Enhancer on<br>
-the OS X. MobileSubstrate consists of 3 major components: MobileHooker, MobileLoader and safe mode.</p>
+<p>“Be generous with fun. We are mean with it!”</p>
 </blockquote>
-<p>Basically, it allows you to “hook” into any method of any class on the iPhone. I will talk in a later tutorial about how to see what methods are available. Here is a sample for hooking into the CFShow() method:</p>
-<div>
-  <pre>&lt;code class=’objc’>static void (*original_CFShow)(CFTypeRef obj);  // a function pointer to store the original CFShow().
-void replaced_CFShow(CFTypeRef obj) {           // our replacement of CFShow().
-  printf("Calling original CFShow(%p)…", obj);
-  original_CFShow(obj);                         // calls the original CFShow.
-  printf(" done.\n");
-}
-…
-// hook CFShow to our own implementation.
-MSHookFunction(CFShow, replaced_CFShow, &original_CFShow);
-// From now on any call to CFShow will pass through replaced_CFShow first.
-…
-CFShow(CFSTR("test"));&lt;/code></pre>
-</div>
-<p>Yeah… this looks pretty intense. Luckily, I found a super helpful tool that greatly simplifies this process called <a href="http://iphonedevwiki.net/index.php/Theos/Getting_Started">theos</a>. Check out my <a href="/beginning-jailbroken-ios-development-getting-the-tools/">tutorial on getting started with theos</a>.</p>
-<p>What lead me to theos was the incredible work of <a href="http://www.peterhajas.com/">Peter Hajas</a>. He wrote and <a href="https://github.com/peterhajas/MobileNotifier">open sourced</a> his fantastic notifications app called Mobile Notifier. Without it, I would have been dead in the water. After chatting downloading his code and nagging him on <a href="https://twitter.com/#!/peterhajas">Twitter</a>, he pointed me to theos.</p>
-<h4 id="working-with-theos">Working With theos</h4>
-<p>As I mentioned in <a href="/beginning-jailbroken-ios-development-getting-the-tools/">my tutorial</a>, theos is a great tool to aid in the development of a Mobile Substrate Tweak. Instead of the complexities above to hook into the functionality of classes, you simply do something like this:</p>
-<div>
-  <pre>&lt;code class=’objc’>%hook SpringBoard
-<p>-(void)applicationDidFinishLaunching:(id)application
-{ <br>
-%orig;</p>
-<pre><code>INPreferenceManager *preferenceManager = [[[INPreferenceManager alloc] init] autorelease];
-BOOL enabled = [[preferenceManager.preferences valueForKey:@&quot;inpulseEnabled&quot;] boolValue];
-if(enabled) {
-    manager = [[INAlertManager alloc] init];
-    [manager connectToWatch];
-}
-</code></pre>
-<p>}</p>
-<ul>
-<li>(void) dealloc {
-[manager release];
-manager = nil;
-%orig;
-}</li>
-</ul>
-<p>%end;&lt;/code&gt;</pre></p>
-</div>
-<p>This is a simple hook that allows me to overwrite the functionality of Springboard’s applicationDidFinishLaunching method. <a href="https://twitter.com/#!/dhowett">DHowett</a> (creator of theos), has done a brilliant job giving devs quite a few commands like %orig (which calls the original method) and %hook (starts a hook).</p>
-<p>The reason this works is, the file you code in (called Tweaks.xm) gets run through a preprocessor called Logos (which he also wrote). It replaces these simple commands with the complex stuff you see above before compiling your project. Using this technique, you can hook into anything. I will have a tutorial on this in the very near future, so make sure you <a href="feeds.feedburner.com/brandontreb">subscribe to my RSS feed</a> if you haven’t already.</p>
-<h4 id="copy-and-paste">Copy And Paste</h4>
-<p>OK, so I copied some of Peter’s code (he’s well cited in the source and I kept his license in the headers too). He had already solved the problem of capturing most of the iPhone’s notifications and this is precisely what I needed. So I Frankensteined my code and his to create the first version of <a href="https://github.com/brandontreb/inPulseNotifier">inPulseNotifier</a>.</p>
-<p>This current version supports SMS, Push Notifications, Local Notifications, and Calendar Notifications.</p>
-<h4 id="deployment">Deployment</h4>
-<p>Even though I open sourced the code for the app, I couldn’t possibly expect users to build the code themselves and install it on their devices. So I had to learn about setting up my own Cydia repository.</p>
-<p>A Cydia repository allows users to browse your applications/tweaks through the Cydia application <a href="http://www.saurik.com/">created by Saurik</a>. This is the method of choice for deploying jailbroken iPhone applications.</p>
-<p>Saurik has a very detailed tutorial on creating a Cydia repository <a href="http://www.saurik.com/id/7">here</a>.</p>
-<p>(In case you are wondering, my Cydia repo is hosted at <a href="http://brandontreb.com/cydia">http://brandontreb.com/cydia</a> )</p>
-<h4 id="ok-how-do-i-install-it">OK, How Do I Install It?</h4>
-<p>Great question I assume you might ask. I have written a tutorial about installing it on your iPhone <a href="http://www.getinpulse.com/hack/forum/viewtopic.php?p=545#p545">here</a>.</p>
-<h4 id="plans-for-the-future">Plans For The Future</h4>
-<p>Well, at the moment development has slowed as I prepare for a few changes in my life. However, in the coming months, I intend on doing the following updates.</p>
-<ol>
-<li>Remove the dependency on Insomnia for preventing the phone from sleeping. I have found a version of their source that I can integrate into my own code.</li>
-<li>Add support for phone calls</li>
-<li>Add support for emails</li>
-<li>Create an SBSettings toggle to allow rapid enabling/disabling</li>
-<li>Auto-reconnect after disconnecting from the watch</li>
-</ol>
+<p>Basically, we are charging our users for fun or making them do real work (see Farmville) in order to obtain it. His message was “stop it, make something fun, and dont’t focus on profit”. Otherwise you are <strong>doomed</strong>.</p>
+<p><a href="https://twitter.com/#!/zaphodgjd">Follow Graeme on Twitter</a></p>
+<h4 id="moving-to-3d-by-mike-daily">Moving To 3D by Mike Daily</h4>
+<p>Mike is a good friend of mine and I look forward to hanging out with him at the conference each year. His talk was all about showing the developers how easy it actually is to create a 3D game without the use of a game engine. Mike’s demo (show below) was an absolutely incredible space shooter where you used the gyroscope to maneuver around.</p>
+<p>Mike will be posting a series on <a href="http://www.71squared.com/">his blog</a> in the near future about how to make his game using GLKit in the near future.</p>
+<p><a href="http://vimeo.com/31690099">VTM Game Prototype</a> from <a href="http://vimeo.com/michaeldaley">Michael Daley</a> on <a href="http://vimeo.com">Vimeo</a>.</p>
+<p><a href="https://twitter.com/#!/mikedaley">Follow Mike on Twitter</a></p>
+<h4 id="storyboarding-by-erica-sadun">Storyboarding by Erica Sadun</h4>
+<p>Erica is an OG (original gangster) when it comes to iOS development. She has been in the space since way before the first SDK was published (in fact she had a jailbroken dev book almost ready to go). Her current book, <a href="http://www.amazon.com/iPhone-Developers-Cookbook-Building-Applications/dp/0321659570">The iPhone Developer’s Cookbook</a> is a beast containing almost 900 pages!!!</p>
+<p>Her talk showed how easy it is to use storyboarding and just how powerful the technique can be.</p>
+<p><a href="https://twitter.com/#!/ericasadun">Follow Erica on Twitter</a></p>
 <h4 id="conclusion">Conclusion</h4>
-<p>Hacking for the inPulse watch has been a new and exciting experience. The team over there has really created something special and I can’t wait to see what the future holds for them (hopefully a touchscreen).</p>
-<p>I’d love to hear your thoughts in the comments. And <a href="feeds.feedburner.com/brandontreb">stay tuned</a> for some jailbroken dev tutorials based on my experiences.</p>
+<p>It should be obvious from this post, that the VTM conference was incredible to say the least. If you didn’t attend, I strongly urge you to check out their next one. Hopefully you will get to blog about <em>my</em> talk at it (assuming I get my crap together).</p>
 <p>Happy Coding!</p>
 <div style="">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="My Journey To Create The inPulseNotifier For Jailbroken iPhones - Part 2" data-url="http://brandontreb.com/my-journey-to-create-the-inpulsenotifier-for-jailbroken-iphones-part-2"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Voices That Matter Conference: Highlights" data-url="http://brandontreb.com/voices-that-matter-conference-highlights"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
 </div>
   
   </section>
   </section>
   
-  <a href="https://brandon_swoop.ngrok.io/2011/04/13/my-journey-to-create-the-inpulsenotifier-for-jailbroken-iphones-part-2/" class="u-url">
+  <a href="https://brandon_swoop.ngrok.io/2011/11/16/voices-that-matter-conference-highlights/" class="u-url">
 	<aside class="dates">
-	  <time datetime="2011-04-13 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Apr 13</time>
+	  <time datetime="2011-11-16 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Nov 16</time>
 	</aside>
   </a>
 </article>
@@ -995,52 +493,25 @@ manager = nil;
   
   <section class="post-body">
   <header>
-	<h2><a href="https://brandon_swoop.ngrok.io/2011/04/12/my-journey-to-create-the-inpulsenotifier-for-jailbroken-iphones-part-1/">My Journey To Create The inPulseNotifier For Jailbroken iPhones &amp;#8211; Part 1</a></h2>
+	<h2><a href="https://brandon_swoop.ngrok.io/2011/11/16/caterpillar-hd-now-in-the-app-store-tutorial-series-to-follow/">Caterpillar-HD Now In The App Store: Tutorial Series To Follow</a></h2>
   </header>
   <section class="post-body">
-	<p>Many of you may have seen my tweets or blog posts regarding my development of a native iOS interface for the <a href="http://getinpulse.com">inPulse Watch</a>. I just wanted to share a bit with you about the development process and talk about my updates moving forward.</p>
-<h4 id="what-is-the-inpulse-watch">What is the inPulse Watch?</h4>
-<p>For those of you who don’t know, the inPulse watch is a programmable wristwatch with a bluetooth controller. It can run a single app at a time on top of it’s firmware that is installed on the watch via a bluetooth interface with your computer. People have written all sorts of apps from analog clocks to roguelikes and Connway’s Game of Life. Check out <a href="http://inpulsewatch.com/watchapps.asp">http://inpulsewatch.com/watchapps.asp</a> to see the latest apps.</p>
-<center>
-  <br /> <img src="http://ec2-50-16-103-63.compute-1.amazonaws.com/images/inPulse.png" style="float:left;margin:25px;" width="100" /><br /> <img src="http://inpulsewatch.com/apps/logo14.JPG" style="float:left;margin:25px;" width="100" /><br /> <img src="http://inpulsewatch.com/apps/logo12.jpg" style="float:left;margin:25px;" width="100" /><br />
-</center>
-<div style="clear:both">
-  &#038;nbsp
-</div></p> 
-<h4 id="it-begins">It Begins</h4>
-<p>After waiting about 10 days for my watch (yeah it’s a long waiting period since they have seen quite a bit of recent success), it finally came in the mail. Enthusiastically, I opened it up and followed their <a href="http://www.getinpulse.com/guide/">getting started guide</a>. Within a few minutes I was running some of the sample applications in the forums.</p>
-<h4 id="no-ios-support">No iOS Support?</h4>
-<p>One of the coolest features of the watch is the ability to have your smartphone notifications show up on it. You are able to read SMS, Email, Calendar, etc… for a wide variety of Blackberry and Android phones.</p>
-<p>After digging around a bit, I was disappointed to see that there was limited (no) iPhone support. They had some old file that used BTStack at some point to communicate a simple canned message to the iPhone. No documentation, no support, nada.</p>
-<h4 id="building-the-app">Building The App</h4>
-<img src="http://code.google.com/p/btstack/logo?cct=1278342571" style="float:left;margin:5px;" />
-<p>As I had no experience developing for a jailbroken iPhone, I had no idea how to even compile this sample app. So, I used the Google machine and found the <a href="http://code.google.com/p/btstack/">Google repository</a> for BTStack (the bluetooth library of choice for jailbroken iOS apps). I was able to download the source and build a sample application that basically connected my iPhone to a bluetooth device.</p>
-<p>Well, this got me started. So I did what any curious developer would do and started plugging crap in. I replaced the sample file that was packaged with BTStack with a slightly modified version of inPulse’s sample iPhone file. Sure enough, I was able to build and install it.</p>
-<h4 id="we-have-connection">We Have Connection</h4>
-<p>After figuring out how to hardcode my watch’s address into the source, I was able to determine that the iPhone had actually connected to the watch. I monitored the packets and threw up an alert view (No NSLogging available at this point) when a connection was made.</p>
-<p>So, now that we are connected, let’s trying sending the sample message…fail! I couldn’t even send the time.</p>
-<p>At this point, I decided to move the code I had written into a sample iPhone project so that I could do attached debugging. This showed me that the packets were arriving on the watch since I received an ack packet back. So, the watch sees the messages, but doesn’t consider them notifications.</p>
-<h4 id="time-to-hit-the-docs">Time to hit the docs</h4>
-<img src="/img/post_images/2011/04/pulse_protocol.png" style="float:right" />  
-Knowing that the packets were received gave me quite a bit of hope. I figured that I must have had the protocol incorrect. So, I dug into the inPulse protocol document which outlined what the packet structures should look like. My C skills aren&#8217;t the strongest so I had to look up quite a few things.
-<p>Sure enough, they had upped the version number of their protocol by 1 and mine was outdated. So, I updated what I could and gave it another shot…fail.</p>
-<p>No messages were displaying. At this point I was ready to give up. I read online somewhere that the BT implementation on the watch was not supported by inPulse and felt dead in the water. So I took a break for a couple days.</p>
-<p>When I came back to it, I was tapping through my watch and noticed that the calendar appointments had some data in them on the watch. Could it be? Did my notifications arrive? (I was trying to send SMS notifications). So I dug into the docs again…</p>
-<h4 id="we-have-a-message">We have a message!!!</h4>
-<img src="/img/post_images/2011/04/hello_world.jpg" style="float:left;margin:10px;" width="200" />
-<p>Sure enough, I had some fields declared as * uint16_t * when they should have been * uint8_t * . My headers were the wrong size!!! All of a sudden I was able to send every type of notification to the watch and have it displayed.</p>
-<p>It was now time to build out an actual application for release to inPulse. The next hurdle would be hooking into the iPhone’s messaging system and forwarding along the messages. Now the real iPhone hacking begins.</p>
-<p><a href="/my-journey-to-create-the-inpulsenotifier-for-jailbroken-iphones-part-2">This post is continued here</a></p>
+	<p>I have just released the update to my Centipede clone called <a href="http://itunes.apple.com/us/app/caterpillar-hd/id479439790?mt=8">Caterpillar</a>. For those of you who don’t know, I am doing a 6 part series on how to create this game over at <a href="http://mobile.tutsplus.com/tutorials/iphone/building-a-caterpiller-game-with-cocos2d/">MobileTuts+</a>.</p>
+<p>This update adds some interesting functionality on which I will be blogging about in the near future.</p>
+<p>I have added iAds to my cocos2D project and when the iAds fail to serve (which is about 75% of the time), I replace them with Admob ads. This was achieved by creating a new Admob ad view inside of the <code>bannerView:didFailToReceiveAdWithError:</code> delegate method.</p>
+<p>I will either post a full tutorial about doing this Here or on Mobile Tuts. Either way, I’ll keep you posted.</p>
+<p>Also, be sure to <a href="http://itunes.apple.com/us/app/caterpillar-hd/id479439790?mt=8">download the game</a>, test it out, and lemme know if you have suggestions. Version 1.1 addressed quite a few issues from feedback (namely poor controls).</p>
+<p>Happy coding!</p>
 <div style="">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="My Journey To Create The inPulseNotifier For Jailbroken iPhones - Part 1" data-url="http://brandontreb.com/my-journey-to-create-the-inpulsenotifier-for-jailbroken-iphones-part-1"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Caterpillar-HD Now In The App Store: Tutorial Series To Follow" data-url="http://brandontreb.com/caterpillar-hd-now-in-the-app-store-tutorial-series-to-follow"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
 </div>
   
   </section>
   </section>
   
-  <a href="https://brandon_swoop.ngrok.io/2011/04/12/my-journey-to-create-the-inpulsenotifier-for-jailbroken-iphones-part-1/" class="u-url">
+  <a href="https://brandon_swoop.ngrok.io/2011/11/16/caterpillar-hd-now-in-the-app-store-tutorial-series-to-follow/" class="u-url">
 	<aside class="dates">
-	  <time datetime="2011-04-12 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Apr 12</time>
+	  <time datetime="2011-11-16 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Nov 16</time>
 	</aside>
   </a>
 </article>

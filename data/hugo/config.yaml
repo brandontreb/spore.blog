@@ -32,6 +32,7 @@ menu:
       weight: 3
 permalinks:
   /posts: /:year/:month/:day/:filename
+  /replies: /replies/:year/:month/:day/:filename
 outputFormats:
   RSS:
     mediatype: application/rss+xml

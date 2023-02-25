@@ -36,8 +36,14 @@ const decodeHTMLEntities = encodedString => {
   });
 }
 
+const hostnameFromUrl = url => {
+  const hostname = url.replace('https://', '').replace('http://', '').split(/[/?#]/)[0];
+  return hostname;
+}
+
   module.exports = {
     slugify,
     randomStringOfLength,
-    decodeHTMLEntities
+    decodeHTMLEntities,
+    hostnameFromUrl
   }
