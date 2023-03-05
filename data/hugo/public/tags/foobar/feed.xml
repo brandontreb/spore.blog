@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>foo,bar on Brandontreb</title>
+    <link>https://brandon_swoop.ngrok.io/tags/foobar/</link>
+    <description>Recent content in foo,bar on Brandontreb</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>brandontreb@gmail.com (Zero Cool)</managingEditor>
+    <webMaster>brandontreb@gmail.com (Zero Cool)</webMaster>
+    <lastBuildDate>Sat, 04 Mar 2023 21:07:48 -0700</lastBuildDate><atom:link href="https://brandon_swoop.ngrok.io/tags/foobar/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Brandontreb - Home</title>
+      <link>https://brandon_swoop.ngrok.io/2023/03/04/brandontreb-home/</link>
+      <pubDate>Sat, 04 Mar 2023 21:07:48 -0700</pubDate>
+      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <guid>https://brandon_swoop.ngrok.io/2023/03/04/brandontreb-home/</guid>
+      <description>i like this 👍</description>
+    </item>
+    
+  </channel>
+</rss>

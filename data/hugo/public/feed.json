@@ -6,72 +6,151 @@
     "feed_url" : "https://brandon_swoop.ngrok.io/feed.json",
     "author" : {
         "name" : "Zero Cool",
-        "url": "https://brandontreb.com",
-        "avatar": "https://avatars.githubusercontent.com/u/92844?v=4"
+        "url": "https://brandon_swoop.ngrok.io",
+        "avatar": "https://brandon_swoop.ngrok.io/avatar.jpeg"
     },
     "items" : [
     {
-        "date_published" : "2023-02-26T18:51:55-07:00",
-        "date_modified" : "2023-02-26T18:51:55-07:00",
-        "id" : "https://brandon_swoop.ngrok.io/2023/02/26/ywovqkrmh6wzh0l7/",
-        "url" : "https://brandon_swoop.ngrok.io/2023/02/26/ywovqkrmh6wzh0l7/",
-        "content_html" : "\u003cp\u003enew wraps in paragraph\n\u003cimg src=\"https://brandon_swoop.ngrok.io/uploads/2023/1677462685033.ayFNcHTRdh96Kumo.JPG\" alt=\"\"\u003e\n\u003cimg src=\"https://brandon_swoop.ngrok.io/uploads/2023/1677462711456.ga3WGjnFmMcE4wsR.jpeg\" alt=\"\"\u003e\u003c/p\u003e\n"
+        "date_published" : "2023-03-04T21:13:21-07:00",
+        "date_modified" : "2023-03-04T21:13:21-07:00",
+        "id" : "https://brandon_swoop.ngrok.io/2023/03/04/qrnujbrczsrnsraq/",
+        "url" : "https://brandon_swoop.ngrok.io/2023/03/04/qrnujbrczsrnsraq/",
+        "content_html" : ""
     },
     {
-        "date_published" : "2023-02-26T18:50:27-07:00",
-        "date_modified" : "2023-02-26T18:50:27-07:00",
-        "id" : "https://brandon_swoop.ngrok.io/2023/02/26/ioygzyl9thisbgvd/",
-        "url" : "https://brandon_swoop.ngrok.io/2023/02/26/ioygzyl9thisbgvd/",
-        "content_html" : "\u003cp\u003ework? two\u003c/p\u003e\n\u003cp\u003e\u003cimg src=\"https://brandon_swoop.ngrok.io/uploads/2023/1677462615246.Qd2mdHgR54tVLU3N.jpeg\" alt=\"\"\u003e\u003c/p\u003e\n\u003cp\u003e\u003cimg src=\"https://brandon_swoop.ngrok.io/uploads/2023/1677462623370.RLm7XsudqGo7RC3M.jpeg\" alt=\"\"\u003e\u003c/p\u003e\n"
+        "title" : "does this work?",
+        "date_published" : "2023-03-04T21:11:04-07:00",
+        "date_modified" : "2023-03-04T21:11:04-07:00",
+        "id" : "https://brandon_swoop.ngrok.io/2023/03/04/does-this-work/",
+        "url" : "https://brandon_swoop.ngrok.io/2023/03/04/does-this-work/",
+        "content_html" : "\u003cp\u003emaybe\u003c/p\u003e"
     },
     {
-        "date_published" : "2023-02-26T18:49:51-07:00",
-        "date_modified" : "2023-02-26T18:49:51-07:00",
-        "id" : "https://brandon_swoop.ngrok.io/2023/02/26/rzeyqqzckblkoz6a/",
-        "url" : "https://brandon_swoop.ngrok.io/2023/02/26/rzeyqqzckblkoz6a/",
-        "content_html" : "\u003cp\u003ework?\u003c/p\u003e\n"
+        "date_published" : "2023-03-04T21:09:45-07:00",
+        "date_modified" : "2023-03-04T21:09:45-07:00",
+        "id" : "https://brandon_swoop.ngrok.io/2023/03/04/nice-fam-pic/",
+        "url" : "https://brandon_swoop.ngrok.io/2023/03/04/nice-fam-pic/",
+        "content_html" : "\u003cp\u003enice fam pic\u003c/p\u003e\n"
     },
     {
-        "date_published" : "2023-02-26T18:43:17-07:00",
-        "date_modified" : "2023-02-26T18:43:17-07:00",
-        "id" : "https://brandon_swoop.ngrok.io/2023/02/26/ts1fxgtg9zdoshsn/",
-        "url" : "https://brandon_swoop.ngrok.io/2023/02/26/ts1fxgtg9zdoshsn/",
-        "content_html" : "\u003cp\u003efoo bar baz\u003c/p\u003e\n\u003cp\u003e\u003cimg src=\"https://brandon_swoop.ngrok.io/uploads/2023/1677462181239.6Aa4s9Bf9dTd9mtq.png\" alt=\"\"\u003e\u003c/p\u003e\n"
+        "title" : "Brandontreb - Home",
+        "date_published" : "2023-03-04T21:07:48-07:00",
+        "date_modified" : "2023-03-04T21:07:48-07:00",
+        "id" : "https://brandon_swoop.ngrok.io/2023/03/04/brandontreb-home/",
+        "url" : "https://brandon_swoop.ngrok.io/2023/03/04/brandontreb-home/",
+        "content_html" : "\u003cp\u003ei like this 👍\u003c/p\u003e\n"
     },
     {
-        "date_published" : "2023-02-26T18:28:46-07:00",
-        "date_modified" : "2023-02-26T18:28:46-07:00",
-        "id" : "https://brandon_swoop.ngrok.io/2023/02/26/ocfz3xksumatajmc/",
-        "url" : "https://brandon_swoop.ngrok.io/2023/02/26/ocfz3xksumatajmc/",
-        "content_html" : "\u003cp\u003efoo bar baz\u003c/p\u003e\n\u003cp\u003e\u003cimg src=\"https://brandon_swoop.ngrok.io/uploads/2023/1677461312773.ehwYCgIsSE8ljhMs.jpeg\" alt=\"\"\u003e\u003c/p\u003e\n"
+        "date_published" : "2023-03-04T21:06:46-07:00",
+        "date_modified" : "2023-03-04T21:06:46-07:00",
+        "id" : "https://brandon_swoop.ngrok.io/2023/03/04/giacced4plikt3ce/",
+        "url" : "https://brandon_swoop.ngrok.io/2023/03/04/giacced4plikt3ce/",
+        "content_html" : "\u003cp\u003e\u003cimg src=\"https://images.unsplash.com/photo-1661956602116-aa6865609028?ixlib=rb-4.0.3\u0026amp;ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8\u0026amp;auto=format\u0026amp;fit=crop\u0026amp;w=1064\u0026amp;q=80\" alt=\"cool chair\"\u003e\u003c/p\u003e\n"
     },
     {
-        "date_published" : "2023-02-26T18:11:09-07:00",
-        "date_modified" : "2023-02-26T18:11:09-07:00",
-        "id" : "https://brandon_swoop.ngrok.io/2023/02/26/zksv0ckkmdlmjasa/",
-        "url" : "https://brandon_swoop.ngrok.io/2023/02/26/zksv0ckkmdlmjasa/",
-        "content_html" : "\u003cp\u003etrying this again\u003c/p\u003e\n\u003cp\u003e\u003cimg src=\"https://brandon_swoop.ngrok.io/uploads/2023/1677460261147.L9LzM2g2u5sL2kON.jpeg\" alt=\"the robinsons\"\u003e\u003c/p\u003e\n"
+        "date_published" : "2023-03-04T20:53:35-07:00",
+        "date_modified" : "2023-03-04T20:53:35-07:00",
+        "id" : "https://brandon_swoop.ngrok.io/2023/03/04/vo0x9xnaqavytb9p/",
+        "url" : "https://brandon_swoop.ngrok.io/2023/03/04/vo0x9xnaqavytb9p/",
+        "content_html" : "\u003cp\u003eTest of querying the endpoint for the source content\u003c/p\u003e\n"
     },
     {
-        "date_published" : "2023-02-26T18:04:32-07:00",
-        "date_modified" : "2023-02-26T18:04:32-07:00",
-        "id" : "https://brandon_swoop.ngrok.io/2023/02/26/ibqsxjegp831mxvb/",
-        "url" : "https://brandon_swoop.ngrok.io/2023/02/26/ibqsxjegp831mxvb/",
-        "content_html" : "\u003cp\u003ethis one has a photo\u003c/p\u003e\n\u003cp\u003e\u003cimg src=\"https://brandon_swoop.ngrok.io/uploads/2023/1677459865703.QLZ84GdScDAwVq5m.jpeg\" alt=\"steam punk\"\u003e\u003c/p\u003e\n"
+        "date_published" : "2023-03-04T20:53:27-07:00",
+        "date_modified" : "2023-03-04T20:53:27-07:00",
+        "id" : "https://brandon_swoop.ngrok.io/2023/03/04/c912ludddqhflppn/",
+        "url" : "https://brandon_swoop.ngrok.io/2023/03/04/c912ludddqhflppn/",
+        "content_html" : "\u003cp\u003eTesting accepting access token in post body\u003c/p\u003e\n"
     },
     {
-        "date_published" : "2023-02-26T18:02:30-07:00",
-        "date_modified" : "2023-02-26T18:02:30-07:00",
-        "id" : "https://brandon_swoop.ngrok.io/2023/02/26/9zxyr1uoh288ewz8/",
-        "url" : "https://brandon_swoop.ngrok.io/2023/02/26/9zxyr1uoh288ewz8/",
-        "content_html" : "\u003cp\u003ethis doodle is cool\n\u003cimg src=\"https://brandon_swoop.ngrok.io/uploads/2023/1677459745005.dmmenOf0UrEmI9in.png\" alt=\"alt text is nice\"\u003e\u003c/p\u003e\n"
+        "date_published" : "2023-03-04T20:53:22-07:00",
+        "date_modified" : "2023-03-04T20:53:22-07:00",
+        "id" : "https://brandon_swoop.ngrok.io/2023/03/04/lzlxqla1gtnnqk3y/",
+        "url" : "https://brandon_swoop.ngrok.io/2023/03/04/lzlxqla1gtnnqk3y/",
+        "content_html" : "\u003cp\u003eTesting accepting access token in HTTP Authorization header and POST body. This should not create a post\u003c/p\u003e\n"
     },
     {
-        "date_published" : "2023-02-26T17:59:04-07:00",
-        "date_modified" : "2023-02-26T17:59:04-07:00",
-        "id" : "https://brandon_swoop.ngrok.io/2023/02/26/2hajyv6ywjrs4lvq/",
-        "url" : "https://brandon_swoop.ngrok.io/2023/02/26/2hajyv6ywjrs4lvq/",
-        "content_html" : "\u003cp\u003ethis doodle is cool\u003c/p\u003e\n"
+        "date_published" : "2023-03-04T20:53:18-07:00",
+        "date_modified" : "2023-03-04T20:53:18-07:00",
+        "id" : "https://brandon_swoop.ngrok.io/2023/03/04/wtlu0kprbrq9v8iz/",
+        "url" : "https://brandon_swoop.ngrok.io/2023/03/04/wtlu0kprbrq9v8iz/",
+        "content_html" : "\u003cp\u003eTesting a request with an unauthorized access token. This should not create a post.\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-03-04T20:52:56-07:00",
+        "date_modified" : "2023-03-04T20:52:56-07:00",
+        "id" : "https://brandon_swoop.ngrok.io/2023/03/04/hmq44ojvtonl2yan/",
+        "url" : "https://brandon_swoop.ngrok.io/2023/03/04/hmq44ojvtonl2yan/",
+        "content_html" : "\u003cp\u003eTesting unauthenticated request. This should not create a post.\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-03-04T20:52:48-07:00",
+        "date_modified" : "2023-03-04T20:52:48-07:00",
+        "id" : "https://brandon_swoop.ngrok.io/2023/03/04/etqv9msp8sezt4p3/",
+        "url" : "https://brandon_swoop.ngrok.io/2023/03/04/etqv9msp8sezt4p3/",
+        "content_html" : "\u003cp\u003eTest of querying the endpoint for the source content\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-03-04T20:52:35-07:00",
+        "date_modified" : "2023-03-04T20:52:35-07:00",
+        "id" : "https://brandon_swoop.ngrok.io/2023/03/04/zygcdtwxn7r3uyl8/",
+        "url" : "https://brandon_swoop.ngrok.io/2023/03/04/zygcdtwxn7r3uyl8/",
+        "content_html" : "\u003cp\u003eTesting accepting access token in post body\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-03-04T20:52:26-07:00",
+        "date_modified" : "2023-03-04T20:52:26-07:00",
+        "id" : "https://brandon_swoop.ngrok.io/2023/03/04/30zaotpz7a9whutn/",
+        "url" : "https://brandon_swoop.ngrok.io/2023/03/04/30zaotpz7a9whutn/",
+        "content_html" : "\u003cp\u003eTesting accepting access token in post body\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-03-04T20:52:16-07:00",
+        "date_modified" : "2023-03-04T20:52:16-07:00",
+        "id" : "https://brandon_swoop.ngrok.io/2023/03/04/cochlmpuvfgvmfff/",
+        "url" : "https://brandon_swoop.ngrok.io/2023/03/04/cochlmpuvfgvmfff/",
+        "content_html" : "\u003cp\u003eTesting accepting access token in HTTP Authorization header\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-03-04T20:50:37-07:00",
+        "date_modified" : "2023-03-04T20:50:37-07:00",
+        "id" : "https://brandon_swoop.ngrok.io/2023/03/04/easjmtpwwetgunal/",
+        "url" : "https://brandon_swoop.ngrok.io/2023/03/04/easjmtpwwetgunal/",
+        "content_html" : "\u003cp\u003eTest of querying the endpoint for the source content\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-03-04T20:40:57-07:00",
+        "date_modified" : "2023-03-04T20:40:57-07:00",
+        "id" : "https://brandon_swoop.ngrok.io/2023/03/04/mfy0crmaay650put/",
+        "url" : "https://brandon_swoop.ngrok.io/2023/03/04/mfy0crmaay650put/",
+        "content_html" : ""
+    },
+    {
+        "date_published" : "2023-03-04T20:37:48-07:00",
+        "date_modified" : "2023-03-04T20:37:48-07:00",
+        "id" : "https://brandon_swoop.ngrok.io/2023/03/04/guikkgfpkn3td6ax/",
+        "url" : "https://brandon_swoop.ngrok.io/2023/03/04/guikkgfpkn3td6ax/",
+        "content_html" : "\u003cp\u003eMicropub update test. This text should be replaced if the test succeeds.\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-03-04T20:37:07-07:00",
+        "date_modified" : "2023-03-04T20:37:07-07:00",
+        "id" : "https://brandon_swoop.ngrok.io/2023/03/04/hmzr6drprmusnd1y/",
+        "url" : "https://brandon_swoop.ngrok.io/2023/03/04/hmzr6drprmusnd1y/",
+        "content_html" : "\u003cp\u003eMicropub test of creating multiple photos referenced by URL. This post should include a photo of a city at night.\n\u003cimg src=\"https://micropub.rocks/media/sunset.jpg\" alt=\"\"\u003e\n\u003cimg src=\"https://micropub.rocks/media/city-at-night.jpg\" alt=\"\"\u003e\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-03-04T20:36:25-07:00",
+        "date_modified" : "2023-03-04T20:36:25-07:00",
+        "id" : "https://brandon_swoop.ngrok.io/2023/03/04/mgnakmkunnprv0v2/",
+        "url" : "https://brandon_swoop.ngrok.io/2023/03/04/mgnakmkunnprv0v2/",
+        "content_html" : "\u003cp\u003eMicropub test of creating a photo referenced by URL with alt text. This post should include a photo of a sunset.\n\u003cimg src=\"https://micropub.rocks/media/sunset.jpg\" alt=\"Photo of a sunset\"\u003e\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-03-04T20:35:33-07:00",
+        "date_modified" : "2023-03-04T20:35:33-07:00",
+        "id" : "https://brandon_swoop.ngrok.io/2023/03/04/vdp7xvsepmpm4hm6/",
+        "url" : "https://brandon_swoop.ngrok.io/2023/03/04/vdp7xvsepmpm4hm6/",
+        "content_html" : "\u003cp\u003eMicropub test of creating a photo referenced by URL. This post should include a photo of a sunset.\n\u003cimg src=\"https://micropub.rocks/media/sunset.jpg\" alt=\"\"\u003e\u003c/p\u003e\n"
     }
     ]
 }

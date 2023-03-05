@@ -16,20 +16,22 @@ ready(async() => {
 
     var styleEl = document.createElement('style');
     styleEl.innerHTML = `
+    #conversations{
+      border-top: 1px solid #eee;
+    }
     #conversations img{    
-      width: 50px;
-      height: auto;      
-      float: left;
-      object-fit: cover;
-      margin-right: 10px; 
+      max-width: 20px;
+      height: auto;            
+      object-fit: cover;      
       border-radius: 50%;
+      padding: 0;      
+      vertical-align:middle;
     }
     #conversations a {
-      text-decoration: none;
-      font-weight: bold;      
+      text-decoration: none;        
     }
-    #conversations .p-name{ 
-      font-weight: bold; 
+    #conversations .p-name{             
+      vertical-align:middle;
     }    
     #conversations .p-url{
       font-size: 0.8em;
@@ -79,7 +81,7 @@ ready(async() => {
     }
 
     conversationsDiv.innerHTML = `
-      <br /><hr />
+      <br />
       <form class="webmention-form" action="${webmention_url}" method="post">
         <label>Have you written a <a href="https://indieweb.org/responses">response</a> to this? Let me know the URL:</label>
         <br />
@@ -122,9 +124,7 @@ ready(async() => {
       return;
     }
 
-    console.log(data);
-
-    conversationsDiv.innerHTML = `${conversationsDiv.innerHTML}<h3>Replies</h3>`;
+    conversationsDiv.innerHTML = `${conversationsDiv.innerHTML}<h3>Replies</h3><br />`;
 
     let mentions = data.children
       .sort(function(a, b) {
@@ -135,11 +135,13 @@ ready(async() => {
       let conversationDiv = document.createElement('div');
       conversationDiv.className = 'conversation';
       conversationDiv.innerHTML = `
-        <div class="mention">
-          <img src="${mention.author.photo}" alt="${mention.author.name}" title="${mention.author.name}" />
-          <a href="${mention.author.url}">
+        <div class="mention">     
+        <span>
+          <img src="${mention.author.photo}" alt="${mention.author.name}" title="${mention.author.name}" />     
+          <a href="${mention.author.url}">            
             <span class="p-name">${mention.author.name}</span>
-          </a>
+          </a>          
+        </span>
           <span class="p-url">${mention.author.url}</span>
           ${mention['wm-property'] === 'in-reply-to' ? `<span class="content p-summary"> ${mention.content.html || mention.content.text}</span>` : ''}
           ${mention['wm-property'] === 'like-of' ? `<span class="content p-summary"><br/><strong>👍</strong></span>` : ''}

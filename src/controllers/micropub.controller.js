@@ -15,8 +15,24 @@ const create = catchAsync(async (req, res) => {
         "syndicate-to": []
       });
     } 
+    if(req.query['q'] === 'syndicate-to') {
+      return res.json([]);
+    }
     // TODO: Implement other queries (category, syndicate-to)
     return res.json([]);
+  }
+
+  if(body.action && body.action === 'delete') {
+    logger.debug('micropub delete: %s\n%o', req.method, body);
+    let url = body.url;
+    // remove ending slash if there is one
+    if (url.endsWith('/')) {
+      url = url.slice(0, -1);
+    }
+    let slug = url.split('/').pop();        
+    hugoService.deletePost(slug);
+    hugoService.generateSite();
+    return res.status(httpStatus.NO_CONTENT).send();
   }
 
   logger.debug('micropub create: %s\n%o', req.method, body);

@@ -33,6 +33,12 @@ const createPost = (frontMatter, content) => {
   return frontMatter.slug;
 }
 
+const deletePost = (slug) => {
+  // Delete the post from disk
+  logger.debug('Deleting Post: %s', slug);
+  fs.unlinkSync(`${config.hugo.contentDir}/posts/${slug}.md`);
+}
+
 const generateSite = () => {
   // Run hugo to generate the static site
   logger.debug('Generating site');
@@ -81,6 +87,7 @@ const getLinksFromFrontMatterAndContent = (frontMatter, content) => {
 
 module.exports = {
   createPost,
+  deletePost,
   generateSite,
   getPostUrl,
   getLinksFromFrontMatterAndContent
