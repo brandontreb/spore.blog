@@ -128,6 +128,421 @@ nav.main-nav a.cta:hover {
   
   <section class="post-body">
   <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2011/04/13/my-journey-to-create-the-inpulsenotifier-for-jailbroken-iphones-part-2/">My Journey To Create The inPulseNotifier For Jailbroken iPhones &amp;#8211; Part 2</a></h2>
+  </header>
+  <section class="post-body">
+	<p>This post is a continuation from my previous post <a href="/my-journey-to-create-the-inpulsenotifier-for-jailbroken-iphones-part-1/">found here</a>.</p>
+<h4 id="a-mobilesubstrate-tweak">A MobileSubstrate Tweak?</h4>
+<p>After I completed a basic app that allowed me to send various notification types from my iPhone to my inPulse watch, I quickly realized that this would not work if I wanted to hook into the iPhone’s notification system. A Google search revealed to me that I had to make MobileSubstrate hack to overwrite the default notification functionally.</p>
+<p>** What the heck is Mobile Substrate? **</p>
+<p>Here is the description according to <a href="http://iphonedevwiki.net/index.php/MobileSubstrate">iPhoneDevWiki.net</a>.</p>
+<blockquote>
+<p>MobileSubstrate is the de facto framework that allows 3rd-party developers to provide run-time<br>
+patches (“MobileSubstrate extensions”) to system functions, similar to Application Enhancer on<br>
+the OS X. MobileSubstrate consists of 3 major components: MobileHooker, MobileLoader and safe mode.</p>
+</blockquote>
+<p>Basically, it allows you to “hook” into any method of any class on the iPhone. I will talk in a later tutorial about how to see what methods are available. Here is a sample for hooking into the CFShow() method:</p>
+<div>
+  <pre>&lt;code class=’objc’>static void (*original_CFShow)(CFTypeRef obj);  // a function pointer to store the original CFShow().
+void replaced_CFShow(CFTypeRef obj) {           // our replacement of CFShow().
+  printf("Calling original CFShow(%p)…", obj);
+  original_CFShow(obj);                         // calls the original CFShow.
+  printf(" done.\n");
+}
+…
+// hook CFShow to our own implementation.
+MSHookFunction(CFShow, replaced_CFShow, &original_CFShow);
+// From now on any call to CFShow will pass through replaced_CFShow first.
+…
+CFShow(CFSTR("test"));&lt;/code></pre>
+</div>
+<p>Yeah… this looks pretty intense. Luckily, I found a super helpful tool that greatly simplifies this process called <a href="http://iphonedevwiki.net/index.php/Theos/Getting_Started">theos</a>. Check out my <a href="/beginning-jailbroken-ios-development-getting-the-tools/">tutorial on getting started with theos</a>.</p>
+<p>What lead me to theos was the incredible work of <a href="http://www.peterhajas.com/">Peter Hajas</a>. He wrote and <a href="https://github.com/peterhajas/MobileNotifier">open sourced</a> his fantastic notifications app called Mobile Notifier. Without it, I would have been dead in the water. After chatting downloading his code and nagging him on <a href="https://twitter.com/#!/peterhajas">Twitter</a>, he pointed me to theos.</p>
+<h4 id="working-with-theos">Working With theos</h4>
+<p>As I mentioned in <a href="/beginning-jailbroken-ios-development-getting-the-tools/">my tutorial</a>, theos is a great tool to aid in the development of a Mobile Substrate Tweak. Instead of the complexities above to hook into the functionality of classes, you simply do something like this:</p>
+<div>
+  <pre>&lt;code class=’objc’>%hook SpringBoard
+<p>-(void)applicationDidFinishLaunching:(id)application
+{ <br>
+%orig;</p>
+<pre><code>INPreferenceManager *preferenceManager = [[[INPreferenceManager alloc] init] autorelease];
+BOOL enabled = [[preferenceManager.preferences valueForKey:@&quot;inpulseEnabled&quot;] boolValue];
+if(enabled) {
+    manager = [[INAlertManager alloc] init];
+    [manager connectToWatch];
+}
+</code></pre>
+<p>}</p>
+<ul>
+<li>(void) dealloc {
+[manager release];
+manager = nil;
+%orig;
+}</li>
+</ul>
+<p>%end;&lt;/code&gt;</pre></p>
+</div>
+<p>This is a simple hook that allows me to overwrite the functionality of Springboard’s applicationDidFinishLaunching method. <a href="https://twitter.com/#!/dhowett">DHowett</a> (creator of theos), has done a brilliant job giving devs quite a few commands like %orig (which calls the original method) and %hook (starts a hook).</p>
+<p>The reason this works is, the file you code in (called Tweaks.xm) gets run through a preprocessor called Logos (which he also wrote). It replaces these simple commands with the complex stuff you see above before compiling your project. Using this technique, you can hook into anything. I will have a tutorial on this in the very near future, so make sure you <a href="feeds.feedburner.com/brandontreb">subscribe to my RSS feed</a> if you haven’t already.</p>
+<h4 id="copy-and-paste">Copy And Paste</h4>
+<p>OK, so I copied some of Peter’s code (he’s well cited in the source and I kept his license in the headers too). He had already solved the problem of capturing most of the iPhone’s notifications and this is precisely what I needed. So I Frankensteined my code and his to create the first version of <a href="https://github.com/brandontreb/inPulseNotifier">inPulseNotifier</a>.</p>
+<p>This current version supports SMS, Push Notifications, Local Notifications, and Calendar Notifications.</p>
+<h4 id="deployment">Deployment</h4>
+<p>Even though I open sourced the code for the app, I couldn’t possibly expect users to build the code themselves and install it on their devices. So I had to learn about setting up my own Cydia repository.</p>
+<p>A Cydia repository allows users to browse your applications/tweaks through the Cydia application <a href="http://www.saurik.com/">created by Saurik</a>. This is the method of choice for deploying jailbroken iPhone applications.</p>
+<p>Saurik has a very detailed tutorial on creating a Cydia repository <a href="http://www.saurik.com/id/7">here</a>.</p>
+<p>(In case you are wondering, my Cydia repo is hosted at <a href="http://brandontreb.com/cydia">http://brandontreb.com/cydia</a> )</p>
+<h4 id="ok-how-do-i-install-it">OK, How Do I Install It?</h4>
+<p>Great question I assume you might ask. I have written a tutorial about installing it on your iPhone <a href="http://www.getinpulse.com/hack/forum/viewtopic.php?p=545#p545">here</a>.</p>
+<h4 id="plans-for-the-future">Plans For The Future</h4>
+<p>Well, at the moment development has slowed as I prepare for a few changes in my life. However, in the coming months, I intend on doing the following updates.</p>
+<ol>
+<li>Remove the dependency on Insomnia for preventing the phone from sleeping. I have found a version of their source that I can integrate into my own code.</li>
+<li>Add support for phone calls</li>
+<li>Add support for emails</li>
+<li>Create an SBSettings toggle to allow rapid enabling/disabling</li>
+<li>Auto-reconnect after disconnecting from the watch</li>
+</ol>
+<h4 id="conclusion">Conclusion</h4>
+<p>Hacking for the inPulse watch has been a new and exciting experience. The team over there has really created something special and I can’t wait to see what the future holds for them (hopefully a touchscreen).</p>
+<p>I’d love to hear your thoughts in the comments. And <a href="feeds.feedburner.com/brandontreb">stay tuned</a> for some jailbroken dev tutorials based on my experiences.</p>
+<p>Happy Coding!</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="My Journey To Create The inPulseNotifier For Jailbroken iPhones - Part 2" data-url="http://brandontreb.com/my-journey-to-create-the-inpulsenotifier-for-jailbroken-iphones-part-2"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2011/04/13/my-journey-to-create-the-inpulsenotifier-for-jailbroken-iphones-part-2/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2011-04-13 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Apr 13</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2011/04/12/my-journey-to-create-the-inpulsenotifier-for-jailbroken-iphones-part-1/">My Journey To Create The inPulseNotifier For Jailbroken iPhones &amp;#8211; Part 1</a></h2>
+  </header>
+  <section class="post-body">
+	<p>Many of you may have seen my tweets or blog posts regarding my development of a native iOS interface for the <a href="http://getinpulse.com">inPulse Watch</a>. I just wanted to share a bit with you about the development process and talk about my updates moving forward.</p>
+<h4 id="what-is-the-inpulse-watch">What is the inPulse Watch?</h4>
+<p>For those of you who don’t know, the inPulse watch is a programmable wristwatch with a bluetooth controller. It can run a single app at a time on top of it’s firmware that is installed on the watch via a bluetooth interface with your computer. People have written all sorts of apps from analog clocks to roguelikes and Connway’s Game of Life. Check out <a href="http://inpulsewatch.com/watchapps.asp">http://inpulsewatch.com/watchapps.asp</a> to see the latest apps.</p>
+<center>
+  <br /> <img src="http://ec2-50-16-103-63.compute-1.amazonaws.com/images/inPulse.png" style="float:left;margin:25px;" width="100" /><br /> <img src="http://inpulsewatch.com/apps/logo14.JPG" style="float:left;margin:25px;" width="100" /><br /> <img src="http://inpulsewatch.com/apps/logo12.jpg" style="float:left;margin:25px;" width="100" /><br />
+</center>
+<div style="clear:both">
+  &#038;nbsp
+</div></p> 
+<h4 id="it-begins">It Begins</h4>
+<p>After waiting about 10 days for my watch (yeah it’s a long waiting period since they have seen quite a bit of recent success), it finally came in the mail. Enthusiastically, I opened it up and followed their <a href="http://www.getinpulse.com/guide/">getting started guide</a>. Within a few minutes I was running some of the sample applications in the forums.</p>
+<h4 id="no-ios-support">No iOS Support?</h4>
+<p>One of the coolest features of the watch is the ability to have your smartphone notifications show up on it. You are able to read SMS, Email, Calendar, etc… for a wide variety of Blackberry and Android phones.</p>
+<p>After digging around a bit, I was disappointed to see that there was limited (no) iPhone support. They had some old file that used BTStack at some point to communicate a simple canned message to the iPhone. No documentation, no support, nada.</p>
+<h4 id="building-the-app">Building The App</h4>
+<img src="http://code.google.com/p/btstack/logo?cct=1278342571" style="float:left;margin:5px;" />
+<p>As I had no experience developing for a jailbroken iPhone, I had no idea how to even compile this sample app. So, I used the Google machine and found the <a href="http://code.google.com/p/btstack/">Google repository</a> for BTStack (the bluetooth library of choice for jailbroken iOS apps). I was able to download the source and build a sample application that basically connected my iPhone to a bluetooth device.</p>
+<p>Well, this got me started. So I did what any curious developer would do and started plugging crap in. I replaced the sample file that was packaged with BTStack with a slightly modified version of inPulse’s sample iPhone file. Sure enough, I was able to build and install it.</p>
+<h4 id="we-have-connection">We Have Connection</h4>
+<p>After figuring out how to hardcode my watch’s address into the source, I was able to determine that the iPhone had actually connected to the watch. I monitored the packets and threw up an alert view (No NSLogging available at this point) when a connection was made.</p>
+<p>So, now that we are connected, let’s trying sending the sample message…fail! I couldn’t even send the time.</p>
+<p>At this point, I decided to move the code I had written into a sample iPhone project so that I could do attached debugging. This showed me that the packets were arriving on the watch since I received an ack packet back. So, the watch sees the messages, but doesn’t consider them notifications.</p>
+<h4 id="time-to-hit-the-docs">Time to hit the docs</h4>
+<img src="/img/post_images/2011/04/pulse_protocol.png" style="float:right" />  
+Knowing that the packets were received gave me quite a bit of hope. I figured that I must have had the protocol incorrect. So, I dug into the inPulse protocol document which outlined what the packet structures should look like. My C skills aren&#8217;t the strongest so I had to look up quite a few things.
+<p>Sure enough, they had upped the version number of their protocol by 1 and mine was outdated. So, I updated what I could and gave it another shot…fail.</p>
+<p>No messages were displaying. At this point I was ready to give up. I read online somewhere that the BT implementation on the watch was not supported by inPulse and felt dead in the water. So I took a break for a couple days.</p>
+<p>When I came back to it, I was tapping through my watch and noticed that the calendar appointments had some data in them on the watch. Could it be? Did my notifications arrive? (I was trying to send SMS notifications). So I dug into the docs again…</p>
+<h4 id="we-have-a-message">We have a message!!!</h4>
+<img src="/img/post_images/2011/04/hello_world.jpg" style="float:left;margin:10px;" width="200" />
+<p>Sure enough, I had some fields declared as * uint16_t * when they should have been * uint8_t * . My headers were the wrong size!!! All of a sudden I was able to send every type of notification to the watch and have it displayed.</p>
+<p>It was now time to build out an actual application for release to inPulse. The next hurdle would be hooking into the iPhone’s messaging system and forwarding along the messages. Now the real iPhone hacking begins.</p>
+<p><a href="/my-journey-to-create-the-inpulsenotifier-for-jailbroken-iphones-part-2">This post is continued here</a></p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="My Journey To Create The inPulseNotifier For Jailbroken iPhones - Part 1" data-url="http://brandontreb.com/my-journey-to-create-the-inpulsenotifier-for-jailbroken-iphones-part-1"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2011/04/12/my-journey-to-create-the-inpulsenotifier-for-jailbroken-iphones-part-1/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2011-04-12 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Apr 12</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2011/04/11/beginning-jailbroken-ios-development-getting-the-tools/">Beginning Jailbroken iOS Development &amp;#8211; Getting The Tools</a></h2>
+  </header>
+  <section class="post-body">
+	<p>Developing for <a href="http://en.wikipedia.org/wiki/IOS_jailbreaking">jailbroken</a> is actually quite similar to regular iOS development with one addition. More Power! oh oh oh (said in a Tim Taylor voice (sorry for non-Americans that don’t get the reference)). With your device jailbroken, you have the ability to hook in to pretty much every class that Apple writes allowing you quite a bit of control over the iPhone’s functionality.</p>
+<p>In today’s tutorial, I will simply be discussing the best way to get up and running with the tools necessary to write a jailbroken iPhone app. We will not be doing any coding, however this tutorial will be necessary for all posts going forward.</p>
+<p><strong>Theos</strong></p>
+<p>There are many ways to go about writing a jailbroken iOS app. Most of them are quite complex. <a href="http://twitter.com/dhowett">@DHowett</a> has come up with a brilliant tool called <a href="http://iphonedevwiki.net/index.php/Theos/Getting_Started">theos</a> which drastically simplifies the process. My tutorial will pretty much be a regurgitation of his tutorial <a href="http://iphonedevwiki.net/index.php/Theos/Getting_Started">found here</a> with some added cheesy jokes.</p>
+<p>Theos is a command line utility that essentially generates a template for creating applications, libraries, preference bundles, tools, and mobile substrate hacks. These cover 99% of the jailbroken apps that you are likely to create.</p>
+<p>One thing to note is DHowett talks about doing jailbroken iOS development on both Mac and Linux; my tutorials will be Mac-only.</p>
+<h4 id="step-1-install-the-ios-sdk">Step 1: Install the iOS SDK</h4>
+<p>You will first need to install the official iOS SDK.</p>
+<p><a href="http://developer.apple.com/devcenter/ios/index.action">http://developer.apple.com/devcenter/ios/index.action</a></p>
+<p>You can register for a free account and download the latest SDK. Once installed reboot your Mac and come back here. I’ll wait…</p>
+<h4 id="step-2-setting-up-the-environment-variables">Step 2: Setting Up The Environment Variables</h4>
+<p>Start by deciding on a good location to install theos. The suggested location is <em>/opt/theos</em>. The only issue with doing it here is you will need to have administrator permissions as well as have to enter your password when updating files. For teaching purposes, I am going to assume you will install it here too.</p>
+<p>Open the terminal and type:</p>
+<div>
+  <pre>&lt;code class=’bash’>export THEOS=/opt/theos&lt;/code></pre>
+</div>
+<p>What we are doing is setting an environment variable. You can always see if this variable is set by typing <em>echo $THEOS</em> in the command line. It will need to be (re)set every time you reopen the terminal to develop a jailbroken app.</p>
+<h4 id="step-3-getting-theos">Step 3: Getting theos</h4>
+<p>DHowett uses subversion for version control on theos, so you need to make sure and have it installed. If you followed step one above, it should have been installed by default. We will be checking out theos into the THEOS directory specified in step 2.</p>
+<p>In the terminal type:</p>
+<div>
+  <pre>&lt;code class=’bash’>svn co http://svn.howett.net/svn/theos/trunk $THEOS&lt;/code></pre>
+</div>
+<p>You most likely will be asked for your password. You should now see the <em>/opt/theos</em> directory created with theos installed.</p>
+<h4 id="step-4-getting-ldid">Step 4: Getting ldid</h4>
+<p>We now need to install the ldid tool. ldid is a tool written by <a href="http://www.saurik.com/">Saurik</a> (if you don’t know who he is, stop reading now). Basically, it simulates the signing process for the iPhone, allowing you to install your jailbroken apps/hacks on an actual device.</p>
+<p>You can find this tool in many places, however DHowett has generously hosted it for us on his dropbox account.</p>
+<p>Now, I had a tricky time getting this to download directly to my <em>/opt/theos</em> folder. So, I downloaded it to my desktop and then moved it in to <em>/opt/theos/bin/ldid</em></p>
+<div>
+  <pre>&lt;code class=’bash’>curl -s http://dl.dropbox.com/u/3157793/ldid &gt; ~/Desktop/ldid
+chmod +x ~/Desktop/ldid
+mv ~/Desktop/ldid $THEOS/bin/ldid&lt;/code></pre>
+</div>
+<p>Alternatively, if you can get it to work properly, do it like DHowett suggests and download it directly into place.</p>
+<div>
+  <pre>&lt;code class=’bash’>curl -s http://dl.dropbox.com/u/3157793/ldid &gt; $THEOS/bin/ldid; chmod +x $THEOS/bin/ldid&lt;/code></pre>
+</div>
+<h4 id="step-5-install-dpkg">Step 5: Install dpkg</h4>
+<p>Dpkg is a tool to bundle up your app into a Debian package for distribution in a Cydia repository. You can install it through Macports.</p>
+<div>
+  <pre>&lt;code class=’bash’>sudo port install dpkg&lt;/code></pre>
+</div>
+<h4 id="step-6-creating-a-new-project">Step 6: Creating A New Project</h4>
+<p>theos uses a tool called nic (new instance creator) to create a new project. Simply run nic by typing:</p>
+<div>
+  <pre>&lt;code class=’bash’>$THEOS/bin/nic.pl&lt;/code></pre>
+</div>
+<p>and it starts the new instance creator. Here is a sample of making a jailbroken application.</p>
+<div>
+  <pre>&lt;code class=’bash’>brandon-trebitowskis-macbook-pro:Desktop brandontreb$ $THEOS/bin/nic.pl
+NIC 1.0 - New Instance Creator
+——————————
+  [1.] iphone/application
+  [2.] iphone/library
+  [3.] iphone/preference_bundle
+  [4.] iphone/tool
+  [5.] iphone/tweak
+Choose a Template (required): 1
+Project Name (required): FartLight
+Package Name [com.yourcompany.fartlight]: com.brandontreb.fartlight
+Author/Maintainer Name [Brandon Trebitowski]: 
+Instantiating iphone/application in fartlight/…
+Done.&lt;/code></pre>
+</div>
+<p>This will create a new folder with a basic template called fartlight (killer project, I know). In addition to the usual files it will contain a Makefile (for building the application) and a control file (information about the application when it’s in a Cydia repository).</p>
+<p>This should now give you the basis for creating a jailbroken application/tweak/hack. In the next tutorial we will go over building, signing, and deployment. For now, you can check out the project I created with nic called <a href="https://github.com/brandontreb/inPulseNotifier">inPulseNotifier</a>. It’s a combination of a tweak (5) and a preference bundle (3) for the app settings.</p>
+<p>Feel free to ask me a question in the comments and check out #theos on IRC.</p>
+<p><strong>Update</strong> <a href="/beginning-jailbroken-ios-development-building-and-deployment/">Check out the next tutorial in this series here</a>.</p>
+<p>Happy coding!</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Beginning Jailbroken iOS Development - Getting The Tools" data-url="http://brandontreb.com/beginning-jailbroken-ios-development-getting-the-tools"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2011/04/11/beginning-jailbroken-ios-development-getting-the-tools/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2011-04-11 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Apr 11</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2011/04/07/jailbroken-iphone-development-would-you-be-into-it/">Jailbroken iPhone Development &amp;#8211; Would You Be Into It?</a></h2>
+  </header>
+  <section class="post-body">
+	<img class="alignright" src="http://dl.dropbox.com/u/1574088/photo.JPG " title="iPulseNotifier app receiving a message from Twitter" width="150" />
+<p>As of recent I have had a ton of interest in doing development for Jailbroken iPhones. I love the power, being able to hack <em>anything</em> on the device. It opens up a whole new world of possibilities.</p>
+<p>My most current project (inPulseNotifier) is a Mobile Substrate hack which allows the iPhone to interface with an <a href="http://getinpulse.com">inPulse watch</a>. It uses BTStack and boots up during the init method of your springboard. I will do a full writeup on this in the near future, but basically it forwards all of your phone’s notifications (SMS, Local, Push, Calendar) to your watch!</p>
+<h4 id="serious-lack-of-resources">Serious Lack Of Resources</h4>
+<p>InPulseNotifier was a blast to create, however I found it <strong>incredibly</strong> challenging to find many resources about doing jailbroken development. I finally found <a href="http://iphonedevwiki.net/index.php/Theos/Getting_Started">theos</a> which was a total lifesaver. Also, I had the code for <a href="http://www.peterhajas.com/blog/2011/2/27/mobilenotifier-beta3-copious-corn-flakes-1.html">mobileNotifier</a> to follow along with.</p>
+<p>IRC (yeah I’m a true hacker ;)) was also huge help, but there simply aren’t enough tutorials/examples on the web related to jailbroken iPhone dev. My guesses are either 1. it’s quite hard, 2. there’s not enough &lt;font color&quot;green&quot;&gt;$$$</font> in it, or 3. jailbreakers like to stay “underground”.</p>
+<p>I haven’t quite figured it out, but I was curious what YOU thought about it as I’m considering doing some jailbroken iOS development tutorials on my blog. Please let me know in the comments. Are you down to “Hack the planet”?</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Jailbroken iPhone Development - Would You Be Into It?" data-url="http://brandontreb.com/jailbroken-iphone-development-would-you-be-into-it"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2011/04/07/jailbroken-iphone-development-would-you-be-into-it/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2011-04-07 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Apr 7</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2011/04/06/officially-running-on-jekyll/">Officially Running On Jekyll</a></h2>
+  </header>
+  <section class="post-body">
+	<p>Well, I have finally made the switch from <a href="http://wordpress.org">WordPress</a> to <a href="http://jekyllrb.com/">Jekyll</a> and couldn’t be happier. Here are some of the bonuses I have seen thus far.</p>
+<ol>
+<li>SPEED: Just click around on my site. It is screaming fast now.</li>
+<li>Resources: Checking top on my server reveals that I have a TON of extra resources (which makes sense since Jekyll sites are way more lightweight).</li>
+<li>Ease of blogging: Ok, WordPress was pretty easy too, however, I was really starting to get sick of the post interface. I switch to Tumblr at some point simply for it’s minimalist interface. WordPress’ is gross and TinyMCE (the WYSIWG editor) is terrible. I love writing in TextMate!</li>
+<li>Offline publishing. I can write my posts anywhere since they are just .md (markdown) files. Check out <a href="http://daringfireball.net/projects/markdown/syntax">Daring Fireball’s</a> great writeup on this.</li>
+<li>Portability: Have you have tried to move your WordPress site? Yeah, it’s about as fun as chewing on tin foil with metal fillings.</li>
+<li>Focus on content: WordPress has quite a bit of focus on using rich media in your posts which tends to take away from the content if you are not careful. There is something about writing in a text editor that makes you forget about images/video/etc… unless it’s totally needed. So don’t be surprised if my posts aren’t as “rich”. (Hopefully they will be more clever <img src="http://brandontreb.com/wp-includes/images/smilies/simple-smile.png" alt=":)" class="wp-smiley" style="height: 1em; max-height: 1em;" /> )</li>
+</ol>
+<p>I really urge you to see for yourself what it’s like blogging with Jekyll. I will do a writeup on my conversion process in the near future to help aid others in the switch. Until then, you can google around and find tons of great resources.</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Officially Running On Jekyll" data-url="http://brandontreb.com/officially-running-on-jekyll"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2011/04/06/officially-running-on-jekyll/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2011-04-06 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Apr 6</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2011/03/28/considering-leaving-wordpress-for-jekyll/">Considering Leaving WordPress For Jekyll</a></h2>
+  </header>
+  <section class="post-body">
+	<p>So, after my 6 year relationship with WordPress, I have been having some strong feelings for another (blog engine). <a href="http://jekyllrb.com/">Jekyll</a> does everything that I want my wordpress to do.</p>
+<ol>
+<li>Not suck at security</li>
+<li>Not be bloated</li>
+<li>Not have a sucky post editor</li>
+<li>Expense – I have a few blogs hosted on Rackspace and my bill has gotten pretty pricey. I’m hoping to host my Jekyll site on App Engine for frizzle (free).</li>
+</ol>
+<p>That’s about it. In case you live in a box (which most of us do since most houses are relatively square) and haven’t hear of it, Jekyll is a new blogging engine written in Ruby. Simply put, you write posts, run a command and it spits out static pages. You just upload these pages to your server (how old skool right?) Now you no longer have a dependancies on any server side language, fancy server configs, etc…</p>
+<p>Jekyll has no(minimal) features, no comments, track backs etc… and no built-in SEO. It doesn’t even have an admin (since you are serving up static content). Sounds like a blast right? I’ll blog a bit about it as I make the migration and you will see, it’s going to be great!</p>
+<p>I just finished reading <a href="http://vitobotta.com/how-to-migrate-from-wordpress-to-jekyll/">this post</a> from Hacker News, which was pretty much the nail in the coffin.</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Considering Leaving WordPress For Jekyll" data-url="http://brandontreb.com/considering-leaving-wordpress-for-jekyll"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2011/03/28/considering-leaving-wordpress-for-jekyll/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2011-03-28 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Mar 28</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2011/03/08/huge-update-to-smart-lockscreen-creator-promo-codes/">Huge Update To Smart Lockscreen Creator &#43; Promo Codes</a></h2>
+  </header>
+  <section class="post-body">
+	<p><img class="alignright" title="Smart Lockscreen Creator" src="http://a1.mzstatic.com/us/r1000/027/Purple/7f/68/53/mzl.vipehwvy.png" alt="" width="242" height="363" />I have just updated Smart Lockscreen Creator and am giving away 10 copies!</p>
+<p><a href="http://j.mp/haelbH">Download It Here</a></p>
+<p>I know you probably aren’t reading this as you race to see if any of the promos aren’t taken but…</p>
+<h4 id="here-is-what8217s-new">Here is what’s new:</h4>
+<p>Misc</p>
+<ul>
+<li>Added ability to generate a new image on startup. Just turn Auto-Start on in the settings</li>
+</ul>
+<p>Weather</p>
+<ul>
+<li>Toggle Fahrenheit and Celsius</li>
+<li>Added missing weather images</li>
+<li>Updated weather icons</li>
+<li>Improved performance and stability of retrieving weather</li>
+</ul>
+<p>Customization</p>
+<ul>
+<li>Customize separator color and height</li>
+<li>Customize which day of the week to highlight for a calendar</li>
+<li>Ability to customize the background color of each widget</li>
+</ul>
+<p>Minor Bug Fixes</p>
+<h4 id="the-promo-codes">The Promo Codes</h4>
+<p>METL6KNXW6TL<br>
+TWFHLKT7RYWK<br>
+J6JXJ7JPNJRN<br>
+XLP9FF9RAEA9<br>
+L74ATPTYXJ4F<br>
+A6KJPTLWE97P<br>
+HNWP6L7F6JW9<br>
+XEHNFKJPMR6Y<br>
+MFH3MNHKXF3A<br>
+FENRH4M9PAEA</p>
+<p>Please leave a <del>5 star</del> review <img src="http://brandontreb.com/wp-includes/images/smilies/simple-smile.png" alt=":)" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p><a href="http://j.mp/haelbH">Download It Here</a></p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Huge Update To Smart Lockscreen Creator + Promo Codes" data-url="http://brandontreb.com/huge-update-to-smart-lockscreen-creator-promo-codes"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2011/03/08/huge-update-to-smart-lockscreen-creator-promo-codes/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2011-03-08 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Mar 8</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
 	<h2><a href="https://brandon_swoop.ngrok.io/2011/03/01/free-app-idea-drop-tunes/">Free App Idea: Drop Tunes</a></h2>
   </header>
   <section class="post-body">
@@ -247,356 +662,6 @@ What’s great about it is, you have all of you music on your iPhone without usi
   <a href="https://brandon_swoop.ngrok.io/2011/02/21/albuquerque-marathon-training/" class="u-url">
 	<aside class="dates">
 	  <time datetime="2011-02-21 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Feb 21</time>
-	</aside>
-  </a>
-</article>
-</li>
-<span class="separator"><span class="divider"></span></span>
-
-	
-		<li>
-<article>
-  
-  <section class="post-body">
-  <header>
-	<h2><a href="https://brandon_swoop.ngrok.io/2011/02/16/20110216-065023.jpg/">Tweet Press 3.2 Update &amp;#8211; Sidebar Widget</a></h2>
-  </header>
-  <section class="post-body">
-	<p>I have recently had an overwhelming number of requests for a sidebar widget that displays your recent Tweetpress photos. Well, it’s finally here! The update was actually quite trivial to make. If I had known how simple it would be, I would have made it months ago.</p>
-<p>Make sure you update to the latest version: <a href="http://wordpress.org/extend/plugins/tweetpress/">tweetpress 3.2</a></p>
-<p><strong>How to use it</strong><br>
-In the WordPress admin, click on Appearance and the Widgets from the sidebar menu. If your theme supports widgets (which is should), you will see a Tweetpress widget in the available widgets list.</p>
-<p>Next drag that widget into the sidebar area and modify the settings.</p>
-<p><a href="/uploads/2011/20110216-065023.jpg"><img src="/uploads/2011/20110216-065023.jpg" alt="" class="alignnone size-full" /></a></p>
-<p>You can configure the title of the widget as well as the number of photos to be displayed. Please comment here or shoot me an email if you experience any issues with it. I’m also open to suggestions.</p>
-<div style="">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Tweet Press 3.2 Update - Sidebar Widget" data-url="http://brandontreb.com/tweet-press-3-2-update-sidebar-widget"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
-</div>
-  
-  </section>
-  </section>
-  
-  <a href="https://brandon_swoop.ngrok.io/2011/02/16/20110216-065023.jpg/" class="u-url">
-	<aside class="dates">
-	  <time datetime="2011-02-16 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Feb 16</time>
-	</aside>
-  </a>
-</article>
-</li>
-<span class="separator"><span class="divider"></span></span>
-
-	
-		<li>
-<article>
-  
-  <section class="post-body">
-  <header>
-	<h2><a href="https://brandon_swoop.ngrok.io/2011/02/15/its-elementary-my-dear-watson/">It&amp;#8217;s Elementary My Dear Watson</a></h2>
-  </header>
-  <section class="post-body">
-	<div class="wp-caption aligncenter" style="width: 577px">
-  <img title="watson" src="http://cdn.venturebeat.com/wp-content/uploads/2011/01/watson-ai-jeopardy.jpg" alt="" width="567" height="331" /> 
-  <p class="wp-caption-text">
-    IBM's Watson on Jeopardy
-  </p>
-</div>
-<p style="text-align: left;">
-  Last night marked the beginning of the <a href="http://www-943.ibm.com/innovation/us/watson/">IBM Jeopardy challenge</a>. For those of you who don&#8217;t know, IBM has been working for some time on a system (named Watson) that has overcome some amazing challenges. The goal: to build an entirely self-contained system that can beat the World&#8217;s best Jeopardy players.
-</p>
-<p>Now, I’m not going to give you a rundown on it as I’m sure that you can (or have already) read it on a website far more popular than mine. I just wanted to publicly geek out for a second…</p>
-<p>I was watching the episode of Jeopardy with my wife, and at first glance she was like “duh, of course a computer could win at Jeopardy”. This made me realize that to a non engineer, this seems like a trivial task since computers are magical Facebook boxes.</p>
-<p>Now me on the other hand, I was giddy to the point of almost wetting myself. Seeing how far we have come in AI development and language processing is absolutely incredible.</p>
-<p>I for one, will be glued to my tv tonight to watch Watson’s next round of Jeopardy.</p>
-<div style="">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="It&#8217;s Elementary My Dear Watson" data-url="http://brandontreb.com/its-elementary-my-dear-watson"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
-</div>
-  
-  </section>
-  </section>
-  
-  <a href="https://brandon_swoop.ngrok.io/2011/02/15/its-elementary-my-dear-watson/" class="u-url">
-	<aside class="dates">
-	  <time datetime="2011-02-15 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Feb 15</time>
-	</aside>
-  </a>
-</article>
-</li>
-<span class="separator"><span class="divider"></span></span>
-
-	
-		<li>
-<article>
-  
-  <section class="post-body">
-  <header>
-	<h2><a href="https://brandon_swoop.ngrok.io/2011/02/14/office-spacejpg.jpeg/">Case Of The Mondays</a></h2>
-  </header>
-  <section class="post-body">
-	<div id="attachment_1421" class="wp-caption alignright" style="width: 330px">
-  <a href="/uploads/2011/office-spacejpg.jpeg"><img class="size-full wp-image-1421 " title="office-spacejpg" src="/uploads/2011/office-spacejpg.jpeg" alt="" width="320" height="240" /></a> 
-  <p class="wp-caption-text">
-    Mondays&#8230;
-  </p>
-</div>
-<p>The other day, I was faced with an interesting programming challenge and wanted to share my solution. I just submitted a pretty interesting app to the app store that does a number of things (more details soon). Among those things is the ability to generate a calendar.</p>
-<h4 id="the-problem">The Problem</h4>
-<p>Generating the calendar was the easy part, however when displayed, I wanted it to highlight every Monday of the month. This turned out to be a bit trickier than I imagined.</p>
-<p>Really the main challenge here was to determine which day contained the <em>first</em> Monday of the month. After that, we just loop incrementing by 7 and are done.</p>
-<h4 id="looking-at-the-date-helpers">Looking At The Date Helpers</h4>
-<p>Looking at what I had to work with in NSDate, NSCalendar, and NSDateComponents, I really found only 2 things that could help me. From NSDateComponents, I could figure out the current day (numeric) and the current day of the week (numeric). Knowing this information was very important.</p>
-<h4 id="the-solution">The Solution</h4>
-<p>Having the current day and day of the week allowed me to find the date of the Monday on the current week. This was the first challenge as demonstrated below. Assume weekdayComponents is the NSDateComponents generated from the current date.</p>
-<div>
-  <pre>&lt;code class=’objc’>NSInteger weekday = [weekdayComponents weekday];
-NSInteger day         = [weekdayComponents day];
-<p>// First, find how many days we are from Monday
-int daysAwayFromMonday = weekday - 2;</p>
-<p>// Now resolve the monday of this week
-int mondayThisWeek = day - daysAwayFromMonday;</p>
-<p>// Check if monday this week falls in last month
-if(mondayThisWeek &lt;= 0) {
-mondayThisWeek = day + (7 - daysAwayFromMonday);
-}&lt;/code&gt;</pre></p>
-</div>
-<p>mondayThisWeek will now contain the day number of the Monday of the current week. If that Monday falls on the previous month, mondayThisWeek will be negative. Line 12 resolves that by carrying it into next week.</p>
-<p>Finally, we just loop subtracting 7 from that Monday until mondayThisWeek is less than 7 to get the first Monday of the month.</p>
-<div>
-  <pre>&lt;code class=’objc’>while(mondayThisWeek &gt; 7) {
-    mondayThisWeek -= 7;
-}&lt;/code></pre>
-</div>
-<p>And there you have it. mondayThisWeek (improperly named at this point) will contain the day number of the first Monday for the current month.</p>
-<p>So, this was quite a round-a-bout way to find this value. If you have a better solution, please feel free to trash on mine in the comments 😉 .</p>
-<div style="">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Case Of The Mondays" data-url="http://brandontreb.com/case-of-the-mondays"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
-</div>
-  
-  </section>
-  </section>
-  
-  <a href="https://brandon_swoop.ngrok.io/2011/02/14/office-spacejpg.jpeg/" class="u-url">
-	<aside class="dates">
-	  <time datetime="2011-02-14 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Feb 14</time>
-	</aside>
-  </a>
-</article>
-</li>
-<span class="separator"><span class="divider"></span></span>
-
-	
-		<li>
-<article>
-  
-  <section class="post-body">
-  <header>
-	<h2><a href="https://brandon_swoop.ngrok.io/2011/01/20/44696226_farewell_ap466.jpeg/">Farewell (For Now) iDevBlogADay</a></h2>
-  </header>
-  <section class="post-body">
-	<p style="text-align: center;">
-  <a href="/uploads/2011/44696226_farewell_ap466.jpeg"><img class="alignnone size-full wp-image-1407" title="_44696226_farewell_ap466" src="/uploads/2011/44696226_farewell_ap466.jpeg" alt="" width="466" height="300" /></a>
-</p>
-<p>Hey guys,</p>
-<p>I wanted to thank everyone for letting me be a part of the iDevBlogADay community. You guys have been super supportive and I really appreciate all of the commenting, retweeting, and upvoting of my iDevBlogADay articles.</p>
-<p>I have found myself in a position with life (work + family) where I may no longer be able to consistently write a post per week. So, after 2 months of writing, it is time for me to pass the torch to the next blogger on the list.</p>
-<p>I will still continue to blog (and continue my Twitter For Mac Series), so I really encourage you to subscribe to my <a href="http://feeds2.feedburner.com/brandontreb">RSS feed</a> (or <a href="http://twitter.com/brandontreb">Twitter feed</a>).</p>
-<p>Thanks again and Happy Coding!</p>
-<div style="">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Farewell (For Now) iDevBlogADay" data-url="http://brandontreb.com/farewell-for-now-idevblogaday"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
-</div>
-  
-  </section>
-  </section>
-  
-  <a href="https://brandon_swoop.ngrok.io/2011/01/20/44696226_farewell_ap466.jpeg/" class="u-url">
-	<aside class="dates">
-	  <time datetime="2011-01-20 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Jan 20</time>
-	</aside>
-  </a>
-</article>
-</li>
-<span class="separator"><span class="divider"></span></span>
-
-	
-		<li>
-<article>
-  
-  <section class="post-body">
-  <header>
-	<h2><a href="https://brandon_swoop.ngrok.io/2011/01/13/screen-shot-2011-01-13-at-7.25.52-pm.png/">AppBlogger: A Tool For iOS App Developers And Bloggers</a></h2>
-  </header>
-  <section class="post-body">
-	<p>Imagine that you have just found the coolest app in the world and just can’t wait to tell all of your followers about it. So, you head to the admin panel of your blogging engine (hopefully <a href="http://wpwithlove.com">WordPress</a>) and begin to write your review. Now, you want to insert some screenshots, icons, descriptions, app store links, etc… So, what do you do? You head on over to Bing and type in google.com. Next, you search your app name and hopefully find the iTunes URL so that you can slowly grab some information about the app. <span style="color: #ff0000;">#Fail</span></p>
-<p>Dum duh dum duh (trumpet noises)!</p>
-<p>Enter <a href="http://brandontreb.com/apps/appBlogger" target="_blank">AppBlogger</a>. <a href="http://brandontreb.com/apps/appBlogger" target="_blank">AppBlogger</a> is a little tool that I have been working on that uses “Instant Search” technology (jquery fanciness) to allow you to instantly search the app store and <strong>quickly</strong> get the information you need.</p>
-<p><a href="http://brandontreb.com/apps/appBlogger/"><img class="alignnone size-full wp-image-1383" title="Screen shot 2011-01-13 at 7.17.04 PM" src="/uploads/2011/Screen-shot-2011-01-13-at-7.17.04-PM.png" alt="" width="539" height="468" /></a></p>
-<p><strong>How Does It Work?</strong> (you say)</p>
-<p>As you start typing, <a href="http://brandontreb.com/apps/appBlogger/" target="_blank">AppBlogger</a> makes an asynchronous request to the iTunes web service and pulls a list of applications that match your search terms. This list is presented as a bunch of icons. You will then click on one of these icons to pull of the details page of that application.</p>
-<img class="size-full wp-image-1387 alignleft" title="Screen shot 2011-01-13 at 7.25.52 PM" src="/uploads/2011/Screen-shot-2011-01-13-at-7.25.52-PM.png" alt="" width="219" height="227" />
-<p>The details page (see above screenshot) then contains everything you need to write a stellar blog post about that application. It provides text fields (for easy copy and paste) with icon URLs, download URL, and screenshot URLs.</p>
-<p>I have some plans to integrate this in the <em>near</em> future with my <a href="http://brandontreb.com/apps/linkshare">Link Share</a> tool to auto generate shortened URLs that contain your affiliate code (so you can make $). If you have any other suggestions for it, I would love to hear them.</p>
-<p>I know many of you are heartbroken and were expecting the next iteration of my <a href="http://brandontreb.com/creating-a-twitter-client-for-osx-part-1/">Twitter Client For Mac</a> series. I want you to know, you are not forgotten and I will continue the series next Thursday. So Stay Tuned!</p>
-<p>Check out <a href="http://brandontreb.com/apps/appBlogger">AppBlogger</a>!</p>
-<div style="font-family: ‘Lucida Grande’;">
-  <span style="font-family: ‘Lucida Grande’;"><strong><span style="font-weight: normal;"><span style="font-family: arial, verdana, tahoma, sans-serif; font-size: 13px; line-height: 20px;"><em>﻿﻿This post is part of <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://idevblogaday.com/">iDevBlogADay</a>, a group of indie iOS development blogs featuring two posts per day. You can keep up with iDevBlogADay through the <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://idevblogaday.com/">web site</a>, <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://feeds.feedburner.com/idevblogaday">RSS feed</a>, or <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://twitter.com/#search?q=%23idevblogaday">Twitter</a>.</em></span></span></strong></span>
-</div>
-<div style="">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="AppBlogger: A Tool For iOS App Developers And Bloggers" data-url="http://brandontreb.com/appblogger-a-tool-for-ios-app-developers-and-bloggers"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
-</div>
-  
-  </section>
-  </section>
-  
-  <a href="https://brandon_swoop.ngrok.io/2011/01/13/screen-shot-2011-01-13-at-7.25.52-pm.png/" class="u-url">
-	<aside class="dates">
-	  <time datetime="2011-01-13 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Jan 13</time>
-	</aside>
-  </a>
-</article>
-</li>
-<span class="separator"><span class="divider"></span></span>
-
-	
-		<li>
-<article>
-  
-  <section class="post-body">
-  <header>
-	<h2><a href="https://brandon_swoop.ngrok.io/2011/01/06/jobs.png/">Image Manipulation: Retrieving And Updating Pixel Values For A UIImage</a></h2>
-  </header>
-  <section class="post-body">
-	<div id="attachment_1371" class="wp-caption alignright" style="width: 410px">
-  <a href="/uploads/2011/jobs.png"><img class="size-full wp-image-1371 " title="jobs" src="/uploads/2011/jobs.png" alt="" width="400" height="224" /></a> 
-  <p class="wp-caption-text">
-    Grayscale Jobs
-  </p>
-</div>
-<p>With the recent success of cool photo manipulation apps such as Camera+ and Instagram, it got me wondering. How do these photo apps modify the pixel data of the image.</p>
-<p>After doing a bit of research on the subject, I found countless posts on Stack Overflow and the Developer forums about various methods to get and set the pixel values of a UIImage. Most of them unanswered or partially answered. I tested out many solutions and banged my head on my computer into the whee hours of the morning with no success. Every solution I tried seemed to completely destroy the image.</p>
-<p>It wasn’t until this morning, I had an “aha” moment, changed one line of code and was able to produce a grayscale version of a UIImage.</p>
-<p>Having the ability to get and set pixel values of a UIImage is super important if you want to create a photo related app that has “Filters”. Once you know the basics, you can apply your ninja math skillz to implement cool filter algorithms on the pixels. Below, I will show you onc such algorithm for converting an image to grayscale (it’s not <em>that</em> clever).</p>
-<p>I should note, that a good majority of my code comes from Olie’s solution on this <a href="http://stackoverflow.com/questions/448125/how-to-get-pixel-data-from-a-uiimage-cocoa-touch-or-cgimage-core-graphics">Stack Overflow post</a>. His example simply returns and array of UIColor objects for a given image. Mine will modify those colors and write them back to a UIImage.</p>
-<h4 id="converting-a-uiimage-into-a-pixel-array">Converting A UIImage Into A Pixel Array</h4>
-<p>Here is the first part of our grayscale method. It is creating a char array from a global UIImage property named workingImage.</p>
-<div>
-  <pre>&lt;code class=’objc’>- (IBAction) grayscale:(id) sender {
-    CGContextRef ctx;
-    CGImageRef imageRef = [self.workingImage CGImage];
-    NSUInteger width = CGImageGetWidth(imageRef);
-    NSUInteger height = CGImageGetHeight(imageRef);
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    unsigned char *rawData = malloc(height * width * 4);
-    NSUInteger bytesPerPixel = 4;
-    NSUInteger bytesPerRow = bytesPerPixel * width;
-    NSUInteger bitsPerComponent = 8;
-    CGContextRef context = CGBitmapContextCreate(rawData, width, height,
-    bitsPerComponent, bytesPerRow, colorSpace,
-    kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
-    CGColorSpaceRelease(colorSpace);
-<pre><code>CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
-CGContextRelease(context);
-.
-.
-.&amp;lt;/code&gt;&lt;/pre&gt;
-</code></pre>
-</div>
-<p>This is a lot of Core Graphics fanciness that isn’t super important to understand. It’s just getting the RGBA values from the image and writing them into the rawData char array. There are 4 bytes per pixel (red, green, blue, alpha), so this array contains 4 * height * width elements.</p>
-<h4 id="modifying-the-pixels-of-a-uiimage">Modifying The Pixels of a UIImage</h4>
-<p>Here is where the magic happens. You can replace this code with the logic necessary to apply the filter you are making. Another clever way to approach this would be to pass this code in as a block into the method (I’ll leave that as an exercise for the reader :)).</p>
-<div>
-  <pre>&lt;code class=’objc’>.
-.
-.
-    int byteIndex = 0;
-    for (int ii = 0 ; ii &lt; width * height ; ++ii)
-    {
-    int outputColor = (rawData[byteIndex] + rawData[byteIndex+1] +
-        rawData[byteIndex+2]) / 3;
-<pre><code>rawData[byteIndex] = (char) (outputColor);
-rawData[byteIndex+1] = (char) (outputColor);
-rawData[byteIndex+2] = (char) (outputColor);
-
-    byteIndex += 4;
-}
-</code></pre>
-<p>.
-.
-.&lt;/code&gt;</pre></p>
-</div>
-<p>The first part is pretty straight forward, we have a for loop that goes from 0 to width * height. We index into the rawData array using a counter that we increment by 4 each time (remember 4 bytes per pixel). As you can imagine, the first pixel (rawData[byteIndex]) represents the red pixel, then green for +1, blue for +2, and finally alpha for +3. Note that the alpha byte is last because kCGImageAlphaPremultipliedLast flag above.</p>
-<p>In order to do grayscale, we simple set all of the color values to the average color value. So, for example the color [218,232,244] (which is the light blue color of the WordPress editor’s toolbar) would be converted to [231,231,231] which is a fairly light gray color.</p>
-<p>The most important step that everyone in the forums seemed to miss was casting the new value to a char. Remember we are using a char array, setting ints as values will generally screw up your image. (This was my “aha” moment that I mentioned above)</p>
-<h4 id="writing-the-pixels-back-to-a-uiimage">Writing The Pixels Back To a UIImage</h4>
-<p>The final step is to write the pixel data back to a UIImage. Again, I borrowed some of this code from somewhere else and unfortunately lost the link. If I find it, I will update the post.</p>
-<div>
-  <pre>&lt;code class=’objc’>.
-.
-.
-    ctx = CGBitmapContextCreate(rawData,
-        CGImageGetWidth( imageRef ),
-        CGImageGetHeight( imageRef ),
-        8,
-        CGImageGetBytesPerRow( imageRef ),
-        CGImageGetColorSpace( imageRef ),
-        kCGImageAlphaPremultipliedLast ); 
-<pre><code>imageRef = CGBitmapContextCreateImage (ctx);
-UIImage* rawImage = [UIImage imageWithCGImage:imageRef];  
-
-CGContextRelease(ctx);  
-
-self.workingImage = rawImage;  
-
-free(rawData);
-</code></pre>
-<p>}&lt;/code&gt;</pre></p>
-</div>
-<p>All we are doing here is creating a new Bitmap Context, writing it to our CGImageRef and constructing a new UIImage from that CGImageRef. Finally, we just update our workingImage with the modified one. Fancy, I know…</p>
-<p>Now, much of this code is to work with my example (download below), but it could easily be tweaked to fit within your super awesome photo app. If you have any questions or comments PLEASE leave them here or send them to me on Twitter (but probably leave them here 😉 ).</p>
-<p><a href="http://brandontreb.com/wp-content/uploads/2011/01/ImageManip.zip">Download The Sample Source Project</a></p>
-<ul>
-<li>Note on the sample code: Before you give me crap about doing this in the main thread, I know. Don’t do these operation on the main thread. The example is meant to be quick and dirty and by no means is ready for production. Enjoy!</li>
-</ul>
-<p><span style="font-family: ‘Lucida Grande’;"><strong><span style="font-weight: normal;"><span style="font-family: arial, verdana, tahoma, sans-serif; font-size: 13px; line-height: 20px;"><em>﻿﻿This post is part of <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://idevblogaday.com/">iDevBlogADay</a>, a group of indie iOS development blogs featuring two posts per day. You can keep up with iDevBlogADay through the <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://idevblogaday.com/">web site</a>, <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://feeds.feedburner.com/idevblogaday">RSS feed</a>, or <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://twitter.com/#search?q=%23idevblogaday">Twitter</a>.</em></span></span></strong></span></p>
-<div style="">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Image Manipulation: Retrieving And Updating Pixel Values For A UIImage" data-url="http://brandontreb.com/image-manipulation-retrieving-and-updating-pixel-values-for-a-uiimage"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
-</div>
-  
-  </section>
-  </section>
-  
-  <a href="https://brandon_swoop.ngrok.io/2011/01/06/jobs.png/" class="u-url">
-	<aside class="dates">
-	  <time datetime="2011-01-06 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Jan 6</time>
-	</aside>
-  </a>
-</article>
-</li>
-<span class="separator"><span class="divider"></span></span>
-
-	
-		<li>
-<article>
-  
-  <section class="post-body">
-  <header>
-	<h2><a href="https://brandon_swoop.ngrok.io/2011/01/03/mvtpa.jpg/">[Pi]mp Wallpaper</a></h2>
-  </header>
-  <section class="post-body">
-	<div id="attachment_1351" class="wp-caption alignnone" style="width: 548px">
-  <a href="/uploads/2011/MvTPa.jpg"><img class="size-full wp-image-1351  " title="MvTPa" src="/uploads/2011/MvTPa.jpg" alt="" width="538" height="336" /></a> 
-  <p class="wp-caption-text">
-    Found on Reddit
-  </p>
-</div>
-<div style="">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="[Pi]mp Wallpaper" data-url="http://brandontreb.com/pimp-wallpaper"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
-</div>
-  
-  </section>
-  </section>
-  
-  <a href="https://brandon_swoop.ngrok.io/2011/01/03/mvtpa.jpg/" class="u-url">
-	<aside class="dates">
-	  <time datetime="2011-01-03 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Jan 3</time>
 	</aside>
   </a>
 </article>

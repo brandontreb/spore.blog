@@ -1,6 +1,8 @@
 const execSync = require('child_process').execSync;
 const YAML = require('yaml');
 const fs = require('fs');
+const markdownLinkExtractor = require('markdown-link-extractor');
+
 const logger = require('../config/logger');
 const config = require('../config/config');
 
@@ -16,6 +18,8 @@ const createPost = (frontMatter, content) => {
     if (frontMatter[key] !== null) filtered[key] = frontMatter[key];
     return filtered;
   }, {});
+
+  logger.debug('Front Matter: %o', frontMatter);
 
   const postContent = `---\n${YAML.stringify(frontMatter)}---\n${content}`;
   logger.debug('Creating Post: \n%s', postContent);
@@ -56,9 +60,29 @@ const getPostUrl = (frontMatter) => {
   return `${config.hugo.config.baseURL}/${reply}${dateString}/${frontMatter.slug}/`;    
 }
 
+const getLinksFromFrontMatterAndContent = (frontMatter, content) => {
+  let links = [];  
+  // Check if any of the front matter properties are links
+  Object.keys(frontMatter).forEach(key => {
+    if (frontMatter[key] && frontMatter[key].length && frontMatter[key].includes('http')) {
+      links.push(frontMatter[key]);
+    }
+  });
+  // Get links from the content  
+  const { links: contentLinks } = markdownLinkExtractor(content);
+  links = links.concat(contentLinks);
+  // Remove duplicates
+  links = [...new Set(links)];
+  // Remove null and undefined
+  links = links.filter(link => link !== null && link !== undefined);
+  logger.debug('Links found in front matter and content: %o', links);
+  return links;
+};
+
 module.exports = {
   createPost,
   generateSite,
-  getPostUrl
+  getPostUrl,
+  getLinksFromFrontMatterAndContent
 };
 

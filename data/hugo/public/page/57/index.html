@@ -128,6 +128,299 @@ nav.main-nav a.cta:hover {
   
   <section class="post-body">
   <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2009/12/04/programming-tip-of-the-day-2-difference-between-i-and-i/">Programming Tip Of The Day #2 &amp;#8211; Difference Between i&#43;&#43; and &#43;&#43;i</a></h2>
+  </header>
+  <section class="post-body">
+	<p>To some, this should seem a bit obvious and if I am insulting your intelligence by discussing it, I am sorry. But, one of the main reasons I want to discuss this topic is, I was asked this question in a job interview for Lockheed Martin.</p>
+<p><strong>What is the difference between i++ and ++i?</strong></p>
+<p>The answer is actually quite simple.</p>
+<h3 id="span-stylecolor-00ccffispan-first-evaluates-the-value-of-i-and-then-increments-it"><span style="color: #00ccff;">i++</span> first evaluates the value of i and then increments it</h3>
+<h3 id="span-stylecolor-00ccffispan-increments-the-value-of-i-and-then-evaluates-it"><span style="color: #00ccff;">++i</span> increments the value of i and then evaluates it</h3>
+<p>Here is a brief example to demonstrate what I mean.</p>
+<div class="wp_syntax">
+  <table>
+    <tr>
+      <td class="code">
+        <pre class="php" style="font-family:monospace;"><span style="color: #666666; font-style: italic;">// Example: i++ </span>
+<span style="color: #000088;">$i</span> <span style="color: #339933;">=</span> <span style="color: #cc66cc;">5</span><span style="color: #339933;">;</span>
+<span style="color: #b1b100;">echo</span> <span style="color: #0000ff;">"The value of i is "</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$i</span><span style="color: #339933;">++</span> <span style="color: #339933;">;</span>
+<span style="color: #666666; font-style: italic;">// Output "The value of i is 5"</span>
+<span style="color: #666666; font-style: italic;">// i = 6</span>
+&nbsp;
+<span style="color: #666666; font-style: italic;">// Example: ++i </span>
+<span style="color: #000088;">$i</span> <span style="color: #339933;">=</span> <span style="color: #cc66cc;">5</span><span style="color: #339933;">;</span>
+<span style="color: #b1b100;">echo</span> <span style="color: #0000ff;">"The value of i is "</span> <span style="color: #339933;">.</span> <span style="color: #339933;">++</span><span style="color: #000088;">$i</span><span style="color: #339933;">;</span>
+<span style="color: #666666; font-style: italic;">// Output "The value of i is 6"</span>
+<span style="color: #666666; font-style: italic;">// i = 6</span></pre>
+      </td>
+    </tr>
+  </table>
+</div>
+<p>So, now if you are ever asked about this in an interview, you will have a response.</p>
+<p>Happy programming!</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Programming Tip Of The Day #2 - Difference Between i++ and ++i" data-url="http://brandontreb.com/programming-tip-of-the-day-2-difference-between-i-and-i"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2009/12/04/programming-tip-of-the-day-2-difference-between-i-and-i/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2009-12-04 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Dec 4</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2009/12/03/programming-tip-of-the-day-1-ternary-operator/">Programming Tip Of The Day #1 &amp;#8211; Ternary Operator</a></h2>
+  </header>
+  <section class="post-body">
+	<p>So, I though I’d start this series called Programming Tip Of The Day to write about useful things I come across in programming. Both to educate my readers and as a personal archive of ideas and tips.</p>
+<p>I will kick it off today with a quick rant about the <strong>ternary operator</strong>. I &lt;3 the ternary operator. It’s quick, efficient and saves a lot of ugly code.</p>
+<p>For those of you who don’t know, the ternary operator is made up of 3 elements: The condition and two results. It is of the form:</p>
+<h2 id="condition--result-if-true--result-if-false">(condition) ? (result if true) : (result if false);</h2>
+<p>This is much nicer than an if statement. So here is a brief example about how a ternary operator can replace an if-statement.</p>
+<h3 id="if-statement">if-statement</h3>
+<div>
+  <pre>&lt;code class=’c’>if(isSnowing) {
+    iMustBe = "cold";
+} else {
+    iMustBe = "warm";
+}&lt;/code></pre>
+</div>
+<h3 id="same-thing-using-ternary">Same thing using ternary</h3>
+<div>
+  <pre>&lt;code class=’c’>iMustBe = isSnowing ? "cold" : "warm";&lt;/code></pre>
+</div>
+<p>That is so much easier to read (IMHO). You can even do clever things in printing. Here is a small example in PHP for using the ternary operator when doing an echo.</p>
+<div>
+  <pre>&lt;code class=’php’>&lt;?php
+  echo "I am a ".((height &gt; 72) ? "tall" : "short")." person!";
+?&gt;&lt;/code></pre>
+</div>
+<p>Most languages support the ternary operator. Check out <a href="http://en.wikipedia.org/wiki/Ternary_operation">this wiki page</a> if you want more info.</p>
+<p>Happy programming!</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Programming Tip Of The Day #1 - Ternary Operator" data-url="http://brandontreb.com/programming-tip-of-the-day-1-ternary-operator"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2009/12/03/programming-tip-of-the-day-1-ternary-operator/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2009-12-03 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Dec 3</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2009/12/02/mac-osx-tip-hotkey-to-hideshow-the-dock/">Mac OSX Tip: Hotkey To Hide/Show the Dock</a></h2>
+  </header>
+  <section class="post-body">
+	<p>While mashing the keyboard (as I often do when debuggin poorly written outsourced code), I stumbled upon a very useful OSX hotkey.</p>
+<h2 id="-option-d">⌘-option-d</h2>
+<p>This command will cause the Dock to go in and out of auto-hide mode.</p>
+<p>Not the most useful, but very helpful to geeks like me who rearrange their desktop every day.</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Mac OSX Tip: Hotkey To Hide/Show the Dock" data-url="http://brandontreb.com/mac-osx-tip-hotkey-to-hideshow-the-dock"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2009/12/02/mac-osx-tip-hotkey-to-hideshow-the-dock/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2009-12-02 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Dec 2</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2009/11/27/twitter64.png/">Increase Your Twitter Following Using Your WordPress Blog</a></h2>
+  </header>
+  <section class="post-body">
+	<p style="margin-top: 0px; margin-right: 0px; margin-bottom: 22px; margin-left: 0px; clear: left; font-size: 13px; padding: 0px;">
+  <a href="/uploads/2009/twitter64.png"><img class="size-full wp-image-656 alignnone" title="twitter_bird" src="/uploads/2009/twitter64.png" alt="twitter_bird" width="562" height="352" /></a>
+</p>
+<p><a href="http://downloads.wordpress.org/plugin/twitpop.zip">Download TwitPop Now</a></p>
+<p>TwitPop is a WordPress plugin I wrote with one goal…To make you more popular on Twitter. There are sites that spring up from time to time claiming to get you more followers on Twitter if you follow X amount of people on the follow train. Well, now you can create your own Twitter train on your wordpress blog and really get more followers.</p>
+<p style="margin-top: 0px; margin-right: 0px; margin-bottom: 22px; margin-left: 0px; clear: left; font-size: 13px; padding: 0px;">
+  The best part is, you add your username in the admin panel and EVERYONE FOLLOWS YOU! Think of the possibilities&#8230; You could be a Twitlebrity.
+</p>
+<p style="margin-top: 0px; margin-right: 0px; margin-bottom: 22px; margin-left: 0px; clear: left; font-size: 13px; padding: 0px;">
+  To add to the excitement, everyone that uses your TwitPop plugin will Tweet a link back to your blog. This promotes your blog as well as your Twitter account. Check out how TwitPop works below.
+</p>
+<p><strong>Instructions</strong></p>
+<p>Log in to your Twitter account below. You will automatically follow the people that have visited this page before you (no more than 20).</p>
+<p>Then, your Twitter username will be added to the list and you will be followed by the next 20 people to use this plugin.</p>
+<p>[twitpop]</p>
+<p style="margin-top: 0px; margin-right: 0px; margin-bottom: 22px; margin-left: 0px; clear: left; font-size: 13px; padding: 0px;">
+  <a href="http://downloads.wordpress.org/plugin/twitpop.zip">Download TwitPop Now</a>
+</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Increase Your Twitter Following Using Your WordPress Blog" data-url="http://brandontreb.com/increase-your-twitter-following-using-your-wordpress-blog"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2009/11/27/twitter64.png/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2009-11-27 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Nov 27</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2009/11/25/first-learn-computer-science-and-all-the-theory-next-develop-a-programming-style-then-forget-all-that-and-just-hack/">First learn computer science and all the theory. Next develop a programming style. Then forget all that and just hack.</a></h2>
+  </header>
+  <section class="post-body">
+	<p>George Carrette [1990].</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="First learn computer science and all the theory. Next develop a programming style. Then forget all that and just hack." data-url="http://brandontreb.com/first-learn-computer-science-and-all-the-theory-next-develop-a-programming-style-then-forget-all-that-and-just-hack"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2009/11/25/first-learn-computer-science-and-all-the-theory-next-develop-a-programming-style-then-forget-all-that-and-just-hack/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2009-11-25 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Nov 25</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2009/11/16/php-class-to-interface-with-many-url-shortening-services/">PHP Class To Interface With Many URL Shortening Services</a></h2>
+  </header>
+  <section class="post-body">
+	<p>With the explosion of Twitter and such services, the need to have long URLs shortened has drastically increased. Naturally, many services to shorten URLs have sprung up as well.</p>
+<p>Most of these services (that are worth using), have some sort of API that will allow developers to send a long URL to them, have it shortened and then returned. This type of service allows other developers to write applications that have the ability to shorten URLs right inside of them.</p>
+<p>Recently, I had to write a PHP class to work with URL shorteners. So, I made it support multiple shortening services and have decided to share it with you.</p>
+<p>The class is called <a href="http://brandontreb.com/wp-content/uploads/2009/11/URLShortener.class.php_1.zip">URLShortener.class.php</a> and it supports the following shortening services:</p>
+<ul>
+<li>j.mp (bit.ly)</li>
+<li>tr.im</li>
+<li>TinyURL</li>
+<li>is.gd</li>
+<li>u.nu</li>
+<li>Linkyy</li>
+<li>Your own custom shortening service</li>
+</ul>
+<p>Here are some examples of how to use the class in your own applications:</p>
+<div>
+  <pre>&lt;code class=’php’>&lt;?php
+     /* Basic: */
+     $s = new URLShortener(‘tr.im’);
+     echo $s-&gt;shorten("http://brandontreb.com");
+<pre><code> /* Using API Key and Login */
+ $s = new URLShortener(‘j.mp’);
+ $s-&amp;gt;login = ‘brandontreb’;
+ $s-&amp;gt;APIKey = ‘R_2a413ebd15254a72b500ec2ce83f982d’;
+ echo $s-&amp;gt;shorten(&quot;http://brandontreb.com&quot;);
+ 
+ /* Custom URL */
+ // Just make sure you put %s and it will be 
+ // replaced with the long URL
+ $s = new URLShortener(‘custom’,
+    ‘http://b1t.me/api/shorten.xml/%s’);
+ echo $s-&amp;gt;shorten(&quot;http://brandontreb.com&quot;,false);
+</code></pre>
+<p>?&gt;&lt;/code&gt;</pre></p>
+</div>
+<p>You may download my URLShortener PHP class <a href="http://brandontreb.com/wp-content/uploads/2009/11/URLShortener.class.php_1.zip">here</a>.</p>
+<p>Feel free to leave any questions or comments in the comments section.</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="PHP Class To Interface With Many URL Shortening Services" data-url="http://brandontreb.com/php-class-to-interface-with-many-url-shortening-services"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2009/11/16/php-class-to-interface-with-many-url-shortening-services/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2009-11-16 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Nov 16</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2009/11/13/programming/">Programming</a></h2>
+  </header>
+  <section class="post-body">
+	<div class="wp-caption alignnone" style="width: 460px">
+  <img title="Programming" src="http://abstrusegoose.com/strips/computer_science_major.PNG" alt="99% of students that were in my CS degree program" width="450" /> 
+  <p class="wp-caption-text">
+    99% of students that were in my CS degree program
+  </p>
+</div>
+<p><em>Image taken from <a href="http://abstrusegoose.com/strips/computer_science_major.PNG">abtrusegoose</a></em></p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Programming" data-url="http://brandontreb.com/programming"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2009/11/13/programming/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2009-11-13 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Nov 13</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
 	<h2><a href="https://brandon_swoop.ngrok.io/2009/11/13/manning-logo.png/">$13 Dollar Discount On Programming Books From Manning Publishing</a></h2>
   </header>
   <section class="post-body">
@@ -243,294 +536,6 @@ nav.main-nav a.cta:hover {
   <a href="https://brandon_swoop.ngrok.io/2009/11/11/object-oriented-programming-is-an-exceptionally-bad-idea-which-could-only-have-originated-in-california/" class="u-url">
 	<aside class="dates">
 	  <time datetime="2009-11-11 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Nov 11</time>
-	</aside>
-  </a>
-</article>
-</li>
-<span class="separator"><span class="divider"></span></span>
-
-	
-		<li>
-<article>
-  
-  <section class="post-body">
-  <header>
-	<h2><a href="https://brandon_swoop.ngrok.io/2009/11/10/was-jesus-a-real-person-great-article-on-digg-today/">Was Jesus A Real Person? Great Article On Digg Today</a></h2>
-  </header>
-  <section class="post-body">
-	<p>The culture of Digg is generally very liberal (to say the least). That is why I was very surprised to find one of the top stories of the day entitled ”<a href="http://digg.com/people/Was_Jesus_a_real_person">Was Jesus A Real Person?</a>”. Obviously, the comments section of the article was full of people arguing about the matter.</p>
-<p>I found the article to be quite well written and made a stellar case for the existence of Jesus. So whether you are a believer or not, you should check it out. <a href="http://www.y-jesus.com/bornid_1.php?gclid=CMfD2puS_Z0CFRUwpAodl1mgrw">Take a look for yourself </a>and let me know what you think.</p>
-<p><a href="http://www.y-jesus.com/bornid_1.php?gclid=CMfD2puS_Z0CFRUwpAodl1mgrw">Article Link</a></p>
-<div style="">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Was Jesus A Real Person? Great Article On Digg Today" data-url="http://brandontreb.com/was-jesus-a-real-person-great-article-on-digg-today"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
-</div>
-  
-  </section>
-  </section>
-  
-  <a href="https://brandon_swoop.ngrok.io/2009/11/10/was-jesus-a-real-person-great-article-on-digg-today/" class="u-url">
-	<aside class="dates">
-	  <time datetime="2009-11-10 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Nov 10</time>
-	</aside>
-  </a>
-</article>
-</li>
-<span class="separator"><span class="divider"></span></span>
-
-	
-		<li>
-<article>
-  
-  <section class="post-body">
-  <header>
-	<h2><a href="https://brandon_swoop.ngrok.io/2009/11/10/new-alice-in-wonderland-poster-is-sweet/">New Alice in Wonderland Poster Is Sweet</a></h2>
-  </header>
-  <section class="post-body">
-	<p style="text-align: center;">
-  <img class="alignnone" title="Alice in Wonderland" src="http://moviesmedia.ign.com/movies/image/article/104/1043561/alice-in-wonderland-2010-20091109030002918.jpg" alt="" width="486" height="720" />
-</p>
-<p>Very stoked for this movie. <em>Photo source <a href="http://movies.ign.com/dor/objects/14219277/alice-in-wonderland-2010/images/alice-in-wonderland-2010-20091109030002918.html?page=mediaFull">ign</a></em></p>
-<div style="">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="New Alice in Wonderland Poster Is Sweet" data-url="http://brandontreb.com/new-alice-in-wonderland-poster-is-sweet"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
-</div>
-  
-  </section>
-  </section>
-  
-  <a href="https://brandon_swoop.ngrok.io/2009/11/10/new-alice-in-wonderland-poster-is-sweet/" class="u-url">
-	<aside class="dates">
-	  <time datetime="2009-11-10 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Nov 10</time>
-	</aside>
-  </a>
-</article>
-</li>
-<span class="separator"><span class="divider"></span></span>
-
-	
-		<li>
-<article>
-  
-  <section class="post-body">
-  <header>
-	<h2><a href="https://brandon_swoop.ngrok.io/2009/10/06/p_480_320_b39e129d-6327-41c5-94de-474d13974ed7.jpeg/">TweetPress Now Supported By Twittelator Pro</a></h2>
-  </header>
-  <section class="post-body">
-	<p>For many of you this is old new. But since it’s latest release, Twittelator Pro has supported TweetPress as one of the options for Photo Posting. Here are the steps to configure Twittelator Pro:</p>
-<ol>
-<li>First, make sure you have TweetPress installed on your WordPress blog by following the installation instructions <a href="http://brandontreb.com/tweetpress/">here</a></li>
-<li>Tap the <strong>Settings</strong> tab</li>
-<li>Select <strong>WordPress</strong> from the dropdown under <strong>Choose Photo Service</strong><br>
-<img class="alignnone size-full wp-image-364" src="/uploads/2009/p_480_320_74ABB206-5D4F-424E-BE39-380AC8611ED1.jpeg" alt="" width="200" height="300" /></li>
-<li>** **Tap **Other Services **(you should see the WordPress logo) and then tap **Tweetpress for iPhone **<br>
-<img class="alignnone size-full wp-image-364" src="/uploads/2009/p_480_320_F52EAD4F-B44E-497E-AB49-13C8AB565EF4.jpeg" alt="" width="200" height="300" /></li>
-<li>**** Enter in your WordPress credentials
-<ol>
-<li>Site Link: The URL of the hompage of your wordpress blog</li>
-<li>Username – your wordpress username</li>
-<li>Password – your wordpress password</li>
-</ol>
-</li>
-</ol>
-<pre><code>&lt;img class=&quot;alignnone size-full wp-image-364&quot; src=&quot;/uploads/2009/p_480_320_B39E129D-6327-41C5-94DE-474D13974ED7.jpeg&quot; alt=&quot;&quot; width=&quot;200&quot; height=&quot;300&quot; /&gt;&lt;/li&gt; 
-
-  * Tap Done&lt;/ol&gt; 
-
-You should now be good to go. Any time you choose to post a photo to your Twitter stream, it will use your TweetPress plugin on your WordPress blog. Please let me know if you encounter any issues or have suggestions for Tweetpress.
-
-I have been in contact with developers of other popular Twitter clients and hope to get Tweetpress integrated in them soon.
-
-[][2]
-
-&lt;div style=&quot;&quot;&gt;
-  &lt;a href=&quot;http://twitter.com/share&quot; class=&quot;twitter-share-button&quot; data-count=&quot;horizontal&quot; data-text=&quot;TweetPress Now Supported By Twittelator Pro&quot; data-url=&quot;http://brandontreb.com/tweetpress-now-supported-by-twittelator-pro&quot;  data-via=&quot;brandontreb&quot; data-related=&quot;brandontreb:&quot;&gt;Tweet&lt;/a&gt;
-&lt;/div&gt;
-</code></pre>
-  
-  </section>
-  </section>
-  
-  <a href="https://brandon_swoop.ngrok.io/2009/10/06/p_480_320_b39e129d-6327-41c5-94de-474d13974ed7.jpeg/" class="u-url">
-	<aside class="dates">
-	  <time datetime="2009-10-06 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Oct 6</time>
-	</aside>
-  </a>
-</article>
-</li>
-<span class="separator"><span class="divider"></span></span>
-
-	
-		<li>
-<article>
-  
-  <section class="post-body">
-  <header>
-	<h2><a href="https://brandon_swoop.ngrok.io/2009/09/18/twit-500x207.png/">Post Photos To Twitter From Your WordPress Blog With TweetPress</a></h2>
-  </header>
-  <section class="post-body">
-	<p style="text-align: center;">
-  <img class="alignnone size-medium wp-image-507" title="twit" src="/uploads/2009/twit-500x207.png" alt="twit" width="500" height="207" />
-</p>
-<p style="text-align: left;">
-  That&#8217;s right. With the latest release of TweetPress (version 1.1.1), you can post photos directly to Twitter from your WordPress blog&#8217;s gallery page. Here are the steps to do it.
-</p>
-<ol>
-<li>Navigate to the TweetPress admin <strong>Settings &gt; TweetPress</strong></li>
-<li>Enter your Twitter username and password</li>
-<li>Press the <strong>Save Twitter Settings</strong> button
-<ol>
-<li>TweetPress will verify your username and password with Twitter</li>
-<li>If they are incorrect, it will let you know and you must re enter them</li>
-</ol>
-</li>
-<li>Navigate to your gallery page</li>
-<li>You should now see a form that has a text box and an upload button</li>
-<li>Click <strong>browse</strong> to find an image on your computer to post</li>
-<li>Enter your Tweet in the box</li>
-<li>Click <strong>Post</strong></li>
-</ol>
-<p>It’s very quick and easy. If you have any suggestions for TweetPress please <a href="http://brandontreb.com/contact-me/">contact me</a>, or leave comments in this post.</p>
-<div style="">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Post Photos To Twitter From Your WordPress Blog With TweetPress" data-url="http://brandontreb.com/post-photos-to-twitter-from-your-wordpress-blog-with-tweetpress"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
-</div>
-  
-  </section>
-  </section>
-  
-  <a href="https://brandon_swoop.ngrok.io/2009/09/18/twit-500x207.png/" class="u-url">
-	<aside class="dates">
-	  <time datetime="2009-09-18 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Sep 18</time>
-	</aside>
-  </a>
-</article>
-</li>
-<span class="separator"><span class="divider"></span></span>
-
-	
-		<li>
-<article>
-  
-  <section class="post-body">
-  <header>
-	<h2><a href="https://brandon_swoop.ngrok.io/2009/09/10/twittelator.png/">TweetPress coming soon to a Twitter Client Near You</a></h2>
-  </header>
-  <section class="post-body">
-	<blockquote>
-<p>TweetPress is the WordPress plugin that gives you total control and ownership of the photos you post to Twitter, sending your traffic back to your own blog, instead of a third party site</p>
-</blockquote>
-<p>I just finished development of this WordPress plugin and Andrew Stone of Twittelator has integrated it into his latest version of <a href="http://stone.com/Twittelator/index.html">Twittelator Pro</a>. As of this post, that version is still in review, so you will have to wait until it is approved to make use of TweetPress.</p>
-<p>I have some other very big plans for future releases of TweetPress and if you have any feature requests, feel free to drop me a line. I will do a post as soon as the latest version of Twittelator is approved and demo how it integrates with TweetPress.</p>
-<img style="display:none" class="alignnone size-full wp-image-489" title="Twittelator" src="/uploads/2009/Twittelator.png" alt="Twittelator" width="128" height="128" />
-<div style="">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="TweetPress coming soon to a Twitter Client Near You" data-url="http://brandontreb.com/tweetpress-coming-soon-to-a-twitter-client-near-you"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
-</div>
-  
-  </section>
-  </section>
-  
-  <a href="https://brandon_swoop.ngrok.io/2009/09/10/twittelator.png/" class="u-url">
-	<aside class="dates">
-	  <time datetime="2009-09-10 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Sep 10</time>
-	</aside>
-  </a>
-</article>
-</li>
-<span class="separator"><span class="divider"></span></span>
-
-	
-		<li>
-<article>
-  
-  <section class="post-body">
-  <header>
-	<h2><a href="https://brandon_swoop.ngrok.io/2009/08/29/iphone-in-action-300x300.jpg/">iPhone In Action Book</a></h2>
-  </header>
-  <section class="post-body">
-	<p style="text-align: center;">
-  <a href="http://brandontreb.com/wp-content/uploads/2009/08/iphone-in-action.jpg"><img class="size-thumbnail wp-image-456  aligncenter" title="iphone-in-action" src="/uploads/2009/iphone-in-action-300x300.jpg" alt="iphone-in-action" width="300" height="300" /></a>
-</p>
-<p style="text-align: left;">
-  A couple months ago, I was asked by someone on Twitter if they could &#8220;introduce me to someone&#8221;. I found this question a little odd so I responded with &#8220;like a girl or a developer?&#8221;. I often tweet about my wife, so I was hoping he was not referring to a girl. He replied with &#8220;no, someone at Manning Publishing, they are looking for an author for their book iPhone In Action&#8221;. So, I was put in contact with Manning and they eventually offered me the position as one of the authors on the book iPhone In Action.
-</p>
-<p style="text-align: left;">
-  iPhone In Action is a book (that is already out) and details how to program for the webkit as well as the native iPhone OS. I will be removing the webkit chapters, updating some of the dated chapters, and writing about 6 new chapters related to OS 3.0.
-</p>
-<p style="text-align: left;">
-  I will be posting about the book and my progress along the way (don&#8217;t worry I won&#8217;t stop my random tutorials about Twitter, WordPress, etc&#8230;). Just wanted to share that and say go out and buy the book (in December when I am finished and will get the commission <img src="http://brandontreb.com/wp-includes/images/smilies/simple-smile.png" alt=":)" class="wp-smiley" style="height: 1em; max-height: 1em;" /> ).
-</p>
-<p style="text-align: left;">
-  Happy Coding!
-</p>
-<div style="">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="iPhone In Action Book" data-url="http://brandontreb.com/iphone-in-action-book"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
-</div>
-  
-  </section>
-  </section>
-  
-  <a href="https://brandon_swoop.ngrok.io/2009/08/29/iphone-in-action-300x300.jpg/" class="u-url">
-	<aside class="dates">
-	  <time datetime="2009-08-29 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Aug 29</time>
-	</aside>
-  </a>
-</article>
-</li>
-<span class="separator"><span class="divider"></span></span>
-
-	
-		<li>
-<article>
-  
-  <section class="post-body">
-  <header>
-	<h2><a href="https://brandon_swoop.ngrok.io/2009/08/10/awareness_api.jpg/">Displaying Your FeedBurner Subscriber Count Anywhere &amp;#8211; PHP Coding Tutorial</a></h2>
-  </header>
-  <section class="post-body">
-	<center>
-  <a href="http://feedburner.com"><img src="/uploads/2009/feedburner-logo1.png" alt="feedburner-logo1" title="feedburner-logo1" width="200" height="200" class="alignnone size-full wp-image-438" /></a>
-</center>
-<p>If you are a serious blogger (and I’m sure you are), you probably track your RSS subscribers with <a href="http://feedburner.com">FeedBurner</a>. If you don’t, you should be. One thing that has always bugged me about FeedBurner is if you ever wanted to display the number of subscribers on your blog, you were stuck using their image. The image looks like this:</p>
-<p><a href="http://feeds.feedburner.com/brandontreb"><img style="border:0" src="http://feeds.feedburner.com/~fc/brandontreb?bg=99ccff&fg=444444&anim=0" alt="" width="88" height="26" /></a></p>
-<p>I’m sure you have seen this logo everywhere. Well, not too many people know it, but FeedBurner actually has a very simple API that allows you to just get the subscriber count so you can display it however you would like.</p>
-<p>So rather than being limited to this boring icon, you can display your live subscriber count anywhere on your blog. If you are feeling adventurous, you could even super impose it on to your own custom image using the GD library (tutorial to come if sufficient interest, post in the comments if you would like to see it).</p>
-<p>Let’s get started…</p>
-<h2 id="1-activate-the-awareness-api-inside-of-feedburner">1. Activate the Awareness API Inside Of Feedburner</h2>
-<p>Log in to FeedBurner. Click the <strong>Publicize</strong> tab and the click <strong>Awareness API</strong>. Finally, click <strong>Activate</strong>. The service is now enabled.</p>
-<p><a href="/uploads/2009/awareness_api.jpg"><img class="alignnone size-full wp-image-420" title="awareness_api" src="/uploads/2009/awareness_api.jpg" alt="awareness_api" width="477" height="331" /></a></p>
-<h2 id="2-write-the-php-code-to-interface-with-feedburner">2. Write The PHP Code To Interface With FeedBurner</h2>
-<p>There is a lot of data that you could potentially get from FeedBurner, but the code below will just show you how to get your <strong>subscriber count</strong>.</p>
-<p>All you need to do is make a simple GET request using CURL to the URL <a href="https://feedburner.google.com/api/awareness/1.0/GetFeedData?uri=brandontreb">https://feedburner.google.com/api/awareness/1.0/GetFeedData?uri=brandontreb</a> . Of course replacing <strong>brandontreb</strong> with your feed’s name.</p>
-<div>
-  <pre>&lt;code class=’php’>&lt;?php
-<p>$url    = &ldquo;<a href="https://feedburner.google.com/api/awareness/1.0/GetFeedData?uri=brandontreb%22;">https://feedburner.google.com/api/awareness/1.0/GetFeedData?uri=brandontreb&quot;;</a>
-$ch     = curl_init();
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_URL, $url);
-$data = curl_exec($ch);
-curl_close($ch);     <br>
-if ($data) {
-echo $data;
-preg_match(‘/circulation=&quot;([0-9]+)&quot;/’,$data, $matches);
-if ($matches<a href="http://feedburner.com">1</a> != 0) {
-$subscriberCount = $matches<a href="http://feedburner.com">1</a>;
-}
-}</p>
-<p>echo &ldquo;Join the other $subscriberCount people and subscriber to my RSS feed.&rdquo;</p>
-<p>?&gt;&lt;/code&gt;</pre></p>
-</div>
-<p>This code is pretty straight forward with a little trickiness to parse the XML. We first make a <a href="http://us3.php.net/curl">CURL</a> connection to the URL. Just replace <strong>brandontreb</strong> with the title of your RSS feed inside of FeedBurner.</p>
-<p>Next we print the data. Note: You won’t see the data in your browser unless you do a <strong>view source</strong>. Since it is XML, your browser will treat it like HTML and not display it. So, we do a <a href="http://us3.php.net/manual/en/function.preg-match.php">preg_match</a> for the element <strong>circulation</strong> and get it’s value. (Pretty sick right?). The value of our <strong>subscriber count</strong> will be at index 1 of the matches array.</p>
-<p>Then, we just print the subscriber count and voila!</p>
-<p>Now, you are no longer a slave to that generic FeedBurner subscriber count icon. Be sure to <a href="http://code.google.com/apis/feedburner/awareness_api.html">check out their API</a> for other cool things that you can do with their web services. If you have any questions, feel free to leave them in the comments section of this post. Happy Coding!</p>
-<div style="">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Displaying Your FeedBurner Subscriber Count Anywhere - PHP Coding Tutorial" data-url="http://brandontreb.com/displaying-your-feedburner-subscriber-count-anywhere-php-coding-tutorial"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
-</div>
-  
-  </section>
-  </section>
-  
-  <a href="https://brandon_swoop.ngrok.io/2009/08/10/awareness_api.jpg/" class="u-url">
-	<aside class="dates">
-	  <time datetime="2009-08-10 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Aug 10</time>
 	</aside>
   </a>
 </article>

@@ -17,7 +17,7 @@ params:
   authorization_endpoint: https://indieauth.com/auth
   token_endpoint: https://tokens.indieauth.com/token
   micropub_endpoint: https://brandon_swoop.ngrok.io/micropub
-  webmention_endpoint: https://webmention.io/brandontreb.com/webmention
+  webmention_endpoint: https://webmention.io/brandon_swoop.ngrok.io/webmention
   theme_seconds: 1
 menu:
   main:

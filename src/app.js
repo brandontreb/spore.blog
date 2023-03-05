@@ -20,12 +20,7 @@ if (config.env !== 'test') {
 
 // set security HTTP headers
 app.use(helmet({
-  contentSecurityPolicy: {
-    directives: {
-      ...helmet.contentSecurityPolicy.getDefaultDirectives(),
-      "img-src": ["'self'", "*"],
-    },
-  },
+  contentSecurityPolicy: false,
 }));
 
 // parse json request body

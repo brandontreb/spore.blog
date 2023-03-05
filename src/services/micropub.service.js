@@ -1,4 +1,6 @@
 const moment = require('moment');
+const webmention = require('send-webmention');
+
 const logger = require('../config/logger');
 const config = require('../config/config');
 const utils = require('../utils/utils');
@@ -18,7 +20,7 @@ const formEncodedKey = /\[([^\]]*)]$/;
  * @param {ParsedUrlQuery} body
  * @returns {ParsedMicropubStructure}
  */
-const processFormEncodedBody = function(body) {
+const processFormEncodedBody = function (body) {
   /** @type {ParsedMicropubStructure} */
   const result = {
     type: body.h ? ['h-' + body.h] : undefined,
@@ -74,7 +76,7 @@ const processFormEncodedBody = function(body) {
  * @param {Object<string,any>} body
  * @returns {ParsedMicropubStructure}
  */
-const processJsonEncodedBody = function(body) {
+const processJsonEncodedBody = function (body) {
   /** @type {ParsedMicropubStructure} */
   const result = {
     properties: {},
@@ -107,7 +109,7 @@ const processJsonEncodedBody = function(body) {
 /**
  * @param {Object<string,any>} result
  */
-const cleanEmptyKeys = function(result) {
+const cleanEmptyKeys = function (result) {
   for (const key in result) {
     if (typeof result[key] === 'object' && Object.getOwnPropertyNames(result[key])[0] === undefined) {
       delete result[key];
@@ -122,21 +124,32 @@ const cleanEmptyKeys = function(result) {
  */
 const ensureArrayAndCloneIt = (value) => Array.isArray(value) ? [...value] : [value];
 
-const sendWebmentions = async(source, targets) => {
+const sendWebmentions = async (source, targets) => {
+  // if targets isn't an array, make it one
+  targets = Array.isArray(targets) ? targets : [targets];
   if (targets.length === 0) {
     return;
+  }  
+  logger.debug(`Sending webmentions from ${source} to ${targets}`);  
+  for (let i = 0; i < targets.length; i++) {
+    await send(source, targets[i]);
   }
-  logger.debug(`Sending webmentions from ${source} to ${targets}`);
-  targets.forEach(async(target) => {
-    webmention(source, target, `${config.name}/${config.version}`, function(err, obj) {
+  console.log('done')
+}
+
+const send = async (source, target) => {  
+  return new Promise(resolve => {    
+    webmention(source, target, `${config.name}/${config.version}`, function (err, obj) {      
       if (err) {
-        console.log(err);
-        return;
+        logger.error(err);
+        resolve(false);
       }
-      if (obj.success) {
-        console.log(`Sending webmention to ${target}. Success!`);
+      if (obj && obj.success) {
+        logger.debug(`Sending webmention to ${target}. Success!`);
+        resolve(true);
       } else {
-        console.log('Failure :(');
+        logger.error(`Sending webmention to ${target}. Failed with error %o!`, obj);
+        resolve(false);
       }
     });
   });
@@ -144,23 +157,23 @@ const sendWebmentions = async(source, targets) => {
 
 const micropubDocumentToHugo = (document) => {
   logger.debug('Converting micropub document to hugo format %o', document);
-  const { properties, mp } = document;  
+  const { properties, mp } = document;
 
   let content = properties.content && properties.content[0] ? properties.content[0] : '';
   // check if content is an object, if so, get the html property
   content = typeof content === 'object' ? utils.decodeHTMLEntities(content.html) : content;
   let name = properties.name && properties.name[0] ? properties.name[0] : null;
   let published = properties.published && properties.published[0] ? properties.published[0] : moment().format();
-  let category = properties.category && properties.category.length > 0 ? properties.category : null;  
-  let slug = mp && mp.slug && mp.slug.length ? mp.slug[0] : utils.slugify(name && name.length ? name : utils.randomStringOfLength(16));    
+  let category = properties.category && properties.category.length > 0 ? properties.category : null;
+  let slug = mp && mp.slug && mp.slug.length ? mp.slug[0] : utils.slugify(name && name.length ? name : utils.randomStringOfLength(16));
   let postType = getPostType(properties);
 
   let additionalPropertyKeys = Object.keys(properties).filter(key => !['content', 'name', 'published', 'category'].includes(key));
   logger.debug('Additional property keys %o', additionalPropertyKeys);
-  // get values of additional properties
+  // get values of additional properties and add them as key/values to the front matter
   let additionalProperties = {};
-  additionalPropertyKeys.forEach(key => {
-    additionalProperties[key] = properties[key][0];
+  additionalPropertyKeys.forEach(key => {    
+    additionalProperties[key] = properties[key];
   });
   logger.debug('Additional properties %o', additionalPropertyKeys);
 
@@ -170,7 +183,7 @@ const micropubDocumentToHugo = (document) => {
       date: published,
       slug: slug,
       tags: category,
-      type: postType === 'reply' ? 'reply' : 'post',
+      type: postType === 'reply' ? 'reply' : 'post', // all posts are either of type post or reply
       post_type: postType,
       ...additionalProperties
     },
@@ -178,6 +191,8 @@ const micropubDocumentToHugo = (document) => {
   }
 
   addReplyToFrontMatter(hugo, properties);
+  transformPhotosInFrontMatter(hugo, properties);
+  addPhotosInFrontMatterToContent(hugo, properties);
 
   return hugo;
 };
@@ -217,14 +232,50 @@ const getPostType = (properties) => {
 }
 
 const addReplyToFrontMatter = (hugo, properties) => {
-  if(properties['in-reply-to']) {
+  if (properties['in-reply-to']) {
     hugo.frontMatter.reply_to_url = properties['in-reply-to'][0];
     hugo.frontMatter.reply_to_hostname = new URL(properties['in-reply-to'][0]).hostname;
+  }
+}
+
+const transformPhotosInFrontMatter = (hugo, properties) => {
+
+  // Rename photo to photos
+  if (hugo.frontMatter.photo) {
+    hugo.frontMatter.photos = hugo.frontMatter.photo;
+    delete hugo.frontMatter.photo;
+  }
+
+  // Ensure photos is an array
+  if (hugo.frontMatter.photos && !Array.isArray(hugo.frontMatter.photos)) {
+    hugo.frontMatter.photos = [hugo.frontMatter.photos];
+  }
+
+  if (hugo.frontMatter.photos) {    
+    hugo.frontMatter.photos = hugo.frontMatter.photos.map(photo => {
+      let url = typeof photo === 'string' ? photo : photo.value;      
+      let alt = typeof photo === 'string' ? '' : photo.alt;
+      // if the photos is on this domain, we need to set path instead of url      
+      return {
+        url: url,
+        alt: alt
+      }
+    });
   }  
+}
+
+const addPhotosInFrontMatterToContent = (hugo, properties) => {
+  // Insert photos into content
+  if (hugo.frontMatter.photos) {
+    hugo.frontMatter.photos.forEach(photo => {
+      hugo.content += `\n![${photo.alt}](${photo.url})`;
+    });
+  }
 }
 
 module.exports = {
   processJsonEncodedBody,
-  processFormEncodedBody,    
+  processFormEncodedBody,
   micropubDocumentToHugo,
+  sendWebmentions,
 };

@@ -5,7 +5,20 @@ const { micropubService, hugoService } = require('../services');
 const config = require('../config/config');
 
 const create = catchAsync(async (req, res) => {
-  let body = req.body;
+  let body = req.method === 'POST' ? req.body : req.query;
+
+  // check if get request
+  if (req.method === 'GET') {
+    if (req.query['q'] === 'config') {
+      return res.json({
+        "media-endpoint": `${config.hugo.config.baseURL}/micropub/media`,
+        "syndicate-to": []
+      });
+    } 
+    // TODO: Implement other queries (category, syndicate-to)
+    return res.json([]);
+  }
+
   logger.debug('micropub create: %s\n%o', req.method, body);
   // Process the micropub request
   let micropubDocument = req.is('json') ? micropubService.processJsonEncodedBody(body) : micropubService.processFormEncodedBody(body);
@@ -19,13 +32,44 @@ const create = catchAsync(async (req, res) => {
   hugoService.generateSite();
   // Get the url of the post
   let url = hugoService.getPostUrl(frontMatter);
-
+  // Send webmentions for replies if there are any
+  let links = hugoService.getLinksFromFrontMatterAndContent(frontMatter, content);
+  if (links.length > 0) {
+    await micropubService.sendWebmentions(url, links);
+  }
   logger.debug(`Redirecting to url: ${url}`)
-
   // Redirect to the post
   res.set('Location', `${url}`).status(httpStatus.CREATED).send();
 });
 
+const media = catchAsync(async(req, res, next) => {
+  logger.info('micropub media request: %j', req.files);
+
+  if (!req.files || req.files.length === 0) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'No file uploaded');
+  }
+
+  let response = [];
+  let year = new Date().getFullYear();
+  for (let file of req.files.file) {
+    response.push({
+      url: `${config.hugo.config.baseURL}/uploads/${year}/${file.filename}`,
+      mime_type: file.mimetype,
+      published: new Date()
+    })
+  } 
+
+  if (response.length === 1) {
+    response = response[0];
+  }
+
+  // Rebuild the site
+  hugoService.generateSite();
+
+  return res.set({ 'Location': response.url }).status(httpStatus.CREATED).json(response);
+});
+
 module.exports = {
   create,
+  media,
 };

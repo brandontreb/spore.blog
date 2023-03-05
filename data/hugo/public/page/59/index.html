@@ -128,6 +128,305 @@ nav.main-nav a.cta:hover {
   
   <section class="post-body">
   <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2009/07/23/rails1-391x500.png/">Installing And Deploying Rails On A Red Hat Server With Passenger</a></h2>
+  </header>
+  <section class="post-body">
+	<p><img class="alignleft size-medium wp-image-347" title="rails" src="/uploads/2009/rails1-391x500.png" alt="rails" width="141" height="180" />I have long been a fan of Ruby on Rails and even jumper on board very early on. The one thing that has held me back from using it in the majority of my projects is the fact that it’s such a pain to configure with Apache.</p>
+<p>I know what you are saying… Just switch to a more Rails friendly server. I like and know Apache. Not to mention I also host PHP apps.</p>
+<p>With the (re)release of tagacloud, I have recently fell in love with ruby on rails again. So, I looked for a better solution for installation (last time I installed it was 3 years ago) and I stumbled upon <a href="http://www.modrails.com/">Passenger</a>.</p>
+<p>It was super easy to use and had my running on Rails in no time.</p>
+<blockquote>
+<p>Deployment is only a matter of uploading application files. No Ruby (on Rails)-specific server configuration required!</p>
+</blockquote>
+<p>Just to give you some background, here are some details about my server.</p>
+<p><strong>OS:</strong> Linux</p>
+<p><strong>Distribution:</strong> Red Hat Enterprise Linux Server release 5.3 Hosted At Server Beach</p>
+<p><strong>Control Panel:</strong> Plesk 8.6</p>
+<p>And here are the steps I took to get Ruby on Rails up and running from scratch</p>
+<h2 id="1-install-ruby">1. Install Ruby</h2>
+<div>
+  <pre>&lt;code class=’bash’>yum install ruby ruby-libs ruby-mode ruby-rdoc ruby-irb ruby-ri ruby-docs&lt;/code></pre>
+</div>
+<p>This will do some magic and install Ruby on your system…</p>
+<h2 id="2-download-and-install-ruby-gems">2. Download And Install Ruby Gems</h2>
+<p>Head on over to <a href="http://rubygems.org/">http://rubygems.org/</a> and download the latest version of Ruby Gems. Here is an example of getting the latest version as of the posting date of this article.</p>
+<div>
+  <pre>&lt;code class=’bash’>wget http://rubyforge.org/frs/download.php/60718/rubygems-1.3.5.tgz&lt;/code></pre>
+</div>
+<p>Untar this file…</p>
+<div>
+  <pre>&lt;code class=’bash’>tar -xvf rubygems-1.3.5.tgz&lt;/code></pre>
+</div>
+<p>Navigate to the extracted directory and run the setup script</p>
+<div>
+  <pre>&lt;code class=’bash’>ruby setup.rb&lt;/code></pre>
+</div>
+<h2 id="3-install-rails">3. Install Rails</h2>
+<p>This will install rails. If it asks you about dependencies, just type “Y”</p>
+<div>
+  <pre>&lt;code class=’bash’>gem install rails&lt;/code></pre>
+</div>
+<h2 id="4-install-the-passenger-gem">4. Install The Passenger Gem</h2>
+<p>Now that rails has been installed, we need to install <a href="http://www.modrails.com/">Passenger</a>. The installation process is stupid simple. <a href="http://www.modrails.com/">Passenger</a> can be installed via a Ruby Gem.</p>
+<div>
+  <pre>&lt;code class=’bash’>gem install passenger&lt;/code></pre>
+</div>
+<p>Now, it will do some stuff and and you some questions. At some point in the process, it will check to see if you have all of the dependencies. <strong>You most likely will not</strong>. Luckily, the geniuses who created Passenger tell you the commands to install all of the dependencies. So just follow the directions and you should be ok.</p>
+<h2 id="5-set-up-passenger-for-apache">5. Set Up Passenger For Apache</h2>
+<div>
+  <pre>&lt;code class=’bash’>passenger-install-apache2-module&lt;/code></pre>
+</div>
+<p>It will ask you more questions and install everything needed to run Passenger. Pay attention to the stuff spit out at the end of the process. You will take this and paste it into your httpd.conf file. For example, here is the what mine spit out:</p>
+<div>
+  <pre>&lt;code class=’bash’>LoadModule passenger_module /usr/lib/ruby/gems/1.8/gems/passenger-2.2.4/ext/apache2/mod_passenger.so
+PassengerRoot /usr/lib/ruby/gems/1.8/gems/passenger-2.2.4
+PassengerRuby /usr/bin/ruby&lt;/code></pre>
+</div>
+<p>Your <strong>httpd.conf</strong> file is probably located at /etc/httpd/conf/httpd.conf</p>
+<p>You should now be good to go! Navigate to one of your vhosts folder (ex: tagacloud/httpdocs/) and create (or copy) a rails application.</p>
+<div>
+  <pre>&lt;code class=’bash’>rails someRailsApp&lt;/code></pre>
+</div>
+<p>Then set permissions…</p>
+<div>
+  <pre>&lt;code class=’bash’>chmod -R 755 someRailsApp&lt;/code></pre>
+</div>
+<p>And then a miracle happens… and viola! You (should) have a fully functional up and running. Navigate to <a href="http://domain.com/someRailsApp/public">http://domain.com/someRailsApp/public</a> to see your app in action.</p>
+<p>If you have any comments or questions, feel free to leave them in the comments section of this post.</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Installing And Deploying Rails On A Red Hat Server With Passenger" data-url="http://brandontreb.com/installing-and-deploying-rails-on-a-red-hat-server-with-passenger"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2009/07/23/rails1-391x500.png/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2009-07-23 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Jul 23</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2009/07/22/tagacloud-ad1-500x188.gif/">TagACloud.com (Re)Launched!</a></h2>
+  </header>
+  <section class="post-body">
+	<p style="text-align: center;">
+  <a href="http://brandontreb.com/wp-content/uploads/2009/07/tagAcloud-ad1.gif"><img class="size-medium wp-image-349  aligncenter" title="tagAcloud-ad" src="/uploads/2009/tagAcloud-ad1-500x188.gif" alt="tagAcloud-ad" width="500" height="188" /></a>
+</p>
+<p style="text-align: left;">
+  So in 2006, my buddy JJ and I took some inspiration from the <a href="http://www.milliondollarhomepage.com/">Million Dollar Homepage</a> and decided to create a totally inovative Web 2.0 site that works on the same principle. That is when we came up with the idea for <a href="http://tagacloud.com">tagacloud.com</a>.
+</p>
+<p style="text-align: left;">
+  Tagacloud is a simple concept that uses the fact that people are obsessed with stats to make a fun game that will also direct traffic to your site. Here is how it works (from the <a href="http://www.tagacloud.com/help/instructions">website</a>)&#8230;
+</p>
+<h3 id="the-idea">The Idea:</h3>
+<p>TagACloud is a very unique idea for a website, thus it will take a little explaining to understand all the facets. To take full advantage of the site, you must be the owner or have control over your own website. The idea is to create a tag that represents your website. A tag is a descriptive phrase or a creative tagline describing your site. Once you have added your tag, it gets added to the Tag Cloud. This is where all the fun begins.</p>
+<h3 id="the-goal">The Goal:</h3>
+<p>The goal is simple. Become the biggest freakin’ tag on the TagACloud website. The bigger the tag, the more hits it gets. It is that simple.</p>
+<h3 id="how-your-tag-gets-bigger">How Your Tag Gets Bigger:</h3>
+<p>Your tag gets bigger every time it levels up! And the only way to get your tag to level up is by accumulating points. Points can be acquired in many different ways, but the two primary ways to acquire points are as follows:</p>
+<ol>
+<li>Get Clicked: your tag gets 1 point for every click that your tag receives.</li>
+<li>Incoming Hits: your tag gets 2 points for every hit you send to your tag on TagACloud.com. You can get tag specific code via your “Get Tag Code” page.</li>
+</ol>
+<h3 id="how-your-tag-gets-hits">How Your Tag Gets Hits</h3>
+<p>We provide visitors several ways to find your tag:</p>
+<ol>
+<li>The Home Page: The home page features 200 random tags in random order.</li>
+<li>Popular Tags: If your tag is one of the 200 most popular today, the last 7 days, last month, or of all time; it will be featured in order of popularity on the applicable page.</li>
+<li>Keywords: Keywords are essential for any tag that wants to generate hits. Keywords are like user defined categories. We combine all the tags that share common keywords. For example, google.com, yahoo.com, and vanillasasquatch.com would all share the keyword, SearchEngine. Each tag can have up to 3 keywords associated with it.</li>
+<li>The Randomizer: The title says it all. A user can view a random tag’s website, or view a random keyword.</li>
+</ol>
+<h3 id="statistics">Statistics</h3>
+<p>There are 3 big addictions on the web. Without sharing the top 2, we will let you know #3, is statistics. People love to view the stats on anything and everything. Here at TagACloud, we will make sure not to disappoint. You will be able to view statistics for every little thing, to ensure that you always know the current state of your tag. You will also find the website itself is littered with stats. Just keep your eyes open.<br>
+<a href="../wp-content/uploads/2009/07/tagacloud.jpg"><img class="alignnone" title="tagacloud" src="../wp-content/uploads/2009/07/tagacloud.jpg" alt="tagacloud" width="400" height="360" /></a></p>
+<p>As of late 2007, Tagacloud was booming with over <strong>10,000 users</strong>. Then, one day JJ and I decided we would take a weekend and “improve” tagacloud. Now, if any of you are programmers, you know “improving” an app takes much longer than you anticipate.</p>
+<p>We set out to do it in a weekend and the ideas started flowing. It was Facebook meets Halo 3 meets Digg meets Hannah Montanna meets Karate Kid 3… And then the weekend ended and Tagacloud would remain a “Coming Soon” page for a year and a half… <img src="http://brandontreb.com/wp-includes/images/smilies/frownie.png" alt=":(" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>A couple of weeks ago, JJ and I were sitting around and thought to ourselves “Why did we ever take down the old tagacloud?”. One thing led to another and we decided to completely wipe the database and start tagacloud fresh.</p>
+<p>So, go fourth and start <a href="http://tagacloud.com">leveling your tag</a>.</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="TagACloud.com (Re)Launched!" data-url="http://brandontreb.com/tagacloud-com-relaunched"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2009/07/22/tagacloud-ad1-500x188.gif/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2009-07-22 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Jul 22</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2009/07/22/new-alice-in-wonderland-movie-looks-sick/">New Alice In Wonderland Movie Looks Sick</a></h2>
+  </header>
+  <section class="post-body">
+	<center>
+</center>
+<p>I was a big fan of the game Alice that came out for PC. It def portrayed AIW as a darker sort of movie. It looks like Tim Burton will add a similar twist to the latest Alice In Wonderland Movie. Check out the trailer above.</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="New Alice In Wonderland Movie Looks Sick" data-url="http://brandontreb.com/new-alice-in-wonderland-movie-looks-sick"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2009/07/22/new-alice-in-wonderland-movie-looks-sick/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2009-07-22 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Jul 22</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2009/06/08/screenshot_04.png/">iPhoneLB.com gets a much needed update</a></h2>
+  </header>
+  <section class="post-body">
+	<p style="text-align: center;">
+  <a href="/uploads/2009/screenshot_04.png"><img class="size-full wp-image-200  aligncenter" title="screenshot_04" src="/uploads/2009/screenshot_04.png" alt="screenshot_04" width="500" /></a>
+</p>
+<p>So, I started this site called <a href="http://iphonelb.com">iphonelb.com</a> a few months back and left out a very important feature. The ability to edit your applications!?! What this means is, users have been testing their apps and putting in “test data” and when it comes time for release, the can’t modify it.</p>
+<p>Another feature missing, was the ability to clean out all of your test scores.</p>
+<p>Well, thanks to about 8 minutes of my time, this has been resolved and the feature has been added. I am really excited about iphonelb and have some big things planned for it in the future. <a href="http://twitter.com/brandontreb">Write me on Twitter</a> or on my blog if you have any feature requests for it.</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="iPhoneLB.com gets a much needed update" data-url="http://brandontreb.com/iphonelb-com-gets-a-much-needed-update"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2009/06/08/screenshot_04.png/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2009-06-08 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Jun 8</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2009/04/10/pandr.jpg/">Parks &amp;#038; Recreation is to The Office as American Dad is to Family Guy</a></h2>
+  </header>
+  <section class="post-body">
+	<p style="text-align: center;">
+  <a href="/uploads/2009/pandr.jpg"><img class="size-full wp-image-196  aligncenter" title="pandr" src="/uploads/2009/pandr.jpg" alt="pandr" width="308" height="400" /></a>
+</p>
+<p>After seeing the show Parks and Recreation last night, I have come to the conclusion that the show is doomed to fail. Not only is it not funny, it’s jokes try to mimic the dry awkward humor of The Office. Parks and Recreation <span style="font-family: mceinline;color:red;">Fail!</span></p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Parks & Recreation is to The Office as American Dad is to Family Guy" data-url="http://brandontreb.com/parks-recreation-is-to-the-office-as-american-dad-is-to-family-guy"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2009/04/10/pandr.jpg/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2009-04-10 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Apr 10</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2009/04/06/twitter_trends.png/">Increasing Your Blog Traffic Using Twitter Trends</a></h2>
+  </header>
+  <section class="post-body">
+	<p><a href="/uploads/2009/twitter_trends.png"><img class="alignleft size-full wp-image-191" title="twitter_trends" src="/uploads/2009/twitter_trends.png" alt="twitter_trends" width="199" height="284" /></a></p>
+<p>Twitter Trends are a very interesting part of Twitter. They are basically the most typed keywords or <a href="http://twitter.pbwiki.com/Hashtags">hashtags</a> on twitter for a given day. Some examples might be <a href="http://twitter.com/timeline/search?q=%23musicmonday&amp;source=sidebar&amp;category=trends">#musicmonday</a> or <a href="http://twitter.com/timeline/search?q=MacHeist&amp;source=sidebar&amp;category=trends">macHeist</a>. These are fun and all but how can you use them to get traffic to my website/blog…</p>
+<h2 id="find-trends-that-refer-to-articles-people-are-linking-to">Find Trends That Refer To Articles People Are Linking To?</h2>
+<p>Well, often times trends refer to words associated with website articles, videos, images, etc… For example, the other day, the word mashable was trending on Twitter. This was because Mashable.com had just put out an <a href="http://mashable.com/2009/04/04/twitter-trends/">article</a> on twitter trends. Since people were talking about and more importantly <strong>linking to</strong> this article, the word mashtable was trending…Naturally, this article got quite a bit of traffic.</p>
+<h2 id="post-a-comment-on-the-article">Post a Comment On The Article</h2>
+<p>So, I commented on the article leaving a link to my blog. That day, I got ~50 extra uniques to my blog! You can do the same by closely following the trends. Make sure you read the article and are not just spamming the comments section. Many articles use blog systems (such as WordPress) that allow you to link to your website/blog in your commentsl. Post a comment that contributes to the discussion and I guaruntee it will generate more traffic to your website/blog. Again, don’t be a spammer, contribute something to the discussion…</p>
+<h2 id="be-prompt-comment-early">Be Prompt (comment early)</h2>
+<p>The sooner you comment on the article, the more traffic it will generate to your site. In the above example, I was like the 15th or 16th to commenter. Imagine if I had been the first…</p>
+<p>Although this method isn’t perfect, it’s a sure fire way to generate some quick traffic for your blog/website. Do this every day, and you could be huge!</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Increasing Your Blog Traffic Using Twitter Trends" data-url="http://brandontreb.com/increasing-your-blog-traffic-using-twitter-trends"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2009/04/06/twitter_trends.png/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2009-04-06 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Apr 6</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2009/04/04/over.png/">I freakin hate this page&amp;#8230;</a></h2>
+  </header>
+  <section class="post-body">
+	<p style="text-align: center;">
+  <a href="/uploads/2009/over.png"><img class="alignnone size-full wp-image-186" title="over" src="/uploads/2009/over.png" alt="over" width="500" /></a>
+</p>
+<p style="text-align: left;">
+  Seems to show up way too much.
+</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="I freakin hate this page&#8230;" data-url="http://brandontreb.com/i-freakin-hate-this-page"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2009/04/04/over.png/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2009-04-04 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Apr 4</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
 	<h2><a href="https://brandon_swoop.ngrok.io/2009/04/03/alexa-300x286.png/">Alexa Gets a Much Needed Update</a></h2>
   </header>
   <section class="post-body">
@@ -221,256 +520,6 @@ nav.main-nav a.cta:hover {
   <a href="https://brandon_swoop.ngrok.io/2009/03/27/twouble-with-twitter-video/" class="u-url">
 	<aside class="dates">
 	  <time datetime="2009-03-27 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Mar 27</time>
-	</aside>
-  </a>
-</article>
-</li>
-<span class="separator"><span class="divider"></span></span>
-
-	
-		<li>
-<article>
-  
-  <section class="post-body">
-  <header>
-	<h2><a href="https://brandon_swoop.ngrok.io/2009/03/26/google.jpeg/">Google In Real Life Using Google Classic</a></h2>
-  </header>
-  <section class="post-body">
-	<div id="attachment_159" class="wp-caption aligncenter" style="width: 436px">
-  <a href="/uploads/2009/google.jpeg"><img class="size-full wp-image-159    " title="google" src="/uploads/2009/google.jpeg" alt="google" width="426" height="302" /></a> 
-  <p class="wp-caption-text">
-    Image Source: http://www.boomerang.nl
-  </p>
-</div>
-<p>I depend on Google way too much for spell checking, simple math, and looking up things I don’t know off the top of my head.</p>
-<p>It’s sad because often my first instinct when handwriting something or even looking for a lost object in my house is to “Google it”.</p>
-<div style="">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Google In Real Life Using Google Classic" data-url="http://brandontreb.com/google-in-real-life-using-google-classic"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
-</div>
-  
-  </section>
-  </section>
-  
-  <a href="https://brandon_swoop.ngrok.io/2009/03/26/google.jpeg/" class="u-url">
-	<aside class="dates">
-	  <time datetime="2009-03-26 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Mar 26</time>
-	</aside>
-  </a>
-</article>
-</li>
-<span class="separator"><span class="divider"></span></span>
-
-	
-		<li>
-<article>
-  
-  <section class="post-body">
-  <header>
-	<h2><a href="https://brandon_swoop.ngrok.io/2009/03/25/wordpress-icon-512-300x300.png/">WordPress For iPhone Gets A Much Needed Update</a></h2>
-  </header>
-  <section class="post-body">
-	<p><a href="http://brandontreb.com/wp-content/uploads/2009/03/wordpress-icon-512.png"><img class="alignleft size-medium wp-image-153" title="wordpress-icon-512" src="/uploads/2009/wordpress-icon-512-300x300.png" alt="wordpress-icon-512" width="168" height="168" /></a><br>
-A few days ago, the popular blogging tool <a href="http://wordpress.org">WordPress</a> released a much needed update to their iPhone application. The main features included in the update were:</p>
-<ul>
-<li>Landscape mode for writing posts – This is a huge one. It was a total pain in the butt writing blog posts with the vertical keyboard</li>
-<li>Page Editing/Creation – Meh… How often do you do this?</li>
-<li>Comment Moderation – Very excited about this feature. I love being able to check out comments quickly without loading my entire blog.</li>
-<li>Photo resizing – Very cool option. Makes photo uploads go much quicker.</li>
-</ul>
-<p>If you have both an iPhone AND a WordPress blog (your own host or WordPress.com), I would highly suggest <a href="http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=285073074&amp;mt=8">downloading</a> the WordPress iPhone app for blogging on the go.</p>
-<p>Hopefully, having the landscape keyboard mode will motivate me to blog more often.</p>
-<p><a href="http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=285073074&amp;mt=8">Click here</a> to download the WordPress application for the iPhone</p>
-<div style="">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Wordpress For iPhone Gets A Much Needed Update" data-url="http://brandontreb.com/wordpress-for-iphone-gets-a-much-needed-update"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
-</div>
-  
-  </section>
-  </section>
-  
-  <a href="https://brandon_swoop.ngrok.io/2009/03/25/wordpress-icon-512-300x300.png/" class="u-url">
-	<aside class="dates">
-	  <time datetime="2009-03-25 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Mar 25</time>
-	</aside>
-  </a>
-</article>
-</li>
-<span class="separator"><span class="divider"></span></span>
-
-	
-		<li>
-<article>
-  
-  <section class="post-body">
-  <header>
-	<h2><a href="https://brandon_swoop.ngrok.io/2009/03/24/top-dugg-story-of-today-i-hate-dane-cook/">Top Dugg Story of Today &amp;#8211; I hate Dane Cook</a></h2>
-  </header>
-  <section class="post-body">
-	<p>LOL, SlightyOverDressed.com had a post that made it to the top of DIGG today simply titled “I Hate Dane Cook”. That’s freakin hilarious.</p>
-<p>Here’s the link. <a href="http://slightlyoverdressed.com/i-hate-dane-cook/">http://slightlyoverdressed.com/i-hate-dane-cook/</a></p>
-<div style="">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Top Dugg Story of Today - I hate Dane Cook" data-url="http://brandontreb.com/top-dugg-story-of-today-i-hate-dane-cook"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
-</div>
-  
-  </section>
-  </section>
-  
-  <a href="https://brandon_swoop.ngrok.io/2009/03/24/top-dugg-story-of-today-i-hate-dane-cook/" class="u-url">
-	<aside class="dates">
-	  <time datetime="2009-03-24 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Mar 24</time>
-	</aside>
-  </a>
-</article>
-</li>
-<span class="separator"><span class="divider"></span></span>
-
-	
-		<li>
-<article>
-  
-  <section class="post-body">
-  <header>
-	<h2><a href="https://brandon_swoop.ngrok.io/2009/03/24/free-leaderboard-solution-for-iphone-game-developers/">Free Leaderboard Solution for iPhone Game Developers</a></h2>
-  </header>
-  <section class="post-body">
-	<p style="text-align: center;">
-  <a href="http://iphonelb.com"><img class="alignnone" title="Free iPhone Leaderboardds" src="http://iphonelb.com/_img/logo.png" alt="" width="180" height="70" /></a>
-</p>
-<p>What makes most multiplayer games more exciting that single player games? It’s competition! People love to compete with eachother.</p>
-<p>And how can competition be achieved in single player games? <a href="http://iphonelb.com">Leaderboards</a>.</p>
-<p>A leaderboard is basically a table ranking players based on their scores in the game. This allows players to see how they stack up against other players.</p>
-<p><b>The Problem</b></p>
-<p>Many programmers either know how to do web development or system development. They don’t know both and certainly don’t know how to integrate the two. This is why I believe there are not more single player games with leaderboards in the App Store.</p>
-<p><b>The Solution </b></p>
-<p>This is where <a href="http://iphonelb.com">iPhone Leaderboards</a> comes in. It’s an online hosted leaderboard that is incredibly easy to integrate with any iPhone game. The code to integrate with iPhoneLB is given to you to paste directly into your own. It couldn’t be easier.</p>
-<p>Try it out and let me know what you think!</p>
-<div style="">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Free Leaderboard Solution for iPhone Game Developers" data-url="http://brandontreb.com/free-leaderboard-solution-for-iphone-game-developers"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
-</div>
-  
-  </section>
-  </section>
-  
-  <a href="https://brandon_swoop.ngrok.io/2009/03/24/free-leaderboard-solution-for-iphone-game-developers/" class="u-url">
-	<aside class="dates">
-	  <time datetime="2009-03-24 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Mar 24</time>
-	</aside>
-  </a>
-</article>
-</li>
-<span class="separator"><span class="divider"></span></span>
-
-	
-		<li>
-<article>
-  
-  <section class="post-body">
-  <header>
-	<h2><a href="https://brandon_swoop.ngrok.io/2009/03/19/part-3-of-iphone-game-programming-tutorial-posted-on-icodeblog/">Part 3 of iPhone Game Programming Tutorial Posted On iCodeBlog</a></h2>
-  </header>
-  <section class="post-body">
-	<p>It’s been a while, but I finally posted part 3 of the<a href="http://icodeblog.com/2009/03/18/iphone-game-programming-tutorial-part-3-splash-screen/"> iPhone Game Programming tutorial</a> series on iCodeblog.com. The focus of this tutorial was to create a splash page for your game that fades into your game’s main view.</p>
-<p>I chose to create this tutorial after seeing many games that just jump right in to the main game play. A splash page makes the game feel more “professional” as well as gives the developer a chance to brand the app by displaying a company logo or something to that extent.</p>
-<p>Hopefully, I will be able to get part 4 up in a timely fashion to teach developers how to incorporate sounds into their games.</p>
-<p>So, go ahead and check out part 3 of the <a href="http://icodeblog.com/2009/03/18/iphone-game-programming-tutorial-part-3-splash-screen/">iPhone Game Programming Tutorial Series</a>.</p>
-<div style="">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Part 3 of iPhone Game Programming Tutorial Posted On iCodeBlog" data-url="http://brandontreb.com/part-3-of-iphone-game-programming-tutorial-posted-on-icodeblog"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
-</div>
-  
-  </section>
-  </section>
-  
-  <a href="https://brandon_swoop.ngrok.io/2009/03/19/part-3-of-iphone-game-programming-tutorial-posted-on-icodeblog/" class="u-url">
-	<aside class="dates">
-	  <time datetime="2009-03-19 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Mar 19</time>
-	</aside>
-  </a>
-</article>
-</li>
-<span class="separator"><span class="divider"></span></span>
-
-	
-		<li>
-<article>
-  
-  <section class="post-body">
-  <header>
-	<h2><a href="https://brandon_swoop.ngrok.io/2009/03/12/new-web-application-that-will-be-useful-for-iphone-games-developers/">New Web Application That Will Be Useful For iPhone Games Developers</a></h2>
-  </header>
-  <section class="post-body">
-	<p>So, after downloading many iPhone games and talking with a ton of iphone developers, I have a found a huge need in the community. Over the next week I will be developing a killer web application with a web service API that will be free to iPhone developers to use.</p>
-<p>I am not going to give out any details at the moment, but be sure to subscribe to my RSS feed as I will be blogging about it through out next week (Spring Break = Time to develop). It should be completed by late next week.</p>
-<p>I guarantee, if you are an iPhone game developer, you will benefit tremendously from what I am about to release.</p>
-<p>Excited? So am I…</p>
-<div style="">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="New Web Application That Will Be Useful For iPhone Games Developers" data-url="http://brandontreb.com/new-web-application-that-will-be-useful-for-iphone-games-developers"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
-</div>
-  
-  </section>
-  </section>
-  
-  <a href="https://brandon_swoop.ngrok.io/2009/03/12/new-web-application-that-will-be-useful-for-iphone-games-developers/" class="u-url">
-	<aside class="dates">
-	  <time datetime="2009-03-12 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Mar 12</time>
-	</aside>
-  </a>
-</article>
-</li>
-<span class="separator"><span class="divider"></span></span>
-
-	
-		<li>
-<article>
-  
-  <section class="post-body">
-  <header>
-	<h2><a href="https://brandon_swoop.ngrok.io/2009/02/27/twit.png/">The Only Twitter API PHP Class You Will Ever Need</a></h2>
-  </header>
-  <section class="post-body">
-	<p><a href="/uploads/2009/twit.png"><img class="alignright size-full wp-image-123" title="twit" src="/uploads/2009/twit.png" alt="twit" width="135" height="135" /></a></p>
-<p><span style="color: #ff6600;"><strong><strong>Note</strong> </strong></span><strong>Twitter has switchted their entire interface to use OAUTH and this class no longer works (I should probably change the title hahaha). I will post an oauth connection tutorial in the near future, so make sure to <strong><a href="http://feeds2.feedburner.com/brandontreb"><strong>subscribe to my RSS feed</strong></a></strong> for all of the sweet sweets updates!</strong></p>
-<p><strong>Cheers!</strong></p>
-<p>So, I started writing a Twitter API Programming series last week… <a href="http://brandontreb.com/twitter-api-programming-tutorial-with-php-getting-started/">Here is part 1</a>. I have found that there is not much else to teach when it comes to interfacing with Twitter. Basically, we just need to implement all of the Twitter functions.</p>
-<p>I have taken it upon myself to create a fully functional <strong>Twitter API PHP class</strong>. It has every Twitter function you will ever need (less the direct messages). I have also fully documented it with comments directly from the Twitter API so that the functions are easy to understand. Here is how you would use the class. The first parameter of every function is the return type. For Twitter it can be either xml, json, or rss for some functions.</p>
-<div>
-  <pre>&lt;code class=’php’>include("Twitter.class.php");
-    $twitter = new Twitter();
-    $twitter-&gt;username = "twitteruser";
-    $twitter-&gt;password = "twitterpass";
-    // Show public timeline
-    echo $twitter-&gt;public_timeline();
-    // Update your status
-    echo $twitter-&gt;update(‘xml’,’This PHP class is flippin sweet!’);
-    // Start following a user
-    echo $twitter-&gt;create(‘xml’,’brandontreb’);&lt;/code></pre>
-</div>
-<p>These are just 3 of the functions implemented in this class. The full function list includes:</p>
-<ul>
-<li>public_timeline</li>
-<li>friends_timeline</li>
-<li>user_timeline</li>
-<li>update</li>
-<li>replies</li>
-<li>friends</li>
-<li>followers</li>
-<li>show</li>
-<li>create</li>
-<li>destroy</li>
-<li>exists</li>
-</ul>
-<p>All of these functions are fully documented and simple to use. You can also check out Twitter’s API <a href="http://apiwiki.twitter.com/REST+API+Documentation">here</a> (but you shouldn’t need to).</p>
-<p>So, now you can fully **integrate Twitter into any PHP application you create! **</p>
-<h3 id="download-the-php-twitter-class-here-twitterclassphp5">Download The PHP Twitter Class here <a href="http://brandontreb.com/wp-content/uploads/2009/02/Twitter.class.php1.zip">Twitter.class.php</a></h3>
-<p>Also, make sure you <a href="http://feeds2.feedburner.com/brandontreb">subscribe to my RSS feed</a>. More great programming tutorial to come.</p>
-<div style="">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="The Only Twitter API PHP Class You Will Ever Need" data-url="http://brandontreb.com/the-only-twitter-api-php-class-you-will-ever-need"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
-</div>
-  
-  </section>
-  </section>
-  
-  <a href="https://brandon_swoop.ngrok.io/2009/02/27/twit.png/" class="u-url">
-	<aside class="dates">
-	  <time datetime="2009-02-27 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Feb 27</time>
 	</aside>
   </a>
 </article>
