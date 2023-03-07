@@ -1,0 +1,6 @@
+{
+  "name": "Archive",  
+  "content": "---\ntitle: Archive\nlayout: \"list.archivehtml\"\n---",
+  "permalink" : "https://brandon_swoop.ngrok.io/archive/",
+  "draft":false,"iscjklanguage":false,"layout":"list.archivehtml","title":"Archive"
+}

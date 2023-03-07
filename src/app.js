@@ -51,7 +51,8 @@ app.use(express.static('data/hugo/public'))
 
 // send back a 404 error for any unknown api request
 app.use((req, res, next) => {
-  next(new ApiError(httpStatus.NOT_FOUND, 'Not found'));
+  // next(new ApiError(httpStatus.NOT_FOUND, 'Not found'));
+  res.redirect('/404.html');
 });
 
 // convert error to ApiError, if needed

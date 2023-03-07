@@ -1,0 +1,6 @@
+{
+  "name": "Photos",  
+  "content": "---\ntitle: Photos\nlayout: \"list.photoshtml\"\n---",
+  "permalink" : "https://brandon_swoop.ngrok.io/photos/",
+  "draft":false,"iscjklanguage":false,"layout":"list.photoshtml","title":"Photos"
+}

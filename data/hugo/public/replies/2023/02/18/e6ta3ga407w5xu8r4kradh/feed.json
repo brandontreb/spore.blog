@@ -1,0 +1,6 @@
+{
+  "name": "",  
+  "content": "\u003e We encourage non-Twitter Blue subscribers to consider using an authentication app or security key method instead. These methods require you to have physical possession of the authentication method and are a great way to ensure your account is secure.\r\n\r\nDoes this mean that they are still supporting TOTP and others for non Twitter Blue subscribers?\r\n\r\nIf so, that’s _still_ a weird choice (to ditch SMS and keep others) as those are much more technical methods of auth than SMS. I would imagine most of their user base would have no idea how to set up apps like Authy or Google Authenticator. \r\n\r\nSuch an odd move. \n",
+  "permalink" : "https://brandon_swoop.ngrok.io/replies/2023/02/18/e6ta3ga407w5xu8r4kradh/",
+  "date":"2023-02-18T14:29:57.865Z","draft":false,"iscjklanguage":false,"lastmod":"2023-02-18T14:29:57.865Z","post_type":"reply","publishdate":"2023-02-18T14:29:57.865Z","reply_to_hostname":"aaronparecki.com","reply_to_url":"https://aaronparecki.com/2023/02/17/19/mfa","slug":"e6ta3ga407w5xu8r4kradh","type":"reply"
+}

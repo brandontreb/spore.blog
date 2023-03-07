@@ -197,6 +197,39 @@ const micropubDocumentToHugo = (document) => {
   return hugo;
 };
 
+const hugoToMicropubDocument = (hugo) => {
+  logger.debug('Converting hugo document to micropub format %o', hugo);
+  const { frontMatter, content } = hugo;
+
+  let properties = {
+    content: content,
+    name: [frontMatter.title],
+    published: [frontMatter.date],
+    category: frontMatter.tags,
+    'post-type': [frontMatter.post_type]
+  };
+
+  let additionalPropertyKeys = Object.keys(frontMatter).filter(key => !['title', 'date', 'slug', 'tags', 'type', 'post_type'].includes(key));
+  logger.debug('Additional property keys %o', additionalPropertyKeys);
+
+  // get values of additional properties and add them as key/values to the front matter
+  let additionalProperties = {};
+  additionalPropertyKeys.forEach(key => {
+    additionalProperties[key] = frontMatter[key];
+  });
+  logger.debug('Additional properties %o', additionalPropertyKeys);
+
+  properties = {
+    ...properties,
+    ...additionalProperties
+  };
+
+  return {
+    type: ['h-entry'],
+    properties
+  };
+};
+
 const getPostType = (properties) => {
   let type = 'note';
   // If a title is set, it's a post
@@ -278,4 +311,5 @@ module.exports = {
   processFormEncodedBody,
   micropubDocumentToHugo,
   sendWebmentions,
+  hugoToMicropubDocument
 };

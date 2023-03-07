@@ -41,12 +41,16 @@ const deletePost = (slug) => {
 
 const generateSite = () => {
   // Run hugo to generate the static site
-  logger.debug('Generating site');
-  logger.debug('hugo --source data/hugo');
+  logger.debug('Generating site');  
   // Generate the site
-  const result = execSync(`hugo --source data/hugo`);
-  logger.debug(result.toString('utf-8')); 
-  return result;
+  try {        
+    const result = execSync(`hugo --source data/hugo`);
+    logger.debug(result.toString('utf-8')); 
+    return result;
+  } catch (error) {
+    logger.error(error);
+    return false;
+  }
 }
 
 const getPostUrl = (frontMatter) => {
@@ -64,6 +68,31 @@ const getPostUrl = (frontMatter) => {
   let reply = frontMatter.reply_to_url ? 'replies/' : '';
   // Generate the url
   return `${config.hugo.config.baseURL}/${reply}${dateString}/${frontMatter.slug}/`;    
+}
+
+const getPostBySlug = (slug) => {
+  // Get the post by slug
+  logger.debug('Getting post by slug: %s', slug);
+  // Read the post from disk
+  const post = fs.readFileSync(`${config.hugo.contentDir}/posts/${slug}.md`, 'utf8');
+  // Split the front matter and content
+  const [frontMatter, content] = post.split('---').filter(Boolean);
+  // Parse the front matter
+  const parsedFrontMatter = YAML.parse(frontMatter);
+  // Return the front matter and content
+  return {
+    frontMatter: parsedFrontMatter,
+    content
+  };
+}
+
+const updatePost = (frontMatter, content) => {
+  // Update the post
+  logger.debug('Updating post: %s', frontMatter.slug);
+  // Delete the post
+  deletePost(frontMatter.slug);
+  // Create the post
+  createPost(frontMatter, content);
 }
 
 const getLinksFromFrontMatterAndContent = (frontMatter, content) => {
@@ -90,6 +119,8 @@ module.exports = {
   deletePost,
   generateSite,
   getPostUrl,
-  getLinksFromFrontMatterAndContent
+  updatePost,
+  getLinksFromFrontMatterAndContent,
+  getPostBySlug
 };
 

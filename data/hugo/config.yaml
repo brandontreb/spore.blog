@@ -30,6 +30,8 @@ menu:
     - name: Photos
       url: /photos/
       weight: 3
+
+# Non Configurable
 permalinks:
   /posts: /:year/:month/:day/:filename
   /replies: /replies/:year/:month/:day/:filename
@@ -47,6 +49,11 @@ outputs:
     - JSON
   section:
     - HTML
+  taxonomy:    
+    - JSON
+  page:
+    - HTML    
+    - JSON
 Services:
   RSS:
     Limit: 20
@@ -60,3 +67,6 @@ markup:
   goldmark:
     renderer:
       unsafe: true
+
+ignoreErrors: ["error-output-taxonomy"]
+

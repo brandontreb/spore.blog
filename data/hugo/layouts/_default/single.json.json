@@ -1,0 +1,6 @@
+{
+  "name": {{ .Title | jsonify }},  
+  "content": {{ .RawContent | jsonify }},
+  "permalink" : "{{ .Permalink }}",
+  {{  .Params | jsonify | strings.TrimPrefix "{" | strings.TrimSuffix "}" }}
+}
