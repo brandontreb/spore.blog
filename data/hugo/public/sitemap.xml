@@ -2,13 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://brandon_swoop.ngrok.io/2023/03/05/ggdvwjy1cmysflk5hoprq/</loc>
-    <lastmod>2023-03-05T03:13:25+00:00</lastmod>
+    <loc>https://brandon_swoop.ngrok.io/2023/03/13/ikkmdgdpapbin0rc/</loc>
+    <lastmod>2023-03-13T17:59:22-06:00</lastmod>
+  </url><url>
+    <loc>https://brandon_swoop.ngrok.io/tags/bar/</loc>
+    <lastmod>2023-03-13T17:59:22-06:00</lastmod>
+  </url><url>
+    <loc>https://brandon_swoop.ngrok.io/tags/baz/</loc>
+    <lastmod>2023-03-13T17:59:22-06:00</lastmod>
+  </url><url>
+    <loc>https://brandon_swoop.ngrok.io/tags/foo/</loc>
+    <lastmod>2023-03-13T17:59:22-06:00</lastmod>
   </url><url>
     <loc>https://brandon_swoop.ngrok.io/</loc>
-    <lastmod>2023-03-05T03:13:25+00:00</lastmod>
+    <lastmod>2023-03-13T17:59:22-06:00</lastmod>
   </url><url>
     <loc>https://brandon_swoop.ngrok.io/posts/</loc>
+    <lastmod>2023-03-13T17:59:22-06:00</lastmod>
+  </url><url>
+    <loc>https://brandon_swoop.ngrok.io/tags/feed.json</loc>
+    <lastmod>2023-03-13T17:59:22-06:00</lastmod>
+  </url><url>
+    <loc>https://brandon_swoop.ngrok.io/2023/03/05/ggdvwjy1cmysflk5hoprq/</loc>
     <lastmod>2023-03-05T03:13:25+00:00</lastmod>
   </url><url>
     <loc>https://brandon_swoop.ngrok.io/2023/03/03/7l6lvlkzk94q6hsgak5ay/</loc>
@@ -27,9 +42,6 @@
     <lastmod>2023-03-03T00:42:01+00:00</lastmod>
   </url><url>
     <loc>https://brandon_swoop.ngrok.io/tags/micropub/</loc>
-    <lastmod>2023-03-03T00:42:01+00:00</lastmod>
-  </url><url>
-    <loc>https://brandon_swoop.ngrok.io/tags/feed.json</loc>
     <lastmod>2023-03-03T00:42:01+00:00</lastmod>
   </url><url>
     <loc>https://brandon_swoop.ngrok.io/tags/webmention/</loc>

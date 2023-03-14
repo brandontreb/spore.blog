@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>business on Brandontreb</title>
+    <title>business on Brandon Trebitowski</title>
     <link>https://brandon_swoop.ngrok.io/tags/business/</link>
-    <description>Recent content in business on Brandontreb</description>
+    <description>Recent content in business on Brandon Trebitowski</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <managingEditor>brandontreb@gmail.com (Zero Cool)</managingEditor>
-    <webMaster>brandontreb@gmail.com (Zero Cool)</webMaster>
+    <managingEditor>brandontreb@gmail.com (|Zero Cool|)</managingEditor>
+    <webMaster>brandontreb@gmail.com (|Zero Cool|)</webMaster>
     <lastBuildDate>Tue, 28 Jul 2015 00:00:00 +0000</lastBuildDate><atom:link href="https://brandon_swoop.ngrok.io/tags/business/feed.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The Value Of Quality Assurance</title>
       <link>https://brandon_swoop.ngrok.io/2015/07/28/the-value-of-quality-assurance/</link>
       <pubDate>Tue, 28 Jul 2015 00:00:00 +0000</pubDate>
-      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <author>brandontreb@gmail.com (|Zero Cool|)</author>
       <guid>https://brandon_swoop.ngrok.io/2015/07/28/the-value-of-quality-assurance/</guid>
       <description>It&amp;rsquo;s late, you have been hacking all night to get the client a build. Finally, around 2:30 am, you hit submit and publish something to the client and go to bed. When you wake up in the morning, the first thing you see in your inbox is an email titled &amp;ldquo;Completely Broken!!1!&amp;rdquo;.
 How could this be? You stayed up late, you hacked, you tested and you sweat over this build to find that it crashes for the client when they try to do something obvious.</description>
@@ -23,7 +23,7 @@ How could this be? You stayed up late, you hacked, you tested and you sweat over
       <title>Ship Products You Are Proud Of</title>
       <link>https://brandon_swoop.ngrok.io/2015/04/07/ship-products-you-are-proud-of/</link>
       <pubDate>Tue, 07 Apr 2015 00:00:00 +0000</pubDate>
-      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <author>brandontreb@gmail.com (|Zero Cool|)</author>
       <guid>https://brandon_swoop.ngrok.io/2015/04/07/ship-products-you-are-proud-of/</guid>
       <description>There is a familiar phrase that I hear all too often when a client comes to me with an existing application. It goes something like this:
 “Our team spent quite a bit of money on our application and we don’t want to ship it. We are not proud of the product.”

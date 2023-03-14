@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./partials/head'); %>
+</head>
+
+<body class="container">
+  <header>
+    <%- include('./partials/header'); %>
+  </header>
+  <main>
+    <content>
+      <form method="post" action="/admin?_method=put">
+
+        <h2>Blog Settings</h2>
+
+        <p>
+          <label for="title">Blog title</label>
+          <input type="text" class="form-control" id="title" name="title" placeholder="Blog Title" value="<%- locals.hugo.title%>" required>
+        </p>
+        <p>
+          <label for="baseURL">Blog URL</label>
+          <input type="text" class="form-control" id="baseURL" name="baseURL" placeholder="Blog URL" value="<%- locals.hugo.baseURL %>" required>
+        </p>
+
+        <p>
+          <label for="meta_description">Meta description:</label>
+          <textarea name="meta_description" rows="2" id="id_meta_description"><%- locals.hugo.meta_description %></textarea>
+          <span class="helptext">Max 200 characters</span>
+        </p>
+        <p>
+          Lang: <input type="text" id="languageCode" name="languageCode" value="<%- locals.hugo.languageCode %>">
+        </p>
+        <p>
+          <label for="favicon" style="line-height: 2.4;">Favicon: &nbsp;</label>
+          <input type="text" name="favicon" id="favicon" class="favicon" value="<%- locals.hugo.favicon %>" id="favicon" />
+          <span class="helptext"><a target="_blank" href="https://getemoji.com/">Get an emoji</a></span>
+        </p>
+
+        <button type="submit" value="Save">Update</button>
+      </form>
+    </content>
+  </main>
+  <footer>
+    <%- include('./partials/footer'); %>
+  </footer>
+</body>
+
+</html>

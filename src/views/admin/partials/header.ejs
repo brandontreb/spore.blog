@@ -1,0 +1,27 @@
+<a class="title" href="/">
+  <h1>
+    <span class="title-spore">🌱</span> spore.blog |
+    <%- locals.admin_title || Account %>
+  </h1>
+</a>
+<nav class="">
+  <p class="row">
+    <span class="col-12">       
+      <a href="/admin">Admin</a>
+      <a href="/admin/account">Account</a>
+      <a href="/admin/posts/">Posts</a>      
+      <!-- <a href="/admin/styles/">Styles</a>
+      <a href="/admin/settings/">Blog Settings</a> -->         
+      <a href="/admin/auth/logout/">Logout</a>         
+    </span>
+  </p>
+</nav>
+<hr>
+<!-- Show flash messages-->
+<% if(locals.flash && locals.flash.length> 0) { %>
+  <% locals.flash.forEach(function(message) { %>
+  <p class="flash-message <%- message.type %> ">
+    <%= message.message %>
+  </p>
+  <% }); %>
+<% } %>

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>featured on Brandontreb</title>
+    <title>featured on Brandon Trebitowski</title>
     <link>https://brandon_swoop.ngrok.io/tags/featured/</link>
-    <description>Recent content in featured on Brandontreb</description>
+    <description>Recent content in featured on Brandon Trebitowski</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <managingEditor>brandontreb@gmail.com (Zero Cool)</managingEditor>
-    <webMaster>brandontreb@gmail.com (Zero Cool)</webMaster>
+    <managingEditor>brandontreb@gmail.com (|Zero Cool|)</managingEditor>
+    <webMaster>brandontreb@gmail.com (|Zero Cool|)</webMaster>
     <lastBuildDate>Mon, 25 Apr 2022 13:49:34 +0000</lastBuildDate><atom:link href="https://brandon_swoop.ngrok.io/tags/featured/feed.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Apple Removing Apps Older Than 2 Years</title>
       <link>https://brandon_swoop.ngrok.io/2022/04/25/apple-removing-apps/</link>
       <pubDate>Mon, 25 Apr 2022 13:49:34 +0000</pubDate>
-      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <author>brandontreb@gmail.com (|Zero Cool|)</author>
       <guid>https://brandon_swoop.ngrok.io/2022/04/25/apple-removing-apps/</guid>
       <description>Apple says they&#39;re removing my game because it&#39;s more than 2 years old
 This HN thread really resonated with me. I have been building and publishing iOS apps since the dawn of the App Store in 2008. In those 14 years, I have shipped over 200 apps, and do you want to know how many are still in the App Store? Zero.
@@ -24,7 +24,7 @@ Some of these takedowns are due to startups failing or clients deciding to go in
       <title>Programming Languages Are Only Tools</title>
       <link>https://brandon_swoop.ngrok.io/2019/12/22/programming-languages-are-only-tools/</link>
       <pubDate>Sun, 22 Dec 2019 14:55:22 +0000</pubDate>
-      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <author>brandontreb@gmail.com (|Zero Cool|)</author>
       <guid>https://brandon_swoop.ngrok.io/2019/12/22/programming-languages-are-only-tools/</guid>
       <description>Some young punks overheard me talking about JavaScript at lunch today. They felt it necessary to come to my table and tell me “typescript is waybetter”. They don’t realize that this sort of thing screams “I’m a junior developer! I know very little about the tech industry!”
 If you are a newer developer, learn early that you are greatly limiting your potential by marrying a subset of programming languages. You will greatly increase your value by being open to learning and building in any language that is best suited for the project.</description>
@@ -34,7 +34,7 @@ If you are a newer developer, learn early that you are greatly limiting your pot
       <title>We Instead Of I</title>
       <link>https://brandon_swoop.ngrok.io/2018/12/11/we-instead-of-i/</link>
       <pubDate>Tue, 11 Dec 2018 01:02:06 +0000</pubDate>
-      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <author>brandontreb@gmail.com (|Zero Cool|)</author>
       <guid>https://brandon_swoop.ngrok.io/2018/12/11/we-instead-of-i/</guid>
       <description>When I first started consulting, I had everything tied to my name. My company name was Treb Studios, my email was brandon@brandontreb.com, and my whole business was tied to me.
 This was fine for a while&amp;hellip;until I started growing. I hired contractors with the intention of replacing myself on my existing projects. This proved to be very challenging.
@@ -45,7 +45,7 @@ Clients didn’t want other developers, they wanted Brandon, because that’s wh
       <title>Dev Blinders - Failing To See Things From A User Perspective</title>
       <link>https://brandon_swoop.ngrok.io/2018/11/30/dev-blinders-failing-to/</link>
       <pubDate>Fri, 30 Nov 2018 21:44:52 +0000</pubDate>
-      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <author>brandontreb@gmail.com (|Zero Cool|)</author>
       <guid>https://brandon_swoop.ngrok.io/2018/11/30/dev-blinders-failing-to/</guid>
       <description>The other day, I was having a conversation over Slack with my development team. They were working on a client project (and doing a killer job), and there was a particular UX pattern that seemed very unintuitive to me. This app was designed by the client, so there was little the dev team could do beyond making suggestions, so they went ahead and implemented it per the spec.
 After fiddling around with it for a few minutes, I literally couldn&#39;t understand how to complete the particular task and had to ask the team lead for some help.</description>
@@ -55,7 +55,7 @@ After fiddling around with it for a few minutes, I literally couldn&#39;t unders
       <title>No One Cares About Your Clever Code</title>
       <link>https://brandon_swoop.ngrok.io/2018/11/27/no-one-cares-about-your/</link>
       <pubDate>Tue, 27 Nov 2018 00:38:32 +0000</pubDate>
-      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <author>brandontreb@gmail.com (|Zero Cool|)</author>
       <guid>https://brandon_swoop.ngrok.io/2018/11/27/no-one-cares-about-your/</guid>
       <description>As developers, we spend so much time perfecting our craft. We are always on the hunt for hacks, tips, and tweaks.
 We always set out to write the most clever and reusable code possible. This is all great&amp;hellip;until it’s time to ship.
@@ -67,7 +67,7 @@ When the client asks the dev about the delay on feature X, the dev proceeds to e
       <title>Prototypes Usually End Up In Production</title>
       <link>https://brandon_swoop.ngrok.io/2018/11/22/prototypes-usually-end-up-in/</link>
       <pubDate>Thu, 22 Nov 2018 00:11:59 +0000</pubDate>
-      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <author>brandontreb@gmail.com (|Zero Cool|)</author>
       <guid>https://brandon_swoop.ngrok.io/2018/11/22/prototypes-usually-end-up-in/</guid>
       <description>“Just hack a quick proof of concept, we’ll rebuild it when we get more funding.” These are some words I often hear from clients who have minimal budgets.
 They generally want my team to build something small/quick/cheap to get their concept across in hopes of securing more funds down the road.
@@ -78,7 +78,7 @@ What I have learned by saying “yes” to these types of requests in the past i
       <title>Client Deliveries Are Hard</title>
       <link>https://brandon_swoop.ngrok.io/2018/11/14/client-deliveries-are-hard/</link>
       <pubDate>Wed, 14 Nov 2018 23:04:32 +0000</pubDate>
-      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <author>brandontreb@gmail.com (|Zero Cool|)</author>
       <guid>https://brandon_swoop.ngrok.io/2018/11/14/client-deliveries-are-hard/</guid>
       <description>I have been building software for clients for over a decade now and have come to one solid conclusion: deliveries suck.
 Maybe I&#39;m just the worst developer in the world and have worked with the worst teams and have had the worst clients… but I doubt it.
@@ -89,7 +89,7 @@ I have delivered early, on time, late, with more functionality, exactly the same
       <title>It`s A Good Time To Be A (Good) Mobile Developer</title>
       <link>https://brandon_swoop.ngrok.io/2018/11/06/it-s-a-good-time-to/</link>
       <pubDate>Tue, 06 Nov 2018 16:07:10 +0000</pubDate>
-      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <author>brandontreb@gmail.com (|Zero Cool|)</author>
       <guid>https://brandon_swoop.ngrok.io/2018/11/06/it-s-a-good-time-to/</guid>
       <description>If you are a mobile developer in 2018, and are not consulting (at least on the side), you are missing out on a huge stream of revenue.
 In the early days of mobile app development (2008/2009), it was fairly easy for an iOS or Android developer to get a gig with large companies (Food Network, ESPN, huge list of other names…). At that time, mobile was so new, that none of these companies had internal resources to support this budding vertical.</description>
@@ -99,7 +99,7 @@ In the early days of mobile app development (2008/2009), it was fairly easy for 
       <title>How To Lose $300K In One Conversation</title>
       <link>https://brandon_swoop.ngrok.io/2016/02/08/how-to-lose-300k-in-one-conversation/</link>
       <pubDate>Mon, 08 Feb 2016 00:00:00 +0000</pubDate>
-      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <author>brandontreb@gmail.com (|Zero Cool|)</author>
       <guid>https://brandon_swoop.ngrok.io/2016/02/08/how-to-lose-300k-in-one-conversation/</guid>
       <description>Will you work for equity? After you have been consulting for any amount of time, you are bound to get asked this by a client. You may find yourself struggling to decide whether or not to take some equity or just get paid to work on the project like you normally do. I had one such scenario a while back that I wanted to share. One day a few months ago, I was approached by a local VC in town.</description>
     </item>
@@ -108,7 +108,7 @@ In the early days of mobile app development (2008/2009), it was fairly easy for 
       <title>Why Start Software Consulting</title>
       <link>https://brandon_swoop.ngrok.io/2016/01/25/why-consult/</link>
       <pubDate>Mon, 25 Jan 2016 00:00:00 +0000</pubDate>
-      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <author>brandontreb@gmail.com (|Zero Cool|)</author>
       <guid>https://brandon_swoop.ngrok.io/2016/01/25/why-consult/</guid>
       <description>Want to jump ship and be a software development consultant? This post will detail why this path is a much more fulfilling and safer path than a traditional job.
 Diversifying Income Early in my career, I worked for a software consulting agency. I was in my early 20&#39;s and getting paid way more than I should. One day, my boss called me up and let me go without notice. After interviewing quite a few developers in the consulting space, I quickly realized that this is a very common story.</description>
@@ -118,7 +118,7 @@ Diversifying Income Early in my career, I worked for a software consulting agenc
       <title>Ship Products You Are Proud Of</title>
       <link>https://brandon_swoop.ngrok.io/2015/04/07/ship-products-you-are-proud-of/</link>
       <pubDate>Tue, 07 Apr 2015 00:00:00 +0000</pubDate>
-      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <author>brandontreb@gmail.com (|Zero Cool|)</author>
       <guid>https://brandon_swoop.ngrok.io/2015/04/07/ship-products-you-are-proud-of/</guid>
       <description>There is a familiar phrase that I hear all too often when a client comes to me with an existing application. It goes something like this:
 “Our team spent quite a bit of money on our application and we don’t want to ship it. We are not proud of the product.”
@@ -129,7 +129,7 @@ It blows my mind that many developers and development teams are still in busines
       <title>Your App Idea Most Likely Falls Into One Of Three Categories</title>
       <link>https://brandon_swoop.ngrok.io/2015/01/27/app-idea-likely-falls-one-three-categories/</link>
       <pubDate>Tue, 27 Jan 2015 00:00:00 +0000</pubDate>
-      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <author>brandontreb@gmail.com (|Zero Cool|)</author>
       <guid>https://brandon_swoop.ngrok.io/2015/01/27/app-idea-likely-falls-one-three-categories/</guid>
       <description>During my years of mobile development, I have heard the phrase “I have an idea for an app!” hundreds, if not thousands of times. Sometimes it would be from family members, sometimes my dentist during a cleaning, and sometimes from a naked dude standing in the sauna at the gym. Everyone pitches app ideas to me.
 What I have learned from hearing so many pitches is this: apps really fall into one of three (sometimes four) categories.</description>
@@ -139,7 +139,7 @@ What I have learned from hearing so many pitches is this: apps really fall into 
       <title>Software Consultant Contracts: Fixed Bid VS Time And Materials</title>
       <link>https://brandon_swoop.ngrok.io/2014/12/09/software-development-contracts-fixed-bid-vs-time-materials/</link>
       <pubDate>Tue, 09 Dec 2014 00:00:00 +0000</pubDate>
-      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <author>brandontreb@gmail.com (|Zero Cool|)</author>
       <guid>https://brandon_swoop.ngrok.io/2014/12/09/software-development-contracts-fixed-bid-vs-time-materials/</guid>
       <description>One of the most common questions I get from software consultants is whether or not to accept fixed bid contracts. In this post, I’m hoping to shed some light on fixed bid vs. time and materials contracts and help you make the best decision for the project at hand.
 Let’s start with some definitions to help you better understand what I am talking about.
@@ -150,7 +150,7 @@ A fixed bid contract is a contract where the developer and the client agree on a
       <title>Being An Indie Software Developer And Signing NDAs</title>
       <link>https://brandon_swoop.ngrok.io/2014/02/28/indie-software-developer-signing-ndas/</link>
       <pubDate>Fri, 28 Feb 2014 00:00:00 +0000</pubDate>
-      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <author>brandontreb@gmail.com (|Zero Cool|)</author>
       <guid>https://brandon_swoop.ngrok.io/2014/02/28/indie-software-developer-signing-ndas/</guid>
       <description>Very frequently, I receive emails that go something like this:
 “Hey Brandon, I have a killer project idea. Do you want to work on it? Please sign the NDA so we can talk.”
@@ -161,7 +161,7 @@ Early on when I first started consulting, I would have responded with something 
       <title>Becoming A Software Consultant: My Backstory</title>
       <link>https://brandon_swoop.ngrok.io/2014/01/31/becoming-software-consultant-backstory/</link>
       <pubDate>Fri, 31 Jan 2014 00:00:00 +0000</pubDate>
-      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <author>brandontreb@gmail.com (|Zero Cool|)</author>
       <guid>https://brandon_swoop.ngrok.io/2014/01/31/becoming-software-consultant-backstory/</guid>
       <description>I recently published a post about my first year of being an independent iPhone development consultant. The feedback from my readers was incredible, however there was one important thread on Hacker News that I wanted to address. The issues were:
 One of my common hangups with these kind of posts is the lack of history as to what lead people to these consulting gigs. Where were you before, and how long were you there?</description>
@@ -171,7 +171,7 @@ One of my common hangups with these kind of posts is the lack of history as to w
       <title>What I Learned In My First Year Of iOS Consulting</title>
       <link>https://brandon_swoop.ngrok.io/2014/01/01/learned-first-year-ios-consulting/</link>
       <pubDate>Wed, 01 Jan 2014 00:00:00 +0000</pubDate>
-      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <author>brandontreb@gmail.com (|Zero Cool|)</author>
       <guid>https://brandon_swoop.ngrok.io/2014/01/01/learned-first-year-ios-consulting/</guid>
       <description>Wow, I can’t believe it has already been a full year since I struck it out on my own. Last year, I published a post after my first month on doing contract iOS development. Needless to say, I have grown and learned quite a bit over the past year and I wanted to share some of those experiences.
 Income While I won’t share exact numbers, I left my 6 figure/year job to pursue the indie/consulting life.</description>

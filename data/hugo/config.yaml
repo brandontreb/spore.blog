@@ -1,13 +1,14 @@
 baseURL: https://brandon_swoop.ngrok.io
 languageCode: en-us
-title: Brandontreb
+title: Brandon Trebitowski
 theme: theme-alpine
 Author:
-  name: Zero Cool
-  username: brandontreb
   email: brandontreb@gmail.com
-  avatar: https://brandon_swoop.ngrok.io/avatar.jpeg
+  username: zerocool
+  name: "|Zero Cool|"
   url: https://brandon_swoop.ngrok.io
+  note: "hello world?\r\n"
+  avatar: https://brandon_swoop.ngrok.io/avatar.jpeg
 params:
   github_username: brandontreb
   twitter_username: brandontreb
@@ -30,8 +31,6 @@ menu:
     - name: Photos
       url: /photos/
       weight: 3
-
-# Non Configurable
 permalinks:
   /posts: /:year/:month/:day/:filename
   /replies: /replies/:year/:month/:day/:filename
@@ -49,10 +48,10 @@ outputs:
     - JSON
   section:
     - HTML
-  taxonomy:    
+  taxonomy:
     - JSON
   page:
-    - HTML    
+    - HTML
     - JSON
 Services:
   RSS:
@@ -67,6 +66,7 @@ markup:
   goldmark:
     renderer:
       unsafe: true
-
-ignoreErrors: ["error-output-taxonomy"]
-
+ignoreErrors:
+  - error-output-taxonomy
+meta_description: this is a great blog!
+favicon: 👾

@@ -6,15 +6,15 @@ const logger = require('../config/logger');
 const { micropubService, hugoService } = require('../services');
 const config = require('../config/config');
 
-
 const create = catchAsync(async (req, res) => {
   let body = req.method === 'POST' ? req.body : req.query;
+  let hugo = hugoService.getConfig();
 
   // check if get request
   if (req.method === 'GET') {
     if (req.query['q'] === 'config') {
       return res.json({
-        "media-endpoint": `${config.hugo.config.baseURL}/micropub/media`,
+        "media-endpoint": `${hugo.baseURL}/micropub/media`,
         "syndicate-to": []
       });
     } 
@@ -23,7 +23,7 @@ const create = catchAsync(async (req, res) => {
     }
     if(req.query['q'] === 'category') {
       // Redirect to config.baseURL/tags/feed.json
-      let response = await fetch(`${config.hugo.config.baseURL}/tags/feed.json`);      
+      let response = await fetch(`${hugo.baseURL}/tags/feed.json`);      
       return res.json(await response.json());
     }
     if(req.query['q'] === 'source') {
@@ -88,7 +88,7 @@ const create = catchAsync(async (req, res) => {
     }
     let slug = url.split('/').pop();        
     hugoService.deletePost(slug);
-    hugoService.generateSite();
+    await hugoService.generateSite();
     return res.status(httpStatus.NO_CONTENT).send();
   }
 
@@ -120,7 +120,7 @@ const create = catchAsync(async (req, res) => {
       }
 
       hugoService.updatePost(post.frontMatter, post.content);
-      hugoService.generateSite();
+      await hugoService.generateSite();
       return res.status(httpStatus.NO_CONTENT).send();
     }
   }
@@ -137,7 +137,7 @@ const create = catchAsync(async (req, res) => {
   // Create the hugo post
   hugoService.createPost(frontMatter, content);  
   // Rebuild the site
-  hugoService.generateSite();
+  await hugoService.generateSite();
   // Get the url of the post
   let url = hugoService.getPostUrl(frontMatter);
   // Send webmentions for replies if there are any
@@ -151,6 +151,7 @@ const create = catchAsync(async (req, res) => {
 });
 
 const media = catchAsync(async(req, res, next) => {
+  let hugo = hugoService.getConfig();
   logger.info('micropub media request: %j', req.files);
 
   if (!req.files || req.files.length === 0) {
@@ -161,7 +162,7 @@ const media = catchAsync(async(req, res, next) => {
   let year = new Date().getFullYear();
   for (let file of req.files.file) {
     response.push({
-      url: `${config.hugo.config.baseURL}/uploads/${year}/${file.filename}`,
+      url: `${hugo.baseURL}/uploads/${year}/${file.filename}`,
       mime_type: file.mimetype,
       published: new Date()
     })
@@ -172,7 +173,7 @@ const media = catchAsync(async(req, res, next) => {
   }
 
   // Rebuild the site
-  hugoService.generateSite();
+  await hugoService.generateSite();
 
   return res.set({ 'Location': response.url }).status(httpStatus.CREATED).json(response);
 });

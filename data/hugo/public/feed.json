@@ -1,15 +1,22 @@
 {
     "version" : "https://jsonfeed.org/version/1",
-    "title" : "Home on Brandontreb",
-    "description": "Recent content in Home on Brandontreb",
+    "title" : "Home on Brandon Trebitowski",
+    "description": "Recent content in Home on Brandon Trebitowski",
     "home_page_url" : "https://brandon_swoop.ngrok.io",
     "feed_url" : "https://brandon_swoop.ngrok.io/feed.json",
     "author" : {
-        "name" : "Zero Cool",
+        "name" : "|Zero Cool|",
         "url": "https://brandon_swoop.ngrok.io",
         "avatar": "https://brandon_swoop.ngrok.io/avatar.jpeg"
     },
     "items" : [
+    {
+        "date_published" : "2023-03-13T17:59:22-06:00",
+        "date_modified" : "2023-03-13T17:59:22-06:00",
+        "id" : "https://brandon_swoop.ngrok.io/2023/03/13/ikkmdgdpapbin0rc/",
+        "url" : "https://brandon_swoop.ngrok.io/2023/03/13/ikkmdgdpapbin0rc/",
+        "content_html" : "\u003cp\u003ehello friend\u003c/p\u003e\n"
+    },
     {
         "date_published" : "2023-03-05T03:13:25Z",
         "date_modified" : "2023-03-05T03:13:25Z",
@@ -143,13 +150,6 @@
         "id" : "https://brandon_swoop.ngrok.io/2023/02/20/0bzrmtyte0vngqbzaifrrom/",
         "url" : "https://brandon_swoop.ngrok.io/2023/02/20/0bzrmtyte0vngqbzaifrrom/",
         "content_html" : "\u003cp\u003eWoke up early to smoke a pork shoulder. Every time I’m heating up charcole at 5:30am, I vow to buy an electric smoker.\u003c/p\u003e\n\u003cp\u003e\u003cem\u003eIt never happens…\u003c/em\u003e\u003c/p\u003e\n"
-    },
-    {
-        "date_published" : "2023-02-19T21:20:25Z",
-        "date_modified" : "2023-02-19T21:20:25Z",
-        "id" : "https://brandon_swoop.ngrok.io/2023/02/19/foeqhtx0ffkpceajsxs2l/",
-        "url" : "https://brandon_swoop.ngrok.io/2023/02/19/foeqhtx0ffkpceajsxs2l/",
-        "content_html" : "\u003cp\u003eI LOVE when I discover a blog that supports webmentions. It’s an insta-subscribe for me. Even if the content isn’t relevant to me, I want to continue to encourage the open web and building community around these cool technologies.\u003c/p\u003e\n"
     }
     ]
 }

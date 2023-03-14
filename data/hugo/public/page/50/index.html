@@ -5,9 +5,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta content="Zero Cool" name="author">
+  <meta content="|Zero Cool|" name="author">
 
-  <title>Brandontreb
+  <title>Brandon Trebitowski
 		- Home</title>
 
   <link href="/assets/css/style.css?1" rel="stylesheet">
@@ -47,11 +47,11 @@ nav.main-nav a.cta:hover {
 
   <link rel="stylesheet" href="/custom.css?1">
 
-	<link rel="shortcut icon" href="https://micro.blog/brandontreb/favicon.png" type="image/x-icon" />
+	<link rel="shortcut icon" href="https://micro.blog/zerocool/favicon.png" type="image/x-icon" />
     
     
       <link href="https://brandon_swoop.ngrok.io/podcast.xml" rel="alternate" type="application/rss+xml" title="Podcast" />
-      <link rel="alternate" type="application/json" title="Brandontreb" href="https://brandon_swoop.ngrok.io/feed.json" />
+      <link rel="alternate" type="application/json" title="Brandon Trebitowski" href="https://brandon_swoop.ngrok.io/feed.json" />
       <link rel="EditURI" type="application/rsd+xml" href="https://brandon_swoop.ngrok.io/rsd.xml" />
     
 
@@ -94,7 +94,7 @@ nav.main-nav a.cta:hover {
 
 	<div class="site-title">
 		<img src="https://brandon_swoop.ngrok.io/avatar.jpeg" width="25" height="25" class="site-image">		
-		<a href="/">Brandontreb</a>
+		<a href="/">Brandon Trebitowski</a>
 	</div>
 
 	<div class="site-menus">
@@ -126,6 +126,153 @@ nav.main-nav a.cta:hover {
 
 	
 	
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2011/04/22/beginning-jailbroken-ios-development-building-and-deployment/">Beginning Jailbroken iOS Development &amp;#8211; Building And Deployment</a></h2>
+  </header>
+  <section class="post-body">
+	<p>Welcome to the next installment of my jailbroken iOS development series. If you haven’t already done so, read my previous post to get up to speed.</p>
+<p><a href="/beginning-jailbroken-ios-development-getting-the-tools/">Beginning Jailbroken iOS Development – Getting The Tools</a></p>
+<p>Now that your environment has been set up, it’s time to start hacking your project, building, and deploying it. This tutorial will be fairly quick and will just demonstrate how to build a .deb file and install it on your device. This will not cover creating a Cydia repository for public access (this is for a later tutorial).</p>
+<h4 id="introduction">Introduction</h4>
+<p>Start by creating a simple project. Refer to the <a href="/beginning-jailbroken-ios-development-getting-the-tools/">previous tutorial</a> to determine how to do this. I will use the example of the #1 iphone/application and will be calling it fooProject.</p>
+<div>
+  <pre>&lt;code class=’bash’>$/opt/theos/bin/nic.pl
+NIC 1.0 - New Instance Creator
+——————————
+  [1.] iphone/application
+  [2.] iphone/library
+  [3.] iphone/preference_bundle
+  [4.] iphone/tool
+  [5.] iphone/tweak
+Choose a Template (required): 1
+Project Name (required): fooProject
+Package Name [com.yourcompany.fooproject]:    
+Author/Maintainer Name [Brandon Trebitowski]: 
+Instantiating iphone/application in fooproject/…
+Done.&lt;/code></pre>
+</div>
+<p>This will create a new directory for our project with the following files.</p>
+<ol>
+<li><strong>control</strong>: Contains information about your application/tweak. This is the info you see when you install something from Cydia (name, author, version, etc…)</li>
+<li><strong>[applicationName]Application.mm</strong>: This is essentially your appDelegate file. It creates a window, adds your RootViewController and displays it.</li>
+<li><strong>main.m</strong> : Same main file that you would use in an iPhone project. Just initializes your [applicationName]Application.mm file on launch.</li>
+<li><strong>Makefile</strong>: contains the necessary build commands to compile your project. I’ll go over this in detail in a bit</li>
+<li><strong>Resources</strong>: This folder contains your info.plist and is also where you can place all of your images</li>
+<li><strong>RootViewController.h/mm</strong>: A simple view controller</li>
+</ol>
+<h4 id="the-makefile">The Makefile</h4>
+<p>theos provides some great tools that simplify the build process as much as possible. I know some of you might shudder at the sound of a Makefile, but trust me, it’s very painless.</p>
+<p>Let’s first take a look at the anatomy of the Makefile that was generated.</p>
+<div>
+  <pre>&lt;code class=’bash’>include theos/makefiles/common.mk&lt;/code></pre>
+</div>
+<p>This line simply tells theos to include the common make commands in your build script to save you some work.</p>
+<div>
+  <pre>&lt;code class=’bash’>APPLICATION_NAME = fooProject&lt;/code></pre>
+</div>
+<p>The name of the application we are building. The Makefile will use this constant to do a number of things under the hood. Don’t modify this unless your application changes names.</p>
+<div>
+  <pre>&lt;code class=’bash’>[applicationName]_FILES = main.m fooProjectApplication.mm RootViewController.mm&lt;/code></pre>
+</div>
+<p>This is the meat of the Makefile. It’s the list of m (or mm in this case) files that need to be compiled. *Note: you do not add your .h files here. So, whenever you add a new .m file to the project, make sure to append it to this list or it won’t get built.</p>
+<div>
+  <pre>&lt;code class=’bash’>[applicationName]_FRAMEWORKS = UIKit Foundation QuartzCore AudioToolbox CoreGraphics&lt;/code></pre>
+</div>
+<p>This line is not included by default, but is needed if you want to use ANY frameworks; be them Apple’s or h4x0red ones.</p>
+<div>
+  <pre>&lt;code class=’bash’>include $(THEOS_MAKE_PATH)/application.mk&lt;/code></pre>
+</div>
+<p>More defaults to help theos build your project.</p>
+<h4 id="setting-up-your-environment">Setting up Your Environment</h4>
+<p>Do you remember in the last tutorial that we had to set an environment variable in order to use theos? Well, we need to set a couple more to build and deploy.</p>
+<p>Here are the 3 that you MUST have.</p>
+<div>
+  <pre>&lt;code class=’bash’>export THEOS=/opt/theos/
+export SDKVERSION=4.3
+export THEOS_DEVICE_IP=192.168.1.122&lt;/code></pre>
+</div>
+<img src="/img/post_images/2011/04/sbsettings.png" style="float:right;padding:5px" />
+<p>The first line, you should have already done. Otherwise you would not have been able to run the nic tool above. The second defines your current SDK version. This will tell theos where to look for your frameworks and whatnot. (ex If you only have 4.2 installed, set this to 4.2). Finally, the last line, tells theos the ip address of your device.</p>
+<p>Once theos does the package install, it will sftp the package to your device for installation. One thing to note here is your iPhone MUST be on the same network as the computer you are developing on.</p>
+<p>If you don’t know your device’s ip address, it’s in the SBSettings menu. If you don’t have SBSettings, go download it from Cydia and think about why you would have a jailbroken device without this app installed…</p>
+<div style="clear:both">
+  &nbsp;
+</div>
+<h4 id="building-the-project">Building The Project</h4>
+<p>Building is just as easy as running the make command inside of your project’s root directory.</p>
+<p>Here is an example of building my fooProject app using the command:</p>
+<p><strong>make</strong>.</p>
+<div>
+  <pre>&lt;code class=’bash’>$ make
+Making all for application fooProject…
+ Compiling main.m…
+ Compiling fooProjectApplication.mm…
+ Compiling RootViewController.mm…
+ Linking application fooProject…
+ Stripping fooProject…
+ Signing fooProject…&lt;/code></pre>
+</div>
+<p>If your project contains errors, they will be flushed out here. Also, theos treats warnings as errors (as should you) 😉 . So, if you have any warnings you won’t be able to build.</p>
+<p>When you are ready to distribute your application, you must build a .deb package. Luckily, theos does this for us with a simple command:</p>
+<p><strong>make package</strong>.</p>
+<div>
+  <pre>&lt;code class=’bash’>make package
+Making all for application fooProject…
+make[2]: Nothing to be done for ‘internal-application-compile’.
+Making stage for application fooProject…
+ Copying resource directories into the application wrapper…
+dpkg-deb: building package ‘com.yourcompany.fooproject’ in ‘/Users/brandontreb/Desktop/fooproject/com.yourcompany.fooproject_0.0.1-1_iphoneos-arm.deb’.&lt;/code></pre>
+</div>
+<p>You should now see a file like <em>com.yourcompany.fooproject_0.0.1-1_iphoneos-arm.deb</em> in your project’s root directory. One great feature of theos is it handles versioning automatically. So subsequent builds will increment the build number. If you change your version in the info.plist file, it will start the build counter over (2-1, 2-2, etc…).</p>
+<p>At this point, you <em>could</em> sftp this file to your device and run:</p>
+<div>
+  <pre>&lt;code class=’bash’>dpkg -i com.yourcompany.fooproject_0.0.1-1_iphoneos-arm.deb&lt;/code></pre>
+</div>
+<p>as root to test the installation. However, that is quite a bit of a pain. Luckily, theos will do all of this for you by simply using the command:</p>
+<p><strong>make package install</strong></p>
+<div>
+  <pre>&lt;code class=’bash’>$ make package install
+Making all for application fooProject…
+make[2]: Nothing to be done for `internal-application-compile’.
+Making stage for application fooProject…
+ Copying resource directories into the application wrapper…
+dpkg-deb: building package ‘com.yourcompany.fooproject’ in ‘/Users/brandontreb/Desktop/fooproject/com.yourcompany.fooproject_0.0.1-3_iphoneos-arm.deb’.
+install.copyFile "/Users/brandontreb/Desktop/fooproject/com.yourcompany.fooproject_0.0.1-3_iphoneos-arm.deb" "com.yourcompany.fooproject_0.0.1-3_iphoneos-arm.deb"
+root@192.168.1.122’s password: 
+com.yourcompany.fooproject_0.0.1-3_iphoneos-arm.deb                                                                                                                                                                                                                              100% 4434     4.3KB/s   00:00    
+install.exec "dpkg -i com.yourcompany.fooproject_0.0.1-3_iphoneos-arm.deb"
+root@192.168.1.122’s password: 
+Selecting previously deselected package com.yourcompany.fooproject.
+(Reading database … 2006 files and directories currently installed.)
+Unpacking com.yourcompany.fooproject (from com.yourcompany.fooproject_0.0.1-3_iphoneos-arm.deb) …
+Setting up com.yourcompany.fooproject (0.0.1-3) …&lt;/code></pre>
+</div>
+<p>You will have to enter your password several times during the process. The default is <strong>alpine</strong>.</p>
+<p>After this has been run, you will need to restart (or respring) your iPhone. Respringing takes a simple button tap if you have SBSettings installed (have you installed it yet?).</p>
+<h4 id="conclusion">Conclusion</h4>
+<p>You now have all of the tools needed to start hacking your very first jailbroken iOS application. In the next tutorial, we are going to learn about MobileSubstrate hacks and how to overwrite Apple functionality. I will give a basic example of how to display an alert message every time your device boots up.</p>
+<p>Until next time, happy hacking!</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Beginning Jailbroken iOS Development - Building And Deployment" data-url="http://brandontreb.com/beginning-jailbroken-ios-development-building-and-deployment"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2011/04/22/beginning-jailbroken-ios-development-building-and-deployment/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2011-04-22 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Apr 22</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
 	
 		<li>
 <article>
@@ -639,76 +786,6 @@ What’s great about it is, you have all of you music on your iPhone without usi
   <a href="https://brandon_swoop.ngrok.io/2011/03/01/free-app-idea-drop-tunes/" class="u-url">
 	<aside class="dates">
 	  <time datetime="2011-03-01 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Mar 1</time>
-	</aside>
-  </a>
-</article>
-</li>
-<span class="separator"><span class="divider"></span></span>
-
-	
-		<li>
-<article>
-  
-  <section class="post-body">
-  <header>
-	<h2><a href="https://brandon_swoop.ngrok.io/2011/02/24/appstore1.png/">Smart Lockscreen Creator Released &#43; Promo Codes</a></h2>
-  </header>
-  <section class="post-body">
-	<p>My latest iOS app, Smart Lockscreen Creator has just released on iPhone for $.99.</p>
-<p><a href="http://itunes.apple.com/app/smart-lockscreen-creator/id419890996?mt=8">Download It Here</a></p>
-<h4 id="img-classalignleft-size-full-wp-image-1448-titlesmart-lockscreen-creator-srcuploads2011smart-lockscreen-creatorjpeg-alt-width224-height336-2the-idea"><a href="/uploads/2011/smart-lockscreen-creator.jpeg"><img class="alignleft size-full wp-image-1448" title="smart-lockscreen-creator" src="/uploads/2011/smart-lockscreen-creator.jpeg" alt="" width="224" height="336" /></a>The Idea</h4>
-<p>Currently your lockscreen on your iOS device is nothing more than a pretty watch with a background. Jailbreakers have solved this issue with an incredible application called intelliscreen, which adds lots of interesting information to it. However, you and I are Apple fanboys and won’t violate our precious iPhones with jailbreaking. Enter Smart Lockscreen Creator.</p>
-<p>Smart Lockscreen Creator allows you to build a completely custom (and smart) lockscreen image within the application. You then set this image as your lockscreen background. The following items are currently supported by the app.</p>
-<ul>
-<li>Current weather, condition, high and low for any city/region in the World</li>
-<li>Weekly forecast for any city/region in the World</li>
-<li>Monthly calendar</li>
-<li>Custom text</li>
-<li>Blank space (useful when customizing the look of your lockscreen)</li>
-<li>Line separator</li>
-<li>Many more in the works!</li>
-</ul>
-<p>Here are some promo codes. If you fail to grab one and have some interest in reviewing the app on your site, I would be happy to email you one.</p>
-<div id="_mcePaste">
-  FMP9LRW4FP99
-</div>
-<div id="_mcePaste">
-  MH7XHH3FLH4P
-</div>
-<div id="_mcePaste">
-  JH9E47JXP9KA
-</div>
-<div id="_mcePaste">
-  RYRAPRARPAJ3
-</div>
-<div id="_mcePaste">
-  4FKKW6LN7W9J
-</div>
-<div>
-</div>
-<div>
-  If you have any suggestion for lockscreen &#8220;widgets&#8221;, don&#8217;t hesitate to post them here.
-</div>
-<div>
-</div>
-<div>
-  Please give some review love as well 😉
-</div>
-<div>
-</div>
-<div style="text-align: center;">
-  <a href="http://itunes.apple.com/app/smart-lockscreen-creator/id419890996?mt=8"><img class="alignnone size-full wp-image-1451" title="appstore1" src="/uploads/2011/appstore1.png" alt="" width="255" height="89" /></a>
-</div>
-<div style="">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Smart Lockscreen Creator Released + Promo Codes" data-url="http://brandontreb.com/smart-lockscreen-creator-released-promo-codes"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
-</div>
-  
-  </section>
-  </section>
-  
-  <a href="https://brandon_swoop.ngrok.io/2011/02/24/appstore1.png/" class="u-url">
-	<aside class="dates">
-	  <time datetime="2011-02-24 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Feb 24</time>
 	</aside>
   </a>
 </article>

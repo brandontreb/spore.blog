@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>iPhone Programming on Brandontreb</title>
+    <title>iPhone Programming on Brandon Trebitowski</title>
     <link>https://brandon_swoop.ngrok.io/tags/iphone-programming/</link>
-    <description>Recent content in iPhone Programming on Brandontreb</description>
+    <description>Recent content in iPhone Programming on Brandon Trebitowski</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <managingEditor>brandontreb@gmail.com (Zero Cool)</managingEditor>
-    <webMaster>brandontreb@gmail.com (Zero Cool)</webMaster>
+    <managingEditor>brandontreb@gmail.com (|Zero Cool|)</managingEditor>
+    <webMaster>brandontreb@gmail.com (|Zero Cool|)</webMaster>
     <lastBuildDate>Wed, 01 Jan 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://brandon_swoop.ngrok.io/tags/iphone-programming/feed.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>What I Learned In My First Year Of iOS Consulting</title>
       <link>https://brandon_swoop.ngrok.io/2014/01/01/learned-first-year-ios-consulting/</link>
       <pubDate>Wed, 01 Jan 2014 00:00:00 +0000</pubDate>
-      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <author>brandontreb@gmail.com (|Zero Cool|)</author>
       <guid>https://brandon_swoop.ngrok.io/2014/01/01/learned-first-year-ios-consulting/</guid>
       <description>Wow, I can’t believe it has already been a full year since I struck it out on my own. Last year, I published a post after my first month on doing contract iOS development. Needless to say, I have grown and learned quite a bit over the past year and I wanted to share some of those experiences.
 Income While I won’t share exact numbers, I left my 6 figure/year job to pursue the indie/consulting life.</description>
@@ -23,7 +23,7 @@ Income While I won’t share exact numbers, I left my 6 figure/year job to pursu
       <title>iPhone Programming Tutorial: Creating An Image Gallery Like Over &amp;#8211; Part 2</title>
       <link>https://brandon_swoop.ngrok.io/2013/08/15/screen-shot-2013-07-25-at-12.51.25-pm-300x221.png/</link>
       <pubDate>Thu, 15 Aug 2013 00:00:00 +0000</pubDate>
-      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <author>brandontreb@gmail.com (|Zero Cool|)</author>
       <guid>https://brandon_swoop.ngrok.io/2013/08/15/screen-shot-2013-07-25-at-12.51.25-pm-300x221.png/</guid>
       <description>Welcome to the second part of my tutorial series “Creating An Image Gallery Like Over”. In this part of the tutorial, you will learn how to actually display the photos in the UICollectionView as well as give the user the ability to take photos with their camera.
 If you haven’t already done so, please go back and complete part 1.
@@ -34,7 +34,7 @@ If you haven’t already done so, please go back and complete part 1.
       <title>iPhone Programming Tutorial: Creating An Image Gallery Like Over &amp;#8211; Part 1</title>
       <link>https://brandon_swoop.ngrok.io/2013/08/12/screen-shot-2013-07-21-at-9.26.07-pm-184x300.png/</link>
       <pubDate>Mon, 12 Aug 2013 00:00:00 +0000</pubDate>
-      <author>brandontreb@gmail.com (Zero Cool)</author>
+      <author>brandontreb@gmail.com (|Zero Cool|)</author>
       <guid>https://brandon_swoop.ngrok.io/2013/08/12/screen-shot-2013-07-21-at-9.26.07-pm-184x300.png/</guid>
       <description>Recently, I have had to build an app (download link) that required the user to choose a photo from their photo library. Rather than just throwing up a UIImagePickerController like many apps, I decided to add a little bit of style. Being inspired by Over’s ultra simplistic (and beautiful) photo selection interface, I decided to fancy things up a bit.
 For this tutorial, I will start with a Fresh iOS6 View-Based application that uses Storyboards and ARC.</description>

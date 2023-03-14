@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./partials/head'); %>
+</head>
+
+<body class="container">
+  <header>
+    <%- include('./partials/header'); %>
+  </header>
+  <main>
+    <content>
+      <form method="post" action="/admin/account?_method=put">
+        <h2>Account Settings</h2>
+        <p>
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" value="<%- hugo.Author.email %>">
+        </p>
+        <p>
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" value="<%- hugo.Author.username %>">
+        </p>
+        <p>
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" value="<%- hugo.Author.name %>">
+        </p>
+        <p>
+          <label for="website">Website:</label>
+          <input type="text" id="url" name="url" value="<%- hugo.Author.url   %>">
+        </p>
+        <p>
+          <label for="note">About me:</label>
+          <textarea name="note" id="note"><%- hugo.Author.note %></textarea>
+        </p>
+        <p>
+          <a href="/admin/account/photo">
+            <% if(hugo.Author.avatar) { %>
+              <img src="<%- hugo.Author.avatar %>" alt="profile photo" width="100" height="100" />
+              <% } else { %>
+                <!-- load from gravatar-->
+                <img src="<%- hugo.Author.gravatar %>" alt="profile photo" width="100" height="100" />
+              <% } %>
+              <br /> Edit
+          </a>
+        </p>
+
+        <details>
+          <summary>Change password</summary>
+          <p>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+          </p>
+          <p>
+            <label for="password_again">Password Again:</label>
+            <input type="password" id="password_again" name="password_again">
+          </p>
+        </details>
+        <button type="submit" value="Save">Update</button>
+      </form>
+    </content>
+  </main>
+  <footer>
+    <%- include('./partials/footer'); %>
+  </footer>
+</body>
+
+</html>

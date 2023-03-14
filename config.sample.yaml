@@ -1,0 +1,71 @@
+baseURL: 
+languageCode: en-us
+title: 
+theme: theme-alpine
+meta_description: 
+favicon: 
+Author:
+  name: 
+  username: 
+  email: 
+  avatar: 
+  url: 
+params:
+  github_username: 
+  twitter_username: 
+  instagram_username: 
+  microblog_username: 
+  buymeacoffee: 
+  authorization_endpoint: https://indieauth.com/auth
+  token_endpoint: https://tokens.indieauth.com/token
+  micropub_endpoint: https://brandon_swoop.ngrok.io/micropub
+  webmention_endpoint: https://webmention.io/brandon_swoop.ngrok.io/webmention
+  theme_seconds: 1
+menu:
+  main:
+    - name: Archive
+      url: /archive/
+      weight: 1
+    - name: Replies
+      url: /replies/
+      weight: 2
+    - name: Photos
+      url: /photos/
+      weight: 3
+permalinks:
+  /posts: /:year/:month/:day/:filename
+  /replies: /replies/:year/:month/:day/:filename
+outputFormats:
+  RSS:
+    mediatype: application/rss+xml
+    baseName: feed
+  JSON:
+    mediatype: application/json
+    baseName: feed
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+  section:
+    - HTML
+  taxonomy:
+    - JSON
+  page:
+    - HTML
+    - JSON
+Services:
+  RSS:
+    Limit: 20
+  JSON:
+    Limit: 20
+LastMod:
+  - LastMod
+  - :fileModTime
+  - publishDate
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+ignoreErrors:
+  - error-output-taxonomy

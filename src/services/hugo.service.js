@@ -1,4 +1,4 @@
-const execSync = require('child_process').execSync;
+const {exec} = require('child_process')
 const YAML = require('yaml');
 const fs = require('fs');
 const markdownLinkExtractor = require('markdown-link-extractor');
@@ -39,18 +39,21 @@ const deletePost = (slug) => {
   fs.unlinkSync(`${config.hugo.contentDir}/posts/${slug}.md`);
 }
 
-const generateSite = () => {
+const generateSite = async () => {
   // Run hugo to generate the static site
   logger.debug('Generating site');  
   // Generate the site
-  try {        
-    const result = execSync(`hugo --source data/hugo`);
-    logger.debug(result.toString('utf-8')); 
-    return result;
-  } catch (error) {
-    logger.error(error);
-    return false;
-  }
+  return new Promise((resolve, reject) => {
+    try {        
+      const result = exec(`hugo --source data/hugo`);
+      logger.debug(`hugo --source data/hugo`);
+      logger.debug(`%o`,result.toString('utf-8'));       
+      resolve(true);
+    } catch (error) {
+      logger.error(error);
+      reject(error);
+    }
+  });
 }
 
 const getPostUrl = (frontMatter) => {
@@ -114,6 +117,25 @@ const getLinksFromFrontMatterAndContent = (frontMatter, content) => {
   return links;
 };
 
+const getConfig = () => {
+  // Get the config from disk
+  logger.debug('Getting config');  
+  const hugo = config.hugo.config;
+  return hugo;
+}
+
+const updateConfig = (config) => {
+  // Update the config
+  logger.debug('Updating config %o', config);
+  // Get the current config  
+  let hugo = getConfig();
+  // Merge the new config with the current config
+  config = Object.assign(hugo, config);
+  // Write the config to disk
+  fs.writeFileSync('data/hugo/config.yaml', YAML.stringify(config), 'utf8');  
+  return getConfig();
+}
+
 module.exports = {
   createPost,
   deletePost,
@@ -121,6 +143,8 @@ module.exports = {
   getPostUrl,
   updatePost,
   getLinksFromFrontMatterAndContent,
-  getPostBySlug
+  getPostBySlug,
+  getConfig,
+  updateConfig
 };
 
