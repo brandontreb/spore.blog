@@ -7,8 +7,14 @@ Author:
   username: zerocool
   name: "|Zero Cool|"
   url: https://brandon_swoop.ngrok.io
-  note: "hello world?\r\n"
-  avatar: https://brandon_swoop.ngrok.io/avatar.jpeg
+  note: "💻 Software \r
+
+    🏕 Outdoors \r
+
+    🏠 Family \r
+
+    🏃‍♂️ Fitness"
+  avatar: https://brandon_swoop.ngrok.io/avatar.png
 params:
   github_username: brandontreb
   twitter_username: brandontreb
@@ -34,6 +40,8 @@ menu:
 permalinks:
   /posts: /:year/:month/:day/:filename
   /replies: /replies/:year/:month/:day/:filename
+  /pages: /:filename  
+  /redirects: /:filename
 outputFormats:
   RSS:
     mediatype: application/rss+xml

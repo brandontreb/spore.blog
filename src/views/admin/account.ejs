@@ -36,11 +36,8 @@
         <p>
           <a href="/admin/account/photo">
             <% if(hugo.Author.avatar) { %>
-              <img src="<%- hugo.Author.avatar %>" alt="profile photo" width="100" height="100" />
-              <% } else { %>
-                <!-- load from gravatar-->
-                <img src="<%- hugo.Author.gravatar %>" alt="profile photo" width="100" height="100" />
-              <% } %>
+              <img src="<%- hugo.Author.avatar %>?s=100" alt="profile photo" width="100" height="100" />             
+            <% } %>
               <br /> Edit
           </a>
         </p>

@@ -2,21 +2,22 @@ var fs = require('fs');
 const multer = require('multer')
 const utils = require('../utils/utils');
 
-let upload = multer({
+let upload = (directory, filename = null) => multer({
   storage: multer.diskStorage({
-    destination: (req, file, cb) => {      
-      // Get the current year string
-      let year = new Date().getFullYear();      
-      let fullDirectory = `data/hugo/static/uploads/${year}`;
+    destination: (req, file, cb) => {            
       // If the directory doesn't exist, create it
-      if(!fs.existsSync(fullDirectory)) {
-        fs.mkdirSync(fullDirectory, { recursive: true });
+      if(!fs.existsSync(directory)) {
+        fs.mkdirSync(directory, { recursive: true });
       }
-      cb(null,fullDirectory)
+      cb(null,directory)
     },
     filename: (req, file, cb) => {
-      let fileExtension = file.originalname.split('.') // get file extension from original file name            
+      let fileExtension = file.originalname.split('.') // get file extension from original file name                  
       fileExtension = fileExtension[fileExtension.length - 1] // get file extension from original file name 
+      if(filename) {
+        cb(null, filename + '.' + fileExtension)
+        return;
+      }
       let name = utils.randomStringOfLength(16);
       cb(null, Date.now() + '.' + name + '.' + fileExtension)
     }

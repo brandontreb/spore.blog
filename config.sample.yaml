@@ -35,6 +35,8 @@ menu:
 permalinks:
   /posts: /:year/:month/:day/:filename
   /replies: /replies/:year/:month/:day/:filename
+  /pages: /:filename
+  /redirects: /:filename
 outputFormats:
   RSS:
     mediatype: application/rss+xml

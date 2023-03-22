@@ -1,5 +1,5 @@
 ---
 title: "Loading Suprise Me"
-type: "page"
+post_type: "page"
 layout: "surprise-me"
 ---

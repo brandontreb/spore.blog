@@ -119,7 +119,7 @@ const create = catchAsync(async (req, res) => {
         post.frontMatter.draft = postStatus === 'draft';
       }
 
-      hugoService.updatePost(post.frontMatter, post.content);
+      hugoService.updatePost(post, post.content);
       await hugoService.generateSite();
       return res.status(httpStatus.NO_CONTENT).send();
     }

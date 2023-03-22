@@ -15,7 +15,7 @@ router.route('/')
 //   .get(auth(false), indieAuth('create'), micropubController.create);
 
 router.route('/media')
-  .post(upload.fields(['file', 'video', 'photo', 'audio', 'video[]', 'photo[]', 'audio[]'].map(type => ({ name: type }))), micropubController.media)
+  .post(upload(`data/hugo/static/uploads/${new Date().getFullYear()}`).fields(['file', 'video', 'photo', 'audio', 'video[]', 'photo[]', 'audio[]'].map(type => ({ name: type }))), micropubController.media)
   // .get(auth(false), micropubController.getMedia);
 
 module.exports = router;

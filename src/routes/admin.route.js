@@ -13,6 +13,7 @@ router
   .put(auth(true), validate(adminValidation.update), adminController.update);
 
 router.use('/account', require('./account.route'));
+router.use('/pages', require('./pages.route'));
 
 // // Posts
 // router

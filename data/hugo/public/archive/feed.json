@@ -1,6 +1,6 @@
 {
   "name": "Archive",  
-  "content": "---\ntitle: Archive\nlayout: \"list.archivehtml\"\n---",
+  "content": "---\ntitle: Archive\nlayout: \"list.archivehtml\"\npost_type: \"page\"\n---",
   "permalink" : "https://brandon_swoop.ngrok.io/archive/",
-  "draft":false,"iscjklanguage":false,"layout":"list.archivehtml","title":"Archive"
+  "draft":false,"iscjklanguage":false,"layout":"list.archivehtml","post_type":"page","title":"Archive"
 }

@@ -12,7 +12,7 @@ const defaultRoutes = [
   {
     path: '/admin',
     route: adminRoute,
-  },
+  },  
 ];
 
 

@@ -8,7 +8,35 @@
     <language>en-us</language>
     <managingEditor>brandontreb@gmail.com (|Zero Cool|)</managingEditor>
     <webMaster>brandontreb@gmail.com (|Zero Cool|)</webMaster>
-    <lastBuildDate>Mon, 13 Mar 2023 17:59:22 -0600</lastBuildDate><atom:link href="https://brandon_swoop.ngrok.io/feed.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 22 Mar 2023 20:44:27 +0000</lastBuildDate><atom:link href="https://brandon_swoop.ngrok.io/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>this work?</title>
+      <link>https://brandon_swoop.ngrok.io/this-work/</link>
+      <pubDate>Wed, 22 Mar 2023 20:44:27 +0000</pubDate>
+      <author>brandontreb@gmail.com (|Zero Cool|)</author>
+      <guid>https://brandon_swoop.ngrok.io/this-work/</guid>
+      <description>idk</description>
+    </item>
+    
+    <item>
+      <title>Whats Going On</title>
+      <link>https://brandon_swoop.ngrok.io/whats-going-on/</link>
+      <pubDate>Wed, 22 Mar 2023 20:21:48 +0000</pubDate>
+      <author>brandontreb@gmail.com (|Zero Cool|)</author>
+      <guid>https://brandon_swoop.ngrok.io/whats-going-on/</guid>
+      <description>This is a page where I update all of the things that I have going on.
+one two three </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://brandon_swoop.ngrok.io/2023/03/18/fcstbbpiuya2vp2e/</link>
+      <pubDate>Sat, 18 Mar 2023 20:45:22 -0600</pubDate>
+      <author>brandontreb@gmail.com (|Zero Cool|)</author>
+      <guid>https://brandon_swoop.ngrok.io/2023/03/18/fcstbbpiuya2vp2e/</guid>
+      <description>testing </description>
+    </item>
+    
     <item>
       <title></title>
       <link>https://brandon_swoop.ngrok.io/2023/03/13/ikkmdgdpapbin0rc/</link>
@@ -181,37 +209,6 @@ Self-hosting fascinates me to no end.</description>
       <author>brandontreb@gmail.com (|Zero Cool|)</author>
       <guid>https://brandon_swoop.ngrok.io/2023/02/25/ewqb6pkro1ichlz44u31vq/</guid>
       <description>✅ Achievement unlocked! My 14yo laughed at one of my dad jokes!</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://brandon_swoop.ngrok.io/2023/02/24/gyos6swj9c6d0pjyprucql/</link>
-      <pubDate>Fri, 24 Feb 2023 00:44:37 +0000</pubDate>
-      <author>brandontreb@gmail.com (|Zero Cool|)</author>
-      <guid>https://brandon_swoop.ngrok.io/2023/02/24/gyos6swj9c6d0pjyprucql/</guid>
-      <description>Checking The Date
-Every day is April Fools from now on, let’s not get fooled.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://brandon_swoop.ngrok.io/2023/02/24/jwio7c0skeegrcgl7rq0s/</link>
-      <pubDate>Fri, 24 Feb 2023 00:36:43 +0000</pubDate>
-      <author>brandontreb@gmail.com (|Zero Cool|)</author>
-      <guid>https://brandon_swoop.ngrok.io/2023/02/24/jwio7c0skeegrcgl7rq0s/</guid>
-      <description>Another day of snowboarding in the books. I had a great time going with friends. It was cold and snowy, but the powder was awesome.
-I even landed some 360’s today 🏂</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://brandon_swoop.ngrok.io/2023/02/22/w1rxgvombin13r6tcxifl/</link>
-      <pubDate>Wed, 22 Feb 2023 14:53:16 +0000</pubDate>
-      <author>brandontreb@gmail.com (|Zero Cool|)</author>
-      <guid>https://brandon_swoop.ngrok.io/2023/02/22/w1rxgvombin13r6tcxifl/</guid>
-      <description>Necroposting – blogging from before you started blogging
-It&amp;rsquo;s pretty simple. I copy and paste the text, set the published date to be in the past and - presto chango - history is rewritten.
-This is a pretty cool idea.</description>
     </item>
     
   </channel>

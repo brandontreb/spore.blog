@@ -33,5 +33,6 @@ module.exports = {
   hugo: {
     config: YAML.parse(fs.readFileSync('data/hugo/config.yaml', 'utf8')),
     contentDir: 'data/hugo/content',
+    staticDir: 'data/hugo/static',
   }
 };

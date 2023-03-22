@@ -1,3 +1,6 @@
+const md5 = require('md5');
+const sharp = require('sharp');
+const config = require('../config/config');
 const slugify = str =>
   str
   .toLowerCase()
@@ -41,9 +44,23 @@ const hostnameFromUrl = url => {
   return hostname;
 }
 
+const gravatarUrl = email => {
+  const hash = md5(email);
+  return `https://www.gravatar.com/avatar/${hash}`;
+}
+
+const generateFaviconFromFile = file => { 
+  return sharp(file)
+    .resize(32, 32)
+    .png()
+    .toFile(`${config.hugo.staticDir}/favicon.png`); 
+}
+
   module.exports = {
     slugify,
     randomStringOfLength,
     decodeHTMLEntities,
-    hostnameFromUrl
+    hostnameFromUrl,
+    gravatarUrl,
+    generateFaviconFromFile
   }

@@ -80,13 +80,19 @@ time {
 }
 
 .text-danger {
-  color: red !important;
+  color: #dc3545 !important;
 }
 
 .button-secondary {
   background-color: var(--secondary);
   border-color: var(--secondary);
   color: var(--secondary-inverse);
+}
+
+.button-danger {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
 }
 
 
@@ -103,7 +109,7 @@ input[type="password"],
 input[type="email"] {
   width: 100%;
   box-sizing: border-box;
-  max-width: 600px;
+  /* max-width: 600px; */
 }
 
 label {

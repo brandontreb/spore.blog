@@ -47,7 +47,7 @@ nav.main-nav a.cta:hover {
 
   <link rel="stylesheet" href="/custom.css?1">
 
-	<link rel="shortcut icon" href="https://micro.blog/zerocool/favicon.png" type="image/x-icon" />
+	<link rel="shortcut icon" href="https://brandon_swoop.ngrok.io/favicon.png" type="image/x-icon" />
     
     
       <link href="https://brandon_swoop.ngrok.io/podcast.xml" rel="alternate" type="application/rss+xml" title="Podcast" />
@@ -93,7 +93,7 @@ nav.main-nav a.cta:hover {
   <nav class="main-nav">
 
 	<div class="site-title">
-		<img src="https://brandon_swoop.ngrok.io/avatar.jpeg" width="25" height="25" class="site-image">		
+		<img src="https://brandon_swoop.ngrok.io/avatar.png" width="25" height="25" class="site-image">		
 		<a href="/">Brandon Trebitowski</a>
 	</div>
 
@@ -126,6 +126,59 @@ nav.main-nav a.cta:hover {
 
 	
 	
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandon_swoop.ngrok.io/2012/01/19/fluid-for-mac/">Fluid For Mac</a></h2>
+  </header>
+  <section class="post-body">
+	<p>As of OSX Lion, I have started to seriously loathe some of the build-it Mac apps (such as Mail, and iCal). While I previously had no issues with them, they now seem to be very clunky and crash quite often. Being a developer, I thought “why don’t I write an app that wraps web apps for you so you basically get “native web apps” that have icons and are launchable?”.</p>
+<p>After a quick Google search, I realized <strong><a href="http://fluidapp.com/">this already exists!</a></strong>. The app is called Fluid and it does an incredible job of what I described above and more.</p>
+<img src="http://fluidapp.com/images/dock_large.png" width="400" />
+<p>Here are the feature highlights.</p>
+<ul>
+<li>Create a “native” Mac app for any web app</li>
+<li>Custom icon for each “native” app you create</li>
+<li>Full screen mode</li>
+<li>User scripps. These are my favorite. They allow you to update the badge count based on information in the browser. See below for a sample user script.</li>
+</ul>
+<p><strong>Sample User Script For Twitter</strong></p>
+<div>
+  <pre>&lt;code class=’javascript’>(function () {
+        if (window.fluid) {
+            setInterval(function updateBadge() {
+                var counts = /\d+/.exec(document.title);
+                if (counts && counts[0] &gt; 0) {
+                    window.fluid.dockBadge = counts[0] &gt; 99 ? ‘99+’ : counts[0];
+                } else {
+                    window.fluid.dockBadge = ”;
+                }
+            }, 2000);
+        }
+    })();&lt;/code></pre>
+</div>
+<p><a href="http://userscripts.org/scripts/review/88425">Source</a></p>
+<p>Fluid is free with some minimal features, but I urge you to drop the $4.99 to gain full screen mode and user scripts. It’s well worth it. I am not affiliated with them in any way, just a happy customer.</p>
+<p><a href="http://fluidapp.com/">Download Fluid</a></p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Fluid For Mac" data-url="http://brandontreb.com/fluid-for-mac"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandon_swoop.ngrok.io/2012/01/19/fluid-for-mac/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2012-01-19 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Jan 19</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
 	
 		<li>
 <article>
@@ -463,46 +516,6 @@ You can also specify a download link like this: [ios-app id=”1234” download_
   <a href="https://brandon_swoop.ngrok.io/2011/11/16/caterpillar-hd-now-in-the-app-store-tutorial-series-to-follow/" class="u-url">
 	<aside class="dates">
 	  <time datetime="2011-11-16 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Nov 16</time>
-	</aside>
-  </a>
-</article>
-</li>
-<span class="separator"><span class="divider"></span></span>
-
-	
-		<li>
-<article>
-  
-  <section class="post-body">
-  <header>
-	<h2><a href="https://brandon_swoop.ngrok.io/2011/11/14/wordpress-to-jekyll-and-back-again/">WordPress To Jekyll And Back Again</a></h2>
-  </header>
-  <section class="post-body">
-	<p>Earlier this year, I jumped ship on WordPress and moved to Jekyll after reading <a href="http://vitobotta.com/how-to-migrate-from-wordpress-to-jekyll/">this post</a> on Hacker News. I wanted to be 1337! I wanted to ditch the whale that was WordPress.</p>
-<p>Well, it was quite a run, but in the end I decided to revert back to WordPress. Although Jekyll is <strong>much faster</strong> than WordPress, here were my issues:</p>
-<h4 id="build-times">Build Times</h4>
-<p>As my post count grew, so did the time to compile my jekyll site. Jekyll is a static site builder, so naturally it has to rebuild your site any time anything changes. With my blog containing hundreds of posts, my site build times started getting into minutes. I simply don’t want to wait forever to publish a post.</p>
-<p>Since it took <strong>so long</strong> to build my site, it discouraged me from posting. I would only write posts on my specified <a href="http://idevblogaday.com">#iDevBlogADay</a> days, rather than just posting quick info posts.</p>
-<h4 id="too-many-dependancies">Too Many Dependancies</h4>
-<p>Jekyll is a beast to install, especially if you want to support some of the fancier plugins like syntax highlighting. This limited my blogging to only <em>my</em> machines. I couldn’t blog from anywhere anymore. I could have installed Jekyll on my server, but that just seems like a hassle, also see my first point about build times.</p>
-<h4 id="no-mobile-app">No Mobile App</h4>
-<p>I like to blog on the go, and with Jekyll I just couldn’t find an elegant solution to blog from my iPhone or iPad. I found myself trying to come up with hackish solutions and write custom scripps, but in the end it just wasn’t worth it.</p>
-<h4 id="i-can-now-use-markdown-with-wordpress">I can now use Markdown with WordPress</h4>
-<p>I fell in love with Jekyll because I could write in markdown. With <a href="http://wordpress.org/extend/plugins/markdown-on-save-improved/">this plugin</a>, I can now do just that with WordPress. It stores the Markdown in a separate meta field and generates the post_content html upon publishing the post. So, I’m not married to the plugin in case I decide to ditch it.</p>
-<p>I have also hid the disgusting “Visual Editor” that WordPress is unfortunate enough to ship with. This makes my writing experience much more pleasant.</p>
-<h4 id="the-future">The Future</h4>
-<p>While Jekyll was a fun experiment, I think I will stick with WordPress for now.</p>
-<p><strong>geekCred–;</strong></p>
-<div style="">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="WordPress To Jekyll And Back Again" data-url="http://brandontreb.com/wordpress-to-jekyll-and-back-again"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
-</div>
-  
-  </section>
-  </section>
-  
-  <a href="https://brandon_swoop.ngrok.io/2011/11/14/wordpress-to-jekyll-and-back-again/" class="u-url">
-	<aside class="dates">
-	  <time datetime="2011-11-14 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Nov 14</time>
 	</aside>
   </a>
 </article>

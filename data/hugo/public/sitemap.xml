@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://brandon_swoop.ngrok.io/</loc>
+    <lastmod>2023-03-22T20:44:27+00:00</lastmod>
+  </url><url>
+    <loc>https://brandon_swoop.ngrok.io/pages/</loc>
+    <lastmod>2023-03-22T20:44:27+00:00</lastmod>
+  </url><url>
+    <loc>https://brandon_swoop.ngrok.io/this-work/</loc>
+    <lastmod>2023-03-22T20:44:27+00:00</lastmod>
+  </url><url>
+    <loc>https://brandon_swoop.ngrok.io/whats-going-on/</loc>
+    <lastmod>2023-03-22T20:21:48+00:00</lastmod>
+  </url><url>
+    <loc>https://brandon_swoop.ngrok.io/2023/03/18/fcstbbpiuya2vp2e/</loc>
+    <lastmod>2023-03-18T20:45:22-06:00</lastmod>
+  </url><url>
+    <loc>https://brandon_swoop.ngrok.io/posts/</loc>
+    <lastmod>2023-03-18T20:45:22-06:00</lastmod>
+  </url><url>
     <loc>https://brandon_swoop.ngrok.io/2023/03/13/ikkmdgdpapbin0rc/</loc>
     <lastmod>2023-03-13T17:59:22-06:00</lastmod>
   </url><url>
@@ -12,12 +30,6 @@
     <lastmod>2023-03-13T17:59:22-06:00</lastmod>
   </url><url>
     <loc>https://brandon_swoop.ngrok.io/tags/foo/</loc>
-    <lastmod>2023-03-13T17:59:22-06:00</lastmod>
-  </url><url>
-    <loc>https://brandon_swoop.ngrok.io/</loc>
-    <lastmod>2023-03-13T17:59:22-06:00</lastmod>
-  </url><url>
-    <loc>https://brandon_swoop.ngrok.io/posts/</loc>
     <lastmod>2023-03-13T17:59:22-06:00</lastmod>
   </url><url>
     <loc>https://brandon_swoop.ngrok.io/tags/feed.json</loc>
@@ -2150,7 +2162,9 @@
     <loc>https://brandon_swoop.ngrok.io/2009/02/17/the-focus-of-this-blog/</loc>
     <lastmod>2009-02-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://brandon_swoop.ngrok.io/new/</loc>
+    <loc>https://brandon_swoop.ngrok.io/123abc/</loc>
+  </url><url>
+    <loc>https://brandon_swoop.ngrok.io/brandontreb/</loc>
   </url><url>
     <loc>https://brandon_swoop.ngrok.io/archive/</loc>
   </url><url>
@@ -2158,6 +2172,12 @@
   </url><url>
     <loc>https://brandon_swoop.ngrok.io/surprise-me/</loc>
   </url><url>
+    <loc>https://brandon_swoop.ngrok.io/1/01/01/newpage/</loc>
+  </url><url>
     <loc>https://brandon_swoop.ngrok.io/photos/</loc>
+  </url><url>
+    <loc>https://brandon_swoop.ngrok.io/redirects/</loc>
+  </url><url>
+    <loc>https://brandon_swoop.ngrok.io/newpage/</loc>
   </url>
 </urlset>

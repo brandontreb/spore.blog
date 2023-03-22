@@ -28,15 +28,62 @@ const createPost = (frontMatter, content) => {
   if (frontMatter.post_type === 'reply') {
     folder = 'replies';
   }
-  fs.writeFileSync(`data/hugo/content/${folder}/${frontMatter.slug}.md`, postContent, 'utf8');
+  if(frontMatter.post_type === 'page') {
+    folder = 'pages';
+  }
+
+  // Make sure the folder exists
+  let directory = `${config.hugo.contentDir}/${folder}`;
+  if (!fs.existsSync(directory)) {
+    fs.mkdirSync(directory);
+  }
+
+  fs.writeFileSync(`${directory}/${frontMatter.slug}.md`, postContent, 'utf8');
   // Return the slug
   return frontMatter.slug;
 }
 
-const deletePost = (slug) => {
+const deletePost = (slug, post_type = 'post') => {
   // Delete the post from disk
+  let folder = 'posts';
+  if (post_type === 'reply') {
+    folder = 'replies';
+  }
+  if(post_type === 'page') {
+    folder = 'pages';
+  }
   logger.debug('Deleting Post: %s', slug);
-  fs.unlinkSync(`${config.hugo.contentDir}/posts/${slug}.md`);
+  fs.unlinkSync(`${config.hugo.contentDir}/${folder}/${slug}.md`);
+}
+
+const getPosts = (post_type) => {
+  // Get all posts from disk
+  let folder = 'posts';
+  if (post_type === 'reply') {
+    folder = 'replies';
+  }
+  if(post_type === 'page') {
+    folder = 'pages';
+  }
+  logger.debug('Getting Posts: %s', folder);
+
+  let posts = [];
+
+  // Get all the files in the folder
+  try {
+    posts = fs.readdirSync(`${config.hugo.contentDir}/${folder}`);    
+    // Get the front matter for each file
+    posts = posts.map((post) => {
+      let slug = post.replace('.md', '');
+      return getPostBySlug(slug, post_type);
+    });
+
+  } catch (error) {
+    logger.error(error);
+    return posts;
+  }
+
+  return posts;
 }
 
 const generateSite = async () => {
@@ -73,15 +120,25 @@ const getPostUrl = (frontMatter) => {
   return `${config.hugo.config.baseURL}/${reply}${dateString}/${frontMatter.slug}/`;    
 }
 
-const getPostBySlug = (slug) => {
+const getPostBySlug = (slug, post_type = 'post') => {
+
+  let folder = 'posts';
+  if (post_type === 'reply') {
+    folder = 'replies';
+  }
+  if(post_type === 'page') {
+    folder = 'pages';
+  }
+
   // Get the post by slug
   logger.debug('Getting post by slug: %s', slug);
   // Read the post from disk
-  const post = fs.readFileSync(`${config.hugo.contentDir}/posts/${slug}.md`, 'utf8');
+  const post = fs.readFileSync(`${config.hugo.contentDir}/${folder}/${slug}.md`, 'utf8');
   // Split the front matter and content
   const [frontMatter, content] = post.split('---').filter(Boolean);
   // Parse the front matter
   const parsedFrontMatter = YAML.parse(frontMatter);
+  parsedFrontMatter.slug = frontMatter.slug || slug;
   // Return the front matter and content
   return {
     frontMatter: parsedFrontMatter,
@@ -89,11 +146,11 @@ const getPostBySlug = (slug) => {
   };
 }
 
-const updatePost = (frontMatter, content) => {
+const updatePost = (frontMatter, content, post_type = 'post') => {
   // Update the post
   logger.debug('Updating post: %s', frontMatter.slug);
   // Delete the post
-  deletePost(frontMatter.slug);
+  deletePost(frontMatter.slug, post_type);
   // Create the post
   createPost(frontMatter, content);
 }
@@ -145,6 +202,7 @@ module.exports = {
   getLinksFromFrontMatterAndContent,
   getPostBySlug,
   getConfig,
-  updateConfig
+  updateConfig,
+  getPosts
 };
 
