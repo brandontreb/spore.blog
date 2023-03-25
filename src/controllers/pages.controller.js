@@ -5,8 +5,10 @@ const utils = require('../utils/utils');
 const getPages = async (req, res) => {
   try {
     const pages = await hugoService.getPosts('page');
+    const redirects = await hugoService.getPosts('redirect');
     res.render('admin/pages', {
       pages,
+      redirects,
       admin_title: 'Pages',
     });
   } catch (error) {
@@ -92,44 +94,57 @@ const createPage = async (req, res) => {
     await hugoService.createPost(page.frontMatter, page.content, 'page');
     hugoService.generateSite();
     req.flash('success', 'Page created successfully');
-    res.redirect(`/admin/pages/${page.frontMatter.slug}`);
+    res.redirect(`/admin/pages`);
   } catch (error) {
     req.flash('error', error);
     res.redirect('/admin');
   }
 }
 
-/*
-const createPage = async (req, res) => {
+const newRedirect = async (req, res) => {
+  res.render('admin/redirect', {
+    redirect: {
+      frontMatter: {},
+    },
+    admin_title: 'New Redirect',
+  });
+}
+
+const createRedirect = async (req, res) => {
+  let {from, to} = req.body;
+  let slug = utils.slugify(from);
   try {
-    const page = await hugoService.createPage(req.body);
-    req.flash('success', 'Page created successfully');
-    res.redirect(`/admin/pages/${page.id}`);
+    const redirect = {
+      frontMatter: {
+        from: from,
+        redirect: to,
+        post_type: 'redirect',
+        slug: slug
+      },
+    }
+    await hugoService.createPost(redirect.frontMatter, '', 'redirect');
+    hugoService.generateSite();
+    req.flash('success', 'Redirect created successfully');
+    res.redirect(`/admin/pages/`);
   } catch (error) {
     req.flash('error', error);
     res.redirect('/admin');
   }
 }
 
-const updatePage = async (req, res) => {
+const getRedirect = async (req, res) => {
   try {
-    await hugoService.updatePageById(req.params.pageId, req.body);
-    req.flash('success', 'Page updated successfully');
-    res.redirect(`/admin/pages/${req.params.pageId}`);
+    const redirect = await hugoService.getPostBySlug(req.params.slug, 'redirect');
+    res.render('admin/redirect', {
+      redirect,
+      admin_title: 'Redirect',
+    });
   } catch (error) {
     req.flash('error', error);
     res.redirect('/admin');
   }
 }
-const newPage = async (req, res) => {
-  try {
-    res.render('pages/new');
-  } catch (error) {
-    req.flash('error', error);
-    res.redirect('/admin');
-  }
-}
-*/
+
 module.exports = {
   getPages,
   getPage,
@@ -137,4 +152,7 @@ module.exports = {
   updatePage,
   deletePage,
   newPage,
+  newRedirect,
+  createRedirect,
+  getRedirect
 };

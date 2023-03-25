@@ -6,6 +6,19 @@ const markdownLinkExtractor = require('markdown-link-extractor');
 const logger = require('../config/logger');
 const config = require('../config/config');
 
+const folderForPostType = (post_type = 'post') => {  
+  switch(post_type) {
+    case 'reply':
+      return 'replies';
+    case 'page':
+      return 'pages';
+    case 'redirect':
+      return 'redirects';
+    default:
+      return 'posts';
+  }
+}
+
 // front matter, content, and slug
 const createPost = (frontMatter, content) => {
   // Generate a slug if one is not provided
@@ -24,13 +37,7 @@ const createPost = (frontMatter, content) => {
   const postContent = `---\n${YAML.stringify(frontMatter)}---\n${content}`;
   logger.debug('Creating Post: \n%s', postContent);
   // Write the post to disk
-  let folder = 'posts';
-  if (frontMatter.post_type === 'reply') {
-    folder = 'replies';
-  }
-  if(frontMatter.post_type === 'page') {
-    folder = 'pages';
-  }
+  let folder = folderForPostType(frontMatter.post_type);
 
   // Make sure the folder exists
   let directory = `${config.hugo.contentDir}/${folder}`;
@@ -45,26 +52,14 @@ const createPost = (frontMatter, content) => {
 
 const deletePost = (slug, post_type = 'post') => {
   // Delete the post from disk
-  let folder = 'posts';
-  if (post_type === 'reply') {
-    folder = 'replies';
-  }
-  if(post_type === 'page') {
-    folder = 'pages';
-  }
+  let folder = folderForPostType(post_type);
   logger.debug('Deleting Post: %s', slug);
   fs.unlinkSync(`${config.hugo.contentDir}/${folder}/${slug}.md`);
 }
 
 const getPosts = (post_type) => {
   // Get all posts from disk
-  let folder = 'posts';
-  if (post_type === 'reply') {
-    folder = 'replies';
-  }
-  if(post_type === 'page') {
-    folder = 'pages';
-  }
+  let folder = folderForPostType(post_type);
   logger.debug('Getting Posts: %s', folder);
 
   let posts = [];
@@ -122,13 +117,7 @@ const getPostUrl = (frontMatter) => {
 
 const getPostBySlug = (slug, post_type = 'post') => {
 
-  let folder = 'posts';
-  if (post_type === 'reply') {
-    folder = 'replies';
-  }
-  if(post_type === 'page') {
-    folder = 'pages';
-  }
+  let folder = folderForPostType(post_type);
 
   // Get the post by slug
   logger.debug('Getting post by slug: %s', slug);

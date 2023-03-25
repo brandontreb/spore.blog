@@ -14,6 +14,7 @@ router
 
 router.use('/account', require('./account.route'));
 router.use('/pages', require('./pages.route'));
+router.use('/menus', require('./menu.route'));
 
 // // Posts
 // router

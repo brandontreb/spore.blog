@@ -20,6 +20,70 @@ const read = catchAsync(async(req, res) => {
   });
 });
 
+const getMenus = catchAsync(async(req, res) => {
+  const hugo = hugoService.getConfig();
+  let menu = hugo.menu.main.sort((a, b) => a.weight - b.weight);
+  res.render('admin/menus', {
+    admin_title: 'Menus',
+    menu
+  });
+});
+
+const newMenuItem = catchAsync(async(req, res) => {  
+  res.render('admin/menu_item', {
+    admin_title: 'New Menu Item',
+    menu_item: {},
+  });
+});
+
+const getMenuItem = catchAsync(async(req, res) => {
+  const hugo = hugoService.getConfig();  
+  let url = decodeURIComponent(req.query.url);
+  console.log(url);
+  console.log(hugo.menu.main)
+  const menu_item = hugo.menu.main.find(item => item.url === url);
+  console.log(menu_item);
+  res.render('admin/menu_item', {
+    admin_title: 'Edit Menu Item',
+    menu_item,
+  });
+});
+
+const updateMenuItem = catchAsync(async(req, res) => {
+  let url = decodeURIComponent(req.query.url);
+  // Update the menu item
+  logger.debug('Updating menu item: %s', req.query.url);
+  let menu = hugoService.getConfig().menu.main;
+  menu = menu.filter(item => item.url !== url);
+  menu.push(req.body);
+  hugoService.updateConfig({menu: {main: menu}});
+  hugoService.generateSite();
+  req.flash('success', 'Menu item updated successfully, regenerating site...');
+  res.redirect('/admin/menus');
+});
+
+const createMenuItem = catchAsync(async(req, res) => {
+  // Create the menu item
+  logger.debug('Creating menu item: %s', req.body.url);
+  let menu = hugoService.getConfig().menu.main;
+  menu.push(req.body);
+  hugoService.updateConfig({menu: {main: menu}});
+  hugoService.generateSite();
+  req.flash('success', 'Menu item created successfully, regenerating site...');
+  res.redirect('/admin/menus');
+});
+
+const deleteMenuItem = catchAsync(async(req, res) => {
+  // Delete the menu item
+  logger.debug('Deleting menu item: %s', req.query.url);
+  let menu = hugoService.getConfig().menu.main;
+  menu = menu.filter(item => item.url !== req.query.url);
+  hugoService.updateConfig({menu: {main: menu}});
+  hugoService.generateSite();
+  req.flash('success', 'Menu item deleted successfully, regenerating site...');
+  res.redirect('/admin/menus');
+});
+
 /*const updateBlog = catchAsync(async(req, res) => {
   let blog = res.locals.blog;
   logger.debug(`Updating blog ${blog.id} with %j`, req.body);
@@ -245,5 +309,11 @@ module.exports = {
 
 module.exports = {
   update,
-  read
+  read,
+  getMenus,
+  newMenuItem,
+  getMenuItem,
+  updateMenuItem,
+  createMenuItem,
+  deleteMenuItem,
 };

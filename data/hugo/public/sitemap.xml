@@ -2,11 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://brandon_swoop.ngrok.io/now/</loc>
+    <lastmod>2023-03-23T03:55:04+00:00</lastmod>
+  </url><url>
     <loc>https://brandon_swoop.ngrok.io/</loc>
-    <lastmod>2023-03-22T20:44:27+00:00</lastmod>
+    <lastmod>2023-03-23T03:55:04+00:00</lastmod>
   </url><url>
     <loc>https://brandon_swoop.ngrok.io/pages/</loc>
-    <lastmod>2023-03-22T20:44:27+00:00</lastmod>
+    <lastmod>2023-03-23T03:55:04+00:00</lastmod>
   </url><url>
     <loc>https://brandon_swoop.ngrok.io/this-work/</loc>
     <lastmod>2023-03-22T20:44:27+00:00</lastmod>
@@ -2166,6 +2169,8 @@
   </url><url>
     <loc>https://brandon_swoop.ngrok.io/brandontreb/</loc>
   </url><url>
+    <loc>https://brandon_swoop.ngrok.io/your-mom/</loc>
+  </url><url>
     <loc>https://brandon_swoop.ngrok.io/archive/</loc>
   </url><url>
     <loc>https://brandon_swoop.ngrok.io/categories/feed.json</loc>
@@ -2177,7 +2182,5 @@
     <loc>https://brandon_swoop.ngrok.io/photos/</loc>
   </url><url>
     <loc>https://brandon_swoop.ngrok.io/redirects/</loc>
-  </url><url>
-    <loc>https://brandon_swoop.ngrok.io/newpage/</loc>
   </url>
 </urlset>

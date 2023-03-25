@@ -16,7 +16,7 @@
 
       <p id="idTitle">
         <% if(page.frontMatter.slug) { %>
-        <form method="post" action="/admin/pages/<%- page.frontMatter.slug %>?_method=put">
+        <form method="post" action="/admin/pages/<%- page.frontMatter.slug %>?_method=put" style="display:inline">
         <% } else { %>
         <form method="post" action="/admin/pages/new" style="display:inline">
         <% } %>
@@ -25,6 +25,7 @@
           <label for="content">Content (markdown): <span class="helptext"><a href="https://www.markdownguide.org/basic-syntax/" target="_blank">Markdown
                 reference</a></span></label>
           <textarea id="content" name="content" rows="10"><%- page.content %></textarea>
+          <br />
           <!-- Back Button-->
           <button type="button" id="backButton" class="button" onclick="window.location.href='/admin/pages'"><span class="arrow">←</span>Back</button>
           <% if(page.frontMatter.slug) { %>
@@ -36,10 +37,12 @@
           <% } %>        
         </form>
         
+        <% if(page.frontMatter.slug) { %>
         <!-- Delete Button-->
         <form method="post" action="/admin/pages/<%- page.frontMatter.slug %>?_method=delete" style="display:inline" onsubmit="return confirm('Are your sure you want to delete this page?');">
           <button type="submit" id="deleteButton" class="button-danger">Delete Page</button>
         </form>
+        <% } %>
       </p>
 
     </content>

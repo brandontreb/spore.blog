@@ -28,19 +28,19 @@ params:
   theme_seconds: 1
 menu:
   main:
-    - name: Archive
-      url: /archive/
-      weight: 1
-    - name: Replies
-      url: /replies/
-      weight: 2
-    - name: Photos
-      url: /photos/
-      weight: 3
+    - url: /archive/
+      name: Archive
+      weight: "1"
+    - url: /photos/
+      name: Photos
+      weight: "2"
+    - url: /replies/
+      name: Replies
+      weight: "3"
 permalinks:
   /posts: /:year/:month/:day/:filename
   /replies: /replies/:year/:month/:day/:filename
-  /pages: /:filename  
+  /pages: /:filename
   /redirects: /:filename
 outputFormats:
   RSS:

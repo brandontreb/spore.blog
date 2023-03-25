@@ -13,6 +13,13 @@ router.route('/new')
   .get(auth(true), pagesController.newPage)
   .post(auth(true), pagesController.createPage);
 
+router.route('/redirects/new')
+  .get(auth(true), pagesController.newRedirect)
+  .post(auth(true), pagesController.createRedirect);
+
+router.route('/redirects/:slug')
+  .get(auth(true), pagesController.getRedirect)
+
 router
   .route('/:slug')
   .get(auth(true), pagesController.getPage)

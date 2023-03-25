@@ -42,15 +42,46 @@
   </header>
   <main>
     <content>
-      <button type="button" onclick="window.location.href='/admin/pages/new'">New Page</button>      
+      <button type="button" onclick="window.location.href='/admin/pages/new'">New Page</button>
+      <button type="button" onclick="window.location.href='/admin/pages/redirects/new'">New Redirect</button>      
+      <h3>Pages</h3>
       <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Path</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
       <% pages.forEach(function(page) { %>
-      <t >        
-        <td><a href="/admin/pages/<%= page.frontMatter.slug %>"><%= page.frontMatter.title %></a></td>        
+      <tr>        
+        <td><%= page.frontMatter.title %></td>        
         <td>/<%= page.frontMatter.slug %></td>                
+        <td style="text-align:center"><a <a href="/admin/pages/<%= page.frontMatter.slug %>">Edit</a></td>
       </tr>
       <% }); %>
       </table>      
+      <% if(redirects && redirects.length) { %>
+      <h3>Redirects</h3>
+      <table>
+      <thead>
+        <tr>
+          <th>Path</th>
+          <th>&nbsp;</th>
+          <th>Redirect</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <% redirects.forEach(function(redirect) { %>
+      <tr>        
+        <td>/<%= redirect.frontMatter.slug %></td>        
+        <td>&rarr;</td>
+        <td><%= redirect.frontMatter.redirect %></td>     
+        <td style="text-align:center"><a <a href="/admin/pages/redirects/<%= redirect.frontMatter.slug %>">Edit</a></td>           
+      </tr>
+      <% }); %>
+      </table> 
+      <% } %>     
     </content>
   </main>
   <footer>

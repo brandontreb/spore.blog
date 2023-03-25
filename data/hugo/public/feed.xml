@@ -8,7 +8,16 @@
     <language>en-us</language>
     <managingEditor>brandontreb@gmail.com (|Zero Cool|)</managingEditor>
     <webMaster>brandontreb@gmail.com (|Zero Cool|)</webMaster>
-    <lastBuildDate>Wed, 22 Mar 2023 20:44:27 +0000</lastBuildDate><atom:link href="https://brandon_swoop.ngrok.io/feed.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 23 Mar 2023 03:55:04 +0000</lastBuildDate><atom:link href="https://brandon_swoop.ngrok.io/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://brandon_swoop.ngrok.io/now/</link>
+      <pubDate>Thu, 23 Mar 2023 03:55:04 +0000</pubDate>
+      <author>brandontreb@gmail.com (|Zero Cool|)</author>
+      <guid>https://brandon_swoop.ngrok.io/now/</guid>
+      <description>this is whats going on right now</description>
+    </item>
+    
     <item>
       <title>this work?</title>
       <link>https://brandon_swoop.ngrok.io/this-work/</link>
@@ -200,15 +209,6 @@ Self-hosting fascinates me to no end.</description>
       <author>brandontreb@gmail.com (|Zero Cool|)</author>
       <guid>https://brandon_swoop.ngrok.io/2023/02/25/q7i77yu6u5nwpc8stw1pu9/</guid>
       <description>Operation 🩺</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://brandon_swoop.ngrok.io/2023/02/25/ewqb6pkro1ichlz44u31vq/</link>
-      <pubDate>Sat, 25 Feb 2023 01:58:33 +0000</pubDate>
-      <author>brandontreb@gmail.com (|Zero Cool|)</author>
-      <guid>https://brandon_swoop.ngrok.io/2023/02/25/ewqb6pkro1ichlz44u31vq/</guid>
-      <description>✅ Achievement unlocked! My 14yo laughed at one of my dad jokes!</description>
     </item>
     
   </channel>
