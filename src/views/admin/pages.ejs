@@ -49,13 +49,14 @@
       <thead>
         <tr>
           <th>Title</th>
+          <th>&nbsp;</th>
           <th>Path</th>
           <th>&nbsp;</th>
         </tr>
       </thead>
       <% pages.forEach(function(page) { %>
       <tr>        
-        <td><%= page.frontMatter.title %></td>        
+        <td colspan="2"><%= page.frontMatter.title %></td>        
         <td>/<%= page.frontMatter.slug %></td>                
         <td style="text-align:center"><a <a href="/admin/pages/<%= page.frontMatter.slug %>">Edit</a></td>
       </tr>

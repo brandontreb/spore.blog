@@ -8,7 +8,7 @@ const router = express.Router();
 // Account Settings
 router
   .route('/')
-  .get(auth(true), accountController.read)
+  .get(auth(true), accountController.index)
   .put(auth(true), accountController.update);
 // Account photo
   router.route('/photo')

@@ -18,7 +18,7 @@ const update = catchAsync(async(req, res) => {
     hugo.Author.avatar = utils.gravatarUrl(hugo.Author.email);
   }
   
-  hugoService.updateConfig({
+  await hugoService.updateConfig({
     Author: hugo.Author,
   });
 
@@ -28,10 +28,10 @@ const update = catchAsync(async(req, res) => {
   res.redirect('/admin/account');
 });
 
-const read = catchAsync(async(req, res) => {
+const index = catchAsync(async(req, res) => {
   const hugo = hugoService.getConfig();
   res.render('admin/account', {
-    admin_title: 'Account',
+    admin_title: 'account',
     hugo,
   });
 });
@@ -40,7 +40,7 @@ const getPhoto = catchAsync(async(req, res) => {
   let hugo = hugoService.getConfig();
   res.render('admin/photo', {
     hugo,
-    admin_title: 'Profile Photo',
+    admin_title: 'profile photo',
   });
 });
 
@@ -52,7 +52,7 @@ const updatePhoto = catchAsync(async(req, res) => {
 
   utils.generateFaviconFromFile(req.file.path);
   
-  hugoService.updateConfig({
+  await hugoService.updateConfig({
     Author: hugo.Author,
   });
 
@@ -65,7 +65,7 @@ const updatePhoto = catchAsync(async(req, res) => {
 
 module.exports = {
   update,
-  read,
+  index,
   getPhoto,
   updatePhoto,
 };

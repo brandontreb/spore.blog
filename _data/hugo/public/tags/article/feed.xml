@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>article on Brandon Trebitowski</title>
+    <link>https://brandontreb.ngrok.io/tags/article/</link>
+    <description>Recent content in article on Brandon Trebitowski</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>brandontreb@gmail.com (|Zero Cool|)</managingEditor>
+    <webMaster>brandontreb@gmail.com (|Zero Cool|)</webMaster>
+    <lastBuildDate>Tue, 01 May 2012 00:00:00 +0000</lastBuildDate><atom:link href="https://brandontreb.ngrok.io/tags/article/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Why you Should Check Out Unity</title>
+      <link>https://brandontreb.ngrok.io/2012/05/01/why-you-should-check-out-unity/</link>
+      <pubDate>Tue, 01 May 2012 00:00:00 +0000</pubDate>
+      <author>brandontreb@gmail.com (|Zero Cool|)</author>
+      <guid>https://brandontreb.ngrok.io/2012/05/01/why-you-should-check-out-unity/</guid>
+      <description>A while back, my buddy seantron showed me some of his 3D games he’d been working on including this one. My initial reaction was “how the heck did he get the chopps to do that?”. While, Sean is an incredible developer with a ton of creativity, doing things like loading models, texture mapping, or even basic 3D projects are flippin hard.
+A while back I tried my hand at 3D and made sort of a basic Minecraft style game from scratch using OpenGL ES.</description>
+    </item>
+    
+    <item>
+      <title>I Suck At Blogging (Lately)</title>
+      <link>https://brandontreb.ngrok.io/2012/04/27/i-suck-at-blogging-lately/</link>
+      <pubDate>Fri, 27 Apr 2012 00:00:00 +0000</pubDate>
+      <author>brandontreb@gmail.com (|Zero Cool|)</author>
+      <guid>https://brandontreb.ngrok.io/2012/04/27/i-suck-at-blogging-lately/</guid>
+      <description>OK, so the title isn’t entirely true (I have maintained quite a few blogs in my day). But, one thing is for sure, I have sucked at blogging lately. So much so, I just had to think hard about having to bold lately using markdown in the previous sentence #meta.
+Burnout I was blogging very consistently for the Envato Network on their Mobile Tuts Plus as well as on iCodeBlog and here.</description>
+    </item>
+    
+  </channel>
+</rss>

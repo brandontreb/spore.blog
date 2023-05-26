@@ -1,6 +1,0 @@
-{
-  "name": "",  
-  "content": "With all this chat of Twitter trying to move to a more open protocol, I went down the rabbit hole of implementing a very simple ActivityPub server in node to check it out. This tutorial is a great starting point for those interested:\n[How to implement a basic ActivityPub server ](https://blog.joinmastodon.org/amp/2018/06/how-to-implement-a-basic-activitypub-server/#click=https://t.co/UDA22Wytw1)\n\n",
-  "permalink" : "https://brandon_swoop.ngrok.io/2019/12/12/79855/",
-  "date":"2019-12-12T22:10:55Z","draft":false,"iscjklanguage":false,"lastmod":"2019-12-12T22:10:55Z","post_type":"note","publishdate":"2019-12-12T22:10:55Z","slug":"79855","type":"post"
-}

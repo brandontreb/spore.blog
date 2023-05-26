@@ -1,0 +1,129 @@
+{
+	"title": "[TITLE]",
+	"author": {
+		"email": "[EMAIL]",
+		"username": "[USERNAME]",
+		"name": "[FULL_NAME]",
+		"url": "",
+		"note": "",
+		"avatar": "https://i.pravatar.cc/300"
+	},
+	"baseURL": "[SCHEME]://[HOSTNAME]/",
+  "menu": {
+    "main": [     
+      {
+        "url": "/archive/",
+        "name": "Archive",
+        "weight": "1"
+      },
+      {
+        "url": "/photos/",
+        "name": "Photos",
+        "weight": "2"
+      },
+      {
+        "url": "/replies/",
+        "name": "Replies",
+        "weight": "3"
+      }      
+    ]
+  },
+  "params": {
+		"description": "Another Indie Web Blog",
+		"twitter_username": "[TWITTER_USERNAME]",
+		"github_username": "[GITHUB_USERNAME]",
+		"instagram_username": "[INSTAGRAM_USERNAME]",
+    "microblog_username": "[MICROBLOG_USERNAME]",
+    "buymeacoffee": null,
+    "authorization_endpoint": "https://indieauth.com/auth",
+    "token_endpoint": "https://tokens.indieauth.com/token",
+    "micropub_endpoint": "[SCHEME]://[HOSTNAME]/micropub",
+    "webmention_endpoint": "https://webmention.io/[HOSTNAME]/webmention",    
+		"paginate_home": false,
+		"paginate_categories": false,
+		"paginate_replies": false,
+		"theme_seconds": "0",
+		"plugins_css": [],
+		"plugins_js": [],
+		"plugins_html": [],
+		"meta_description": "this is a great blog!",
+  	"favicon": "👾"
+	},
+	"permalinks": {
+		"/posts": "/:year/:month/:day/:filename",
+		"/replies": "/replies/:year/:month/:day/:filename",
+		"/pages": "/:filename",
+		"/redirects": "/:filename"
+	},
+	"mediaTypes": {
+		"application/json": {
+			"suffixes": ["json"]
+		}
+	},  
+	"outputFormats": {
+		"RSS": {
+			"baseName": "feed"
+		},
+		"JSON": {
+			"baseName": "feed"
+		},
+		"RSD": {
+			"mediaType": "application/xml",
+			"baseName": "rsd",
+			"isPlainText": true,
+			"notAlternative": true
+		},
+		"ArchiveJSON": {
+			"mediaType": "application/json",
+			"path": "archive",
+			"baseName": "index",
+			"isPlainText": true,
+			"notAlternative": true
+		},
+		"PhotosJSON": {
+			"mediaType": "application/json",
+			"path": "photos",
+			"baseName": "index",
+			"isPlainText": true,
+			"notAlternative": true
+		},
+		"PodcastXML": {
+			"mediaType": "application/rss+xml",
+			"baseName": "podcast",
+			"isPlainText": true,
+			"notAlternative": true
+		},
+		"PodcastJSON": {
+			"mediaType": "application/json",
+			"baseName": "podcast",
+			"isPlainText": true,
+			"notAlternative": true
+		}
+	},
+	"outputs": {
+		"home": ["HTML", "RSS", "JSON", "RSD", "ArchiveJSON", "PhotosJSON", "PodcastXML", "PodcastJSON"],
+		"page": ["HTML"],
+		"section": ["HTML"],
+		"taxonomy": ["HTML", "RSS", "JSON"],
+		"taxonomyTerm": ["HTML", "RSS", "JSON"]
+	},
+	"taxonomies": {
+		"category": "categories",
+		"author": "authors"
+	},
+	"rssLimit": 25,
+	"uglyURLs": false,
+	"blackfriday": {
+		"fractions": false
+	},
+	"markup": {
+		"goldmark": {
+			"renderer": {
+				"unsafe": true
+			}
+		}
+	},
+	"enableRobotsTXT": true,
+	"languageCode": "[LANGUAGE]",
+	"paginate": 25	
+}

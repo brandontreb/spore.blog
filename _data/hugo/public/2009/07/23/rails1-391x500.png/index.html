@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta content="|Zero Cool|" name="author">
+
+  <title>Brandon Trebitowski
+		- Installing And Deploying Rails On A Red Hat Server With Passenger</title>
+
+  <link href="/assets/css/style.css?1" rel="stylesheet">
+  <link href="/assets/css/highlight.css?1" rel="stylesheet">
+  <link href="/assets/css/alpine.css?1" rel="stylesheet">
+  <style>
+
+.site-title {
+	display: inline-block;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 1.35;
+	padding-left: 5px;
+	margin-top: 0px;
+	margin-bottom: 5px;
+	padding-top: 5px;
+	padding-bottom: 10px;
+}
+
+nav.main-nav a.cta {
+	background: #ffffff;
+	color: #f29c38;
+	padding: 6px 14px;
+	border: 2px solid #f29c38;
+	border-radius: 20px;
+	white-space: nowrap;
+	box-shadow: none;
+}
+
+nav.main-nav a.cta:hover {
+	background: #fffee4;
+	color: #f29c38;
+	margin-left: 12px;
+}
+
+</style>
+
+  <link rel="stylesheet" href="/custom.css?1">
+
+	<link rel="shortcut icon" href="https://brandontreb.ngrok.io/favicon.png" type="image/x-icon" />
+    
+    
+      <link href="https://brandontreb.ngrok.io/podcast.xml" rel="alternate" type="application/rss+xml" title="Podcast" />
+      <link rel="alternate" type="application/json" title="Brandon Trebitowski" href="https://brandontreb.ngrok.io/feed.json" />
+      <link rel="EditURI" type="application/rsd+xml" href="https://brandontreb.ngrok.io/rsd.xml" />
+    
+
+	
+	<link rel="me" href="https://micro.blog/brandontreb" />
+		
+	
+	<link rel="me" href="https://twitter.com/brandontreb" />
+	
+	
+	<link rel="me" href="https://github.com/brandontreb" />
+	
+	
+	
+	<link rel="authorization_endpoint" href="https://indieauth.com/auth" />
+	
+	
+	<link rel="token_endpoint" href="https://tokens.indieauth.com/token" />
+	
+	
+	<link rel="micropub" href="https://brandontreb.ngrok.io/micropub" />
+	
+	
+	<link rel="microsub" href="https://micro.blog/microsub/" />
+	
+	
+	<link rel="webmention" href="https://webmention.io/brandontreb.ngrok.io/webmention" />
+	
+	
+    
+    
+	
+	
+		<script id="script_conversation" data-webmention_url="https://webmention.io/brandontreb.ngrok.io/webmention" src="/conversation.js"></script>
+	
+</head>
+
+<body>
+  <nav class="main-nav">
+
+	<div class="site-title">
+		<img src="https://brandontreb.ngrok.io/avatar.gif" width="25" height="25" class="site-image">		
+		<a href="/">Brandon Trebitowski</a>
+	</div>
+
+	<div class="site-menus">
+
+	
+
+	<a class="normal" href="/"> <span class="arrow">←</span> Home</a>
+
+	
+
+	
+		<a href="/archive/">Archive</a>
+	
+		<a href="/photos/">Photos</a>
+	
+		<a href="/replies/">Replies</a>
+	
+		<a href="/books">Books</a>
+	
+		<a href="https://pixegon.com">Hire Me</a>
+	
+
+	
+
+	</div>
+</nav>
+
+
+
+  <section id="wrapper"  >
+	
+<article class="h-entry post">
+  <header>
+	
+    <h1 class="p-name">Installing And Deploying Rails On A Red Hat Server With Passenger</h1>
+    
+    <h2 class="headline">
+      <time class="dt-published" datetime="2009-07-23 00:00:00 &#43;0000">
+        <a class="u-url dates" href="https://brandontreb.ngrok.io/2009/07/23/rails1-391x500.png/">Jul 23, 2009</a>
+      </time>
+    </h2>
+  </header>
+  <section class="e-content post-body">
+      <p><a href="http://brandontreb.com/wp-content/uploads/2009/07/rails1.png"><img class="alignleft size-medium wp-image-347" title="rails" src="/uploads/2009/rails1-391x500.png" alt="rails" width="141" height="180" /></a>I have long been a fan of Ruby on Rails and even jumper on board very early on. The one thing that has held me back from using it in the majority of my projects is the fact that it’s such a pain to configure with Apache.</p>
+<p>I know what you are saying… Just switch to a more Rails friendly server. I like and know Apache. Not to mention I also host PHP apps.</p>
+<p>With the (re)release of tagacloud, I have recently fell in love with ruby on rails again. So, I looked for a better solution for installation (last time I installed it was 3 years ago) and I stumbled upon <a href="http://www.modrails.com/">Passenger</a>.</p>
+<p>It was super easy to use and had my running on Rails in no time.</p>
+<blockquote>
+<p>Deployment is only a matter of uploading application files. No Ruby (on Rails)-specific server configuration required!</p>
+</blockquote>
+<p>Just to give you some background, here are some details about my server.</p>
+<p><strong>OS:</strong> Linux</p>
+<p><strong>Distribution:</strong> Red Hat Enterprise Linux Server release 5.3 Hosted At Server Beach</p>
+<p><strong>Control Panel:</strong> Plesk 8.6</p>
+<p>And here are the steps I took to get Ruby on Rails up and running from scratch</p>
+<h2 id="1-install-ruby">1. Install Ruby</h2>
+<div>
+  <pre>&lt;code class=’bash’>yum install ruby ruby-libs ruby-mode ruby-rdoc ruby-irb ruby-ri ruby-docs&lt;/code></pre>
+</div>
+<p>This will do some magic and install Ruby on your system…</p>
+<h2 id="2-download-and-install-ruby-gems">2. Download And Install Ruby Gems</h2>
+<p>Head on over to <a href="http://rubygems.org/">http://rubygems.org/</a> and download the latest version of Ruby Gems. Here is an example of getting the latest version as of the posting date of this article.</p>
+<div>
+  <pre>&lt;code class=’bash’>wget http://rubyforge.org/frs/download.php/60718/rubygems-1.3.5.tgz&lt;/code></pre>
+</div>
+<p>Untar this file…</p>
+<div>
+  <pre>&lt;code class=’bash’>tar -xvf rubygems-1.3.5.tgz&lt;/code></pre>
+</div>
+<p>Navigate to the extracted directory and run the setup script</p>
+<div>
+  <pre>&lt;code class=’bash’>ruby setup.rb&lt;/code></pre>
+</div>
+<h2 id="3-install-rails">3. Install Rails</h2>
+<p>This will install rails. If it asks you about dependencies, just type “Y”</p>
+<div>
+  <pre>&lt;code class=’bash’>gem install rails&lt;/code></pre>
+</div>
+<h2 id="4-install-the-passenger-gem">4. Install The Passenger Gem</h2>
+<p>Now that rails has been installed, we need to install <a href="http://www.modrails.com/">Passenger</a>. The installation process is stupid simple. <a href="http://www.modrails.com/">Passenger</a> can be installed via a Ruby Gem.</p>
+<div>
+  <pre>&lt;code class=’bash’>gem install passenger&lt;/code></pre>
+</div>
+<p>Now, it will do some stuff and and you some questions. At some point in the process, it will check to see if you have all of the dependencies. <strong>You most likely will not</strong>. Luckily, the geniuses who created Passenger tell you the commands to install all of the dependencies. So just follow the directions and you should be ok.</p>
+<h2 id="5-set-up-passenger-for-apache">5. Set Up Passenger For Apache</h2>
+<div>
+  <pre>&lt;code class=’bash’>passenger-install-apache2-module&lt;/code></pre>
+</div>
+<p>It will ask you more questions and install everything needed to run Passenger. Pay attention to the stuff spit out at the end of the process. You will take this and paste it into your httpd.conf file. For example, here is the what mine spit out:</p>
+<div>
+  <pre>&lt;code class=’bash’>LoadModule passenger_module /usr/lib/ruby/gems/1.8/gems/passenger-2.2.4/ext/apache2/mod_passenger.so
+PassengerRoot /usr/lib/ruby/gems/1.8/gems/passenger-2.2.4
+PassengerRuby /usr/bin/ruby&lt;/code></pre>
+</div>
+<p>Your <strong>httpd.conf</strong> file is probably located at /etc/httpd/conf/httpd.conf</p>
+<p>You should now be good to go! Navigate to one of your vhosts folder (ex: tagacloud/httpdocs/) and create (or copy) a rails application.</p>
+<div>
+  <pre>&lt;code class=’bash’>rails someRailsApp&lt;/code></pre>
+</div>
+<p>Then set permissions…</p>
+<div>
+  <pre>&lt;code class=’bash’>chmod -R 755 someRailsApp&lt;/code></pre>
+</div>
+<p>And then a miracle happens… and viola! You (should) have a fully functional up and running. Navigate to <a href="http://domain.com/someRailsApp/public">http://domain.com/someRailsApp/public</a> to see your app in action.</p>
+<p>If you have any comments or questions, feel free to leave them in the comments section of this post.</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Installing And Deploying Rails On A Red Hat Server With Passenger" data-url="http://brandontreb.com/installing-and-deploying-rails-on-a-red-hat-server-with-passenger"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+      
+  </section>
+
+  
+  <section id="conversations"></section>
+
+  
+  
+
+
+<span id="post-meta" class="clearfix p-author h-card">
+  
+  <a rel="me" class="p-name u-url" href="https://brandontreb.ngrok.io">
+    |Zero Cool|
+  </a>       
+  
+  
+  <img class="u-photo" src="https://brandontreb.ngrok.io/avatar.gif" width="96" height="96">          
+  
+  
+  <p class="p-note">💻 Software
+🏕 Outdoors
+🏠 Family
+🏃‍♂️ Fitness</p>
+    
+  </a>
+</section>
+    
+</article>
+
+  </section>
+  <footer id="footer">
+
+<section id="wrapper">
+  <ul>
+    <li><a href="/feed.xml">RSS</a></li>
+    <li><a href="/feed.json">JSON Feed</a></li>
+    <li><a href="/surprise-me/">Surprise me!</a></li>
+        
+    
+    
+    
+    
+    
+    
+        
+
+  </ul>
+  <form method="get" id="search" action="https://duckduckgo.com/">
+    <input type="hidden" name="sites" value="https://brandontreb.ngrok.io/"/>
+    <input type="hidden" name="k8" value="#444444"/>
+    <input type="hidden" name="k9" value="#ee4792"/>
+    <input type="hidden" name="kt" value="h"/>
+    <input class="field" type="text" name="q" maxlength="255" placeholder="To search, type and hit Enter…"/>
+    <input type="submit" value="Search" style="display: none;" />
+  </form>
+</section>
+
+</footer>
+  
+		
+</body>
+</html>

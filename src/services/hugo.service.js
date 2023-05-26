@@ -1,4 +1,4 @@
-const {exec} = require('child_process')
+const {execSync} = require('child_process')
 const YAML = require('yaml');
 const fs = require('fs');
 const markdownLinkExtractor = require('markdown-link-extractor');
@@ -85,15 +85,18 @@ const generateSite = async () => {
   // Run hugo to generate the static site
   logger.debug('Generating site');  
   // Generate the site
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     try {        
-      const result = exec(`hugo --source data/hugo`);
+      await copyConfig();
+      const result =  execSync(`hugo --source data/hugo --cleanDestinationDir`);
       logger.debug(`hugo --source data/hugo`);
-      logger.debug(`%o`,result.toString('utf-8'));       
+      // logger.debug(`${JSON.stringify(result)}`); 
+      // console.log(result.stdout)      
+      console.log(result.toString('utf8'));
       resolve(true);
     } catch (error) {
       logger.error(error);
-      reject(error);
+      // reject(error);
     }
   });
 }
@@ -170,7 +173,7 @@ const getConfig = () => {
   return hugo;
 }
 
-const updateConfig = (config) => {
+const updateConfig = async (config) => {
   // Update the config
   logger.debug('Updating config %o', config);
   // Get the current config  
@@ -178,8 +181,19 @@ const updateConfig = (config) => {
   // Merge the new config with the current config
   config = Object.assign(hugo, config);
   // Write the config to disk
-  fs.writeFileSync('data/hugo/config.yaml', YAML.stringify(config), 'utf8');  
+  fs.writeFileSync('hugo/config.json', JSON.stringify(config, null, 2), 'utf8');  
+  await copyConfig();
   return getConfig();
+}
+
+const copyConfig = () => {
+  return;
+  // Copy the config from the hugo folder to the data folder
+  logger.debug('Copying config');
+  // Delete admin section from config
+  let hugo = getConfig();
+  delete hugo.admin;
+  fs.writeFileSync('data/hugo/config.json', JSON.stringify(hugo, null, 2), 'utf8');
 }
 
 module.exports = {

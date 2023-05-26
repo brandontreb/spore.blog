@@ -1,0 +1,6 @@
+{
+  "name": "",  
+  "content": "---\nslug: \"123abc\"\nredirect: \"https://google.com\"\n---",
+  "permalink" : "https://brandontreb.ngrok.io/123abc/",
+  "draft":false,"iscjklanguage":false,"redirect":"https://google.com","slug":"123abc"
+}

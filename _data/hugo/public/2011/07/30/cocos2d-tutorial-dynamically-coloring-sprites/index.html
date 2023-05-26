@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta content="|Zero Cool|" name="author">
+
+  <title>Brandon Trebitowski
+		- Cocos2D Tutorial &amp;#8211; Dynamically Coloring Sprites</title>
+
+  <link href="/assets/css/style.css?1" rel="stylesheet">
+  <link href="/assets/css/highlight.css?1" rel="stylesheet">
+  <link href="/assets/css/alpine.css?1" rel="stylesheet">
+  <style>
+
+.site-title {
+	display: inline-block;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 1.35;
+	padding-left: 5px;
+	margin-top: 0px;
+	margin-bottom: 5px;
+	padding-top: 5px;
+	padding-bottom: 10px;
+}
+
+nav.main-nav a.cta {
+	background: #ffffff;
+	color: #f29c38;
+	padding: 6px 14px;
+	border: 2px solid #f29c38;
+	border-radius: 20px;
+	white-space: nowrap;
+	box-shadow: none;
+}
+
+nav.main-nav a.cta:hover {
+	background: #fffee4;
+	color: #f29c38;
+	margin-left: 12px;
+}
+
+</style>
+
+  <link rel="stylesheet" href="/custom.css?1">
+
+	<link rel="shortcut icon" href="https://brandontreb.ngrok.io/favicon.png" type="image/x-icon" />
+    
+    
+      <link href="https://brandontreb.ngrok.io/podcast.xml" rel="alternate" type="application/rss+xml" title="Podcast" />
+      <link rel="alternate" type="application/json" title="Brandon Trebitowski" href="https://brandontreb.ngrok.io/feed.json" />
+      <link rel="EditURI" type="application/rsd+xml" href="https://brandontreb.ngrok.io/rsd.xml" />
+    
+
+	
+	<link rel="me" href="https://micro.blog/brandontreb" />
+		
+	
+	<link rel="me" href="https://twitter.com/brandontreb" />
+	
+	
+	<link rel="me" href="https://github.com/brandontreb" />
+	
+	
+	
+	<link rel="authorization_endpoint" href="https://indieauth.com/auth" />
+	
+	
+	<link rel="token_endpoint" href="https://tokens.indieauth.com/token" />
+	
+	
+	<link rel="micropub" href="https://brandontreb.ngrok.io/micropub" />
+	
+	
+	<link rel="microsub" href="https://micro.blog/microsub/" />
+	
+	
+	<link rel="webmention" href="https://webmention.io/brandontreb.ngrok.io/webmention" />
+	
+	
+    
+    
+	
+	
+		<script id="script_conversation" data-webmention_url="https://webmention.io/brandontreb.ngrok.io/webmention" src="/conversation.js"></script>
+	
+</head>
+
+<body>
+  <nav class="main-nav">
+
+	<div class="site-title">
+		<img src="https://brandontreb.ngrok.io/avatar.gif" width="25" height="25" class="site-image">		
+		<a href="/">Brandon Trebitowski</a>
+	</div>
+
+	<div class="site-menus">
+
+	
+
+	<a class="normal" href="/"> <span class="arrow">←</span> Home</a>
+
+	
+
+	
+		<a href="/archive/">Archive</a>
+	
+		<a href="/photos/">Photos</a>
+	
+		<a href="/replies/">Replies</a>
+	
+		<a href="/books">Books</a>
+	
+		<a href="https://pixegon.com">Hire Me</a>
+	
+
+	
+
+	</div>
+</nav>
+
+
+
+  <section id="wrapper"  >
+	
+<article class="h-entry post">
+  <header>
+	
+    <h1 class="p-name">Cocos2D Tutorial &amp;#8211; Dynamically Coloring Sprites</h1>
+    
+    <h2 class="headline">
+      <time class="dt-published" datetime="2011-07-30 00:00:00 &#43;0000">
+        <a class="u-url dates" href="https://brandontreb.ngrok.io/2011/07/30/cocos2d-tutorial-dynamically-coloring-sprites/">Jul 30, 2011</a>
+      </time>
+    </h2>
+  </header>
+  <section class="e-content post-body">
+      <p><img src="http://f.cl.ly/items/42231G3d1P3d1b3H2Q2g/Screen%20shot%202011-07-30%20at%204.39.28%20PM.png" alt="Custom Bitizens"></p>
+<p>Have you ever seen a game (such as Tiny Tower) that contains similar sprites that only vary by certain attributes (coloring, shading, accessories, etc…)? I would often wonder how long it would take the artists to create each permutation of these sprites. After discovering that you can call a method on a CCSprite called setColor, I realized how most of this customization is done in code.</p>
+<p>This tutorial will be a continuation of my last post about <a href="http://brandontreb.com/Pixel-Art-Character-Tutorial-Create-A-Bitizen">creating your own Bitizen in Photoshop</a>. So, if you don’t already have a Bitizen character to work with, I suggest you follow that tutorial OR download my template <a href="http://cl.ly/2u3h0g2F2H2b1S280519/bitizen.psd">here</a>.</p>
+<h4 id="white-out">White Out</h4>
+<p>As I mentioned above, we are going to be using the setColor method of CCSprite to dynamically color each part of our Bitizen. The way it works is each pixel’s color is multiplied by the value passed into setColor giving it a “tint”. So, pixels that are all white will be fully tinted and pixels that are all black will have no change.</p>
+<p>So, our first goal is to create an “all white” version of our Bitizen. Don’t worry about shading for now, I will cover that in a moment. I just started with our Bitizen as a base and created new layers for each of the “white” components.</p>
+<p>You should end up with 5 new layers:</p>
+<ul>
+<li>white-head</li>
+<li>white-skin</li>
+<li>white-hair</li>
+<li>white-pants</li>
+<li>white-shoes</li>
+</ul>
+<p>For each layer, trace over the corresponding colored layer. For the “white-skin” layer, make sure to trace over the hands as well as the face. This will ensure that your Bitizen’s color is consistent. When you are done, your Bitizen should look something like this:</p>
+<p><img src="http://f.cl.ly/items/0Z08222Z1v233i1G3H1o/Screen%20shot%202011-07-30%20at%204.52.03%20PM.png" alt="White Bitizen"></p>
+<p>Looks pretty bland… The next step is to add our shading. We will be using only black with varying alpha in order to achieve the desired shading. So, make sure to play with it a bit and get the shading to your liking. Add a new shading layer for each component (or simply draw on top of the current layer with the black pencil).</p>
+<p>Your bitizen should look something like this after doing all of the shading:</p>
+<p><img src="http://f.cl.ly/items/3f2P3F1b2Z1y1W0W2V3V/Screen%20shot%202011-07-30%20at%203.47.09%20PM.png" alt="Shaded Bitzen"></p>
+<h4 id="chop-it-up">Chop It Up</h4>
+<p>The final thing we need to do with our graphic is chop up the pieces so that they can be individually colored. Convert each of the white-* layers to Smart Objects, copy them to a new document, and save them. You should end up with 5 .png files (head.png,skin.png,hair.png,pants.png,shoes.png).</p>
+<p>I increased the size of my Bitizen by 4 before doing this step. You might consider increasing their size as well. Remember that the size increase you choose will change some of the values when we recreate the Bitizen in Cocos2D. So, if you want to follow along, make sure your Bitizen is 60×100 before exporting the various parts.</p>
+<p>One thing to note is we are going to bring these into Cocos2D as 5 different sprites. There are some optimizations that you could do using sprite sheets, however I want to make things as clear as possible. So, we are going the long way.</p>
+<p><a href="http://cl.ly/1I102a1F2L323C1R2Y2h">You can download my completed white bitizen here</a>.</p>
+<h4 id="rebuilding-the-bitizen-in-cocos2d">Rebuilding The Bitizen In Cocos2D</h4>
+<p>Once you have imported the 5 Bitizen image files into Cocos2D, you need to reconstruct them in code. This involves adding each sprite to the layer.</p>
+<p>Here is the code to display the skin/head+hands in our layer. As a note, I simply created a new Cocos2D project and am using the retina only mode for my display using [director enableRetinaDisplay:YES]. The offsets will change quite a bit if you are choosing to support non-retina.</p>
+<div>
+  <pre>&lt;code class=’objc’>int spriteX = 240;
+int spriteY = 160;
+<p>CCSprite *skin = [CCSprite spriteWithFile:@&ldquo;skin.png&rdquo;];
+[skin setPosition:ccp(spriteX, spriteY)];
+[self addChild:skin];&lt;/code&gt;</pre></p>
+</div>
+<p>This will draw our white(shaded) head on the screen. That’s pretty boring so let’s draw the rest of the body. Update your code to look like the following:</p>
+<div>
+  <pre>&lt;code class=’objc’>int spriteX = 240;
+int spriteY = 160;
+<p>CCSprite *skin = [CCSprite spriteWithFile:@&ldquo;skin.png&rdquo;];
+[skin setPosition:ccp(spriteX, spriteY)];
+[self addChild:skin];</p>
+<p>int hairOffset = 11;</p>
+<p>CCSprite *hair = [CCSprite spriteWithFile:@&ldquo;hair.png&rdquo;];
+[hair setPosition:ccp(spriteX, spriteY+hairOffset)];
+[self addChild:hair];</p>
+<p>int shirtYOffset = -9;
+int shirtXOffset = 1;</p>
+<p>CCSprite *shirt = [CCSprite spriteWithFile:@&ldquo;shirt.png&rdquo;];
+[shirt setPosition:ccp(spriteX + shirtXOffset, spriteY+shirtYOffset)];
+[self addChild:shirt];</p>
+<p>int pantsYOffset = -15;
+int pantsXOffset = 1;</p>
+<p>CCSprite *pants = [CCSprite spriteWithFile:@&ldquo;pants.png&rdquo;];
+[pants setPosition:ccp(spriteX + pantsXOffset, spriteY+pantsYOffset)];
+[self addChild:pants];</p>
+<p>int shoesYOffset = -17;
+int shoesXOffset = 1;</p>
+<p>CCSprite *shoes = [CCSprite spriteWithFile:@&ldquo;shoes.png&rdquo;];
+[shoes setPosition:ccp(spriteX + shoesXOffset, spriteY+shoesYOffset)];
+[self addChild:shoes];&lt;/code&gt;</pre></p>
+</div>
+<p>Now, you should see the lonely ghost of a Bitizen standing in the center of your screen.</p>
+<p><img src="http://f.cl.ly/items/090s2v0F1B3d3k3v3V1R/Screen%20shot%202011-07-30%20at%205.10.34%20PM.png" alt="Ghost Bitizen"></p>
+<p>Still boring… Time to spice him up with some color.</p>
+<h4 id="tinting-cocos2d-sprites">Tinting Cocos2D Sprites</h4>
+<p>As I mentioned before, tinting Cocos2D sprites is very simple. I would recommend keeping all sprites that you wish to tint a shade of white/gray otherwise some crazy things will happen.</p>
+<p>The setColor method takes an array of integers from 0-255. This array contains 3 numbers (1st for red, 2nd for green, 3rd for blue). For example, we can pass all <font color="red">Red</font> to the setColor method by sending it {255,0,0}.</p>
+<p>Let’s start by tinting our Bitizen’s shirt a random color. Change the code that displays the shirt to look like this:</p>
+<div>
+  <pre>&lt;code class=’objc’>CCSprite *shirt = [CCSprite spriteWithFile:@"shirt.png"];
+[shirt setPosition:ccp(spriteX + shirtXOffset, spriteY+shirtYOffset)];
+ccColor3B shirtColor = {arc4random() % 255,arc4random() % 255,arc4random() % 255};
+[shirt setColor:shirtColor];
+[self addChild:shirt];&lt;/code></pre>
+</div>
+<p>Now, every time you run the application, the Bitizen should have a different shirt color. You can apply this principle to each of your sprites to completely customize your Bitizen.</p>
+<p>What if you only want to limit certain colors? (you ask). Well, that’s a great question. I solved this by creating an array of ccColor3Bs. Basically an array of arrays. And then I index into this array and set the color accordingly. Here is an example of setting a random skin color to avoid having blue people (unless maybe you are making Smurfs).</p>
+<div>
+  <pre>&lt;code class=’objc’>ccColor3B skinColors[] = { 
+    {247,224,194},
+    {255,232,214},
+    {136,119,82},
+    {245,232,205},
+    {144,110,38}
+};
+CCSprite *skin = [CCSprite spriteWithFile:@"skin.png"];
+[skin setPosition:ccp(spriteX, spriteY)];
+ccColor3B skinColor = skinColors[arc4random() % 5];
+[skin setColor:skinColor];
+[self addChild:skin];&lt;/code></pre>
+</div>
+<p>I have an array of 5 different arrays and randomly index into it using skinColors[arc4random() % 5]. This will give me a random color within my skin color group.</p>
+<p>After running this through a loop and adding random colors to some of the other sprites, I ended up creating the image you see at the top of this post.</p>
+<h4 id="conclusion">Conclusion</h4>
+<p>I hope that this tutorial has found you well and I have demystified the magic that is dynamic sprites. You may download the source code for this tutorial (include the code to generate the screenshot above) <a href="http://cl.ly/3h3R2D1p2w2y2X3t0R32">here</a>.</p>
+<p>If you have any questions or comments, please feel free to leave them in the comments section of this post. Also, make sure you <a href="http://feeds.feedburner.com/brandontreb">subscribe to my RSS feed</a> for more great tutorials!</p>
+<p>Happy Coding!</p>
+<p><span style="font-family: ‘Lucida Grande’;"><strong><span style="font-weight: normal;"><span style="font-family: arial, verdana, tahoma, sans-serif; font-size: 13px; line-height: 20px;"><em>﻿﻿This post is part of <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://idevblogaday.com/">iDevBlogADay</a>, a group of indie iOS development blogs featuring two posts per day. You can keep up with iDevBlogADay through the <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://idevblogaday.com/">web site</a>, <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://feeds.feedburner.com/idevblogaday">RSS feed</a>, or <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://twitter.com/#search?q=%23idevblogaday">Twitter</a>.</em></span></span></strong></span></p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Cocos2D Tutorial - Dynamically Coloring Sprites" data-url="http://brandontreb.com/cocos2d-tutorial-dynamically-coloring-sprites"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+      
+  </section>
+
+  
+  <section id="conversations"></section>
+
+  
+  
+
+
+<span id="post-meta" class="clearfix p-author h-card">
+  
+  <a rel="me" class="p-name u-url" href="https://brandontreb.ngrok.io">
+    |Zero Cool|
+  </a>       
+  
+  
+  <img class="u-photo" src="https://brandontreb.ngrok.io/avatar.gif" width="96" height="96">          
+  
+  
+  <p class="p-note">💻 Software
+🏕 Outdoors
+🏠 Family
+🏃‍♂️ Fitness</p>
+    
+  </a>
+</section>
+    
+</article>
+
+  </section>
+  <footer id="footer">
+
+<section id="wrapper">
+  <ul>
+    <li><a href="/feed.xml">RSS</a></li>
+    <li><a href="/feed.json">JSON Feed</a></li>
+    <li><a href="/surprise-me/">Surprise me!</a></li>
+        
+    
+    
+    
+    
+    
+    
+        
+
+  </ul>
+  <form method="get" id="search" action="https://duckduckgo.com/">
+    <input type="hidden" name="sites" value="https://brandontreb.ngrok.io/"/>
+    <input type="hidden" name="k8" value="#444444"/>
+    <input type="hidden" name="k9" value="#ee4792"/>
+    <input type="hidden" name="kt" value="h"/>
+    <input class="field" type="text" name="q" maxlength="255" placeholder="To search, type and hit Enter…"/>
+    <input type="submit" value="Search" style="display: none;" />
+  </form>
+</section>
+
+</footer>
+  
+		
+</body>
+</html>

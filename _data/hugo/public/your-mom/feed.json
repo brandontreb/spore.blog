@@ -1,0 +1,6 @@
+{
+  "name": "",  
+  "content": "---\nfrom: /your-mom\nredirect: https://facebook.com\npost_type: redirect\nslug: your-mom\n---\n",
+  "permalink" : "https://brandontreb.ngrok.io/your-mom/",
+  "draft":false,"from":"/your-mom","iscjklanguage":false,"post_type":"redirect","redirect":"https://facebook.com","slug":"your-mom"
+}

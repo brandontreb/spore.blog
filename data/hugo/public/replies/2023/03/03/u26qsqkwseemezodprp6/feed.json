@@ -1,6 +1,0 @@
-{
-  "name": "",  
-  "content": "True, but it would be tricky. \r\n\r\nWouldn’t the attacker have find a way to extract the `code_verifier` from local storage and pass it along with the hijacked redirect?\r\n\r\nThey would have to somehow have the ability to write custom js code on the path they are redirecting to. I guess this _is_ possible on sites that don’t sanitize user inputs.\n",
-  "permalink" : "https://brandon_swoop.ngrok.io/replies/2023/03/03/u26qsqkwseemezodprp6/",
-  "date":"2023-03-03T00:14:18.746Z","draft":false,"iscjklanguage":false,"lastmod":"2023-03-03T00:14:18.746Z","post_type":"reply","publishdate":"2023-03-03T00:14:18.746Z","reply_to_hostname":"aaronparecki.com","reply_to_url":"https://aaronparecki.com/2023/03/02/14/","slug":"u26qsqkwseemezodprp6","type":"reply"
-}

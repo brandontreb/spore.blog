@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta content="|Zero Cool|" name="author">
+
+  <title>Brandon Trebitowski
+		- Core Data QuickTip: Inverse Relationships</title>
+
+  <link href="/assets/css/style.css?1" rel="stylesheet">
+  <link href="/assets/css/highlight.css?1" rel="stylesheet">
+  <link href="/assets/css/alpine.css?1" rel="stylesheet">
+  <style>
+
+.site-title {
+	display: inline-block;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 1.35;
+	padding-left: 5px;
+	margin-top: 0px;
+	margin-bottom: 5px;
+	padding-top: 5px;
+	padding-bottom: 10px;
+}
+
+nav.main-nav a.cta {
+	background: #ffffff;
+	color: #f29c38;
+	padding: 6px 14px;
+	border: 2px solid #f29c38;
+	border-radius: 20px;
+	white-space: nowrap;
+	box-shadow: none;
+}
+
+nav.main-nav a.cta:hover {
+	background: #fffee4;
+	color: #f29c38;
+	margin-left: 12px;
+}
+
+</style>
+
+  <link rel="stylesheet" href="/custom.css?1">
+
+	<link rel="shortcut icon" href="https://brandontreb.ngrok.io/favicon.png" type="image/x-icon" />
+    
+    
+      <link href="https://brandontreb.ngrok.io/podcast.xml" rel="alternate" type="application/rss+xml" title="Podcast" />
+      <link rel="alternate" type="application/json" title="Brandon Trebitowski" href="https://brandontreb.ngrok.io/feed.json" />
+      <link rel="EditURI" type="application/rsd+xml" href="https://brandontreb.ngrok.io/rsd.xml" />
+    
+
+	
+	<link rel="me" href="https://micro.blog/brandontreb" />
+		
+	
+	<link rel="me" href="https://twitter.com/brandontreb" />
+	
+	
+	<link rel="me" href="https://github.com/brandontreb" />
+	
+	
+	
+	<link rel="authorization_endpoint" href="https://indieauth.com/auth" />
+	
+	
+	<link rel="token_endpoint" href="https://tokens.indieauth.com/token" />
+	
+	
+	<link rel="micropub" href="https://brandontreb.ngrok.io/micropub" />
+	
+	
+	<link rel="microsub" href="https://micro.blog/microsub/" />
+	
+	
+	<link rel="webmention" href="https://webmention.io/brandontreb.ngrok.io/webmention" />
+	
+	
+    
+    
+	
+	
+		<script id="script_conversation" data-webmention_url="https://webmention.io/brandontreb.ngrok.io/webmention" src="/conversation.js"></script>
+	
+</head>
+
+<body>
+  <nav class="main-nav">
+
+	<div class="site-title">
+		<img src="https://brandontreb.ngrok.io/avatar.gif" width="25" height="25" class="site-image">		
+		<a href="/">Brandon Trebitowski</a>
+	</div>
+
+	<div class="site-menus">
+
+	
+
+	<a class="normal" href="/"> <span class="arrow">←</span> Home</a>
+
+	
+
+	
+		<a href="/archive/">Archive</a>
+	
+		<a href="/photos/">Photos</a>
+	
+		<a href="/replies/">Replies</a>
+	
+		<a href="/books">Books</a>
+	
+		<a href="https://pixegon.com">Hire Me</a>
+	
+
+	
+
+	</div>
+</nav>
+
+
+
+  <section id="wrapper"  >
+	
+<article class="h-entry post">
+  <header>
+	
+    <h1 class="p-name">Core Data QuickTip: Inverse Relationships</h1>
+    
+    <h2 class="headline">
+      <time class="dt-published" datetime="2010-11-11 00:00:00 &#43;0000">
+        <a class="u-url dates" href="https://brandontreb.ngrok.io/2010/11/11/core-data-quicktip-inverse-relationships/">Nov 11, 2010</a>
+      </time>
+    </h2>
+  </header>
+  <section class="e-content post-body">
+      <p>One thing I always wondered about Core Data is why the compiler would warn you if you didn’t specify the inverse relationship. After reading through Apple’s docs, they essentially say its to make your database more robust by reinforcing those relationships. Plus, you never know when you may have one thing and need to get to the other.</p>
+<p>After working on a project with an Enormous Core Data database, I found one very useful thing about inverses. When you specify one side of the relationship, core data automatically hooks up the other. Allow me to explain in code.</p>
+<p>Let’s say we have a person object with many pets…</p>
+<div>
+  <pre>&lt;code class=’objc’>Person *john = [[Person alloc] init];
+Pet *pet = [[Pet alloc] init];
+<p>// Add the one to many relationship from john to pets
+[john addPetObject:pet];</p>
+<p>// Add the inverse relationship
+[pet setPerson:john];&lt;/code&gt;</pre></p>
+</div>
+<p>So, I was doing this in all of my code and then forgot to one time. However, to my surprise, everything still worked. Why, because once you set up one of the relationships, Core Data automatically handles the other. So, the above code is redundant and could just as easily have been.</p>
+<div>
+  <pre>&lt;code class=’objc’>[john addPetObject:pet];&lt;/code></pre>
+</div>
+<p>OR</p>
+<div>
+  <pre>&lt;code class=’objc’>[pet setPerson:john];&lt;/code></pre>
+</div>
+<p>and both directions of the relationship would have been established.</p>
+<p>Not super exciting, but I found it to be pretty handy and also saved me quite a bit of extra code.</p>
+<p>Happy Coding!</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Core Data QuickTip: Inverse Relationships" data-url="http://brandontreb.com/core-data-quicktip-inverse-relationships"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+      
+  </section>
+
+  
+  <section id="conversations"></section>
+
+  
+  
+
+
+<span id="post-meta" class="clearfix p-author h-card">
+  
+  <a rel="me" class="p-name u-url" href="https://brandontreb.ngrok.io">
+    |Zero Cool|
+  </a>       
+  
+  
+  <img class="u-photo" src="https://brandontreb.ngrok.io/avatar.gif" width="96" height="96">          
+  
+  
+  <p class="p-note">💻 Software
+🏕 Outdoors
+🏠 Family
+🏃‍♂️ Fitness</p>
+    
+  </a>
+</section>
+    
+</article>
+
+  </section>
+  <footer id="footer">
+
+<section id="wrapper">
+  <ul>
+    <li><a href="/feed.xml">RSS</a></li>
+    <li><a href="/feed.json">JSON Feed</a></li>
+    <li><a href="/surprise-me/">Surprise me!</a></li>
+        
+    
+    
+    
+    
+    
+    
+        
+
+  </ul>
+  <form method="get" id="search" action="https://duckduckgo.com/">
+    <input type="hidden" name="sites" value="https://brandontreb.ngrok.io/"/>
+    <input type="hidden" name="k8" value="#444444"/>
+    <input type="hidden" name="k9" value="#ee4792"/>
+    <input type="hidden" name="kt" value="h"/>
+    <input class="field" type="text" name="q" maxlength="255" placeholder="To search, type and hit Enter…"/>
+    <input type="submit" value="Search" style="display: none;" />
+  </form>
+</section>
+
+</footer>
+  
+		
+</body>
+</html>

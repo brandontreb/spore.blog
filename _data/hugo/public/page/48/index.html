@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="generator" content="Hugo 0.110.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta content="|Zero Cool|" name="author">
+
+  <title>Brandon Trebitowski
+		- Home</title>
+
+  <link href="/assets/css/style.css?1" rel="stylesheet">
+  <link href="/assets/css/highlight.css?1" rel="stylesheet">
+  <link href="/assets/css/alpine.css?1" rel="stylesheet">
+  <style>
+
+.site-title {
+	display: inline-block;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 1.35;
+	padding-left: 5px;
+	margin-top: 0px;
+	margin-bottom: 5px;
+	padding-top: 5px;
+	padding-bottom: 10px;
+}
+
+nav.main-nav a.cta {
+	background: #ffffff;
+	color: #f29c38;
+	padding: 6px 14px;
+	border: 2px solid #f29c38;
+	border-radius: 20px;
+	white-space: nowrap;
+	box-shadow: none;
+}
+
+nav.main-nav a.cta:hover {
+	background: #fffee4;
+	color: #f29c38;
+	margin-left: 12px;
+}
+
+</style>
+
+  <link rel="stylesheet" href="/custom.css?1">
+
+	<link rel="shortcut icon" href="https://brandontreb.ngrok.io/favicon.png" type="image/x-icon" />
+    
+    
+      <link href="https://brandontreb.ngrok.io/podcast.xml" rel="alternate" type="application/rss+xml" title="Podcast" />
+      <link rel="alternate" type="application/json" title="Brandon Trebitowski" href="https://brandontreb.ngrok.io/feed.json" />
+      <link rel="EditURI" type="application/rsd+xml" href="https://brandontreb.ngrok.io/rsd.xml" />
+    
+
+	
+	<link rel="me" href="https://micro.blog/brandontreb" />
+		
+	
+	<link rel="me" href="https://twitter.com/brandontreb" />
+	
+	
+	<link rel="me" href="https://github.com/brandontreb" />
+	
+	
+	
+	<link rel="authorization_endpoint" href="https://indieauth.com/auth" />
+	
+	
+	<link rel="token_endpoint" href="https://tokens.indieauth.com/token" />
+	
+	
+	<link rel="micropub" href="https://brandontreb.ngrok.io/micropub" />
+	
+	
+	<link rel="microsub" href="https://micro.blog/microsub/" />
+	
+	
+	<link rel="webmention" href="https://webmention.io/brandontreb.ngrok.io/webmention" />
+	
+	
+    
+    
+	
+	
+		<script id="script_conversation" data-webmention_url="https://webmention.io/brandontreb.ngrok.io/webmention" src="/conversation.js"></script>
+	
+</head>
+
+<body>
+  <nav class="main-nav">
+
+	<div class="site-title">
+		<img src="https://brandontreb.ngrok.io/avatar.gif" width="25" height="25" class="site-image">		
+		<a href="/">Brandon Trebitowski</a>
+	</div>
+
+	<div class="site-menus">
+
+	
+
+	
+		<a href="/archive/">Archive</a>
+	
+		<a href="/photos/">Photos</a>
+	
+		<a href="/replies/">Replies</a>
+	
+		<a href="/books">Books</a>
+	
+		<a href="https://pixegon.com">Hire Me</a>
+	
+
+	
+
+	</div>
+</nav>
+
+
+
+
+
+  <section id="wrapper"  >
+	
+
+<ul id="post-list">
+
+
+	
+	
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandontreb.ngrok.io/2012/01/19/fluid-for-mac/">Fluid For Mac</a></h2>
+  </header>
+  <section class="post-body">
+	<p>As of OSX Lion, I have started to seriously loathe some of the build-it Mac apps (such as Mail, and iCal). While I previously had no issues with them, they now seem to be very clunky and crash quite often. Being a developer, I thought “why don’t I write an app that wraps web apps for you so you basically get “native web apps” that have icons and are launchable?”.</p>
+<p>After a quick Google search, I realized <strong><a href="http://fluidapp.com/">this already exists!</a></strong>. The app is called Fluid and it does an incredible job of what I described above and more.</p>
+<img src="http://fluidapp.com/images/dock_large.png" width="400" />
+<p>Here are the feature highlights.</p>
+<ul>
+<li>Create a “native” Mac app for any web app</li>
+<li>Custom icon for each “native” app you create</li>
+<li>Full screen mode</li>
+<li>User scripps. These are my favorite. They allow you to update the badge count based on information in the browser. See below for a sample user script.</li>
+</ul>
+<p><strong>Sample User Script For Twitter</strong></p>
+<div>
+  <pre>&lt;code class=’javascript’>(function () {
+        if (window.fluid) {
+            setInterval(function updateBadge() {
+                var counts = /\d+/.exec(document.title);
+                if (counts && counts[0] &gt; 0) {
+                    window.fluid.dockBadge = counts[0] &gt; 99 ? ‘99+’ : counts[0];
+                } else {
+                    window.fluid.dockBadge = ”;
+                }
+            }, 2000);
+        }
+    })();&lt;/code></pre>
+</div>
+<p><a href="http://userscripts.org/scripts/review/88425">Source</a></p>
+<p>Fluid is free with some minimal features, but I urge you to drop the $4.99 to gain full screen mode and user scripts. It’s well worth it. I am not affiliated with them in any way, just a happy customer.</p>
+<p><a href="http://fluidapp.com/">Download Fluid</a></p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Fluid For Mac" data-url="http://brandontreb.com/fluid-for-mac"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandontreb.ngrok.io/2012/01/19/fluid-for-mac/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2012-01-19 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Jan 19</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandontreb.ngrok.io/2012/01/16/amazon-a-terrible-solution-to-a-huge-problem/">Amazon &amp;#8211; A Terrible Solution To A Huge Problem</a></h2>
+  </header>
+  <section class="post-body">
+	<p>tl;dr; Don’t buy a Kindle Fire for your kid until they resolve the parental control issues. Wifi password protection is their current solution, and it sucks.</p>
+<p>Like many parents, I thought it would be a good idea to get a tablet device for my son so that he could play some <em>educational</em> games and watch some Netflix (in moderation of course). After doing quite a bit of research, I settled on the Kindle Fire. Before the Apple fanboys give me crap, know that I am one, I have an iPad, it’s too expensive for my son.</p>
+<p>Honestly, I really love the fire. I think it has the <em>least terrible</em> Android interface of any of the devices. It’s intuitive and my 3 year old was able to grasp navigation right away. In addition to navigation, he quickly figured out how to acquire new content (apps, video, children’s books) thanks to Amazon’s “One-Click Ordering”. Obviously, Amazon thought the process they use on the web transfered well to a tablet device and was not willing to compromise on that. That’s neither here nor there. You can find plenty of posts about user’s complaining about the <strong>initial</strong> lack of parental controls.</p>
+<h4 id="the-update">The Update</h4>
+<p>Shortly after receiving some pretty rough reviews for their interface, Amazon rolled out their first update which brought us to 6.2.1. In addition to fixing some of there terribly choppy UI, they rolled out their “fix” for the lack of parental controls.</p>
+<p>I noticed a new security setting that I had hoped would allow the device to require a password for content purchase, but it turns out the setting is to password protect enabling wifi.</p>
+<p><strong>Password protect enabling wifi? Really?</strong></p>
+<p>This is laughable at best. What a worthless feature. I could not figure out why anyone would ever want that. And then I had a conversation with “tech support”.</p>
+<h4 id="their-8220solution8221-confirmed">Their “Solution” Confirmed</h4>
+<p>After seeing an email from Amazon the other day showing my purchase for $17.99 for Team Umizoomi Season 1 (whatever the crap that is), which obviously my son purchased, I set out to chat with customer support. The conversation went something like this:</p>
+<blockquote>
+<p>…</p>
+<p><strong>Me:</strong> Refund!? No parental controls!</p>
+<p><strong>Outsourced Guy:</strong> Enable Wifi Password = protection!</p>
+<p><strong>Me:</strong> No, watch Netflix! Browse Web! Stupid Solution</p>
+<p><strong>Outsourced Guy:</strong> Yes Netflix Need Wifi. Did I solve your problem?</p>
+<p><strong>Me:</strong> ?</p>
+<p><strong>Outsourced Guy:</strong> Phone Number. Call Video Support</p>
+</blockquote>
+<p>So there you have it. Amazon actually pushes this as their solution to the lack of parental controls. My suspicions were confirmed by Outsourced Guy.</p>
+<h4 id="conclusion">Conclusion</h4>
+<p>It’s sad that a huge company such as Amazon feels that <em>their process</em> is more important than listening to their customers. Although their devices have been selling like <em>fire</em> (badum ch!), they need to address such gaping issues if they are to maintain their edge in the “affordable” tablet space. Especially as the younger generations start embracing the technology.</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Amazon - A Terrible Solution To A Huge Problem" data-url="http://brandontreb.com/amazon-a-terrible-solution-to-a-huge-problem"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandontreb.ngrok.io/2012/01/16/amazon-a-terrible-solution-to-a-huge-problem/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2012-01-16 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Jan 16</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandontreb.ngrok.io/2012/01/03/why-i-went-back-to-jekyll-also-rackspace-sucks/">Why I Went Back To Jekyll &amp;#8211; Also Rackspace Sucks</a></h2>
+  </header>
+  <section class="post-body">
+	<p>Recently, I was pretty humbled when a post of mine titled <a href="http://brandontreb.com/wordpress-to-jekyll-and-back-again/">WordPress To Jekyll And Back Again</a> made it to the front page of Hacker News. I was a little down on Jekyll for the reasons listed in that post and was feeling pretty good about my WordPress install.</p>
+<p>At the time, I was running my own virtual instance on Rackspace cloud hosting (we’ll get to this momentarily). I also had all of the caching and optimization plugins installed and welcomed the Hacker News traffic.</p>
+<p>As you can imagine, the influx of HN traffic crashed the server multiple times and I was (with good reason) mocked in the comments (“must be because he’s ‘back to WordPress’”). So, I asked for advice and further “beefed up” my setup switching from Apache to Nginx, upping the ram, and switching caching plugins. WordPress is a beast and hard to optimize. That’s not even the kicker as to why I switched away.</p>
+<h4 id="a-call-from-rackspace8230">A Call From Rackspace…</h4>
+<p>About a month ago, I realized my blog was down. I figured that it might have been that I was featured somewhere else which was crashing it (again I was rolling my eyes at WordPress). But then, I got a call and email from a <em>very</em> helpful Rackspace employee. The email went like this:</p>
+<blockquote>
+<p>Despite the very best efforts of or our Engineering and Datacenter Operations Teams, unfortunately the host machine that your cloud server ‘Websites’ resides on was not able to be recovered. At this point, we are looking at complete data loss.</p>
+</blockquote>
+<p>and… Rackspace, in this poorly phrased email, was basically like. “Well, sucks to be you, hope you had a backup!”. Well, I admit this is partially my fault for not having a backup as I am a bit of a n00b when it comes to server admin, but I had been hosting for years on (don’t judge me) GoDaddy before that and a couple years on Rackspace. I had no idea that hosting companies didn’t have backups of their own. It would seem that this might be crucial to their business.</p>
+<p>Needless to say, I lost everything including a jewelry site that I ran (not many sales), an iPhone leaderboard site (not very popular), 2 of my buddies WordPress blogs, and my current WordPress blog.</p>
+<h4 id="jekyll-to-the-rescue">Jekyll To The Rescue</h4>
+<p>I was pretty angry at Rackspace and myself for never making a backup, but then it hit me that <em>most</em> of my posts had been converted to Jekyll and were backed up in a github repository. I was able to restore my blog within a few minutes (now hosted on GitHub) and recover the WordPress posts from the <a href="http://feeds.feedburner.com/brandontreb">Feedburner cache</a> of my site.</p>
+<p>As for my buddies’ sites… I feel for them <img src="http://brandontreb.com/wp-includes/images/smilies/frownie.png" alt=":(" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<h4 id="new-list-of-why-jekyll-is-awesome">New List Of Why Jekyll Is Awesome</h4>
+<ul>
+<li><strong>Automatically backed up</strong> – This is huge. If not for switching to Jekyll at one point, I would have lost <strong>years</strong> worth of content. If you have every tried to back up WordPress, it’s a huge frackin pain since the database dump usually gets HUGE.</li>
+<li><strong>Free To Host</strong> – I’m not sure why I was so stubborn about doing my own hosting. I am now hosting on <a href="https://github.com/brandontreb/brandontreb.github.com">GitHub</a> and it couldn’t be more stable and fast.</li>
+<li><strong>Mobile Blogging</strong> – This was my largest gripe about Jekyll. I was jealous that I couldn’t blog from my iPhone like WordPress users. Well, I have found a pretty decent solution (tutorial to follow), which involves a combo of Prompt, Screen, and Vim.</li>
+<li><strong>Content Oriented</strong> – WordPress makes it super easy to dump tons of images into your posts. While blogging with Jekyll (inside of Vim in my case), it’s a little bit more of a pain to add your own images. That being said you must be choosy forcing you to focus more on the content and less on using visual crutches.</li>
+<li><strong>Blog Anywhere</strong> – This was another limitation I was placing on Jekyll in my last post. However, I just wasn’t using Jekyll to its full potential. I was building my site locally and rsyncing it up to my server. This process was a little tedious and discouraged me from writing many new posts. Now, hosting with github, posting is as simple as a quick push to the repo.</li>
+<li><strong>Ninja Fast</strong> – This one should be obvious.</li>
+</ul>
+<h4 id="conclusion">Conclusion</h4>
+<p>I am quite happy blogging with Jekyll. As far as I’m concerned there is no reason to ever host my own blog again (as long as Github doesn’t ditch pages 😉 ). Also, if you currently have stuff on Rackspace, <strong>go make a backup now</strong> (or ditch them altogether). Thanks for reading and <a href="http://feeds.feedburner.com/brandontreb">look out</a> for my next post about mobile blogging with Jekyll.</p>
+<p>Happy Blogging!</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Why I Went Back To Jekyll - Also Rackspace Sucks" data-url="http://brandontreb.com/why-i-went-back-to-jekyll-also-rackspace-sucks"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandontreb.ngrok.io/2012/01/03/why-i-went-back-to-jekyll-also-rackspace-sucks/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2012-01-03 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Jan 3</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandontreb.ngrok.io/2011/12/31/new-year-new-theme-focus-on-the-content/">New Year &amp;#8211; New Theme: Focus On The Content</a></h2>
+  </header>
+  <section class="post-body">
+	<p>As you may have noticed, my blog has a new (much cleaner) theme. For 2012, my blogging goals are to focus much more on content rather than flashy visuals.</p>
+<p>I have also minimized my set up to save blogging costs (I now blog for FREE) and to simplify things greatly. Here is my new setup:</p>
+<ul>
+<li><a href="http://jekyllrb.com">Jekyll</a> as my “blog engine”</li>
+<li><a href="http://www.wptux.com/206/wp-typo">The WPTypo WordPress Theme</a> I ported this to Jekyll</li>
+<li><a href="https://github.com/brandontreb/brandontreb.github.com">GitHub</a> for hosting (it’s free).</li>
+<li>Vim – I’m using this as my “blog editor”. There are some incredible plugins that I am using to help facilitate blogging using Jekyll (post on how I do this to follow)</li>
+</ul>
+<p>That’s about it. I am now free from server costs and my blog is <strong>always</strong> backed up and easily accessible.</p>
+<p>2011 has been a very successful year in terms of blogging for me. In addition to writing here and on <a href="http://icodeblog.com">iCodeBlog</a>, I have recently started blogging for Mobile Tuts + on the <a href="http://envato.com">Envato Network</a>. You can check out my 7 part game series on creating a caterpillar game using Cocos2D <a href="http://mobile.tutsplus.com/series/build-a-caterpillar-game-with-cocos2d/">here</a>.</p>
+<p>I can’t wait to start posting some great content in this new year. Given my new setup, I literally have to adhere to the title of this post as blogging in VIM doesn’t really lend itself to visuals ;).</p>
+<p>Happy New Year and Happy Hacking in 2012!</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="New Year - New Theme: Focus On The Content" data-url="http://brandontreb.com/new-year-new-theme-focus-on-the-content"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandontreb.ngrok.io/2011/12/31/new-year-new-theme-focus-on-the-content/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2011-12-31 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Dec 31</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandontreb.ngrok.io/2011/12/07/svprogresshud-is-quickly-becoming-my-favorite-ios-library/">SVProgressHUD Is Quickly Becoming My Favorite iOS Library</a></h2>
+  </header>
+  <section class="post-body">
+	<p>From the first time I saw this effect in the Tweetie (now <a href="http://itunes.apple.com/us/app/twitter/id333903271?mt=8">Twitter for iPhone</a>), I was crazy about it. I had written my own hacks to make something <em>close</em>, but it was always terrible. Within the past few months, I have been using a perfect/elegant solution to this problem called <a href="https://github.com/samvermette/SVProgressHUD">SVProgressHUD</a>.</p></p>
+<img src="https://a248.e.akamai.net/assets.github.com/img/07e5ce2827299e152cd8f57ebb6eecf7ce9feedd/687474703a2f2f662e636c2e6c792f6974656d732f32333159324130743074314a30423072334e30702f737670726f6772657373687564332e706e67" width="550" />
+<p>Using this in your project is as easy as calling:</p>
+<div class="wp_syntax">
+  <div class="code">
+    <pre class="objc" style="font-family:monospace;"><span style="color: #11740a; font-style: italic;">// showing</span>
+<span style="color: #002200;">&#91;</span>SVProgressHUD showWithStatus<span style="color: #002200;">:</span><span style="color: #bf1d1a;">@</span><span style="color: #bf1d1a;">"Logging in…"</span><span style="color: #002200;">&#93;</span>;
+<span style="color: #11740a; font-style: italic;">// hiding</span>
+<span style="color: #002200;">&#91;</span>SVProgressHUD dismiss<span style="color: #002200;">&#93;</span>;</pre>
+  </div>
+</div>
+<p><a href="https://github.com/samvermette/SVProgressHUD">Clone SVProgressHUD On Github</a></p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="SVProgressHUD Is Quickly Becoming My Favorite iOS Library" data-url="http://brandontreb.com/svprogresshud-is-quickly-becoming-my-favorite-ios-library"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandontreb.ngrok.io/2011/12/07/svprogresshud-is-quickly-becoming-my-favorite-ios-library/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2011-12-07 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Dec 7</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandontreb.ngrok.io/2011/11/29/tether-your-iphone-without-jailbreaking-or-paying-for-it/">Tether Your iPhone Without Jailbreaking (Or Paying For It)</a></h2>
+  </header>
+  <section class="post-body">
+	<img alt="" src="https://github.com/tcurdt/iProxy/raw/master/Documentation/screenshots/screen12.png" title="iProxy" class="alignright"  height="340" />
+<p>With all of the buzz around the <a href="http://tether.com">iTether</a> App, I figured I’d offer a more permanent solution since Apple will surely yank this soon</p>
+<p>Last year, a developer published his code for an http <a href="http://en.wikipedia.org/wiki/SOCKS">SOCKS</a> proxy called iProxy. This will give your iPhone the ability to create a SOCKS server in which your laptop can connect to via the Bonjur protocol.</p>
+<p>Once connect, all of your computer’s http traffic will be routed through the server on your iPhone essentially giving you <strong>free tethering</strong>. Since this isn’t using the iPhone’s built-in tethering method, I’d assume At&amp;t could not detect it*. After looking at the code, it becomes pretty obvious how the SOCKS proxy works and makes me kick myself that I didn’t write it (or find this code sooner).</p>
+<p>The <a href="https://github.com/tcurdt/iProxy/wiki/Configuring-iProxy">setup</a> is a little complex, but you only need to do it once. I would love to hear in the comments if any of you has had some experience with this. I will also share my own as soon as I can get it installed later today.</p>
+<p>Download the project over at <a href="https://github.com/tcurdt/iProxy">github</a>.</p>
+<p>Happy Coding!</p>
+<p><sub>*This has not been verified by me</sub></p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Tether Your iPhone Without Jailbreaking (Or Paying For It)" data-url="http://brandontreb.com/tether-your-iphone-without-jailbreaking-or-paying-for-it"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandontreb.ngrok.io/2011/11/29/tether-your-iphone-without-jailbreaking-or-paying-for-it/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2011-11-29 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Nov 29</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandontreb.ngrok.io/2011/11/22/caterpillar-1-1-released/">Caterpillar 1.1 Released</a></h2>
+  </header>
+  <section class="post-body">
+	<p>I have just released the update to my Centipede clone called <a href="http://itunes.apple.com/us/app/caterpillar-hd/id479439790?mt=8">Caterpillar</a>. For those of you who don’t know, I am doing a 6 part series on how to create this game over at <a href="http://mobile.tutsplus.com/tutorials/iphone/building-a-caterpiller-game-with-cocos2d/">MobileTuts+</a>.</p></p>
+<p>This update adds some interesting functionality on which I will be blogging about in the near future.</p>
+<p>I have added iAds to my cocos2D project and when the iAds fail to serve (which is about 75% of the time), I replace them with Admob ads. This was achieved by creating a new Admob ad view inside of the <code>bannerView:didFailToReceiveAdWithError:</code> delegate method.</p>
+<p>I will either post a full tutorial about doing this Here or on Mobile Tuts. Either way, I’ll keep you posted.</p>
+<p>Also, be sure to <a href="http://itunes.apple.com/us/app/caterpillar-hd/id479439790?mt=8">download the game</a>, test it out, and lemme know if you have suggestions. Version 1.1 addressed quite a few issues from feedback (namely poor controls).</p>
+<p>Happy coding!</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Caterpillar 1.1 Released" data-url="http://brandontreb.com/caterpillar-1-1-released"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandontreb.ngrok.io/2011/11/22/caterpillar-1-1-released/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2011-11-22 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Nov 22</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandontreb.ngrok.io/2011/11/21/wordpress-plugin-for-ios-developers-and-bloggers/">WordPress Plugin For iOS Developers And Bloggers</a></h2>
+  </header>
+  <section class="post-body">
+	<p>This plugin looks to be super useful for people wanting to blog about iOS apps. It even supports the affiliate urls.</p>
+<blockquote>
+<p>In any post or page, insert the following shortcode: [ios-app id=”1234”] (where “1234″ is your application’s App Store ID).<br>
+You can also specify a download link like this: [ios-app id=”1234” download_url=”http://www.yourlinktrackerurl.com”]</p>
+</blockquote>
+<p><a href="https://github.com/markrickert/App-Display-Page">Download The Plugin Here</a></p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="WordPress Plugin For iOS Developers And Bloggers" data-url="http://brandontreb.com/wordpress-plugin-for-ios-developers-and-bloggers"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandontreb.ngrok.io/2011/11/21/wordpress-plugin-for-ios-developers-and-bloggers/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2011-11-21 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Nov 21</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandontreb.ngrok.io/2011/11/16/voices-that-matter-conference-highlights/">Voices That Matter Conference: Highlights</a></h2>
+  </header>
+  <section class="post-body">
+	<p>This past weekend, I attended the voices that matter conference as a sponsor for a new product my team is working called <a href="http://maasive.co">MaaSive</a>. We had an absolute blast at the conference and I learned quite a bit from all of the speakers.</p>
+<p>Here were a few of my favorite parts:</p>
+<h4 id="keynote-by-graeme-devine">Keynote by Graeme Devine</h4>
+<p>For those of you who don’t know Graeme is a legend in the game development industry. He was responsible for titles such as Quake 3, 7th guest, and Halo Wars. His presentation entitled “Social Gaming is Dead” was spot on. In it Graeme talked about how game developers have become less focused on the quality of games and more focused on “how do I make a profit?”. A statement that has stuck out to me is:</p>
+<blockquote>
+<p>“Be generous with fun. We are mean with it!”</p>
+</blockquote>
+<p>Basically, we are charging our users for fun or making them do real work (see Farmville) in order to obtain it. His message was “stop it, make something fun, and dont’t focus on profit”. Otherwise you are <strong>doomed</strong>.</p>
+<p><a href="https://twitter.com/#!/zaphodgjd">Follow Graeme on Twitter</a></p>
+<h4 id="moving-to-3d-by-mike-daily">Moving To 3D by Mike Daily</h4>
+<p>Mike is a good friend of mine and I look forward to hanging out with him at the conference each year. His talk was all about showing the developers how easy it actually is to create a 3D game without the use of a game engine. Mike’s demo (show below) was an absolutely incredible space shooter where you used the gyroscope to maneuver around.</p>
+<p>Mike will be posting a series on <a href="http://www.71squared.com/">his blog</a> in the near future about how to make his game using GLKit in the near future.</p>
+<p><a href="http://vimeo.com/31690099">VTM Game Prototype</a> from <a href="http://vimeo.com/michaeldaley">Michael Daley</a> on <a href="http://vimeo.com">Vimeo</a>.</p>
+<p><a href="https://twitter.com/#!/mikedaley">Follow Mike on Twitter</a></p>
+<h4 id="storyboarding-by-erica-sadun">Storyboarding by Erica Sadun</h4>
+<p>Erica is an OG (original gangster) when it comes to iOS development. She has been in the space since way before the first SDK was published (in fact she had a jailbroken dev book almost ready to go). Her current book, <a href="http://www.amazon.com/iPhone-Developers-Cookbook-Building-Applications/dp/0321659570">The iPhone Developer’s Cookbook</a> is a beast containing almost 900 pages!!!</p>
+<p>Her talk showed how easy it is to use storyboarding and just how powerful the technique can be.</p>
+<p><a href="https://twitter.com/#!/ericasadun">Follow Erica on Twitter</a></p>
+<h4 id="conclusion">Conclusion</h4>
+<p>It should be obvious from this post, that the VTM conference was incredible to say the least. If you didn’t attend, I strongly urge you to check out their next one. Hopefully you will get to blog about <em>my</em> talk at it (assuming I get my crap together).</p>
+<p>Happy Coding!</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Voices That Matter Conference: Highlights" data-url="http://brandontreb.com/voices-that-matter-conference-highlights"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandontreb.ngrok.io/2011/11/16/voices-that-matter-conference-highlights/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2011-11-16 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Nov 16</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+		<li>
+<article>
+  
+  <section class="post-body">
+  <header>
+	<h2><a href="https://brandontreb.ngrok.io/2011/11/16/caterpillar-hd-now-in-the-app-store-tutorial-series-to-follow/">Caterpillar-HD Now In The App Store: Tutorial Series To Follow</a></h2>
+  </header>
+  <section class="post-body">
+	<p>I have just released the update to my Centipede clone called <a href="http://itunes.apple.com/us/app/caterpillar-hd/id479439790?mt=8">Caterpillar</a>. For those of you who don’t know, I am doing a 6 part series on how to create this game over at <a href="http://mobile.tutsplus.com/tutorials/iphone/building-a-caterpiller-game-with-cocos2d/">MobileTuts+</a>.</p>
+<p>This update adds some interesting functionality on which I will be blogging about in the near future.</p>
+<p>I have added iAds to my cocos2D project and when the iAds fail to serve (which is about 75% of the time), I replace them with Admob ads. This was achieved by creating a new Admob ad view inside of the <code>bannerView:didFailToReceiveAdWithError:</code> delegate method.</p>
+<p>I will either post a full tutorial about doing this Here or on Mobile Tuts. Either way, I’ll keep you posted.</p>
+<p>Also, be sure to <a href="http://itunes.apple.com/us/app/caterpillar-hd/id479439790?mt=8">download the game</a>, test it out, and lemme know if you have suggestions. Version 1.1 addressed quite a few issues from feedback (namely poor controls).</p>
+<p>Happy coding!</p>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Caterpillar-HD Now In The App Store: Tutorial Series To Follow" data-url="http://brandontreb.com/caterpillar-hd-now-in-the-app-store-tutorial-series-to-follow"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+  
+  </section>
+  </section>
+  
+  <a href="https://brandontreb.ngrok.io/2011/11/16/caterpillar-hd-now-in-the-app-store-tutorial-series-to-follow/" class="u-url">
+	<aside class="dates">
+	  <time datetime="2011-11-16 00:00:00 &#43;0000" class="dt-published">→ 12:00 AM, Nov 16</time>
+	</aside>
+  </a>
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>
+
+	
+
+
+</ul>
+
+
+	
+
+
+
+  </section>
+  <footer id="footer">
+
+<section id="wrapper">
+  <ul>
+    <li><a href="/feed.xml">RSS</a></li>
+    <li><a href="/feed.json">JSON Feed</a></li>
+    <li><a href="/surprise-me/">Surprise me!</a></li>
+        
+    
+    
+    
+    
+    
+    
+        
+
+  </ul>
+  <form method="get" id="search" action="https://duckduckgo.com/">
+    <input type="hidden" name="sites" value="https://brandontreb.ngrok.io/"/>
+    <input type="hidden" name="k8" value="#444444"/>
+    <input type="hidden" name="k9" value="#ee4792"/>
+    <input type="hidden" name="kt" value="h"/>
+    <input class="field" type="text" name="q" maxlength="255" placeholder="To search, type and hit Enter…"/>
+    <input type="submit" value="Search" style="display: none;" />
+  </form>
+</section>
+
+</footer>
+  
+		
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta content="|Zero Cool|" name="author">
+
+  <title>Brandon Trebitowski
+		- Promoting Your Other Apps Within Your Apps</title>
+
+  <link href="/assets/css/style.css?1" rel="stylesheet">
+  <link href="/assets/css/highlight.css?1" rel="stylesheet">
+  <link href="/assets/css/alpine.css?1" rel="stylesheet">
+  <style>
+
+.site-title {
+	display: inline-block;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 1.35;
+	padding-left: 5px;
+	margin-top: 0px;
+	margin-bottom: 5px;
+	padding-top: 5px;
+	padding-bottom: 10px;
+}
+
+nav.main-nav a.cta {
+	background: #ffffff;
+	color: #f29c38;
+	padding: 6px 14px;
+	border: 2px solid #f29c38;
+	border-radius: 20px;
+	white-space: nowrap;
+	box-shadow: none;
+}
+
+nav.main-nav a.cta:hover {
+	background: #fffee4;
+	color: #f29c38;
+	margin-left: 12px;
+}
+
+</style>
+
+  <link rel="stylesheet" href="/custom.css?1">
+
+	<link rel="shortcut icon" href="https://brandontreb.ngrok.io/favicon.png" type="image/x-icon" />
+    
+    
+      <link href="https://brandontreb.ngrok.io/podcast.xml" rel="alternate" type="application/rss+xml" title="Podcast" />
+      <link rel="alternate" type="application/json" title="Brandon Trebitowski" href="https://brandontreb.ngrok.io/feed.json" />
+      <link rel="EditURI" type="application/rsd+xml" href="https://brandontreb.ngrok.io/rsd.xml" />
+    
+
+	
+	<link rel="me" href="https://micro.blog/brandontreb" />
+		
+	
+	<link rel="me" href="https://twitter.com/brandontreb" />
+	
+	
+	<link rel="me" href="https://github.com/brandontreb" />
+	
+	
+	
+	<link rel="authorization_endpoint" href="https://indieauth.com/auth" />
+	
+	
+	<link rel="token_endpoint" href="https://tokens.indieauth.com/token" />
+	
+	
+	<link rel="micropub" href="https://brandontreb.ngrok.io/micropub" />
+	
+	
+	<link rel="microsub" href="https://micro.blog/microsub/" />
+	
+	
+	<link rel="webmention" href="https://webmention.io/brandontreb.ngrok.io/webmention" />
+	
+	
+    
+    
+	
+	
+		<script id="script_conversation" data-webmention_url="https://webmention.io/brandontreb.ngrok.io/webmention" src="/conversation.js"></script>
+	
+</head>
+
+<body>
+  <nav class="main-nav">
+
+	<div class="site-title">
+		<img src="https://brandontreb.ngrok.io/avatar.gif" width="25" height="25" class="site-image">		
+		<a href="/">Brandon Trebitowski</a>
+	</div>
+
+	<div class="site-menus">
+
+	
+
+	<a class="normal" href="/"> <span class="arrow">←</span> Home</a>
+
+	
+
+	
+		<a href="/archive/">Archive</a>
+	
+		<a href="/photos/">Photos</a>
+	
+		<a href="/replies/">Replies</a>
+	
+		<a href="/books">Books</a>
+	
+		<a href="https://pixegon.com">Hire Me</a>
+	
+
+	
+
+	</div>
+</nav>
+
+
+
+  <section id="wrapper"  >
+	
+<article class="h-entry post">
+  <header>
+	
+    <h1 class="p-name">Promoting Your Other Apps Within Your Apps</h1>
+    
+    <h2 class="headline">
+      <time class="dt-published" datetime="2010-11-25 00:00:00 &#43;0000">
+        <a class="u-url dates" href="https://brandontreb.ngrok.io/2010/11/25/screen-shot-2010-11-25-at-11.51.07-am-500x266.png/">Nov 25, 2010</a>
+      </time>
+    </h2>
+  </header>
+  <section class="e-content post-body">
+      <p>First off, Happy Thanksgiving to my American readers. And a happy Thursday to everyone else. I’m sitting here on Thursday morning drinking coffee and eating Sticky Buns (kind of like gooey doughnuts). It’s been a hectic week of family and travel, so please forgive me if this is not the most verbose post.</p>
+<p>Showing your other applications within each of your applications (wow, the word application is starting to lose meaning) can have a tremendous impact on your sales. It’s a great way to promote your other apps for free and will give them much more exposure across a wider audience. Moving all of the promotion logic out to the web allows you to dynamically add and remove apps from the view without updating your apps in the store.</p>
+<p>[Insert Cool Graph Backing This Statement Up Here] //I’m not that cool yet <img src="http://brandontreb.com/wp-includes/images/smilies/frownie.png" alt=":(" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>We have seen this in many popular apps. Here is a screenshot from an iDevBlogADay veteran <a href="http://www.streamingcolour.com/blog/">Owen Goss</a> promoting his other applications from inside of <a href="http://www.streamingcolour.com/games/landformer/">LandFormer</a>.</p>
+<p><a href="http://brandontreb.com/wp-content/uploads/2010/11/promo.png"><img class="alignnone size-medium wp-image-1080" title="promo" src="/uploads/2010/promo-500x333.png" alt="" width="300" height="200" /></a></p>
+<p>We are going to learn how to make something similar and I will provide you with a web template as well as the view controller to load it.</p>
+<h4 id="download-the-template">Download The Template</h4>
+<p>So, I’m sure there are a million more “elegant” ways to display your apps, but I went for super simple. So, 1337 web dev idevblogadayers, please go easy on me in the comments. Download the code below and look in the Web folder.</p>
+<p><a href="http://brandontreb.com/wp-content/uploads/2010/11/promotion2.zip">Download The Code Files Here</a></p>
+<p>Here is a screenshot of what the template will look like:</p>
+<p><a href="http://brandontreb.com/wp-content/uploads/2010/11/Screen-shot-2010-11-25-at-11.51.07-AM.png"><img class="alignnone size-medium wp-image-1085" title="Screen shot 2010-11-25 at 11.51.07 AM" src="/uploads/2010/Screen-shot-2010-11-25-at-11.51.07-AM-500x266.png" alt="" width="400" height="213" /></a></p>
+<p>It will also work in portrait mode.</p>
+<h4 id="upload-the-template-files-to-your-web-server-and-replace-my-sample-data">Upload The Template Files To Your Web Server And Replace My Sample Data</h4>
+<p>If you have your own website (which you probably should 😉 ), upload the template files to a subdirectory. If not, or you don’t want to waste bandwidth on it, you can always <a href="http://wiki.dropbox.com/TipsAndTricks/HostWebsites">host the files on Dropbox</a>.</p>
+<p>Next, upload your icons (the template auto rounds the corners so you can just use the one’s bundled with your app) and replace my sample images with yours.</p>
+<p>Finally, replace the URL’s with the URLs to your applications. You can also add/remove table cells to match the number of applications you are promoting.</p>
+<h4 id="add-the-promotion-code-to-your-iphone-app">Add The Promotion Code To Your iPhone App</h4>
+<p>Look in the iPhone folder from the unzipped file you downloaded above and copy the following 3 files into your project:</p>
+<ul>
+<li>PromotionViewController.m</li>
+<li>PromotionViewController.h</li>
+<li>PromotionViewController.xib</li>
+</ul>
+<p>Check the box to copy them into your project folder when prompted.</p>
+<p>We will now take a look at how to display the promotion view when a button is clicked.</p>
+<div>
+  <pre>&lt;code class=’objc’>- (IBAction) moreAppsTouched:(id) sender {
+    PromotionViewController *controller = [[PromotionViewController alloc]
+        initWithNibName:@"PromotionViewController"
+        bundle:[NSBundle mainBundle]];
+    controller.promotionAddress = @"http://brandontreb.com/apps/idevblogaday/promotion.html";
+    [self presentModalViewController:controller animated:YES];
+    [controller release];
+}&lt;/code></pre>
+</div>
+<p>Make sure you set controller.promotionAddress to the web address of your promotion.html file.</p>
+<p>And there you have it! When the user tapps on a button it will display our promotion view modally and will load up your promo page. I have provided a sample application that pulls up the promotion view when a button has been clicked.</p>
+<p><a href="http://brandontreb.com/wp-content/uploads/2010/11/PromotionTest1.zip">Download The Sample App Here</a></p>
+<p>If you have any questions or comments, feel free to leave them in the comments.</p>
+<p>Happy Coding!</p>
+<p style="font-family: ‘Lucida Grande’;">
+  &#8212;-
+</p></p> 
+<div style="font-family: ‘Lucida Grande’;">
+  <span style="font-family: ‘Lucida Grande’;"><strong><span style="font-weight: normal;"><span style="font-family: arial, verdana, tahoma, sans-serif; font-size: 13px; line-height: 20px;"><em>﻿﻿This post is part of <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://idevblogaday.com/">iDevBlogADay</a>, a group of indie iOS development blogs featuring two posts per day. You can keep up with iDevBlogADay through the <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://idevblogaday.com/">web site</a>, <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://feeds.feedburner.com/idevblogaday">RSS feed</a>, or <a style="text-decoration: none; color: #004199; padding: 0px; margin: 0px;" href="http://twitter.com/#search?q=%23idevblogaday">Twitter</a>.</em></span></span></strong></span>
+</div></p> 
+<div style="font-family: ‘Lucida Grande’;">
+  <span style="font-family: ‘Lucida Grande’;"><strong><span style="font-weight: normal;"><span style="font-family: arial, verdana, tahoma, sans-serif; font-size: 13px; line-height: 20px;"><em><br /> <br /> </em></span></span></strong></span>
+</div></p> 
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="Promoting Your Other Apps Within Your Apps" data-url="http://brandontreb.com/promoting-your-other-apps-within-your-apps"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+      
+  </section>
+
+  
+  <section id="conversations"></section>
+
+  
+  
+
+
+<span id="post-meta" class="clearfix p-author h-card">
+  
+  <a rel="me" class="p-name u-url" href="https://brandontreb.ngrok.io">
+    |Zero Cool|
+  </a>       
+  
+  
+  <img class="u-photo" src="https://brandontreb.ngrok.io/avatar.gif" width="96" height="96">          
+  
+  
+  <p class="p-note">💻 Software
+🏕 Outdoors
+🏠 Family
+🏃‍♂️ Fitness</p>
+    
+  </a>
+</section>
+    
+</article>
+
+  </section>
+  <footer id="footer">
+
+<section id="wrapper">
+  <ul>
+    <li><a href="/feed.xml">RSS</a></li>
+    <li><a href="/feed.json">JSON Feed</a></li>
+    <li><a href="/surprise-me/">Surprise me!</a></li>
+        
+    
+    
+    
+    
+    
+    
+        
+
+  </ul>
+  <form method="get" id="search" action="https://duckduckgo.com/">
+    <input type="hidden" name="sites" value="https://brandontreb.ngrok.io/"/>
+    <input type="hidden" name="k8" value="#444444"/>
+    <input type="hidden" name="k9" value="#ee4792"/>
+    <input type="hidden" name="kt" value="h"/>
+    <input class="field" type="text" name="q" maxlength="255" placeholder="To search, type and hit Enter…"/>
+    <input type="submit" value="Search" style="display: none;" />
+  </form>
+</section>
+
+</footer>
+  
+		
+</body>
+</html>

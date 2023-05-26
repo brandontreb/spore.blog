@@ -3,35 +3,38 @@ const catchAsync = require('../utils/catchAsync');
 const httpStatus = require('http-status');
 const ApiError = require('../utils/ApiError');
 const logger = require('../config/logger');
-const {hugoService} = require('../services');
+const {hugoService, pluginService} = require('../services');
 
 const update = catchAsync(async(req, res) => {
-  await hugoService.updateConfig(req.body);
+  let config = {
+    ...req.body,
+  }
+  await hugoService.updateConfig(config);
   hugoService.generateSite();
   req.flash('success', 'Blog updated successfully, regenerating site...');
   res.redirect('/admin');
 });
 
-const read = catchAsync(async(req, res) => {
+const index = catchAsync(async(req, res) => {
   const hugo = hugoService.getConfig();
   res.render('admin/index', {
-    admin_title: 'Admin',
+    admin_title: 'admin',
     hugo,
-  });
+  });  
 });
 
 const getMenus = catchAsync(async(req, res) => {
   const hugo = hugoService.getConfig();
   let menu = hugo.menu.main.sort((a, b) => a.weight - b.weight);
   res.render('admin/menus', {
-    admin_title: 'Menus',
+    admin_title: 'menus',
     menu
   });
 });
 
 const newMenuItem = catchAsync(async(req, res) => {  
   res.render('admin/menu_item', {
-    admin_title: 'New Menu Item',
+    admin_title: 'new menu item',
     menu_item: {},
   });
 });
@@ -44,7 +47,7 @@ const getMenuItem = catchAsync(async(req, res) => {
   const menu_item = hugo.menu.main.find(item => item.url === url);
   console.log(menu_item);
   res.render('admin/menu_item', {
-    admin_title: 'Edit Menu Item',
+    admin_title: 'edit menu item',
     menu_item,
   });
 });
@@ -56,7 +59,7 @@ const updateMenuItem = catchAsync(async(req, res) => {
   let menu = hugoService.getConfig().menu.main;
   menu = menu.filter(item => item.url !== url);
   menu.push(req.body);
-  hugoService.updateConfig({menu: {main: menu}});
+  await hugoService.updateConfig({menu: {main: menu}});
   hugoService.generateSite();
   req.flash('success', 'Menu item updated successfully, regenerating site...');
   res.redirect('/admin/menus');
@@ -64,10 +67,12 @@ const updateMenuItem = catchAsync(async(req, res) => {
 
 const createMenuItem = catchAsync(async(req, res) => {
   // Create the menu item
-  logger.debug('Creating menu item: %s', req.body.url);
+  let item = req.body;
+  logger.debug('Creating menu item: %s', item);
   let menu = hugoService.getConfig().menu.main;
-  menu.push(req.body);
-  hugoService.updateConfig({menu: {main: menu}});
+  if(!item.weight || item.weight === "") item.weight = menu.length + 1;
+  menu.push(item);
+  await hugoService.updateConfig({menu: {main: menu}});
   hugoService.generateSite();
   req.flash('success', 'Menu item created successfully, regenerating site...');
   res.redirect('/admin/menus');
@@ -78,7 +83,7 @@ const deleteMenuItem = catchAsync(async(req, res) => {
   logger.debug('Deleting menu item: %s', req.query.url);
   let menu = hugoService.getConfig().menu.main;
   menu = menu.filter(item => item.url !== req.query.url);
-  hugoService.updateConfig({menu: {main: menu}});
+  await hugoService.updateConfig({menu: {main: menu}});
   hugoService.generateSite();
   req.flash('success', 'Menu item deleted successfully, regenerating site...');
   res.redirect('/admin/menus');
@@ -309,7 +314,7 @@ module.exports = {
 
 module.exports = {
   update,
-  read,
+  index,
   getMenus,
   newMenuItem,
   getMenuItem,

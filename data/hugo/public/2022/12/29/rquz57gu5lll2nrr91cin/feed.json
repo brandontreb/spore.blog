@@ -1,6 +1,0 @@
-{
-  "name": "",  
-  "content": "[@manton](https://micro.blog/manton) I have a few questions/notes about non microblog hosted sites (mine now supports webmention and microformats) and m.b integration. \r\n\r\n1. When I reply from my domain,it doesn’t link to my user on m.b. Even though my domain is associated with it. It creates a new m.b. user named brandontreb.com instead of showing it from my @brandontreb account.  \r\n2. When replying, should I sent a webmention to m.b. Or the users custom domain? Does it matter?\r\n3. How should conversations work if I want to reply from within my site? Should I send in-reply-to to MY original post and web mentions to the users I mentioned? Or send webmentions / reply directly to the other replies in the conversation? Also, #1 is an issue here as it shows the reply coming from my site and not my user. \r\n\r\nLMK if anything is unclear. \r\n\r\nThanks!\n",
-  "permalink" : "https://brandon_swoop.ngrok.io/2022/12/29/rquz57gu5lll2nrr91cin/",
-  "date":"2022-12-29T23:53:00.606Z","draft":false,"iscjklanguage":false,"lastmod":"2022-12-29T23:53:00.606Z","post_type":"note","publishdate":"2022-12-29T23:53:00.606Z","slug":"rquz57gu5lll2nrr91cin","type":"post"
-}

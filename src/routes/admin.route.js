@@ -9,7 +9,7 @@ const router = express.Router();
 // Blog Settings
 router
   .route('/')
-  .get(auth(true), adminController.read)
+  .get(auth(true), adminController.index)
   .put(auth(true), validate(adminValidation.update), adminController.update);
 
 router.use('/account', require('./account.route'));

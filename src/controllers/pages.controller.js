@@ -9,7 +9,7 @@ const getPages = async (req, res) => {
     res.render('admin/pages', {
       pages,
       redirects,
-      admin_title: 'Pages',
+      admin_title: 'pages',
     });
   } catch (error) {
     req.flash('error', error);
@@ -22,7 +22,7 @@ const getPage = async (req, res) => {
     const page = await hugoService.getPostBySlug(req.params.slug, 'page');
     res.render('admin/page', {
       page,
-      admin_title: 'Page',
+      admin_title: 'page',
     });
   } catch (error) {
     req.flash('error', error);
@@ -70,7 +70,7 @@ const newPage = async (req, res) => {
     }
     res.render('admin/page', {
       page,
-      admin_title: 'New Page',
+      admin_title: 'new page',
     });
   } catch (error) {
     req.flash('error', error);
@@ -137,7 +137,7 @@ const getRedirect = async (req, res) => {
     const redirect = await hugoService.getPostBySlug(req.params.slug, 'redirect');
     res.render('admin/redirect', {
       redirect,
-      admin_title: 'Redirect',
+      admin_title: 'redirect',
     });
   } catch (error) {
     req.flash('error', error);

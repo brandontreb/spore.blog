@@ -1,7 +1,6 @@
 const dotenv = require('dotenv');
 const path = require('path');
 const Joi = require('joi');
-const YAML = require('yaml');
 const fs = require('fs');
 
 dotenv.config({ path: path.join(__dirname, '../../.env') });
@@ -31,7 +30,7 @@ module.exports = {
     refreshExpirationDays: envVars.JWT_REFRESH_EXPIRATION_DAYS,    
   },  
   hugo: {
-    config: YAML.parse(fs.readFileSync('data/hugo/config.yaml', 'utf8')),
+    config:  fs.existsSync('data/hugo/config.json') ? JSON.parse(fs.readFileSync('data/hugo/config.json', 'utf8')) : {},
     contentDir: 'data/hugo/content',
     staticDir: 'data/hugo/static',
   }

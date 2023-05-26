@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta content="|Zero Cool|" name="author">
+
+  <title>Brandon Trebitowski
+		- WordPress Programming Tip: Enable Database Error Reporting For Custom Queries</title>
+
+  <link href="/assets/css/style.css?1" rel="stylesheet">
+  <link href="/assets/css/highlight.css?1" rel="stylesheet">
+  <link href="/assets/css/alpine.css?1" rel="stylesheet">
+  <style>
+
+.site-title {
+	display: inline-block;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 1.35;
+	padding-left: 5px;
+	margin-top: 0px;
+	margin-bottom: 5px;
+	padding-top: 5px;
+	padding-bottom: 10px;
+}
+
+nav.main-nav a.cta {
+	background: #ffffff;
+	color: #f29c38;
+	padding: 6px 14px;
+	border: 2px solid #f29c38;
+	border-radius: 20px;
+	white-space: nowrap;
+	box-shadow: none;
+}
+
+nav.main-nav a.cta:hover {
+	background: #fffee4;
+	color: #f29c38;
+	margin-left: 12px;
+}
+
+</style>
+
+  <link rel="stylesheet" href="/custom.css?1">
+
+	<link rel="shortcut icon" href="https://brandontreb.ngrok.io/favicon.png" type="image/x-icon" />
+    
+    
+      <link href="https://brandontreb.ngrok.io/podcast.xml" rel="alternate" type="application/rss+xml" title="Podcast" />
+      <link rel="alternate" type="application/json" title="Brandon Trebitowski" href="https://brandontreb.ngrok.io/feed.json" />
+      <link rel="EditURI" type="application/rsd+xml" href="https://brandontreb.ngrok.io/rsd.xml" />
+    
+
+	
+	<link rel="me" href="https://micro.blog/brandontreb" />
+		
+	
+	<link rel="me" href="https://twitter.com/brandontreb" />
+	
+	
+	<link rel="me" href="https://github.com/brandontreb" />
+	
+	
+	
+	<link rel="authorization_endpoint" href="https://indieauth.com/auth" />
+	
+	
+	<link rel="token_endpoint" href="https://tokens.indieauth.com/token" />
+	
+	
+	<link rel="micropub" href="https://brandontreb.ngrok.io/micropub" />
+	
+	
+	<link rel="microsub" href="https://micro.blog/microsub/" />
+	
+	
+	<link rel="webmention" href="https://webmention.io/brandontreb.ngrok.io/webmention" />
+	
+	
+    
+    
+	
+	
+		<script id="script_conversation" data-webmention_url="https://webmention.io/brandontreb.ngrok.io/webmention" src="/conversation.js"></script>
+	
+</head>
+
+<body>
+  <nav class="main-nav">
+
+	<div class="site-title">
+		<img src="https://brandontreb.ngrok.io/avatar.gif" width="25" height="25" class="site-image">		
+		<a href="/">Brandon Trebitowski</a>
+	</div>
+
+	<div class="site-menus">
+
+	
+
+	<a class="normal" href="/"> <span class="arrow">←</span> Home</a>
+
+	
+
+	
+		<a href="/archive/">Archive</a>
+	
+		<a href="/photos/">Photos</a>
+	
+		<a href="/replies/">Replies</a>
+	
+		<a href="/books">Books</a>
+	
+		<a href="https://pixegon.com">Hire Me</a>
+	
+
+	
+
+	</div>
+</nav>
+
+
+
+  <section id="wrapper"  >
+	
+<article class="h-entry post">
+  <header>
+	
+    <h1 class="p-name">WordPress Programming Tip: Enable Database Error Reporting For Custom Queries</h1>
+    
+    <h2 class="headline">
+      <time class="dt-published" datetime="2010-03-12 00:00:00 &#43;0000">
+        <a class="u-url dates" href="https://brandontreb.ngrok.io/2010/03/12/wordpress-programming-tip-enable-database-error-reporting-for-custom-queries/">Mar 12, 2010</a>
+      </time>
+    </h2>
+  </header>
+  <section class="e-content post-body">
+      <p>So this one should seem pretty obvious, but it wasn’t apparent to me at first.  It was only after digging through the wp-db.php file that I discovered how to enable error reporting.</p>
+<h4 id="the-problem">The Problem</h4>
+<p>As you may have discovered, the wp_query() function isn’t a “one size fit’s all” solution.  Often times, you may need to query the WordPress database using a custom MySQL query.  Especially  if you are using WordPress for anything other than a blog (ie <a href="http://freshapps.com">freshapps.com</a>).</p>
+<p>When writing custom queries, it can often be frustrating if you make a mistake in the SQL syntax as WordPress will simply display no results.  For example:</p>
+<div class="wp_syntax">
+  <table>
+    <tr>
+      <td class="code">
+        <pre class="php" style="font-family:monospace;"><span style="color: #000088;">$results</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$wpdb</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">get_results</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">"SELECT * FROM <span style="color: #006699; font-weight: bold;">$wpdb-&gt;posts</span> 
+   WHERE post_title = ‘foo bar baz"</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<span style="color: #990000;">print_r</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$results</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+<span style="color: #666666; font-style: italic;">// Outputs Array ( )</span></pre>
+      </td>
+    </tr>
+  </table>
+</div>
+<p>Since we have made an error in our SQL statement (I didn’t add the second single quote), WordPress will suppress it and simply return an empty array. This is not very helpful for debugging.</p>
+<h4 id="the-solution">The Solution</h4>
+<p>The solution is actually quite simple. The global $wpdb object has a property called show_errors. Setting this property to true will cause WordPress to output the SQL errors to the screen for a given query.</p>
+<p>Here it is with our example above</p>
+<div class="wp_syntax">
+  <table>
+    <tr>
+      <td class="code">
+        <pre class="php" style="font-family:monospace;"><span style="color: #666666; font-style: italic;">// Enables Wordpress’s DB Error reporting</span>
+<span style="color: #000088;">$wpdb</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">show_errors</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">true</span><span style="color: #339933;">;</span>
+&nbsp;
+<span style="color: #000088;">$results</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$wpdb</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">get_results</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">"SELECT * FROM <span style="color: #006699; font-weight: bold;">$wpdb-&gt;posts</span> 
+   WHERE post_title = ‘foo bar baz"</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<span style="color: #990000;">print_r</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$results</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+<span style="color: #666666; font-style: italic;">// Outputs </span>
+<span style="color: #666666; font-style: italic;">// WordPress database error: [You have an error in your </span>
+<span style="color: #666666; font-style: italic;">// SQL syntax; check the manual that corresponds to your </span>
+<span style="color: #666666; font-style: italic;">// MySQL server version for the right syntax to use near </span>
+<span style="color: #666666; font-style: italic;">// ”foo bar baz’ at line 1]</span>
+<span style="color: #666666; font-style: italic;">// SELECT * FROM wp_posts WHERE post_title = ‘foo bar baz</span></pre>
+      </td>
+    </tr>
+  </table>
+</div>
+<p>Now we know what went wrong with our query rather than just receiving empty results.</p>
+<p>Let me know if you have any questions or comments.</p>
+<p>Happy WPCoding!</p>
+<div class="zemanta-pixie" style="margin-top:10px;height:15px">
+  <a class="zemanta-pixie-a" href="http://reblog.zemanta.com/zemified/a1d99446-c73f-4722-97e6-3e584300069e/" title="Reblog this post [with Zemanta]"><img class="zemanta-pixie-img" src="http://img.zemanta.com/reblog_e.png?x-id=a1d99446-c73f-4722-97e6-3e584300069e" alt="Reblog this post [with Zemanta]" style="border:none;float:right" /></a><span class="zem-script more-related pretty-attribution"></span>
+</div>
+<div style="">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-text="WordPress Programming Tip: Enable Database Error Reporting For Custom Queries" data-url="http://brandontreb.com/wordpress-programming-tip-enable-database-error-reporting-for-custom-queries"  data-via="brandontreb" data-related="brandontreb:">Tweet</a>
+</div>
+      
+  </section>
+
+  
+  <section id="conversations"></section>
+
+  
+  
+
+
+<span id="post-meta" class="clearfix p-author h-card">
+  
+  <a rel="me" class="p-name u-url" href="https://brandontreb.ngrok.io">
+    |Zero Cool|
+  </a>       
+  
+  
+  <img class="u-photo" src="https://brandontreb.ngrok.io/avatar.gif" width="96" height="96">          
+  
+  
+  <p class="p-note">💻 Software
+🏕 Outdoors
+🏠 Family
+🏃‍♂️ Fitness</p>
+    
+  </a>
+</section>
+    
+</article>
+
+  </section>
+  <footer id="footer">
+
+<section id="wrapper">
+  <ul>
+    <li><a href="/feed.xml">RSS</a></li>
+    <li><a href="/feed.json">JSON Feed</a></li>
+    <li><a href="/surprise-me/">Surprise me!</a></li>
+        
+    
+    
+    
+    
+    
+    
+        
+
+  </ul>
+  <form method="get" id="search" action="https://duckduckgo.com/">
+    <input type="hidden" name="sites" value="https://brandontreb.ngrok.io/"/>
+    <input type="hidden" name="k8" value="#444444"/>
+    <input type="hidden" name="k9" value="#ee4792"/>
+    <input type="hidden" name="kt" value="h"/>
+    <input class="field" type="text" name="q" maxlength="255" placeholder="To search, type and hit Enter…"/>
+    <input type="submit" value="Search" style="display: none;" />
+  </form>
+</section>
+
+</footer>
+  
+		
+</body>
+</html>

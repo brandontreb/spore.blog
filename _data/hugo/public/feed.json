@@ -1,0 +1,155 @@
+{
+    "version" : "https://jsonfeed.org/version/1",
+    "title" : "Home on Brandon Trebitowski",
+    "description": "Recent content in Home on Brandon Trebitowski",
+    "home_page_url" : "https://brandontreb.ngrok.io",
+    "feed_url" : "https://brandontreb.ngrok.io/feed.json",
+    "author" : {
+        "name" : "|Zero Cool|",
+        "url": "https://brandontreb.ngrok.io",
+        "avatar": "https://brandontreb.ngrok.io/avatar.gif"
+    },
+    "items" : [
+    {
+        "date_published" : "2023-03-18T20:45:22-06:00",
+        "date_modified" : "2023-03-18T20:45:22-06:00",
+        "id" : "https://brandontreb.ngrok.io/2023/03/18/fcstbbpiuya2vp2e/",
+        "url" : "https://brandontreb.ngrok.io/2023/03/18/fcstbbpiuya2vp2e/",
+        "content_html" : "\u003cp\u003etesting\n\u003cimg src=\"https://brandon_swoop.ngrok.io/uploads/2023/1679193910213.c7RnNc8OuPrScVKq.jpeg\" alt=\"\"\u003e\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-03-13T17:59:22-06:00",
+        "date_modified" : "2023-03-13T17:59:22-06:00",
+        "id" : "https://brandontreb.ngrok.io/2023/03/13/ikkmdgdpapbin0rc/",
+        "url" : "https://brandontreb.ngrok.io/2023/03/13/ikkmdgdpapbin0rc/",
+        "content_html" : "\u003cp\u003ehello friend\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-03-05T03:13:25Z",
+        "date_modified" : "2023-03-05T03:13:25Z",
+        "id" : "https://brandontreb.ngrok.io/2023/03/05/ggdvwjy1cmysflk5hoprq/",
+        "url" : "https://brandontreb.ngrok.io/2023/03/05/ggdvwjy1cmysflk5hoprq/",
+        "content_html" : "\u003cp\u003e\u003ca href=\"https://noahpinion.substack.com/p/honestly-its-probably-the-phones\"\u003eHonestly, it\u0026rsquo;s probably the phones\u003c/a\u003e\u003c/p\u003e\n\u003cblockquote\u003e\n\u003cp\u003eThe most plausible explanation for teenage unhappiness.\u003c/p\u003e\n\u003c/blockquote\u003e\n\u003cp\u003eAs a proud owner of a teenager, I 100% agree. Teaching them to self regulate is important!\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-03-03T23:38:16Z",
+        "date_modified" : "2023-03-03T23:38:16Z",
+        "id" : "https://brandontreb.ngrok.io/2023/03/03/7l6lvlkzk94q6hsgak5ay/",
+        "url" : "https://brandontreb.ngrok.io/2023/03/03/7l6lvlkzk94q6hsgak5ay/",
+        "content_html" : "\u003cp\u003eToday was incredibly special. I got to spend the it with my three children snowboarding on the mountain.\u003c/p\u003e\n\u003cp\u003eI’ve had the privilege of teaching each one of them how to snowboard and we are now at this point where we can all just ride together and have fun.\u003c/p\u003e\n\u003cp\u003eFeeling very grateful.\u003c/p\u003e\n\u003cp\u003e\u003cimg src=\"/uploads/2023/1677886696145.z5n1rrs6h5mlq5r16c0kal.jpg\" alt=\"\"\u003e\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-03-03T13:13:17Z",
+        "date_modified" : "2023-03-03T13:13:17Z",
+        "id" : "https://brandontreb.ngrok.io/2023/03/03/qye4vgyr0zq6k9i0xod7lf/",
+        "url" : "https://brandontreb.ngrok.io/2023/03/03/qye4vgyr0zq6k9i0xod7lf/",
+        "content_html" : "\u003cp\u003eI’m taking all 3 of my kids snowboarding today by myself. Wish me luck (and patience) 🏂\u003c/p\u003e\n"
+    },
+    {
+        "title" : "Idea: Micropub Browser Extension For Replies!!!!!!!",
+        "date_published" : "2023-03-03T00:42:01Z",
+        "date_modified" : "2023-03-03T00:42:01Z",
+        "id" : "https://brandontreb.ngrok.io/2023/03/03/i8hohphoqfnoaujhlbgtm/",
+        "url" : "https://brandontreb.ngrok.io/2023/03/03/i8hohphoqfnoaujhlbgtm/",
+        "content_html" : "\u003cp\u003eI LOVE finding sites that support \u003ca href=\"https://indieweb.org/Webmention\"\u003ewebmentions\u003c/a\u003e. For me, it\u0026rsquo;s an instant subscribe.  These are people who are looking to build community on the web in a new way.\u003c/p\u003e\n\u003cp\u003eThe process of \u0026ldquo;replying\u0026rdquo; and sending a webmention to a post is \u003cem\u003estill\u003c/em\u003e a bit cumbersome.  Here are the current steps:\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003eRead an article that I want to respond to\u003c/li\u003e\n\u003cli\u003eDetermine if the article supports webmentions (either they offer a URL box OR you have to view the source to see if they have a webmention endpoint).\u003c/li\u003e\n\u003cli\u003eCopy the URL\u003c/li\u003e\n\u003cli\u003ePaste the URL into the \u0026ldquo;reply box\u0026rdquo; in something like \u003ca href=\"https://ll.p3k.io\"\u003eQuill\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003eWrite your reply\u003c/li\u003e\n\u003c/ol\u003e\n\u003cp\u003eIt \u003cem\u003eworks\u003c/em\u003e, but it\u0026rsquo;s not ideal.  Also, the average user is not going to go through the trouble of doing all of this.\u003c/p\u003e\n\u003cp\u003e\u003cem\u003e\u0026ldquo;There must be a better way\u0026hellip;\u0026rdquo;\u003c/em\u003e\u003c/p\u003e\n\u003ch3 id=\"solution\"\u003eSolution\u003c/h3\u003e\n\u003cp\u003eI am proposing a brower extension that you would authenticate with your \u003ca href=\"https://indieweb.org/Micropub\"\u003emicropub\u003c/a\u003e endpoint using \u003ca href=\"https://indieauth.com/\"\u003eIndieAuth\u003c/a\u003e.  Once authenticated, the steps to reply to a post become as followed:\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003eIf the site supports webmentions, the plugin will have an active icon\u003c/li\u003e\n\u003cli\u003eClick the icon to reveal a text box\u003c/li\u003e\n\u003cli\u003eType your response and click send\u003c/li\u003e\n\u003c/ol\u003e\n\u003cp\u003e(behind the scenes, the extension posts the reply to your blog and then sends a webmention to the URL you are replying to)\u003c/p\u003e\n\u003cp\u003eThis would greatly reduce the friction of using webmentions for responses to posts and I believe would further the adoption of this technology.\u003c/p\u003e\n\u003cp\u003eMaybe I will get around to building this someday\u0026hellip;\u003c/p\u003e\n\u003cp\u003eLet me know what you think by sending me a webmention ;)\u003c/p\u003e\n\u003cp\u003efoo\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-03-02T02:59:25Z",
+        "date_modified" : "2023-03-02T02:59:25Z",
+        "id" : "https://brandontreb.ngrok.io/2023/03/02/ev9lxom16qiab2glbmhtwg/",
+        "url" : "https://brandontreb.ngrok.io/2023/03/02/ev9lxom16qiab2glbmhtwg/",
+        "content_html" : "\u003cp\u003eMark the calendar. My oldest son finally beat me at chess tonight (ignore his disheveled hair).\u003c/p\u003e\n\u003cp\u003eEvery part of me wants to say something about how I shouldn’t have played him tonight because I’m tired and have a headache, but I won’t. I’ll give him this one.\u003c/p\u003e\n\u003cp\u003eCongrats son.\u003c/p\u003e\n\u003cp\u003e♟️\u003c/p\u003e\n\u003cp\u003e\u003cimg src=\"/uploads/2023/1677725965061.eli0u4z52ec5jv1xncgi36.jpg\" alt=\"\"\u003e\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-03-01T00:56:42Z",
+        "date_modified" : "2023-03-01T00:56:42Z",
+        "id" : "https://brandontreb.ngrok.io/2023/03/01/nh8sg1ths7oqc6aadfv0z/",
+        "url" : "https://brandontreb.ngrok.io/2023/03/01/nh8sg1ths7oqc6aadfv0z/",
+        "content_html" : "\u003cp\u003eSmokin 🔥\u003c/p\u003e\n\u003cp\u003e\u003cimg src=\"/uploads/2023/1677632201664.ob6c5gvtrpntelfmtcbztn.jpg\" alt=\"\"\u003e\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-02-28T14:45:56Z",
+        "date_modified" : "2023-02-28T14:45:56Z",
+        "id" : "https://brandontreb.ngrok.io/2023/02/28/hotj6u3mbiwl3c26cbfbo9/",
+        "url" : "https://brandontreb.ngrok.io/2023/02/28/hotj6u3mbiwl3c26cbfbo9/",
+        "content_html" : "\u003cp\u003eI’m trying \u003cem\u003ereally\u003c/em\u003e hard to resist writing a “per my last email” response to a former client that keeps asking me the same question over and over again.\u003c/p\u003e\n\u003cp\u003eBeing a professional is hard…\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-02-28T00:22:36Z",
+        "date_modified" : "2023-02-28T00:22:36Z",
+        "id" : "https://brandontreb.ngrok.io/2023/02/28/2dfmw5l70p5ls6aoy4lwor/",
+        "url" : "https://brandontreb.ngrok.io/2023/02/28/2dfmw5l70p5ls6aoy4lwor/",
+        "content_html" : "\u003cp\u003e\u003cimg src=\"https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659905828i/7235533.jpg\" alt=\"\"\u003e\nCurrently reading: \u003ca href=\"https://www.amazon.com/Way-Kings-Brandon-Sanderson/dp/0765365278/ref=nodl_?dplnkId=8f04ef1d-9c6a-41bb-8ed2-817c7d478f79\"\u003eThe Way of Kings\u003c/a\u003e by Brandon Sanderson\u003c/p\u003e\n\u003cp\u003eThank you everyone on \u003ca href=\"https://micro.blog\"\u003emicro.blog\u003c/a\u003e for the suggestion. I’m absolutely loving it so far!\u003c/p\u003e\n\u003cp\u003e📚\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-02-27T00:28:01Z",
+        "date_modified" : "2023-02-27T00:28:01Z",
+        "id" : "https://brandontreb.ngrok.io/2023/02/27/umo727yxd7t8h3kobz67e/",
+        "url" : "https://brandontreb.ngrok.io/2023/02/27/umo727yxd7t8h3kobz67e/",
+        "content_html" : "\u003cp\u003e\u003cimg src=\"http://www.jgallant.com/wp-content/uploads/2017/01/maq8M.gif\" alt=\"\"\u003e\u003c/p\u003e\n\u003cp\u003e\u003ca href=\"http://www.jgallant.com/2d-liquid-simulator-with-cellular-automaton-in-unity/\"\u003e2D Liquid Simulator With Cellular Automaton\u003c/a\u003e\u003c/p\u003e\n\u003cblockquote\u003e\n\u003cp\u003eOne interesting way to represent liquids in a grid based world, is to use a form of cellular automaton.\u003c/p\u003e\n\u003c/blockquote\u003e\n\u003cp\u003eI love seeing when complex behavior emerges from simple rules. This is \u003cem\u003every\u003c/em\u003e cool.\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-02-26T23:27:43Z",
+        "date_modified" : "2023-02-26T23:27:43Z",
+        "id" : "https://brandontreb.ngrok.io/2023/02/26/nlen3252q9iri3ngq2s3r/",
+        "url" : "https://brandontreb.ngrok.io/2023/02/26/nlen3252q9iri3ngq2s3r/",
+        "content_html" : "\u003cp\u003eExtremely high winds 💨🍃at the soccer tournament today.\u003c/p\u003e\n\u003cp\u003eThey ended up cancelling all of the games at the same time so we had the privilege of sitting in 1.5 hour traffic in order to exit the complex.\u003c/p\u003e\n\u003cp\u003eTime for pizza 🍕\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-02-25T20:22:04Z",
+        "date_modified" : "2023-02-25T20:22:04Z",
+        "id" : "https://brandontreb.ngrok.io/2023/02/25/dswxz1kjm3wp72jezzusv/",
+        "url" : "https://brandontreb.ngrok.io/2023/02/25/dswxz1kjm3wp72jezzusv/",
+        "content_html" : "\u003cp\u003e\u003ca href=\"https://grifel.dev/decentralization/\"\u003eSelf hosting in 2023\u003c/a\u003e\u003c/p\u003e\n\u003cblockquote\u003e\n\u003cp\u003eThe blog that you are currently reading has a perfect PageSpeed score 100 / 100\u003c/p\u003e\n\u003c/blockquote\u003e\n\u003cp\u003ePretty cool write up of how to achieve solid performance hosting a (static) site on a Raspberry Pi in your closet.\u003c/p\u003e\n\u003cp\u003eSelf-hosting fascinates me to no end.\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-02-25T02:51:47Z",
+        "date_modified" : "2023-02-25T02:51:47Z",
+        "id" : "https://brandontreb.ngrok.io/2023/02/25/q7i77yu6u5nwpc8stw1pu9/",
+        "url" : "https://brandontreb.ngrok.io/2023/02/25/q7i77yu6u5nwpc8stw1pu9/",
+        "content_html" : "\u003cp\u003eOperation 🩺\u003c/p\u003e\n\u003cp\u003e\u003cimg src=\"/uploads/2023/1677293507137.oqildkgx4cejk9vys88nqd.jpg\" alt=\"\"\u003e\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-02-25T01:58:33Z",
+        "date_modified" : "2023-02-25T01:58:33Z",
+        "id" : "https://brandontreb.ngrok.io/2023/02/25/ewqb6pkro1ichlz44u31vq/",
+        "url" : "https://brandontreb.ngrok.io/2023/02/25/ewqb6pkro1ichlz44u31vq/",
+        "content_html" : "\u003cp\u003e✅ Achievement unlocked! My 14yo laughed at one of my dad jokes!\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-02-24T00:44:37Z",
+        "date_modified" : "2023-02-24T00:44:37Z",
+        "id" : "https://brandontreb.ngrok.io/2023/02/24/gyos6swj9c6d0pjyprucql/",
+        "url" : "https://brandontreb.ngrok.io/2023/02/24/gyos6swj9c6d0pjyprucql/",
+        "content_html" : "\u003cp\u003e\u003ca href=\"https://feeds.feedblitz.com/~/728361320/0/sethsblog~Checking-the-date/\"\u003eChecking The Date\u003c/a\u003e\u003c/p\u003e\n\u003cblockquote\u003e\n\u003cp\u003eEvery day is April Fools from now on, let’s not get fooled.\u003c/p\u003e\n\u003c/blockquote\u003e\n"
+    },
+    {
+        "date_published" : "2023-02-24T00:36:43Z",
+        "date_modified" : "2023-02-24T00:36:43Z",
+        "id" : "https://brandontreb.ngrok.io/2023/02/24/jwio7c0skeegrcgl7rq0s/",
+        "url" : "https://brandontreb.ngrok.io/2023/02/24/jwio7c0skeegrcgl7rq0s/",
+        "content_html" : "\u003cp\u003eAnother day of snowboarding in the books. I had a great time going with friends. It was cold and snowy, but the powder was awesome.\u003c/p\u003e\n\u003cp\u003eI even landed some 360’s today 🏂\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-02-22T14:53:16Z",
+        "date_modified" : "2023-02-22T14:53:16Z",
+        "id" : "https://brandontreb.ngrok.io/2023/02/22/w1rxgvombin13r6tcxifl/",
+        "url" : "https://brandontreb.ngrok.io/2023/02/22/w1rxgvombin13r6tcxifl/",
+        "content_html" : "\u003cp\u003e\u003ca href=\"https://shkspr.mobi/blog/2023/02/necroposting-blogging-from-before-you-started-blogging/\"\u003eNecroposting – blogging from before you started blogging\u003c/a\u003e\u003c/p\u003e\n\u003cblockquote\u003e\n\u003cp\u003eIt\u0026rsquo;s pretty simple. I copy and paste the text, set the published date to be in the past and - presto chango - history is rewritten.\u003c/p\u003e\n\u003c/blockquote\u003e\n\u003cp\u003eThis is a pretty cool idea.\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-02-22T14:23:49Z",
+        "date_modified" : "2023-02-22T14:23:49Z",
+        "id" : "https://brandontreb.ngrok.io/2023/02/22/yzir4cq931lqq8hk6e1zr/",
+        "url" : "https://brandontreb.ngrok.io/2023/02/22/yzir4cq931lqq8hk6e1zr/",
+        "content_html" : "\u003cp\u003e@ \u003ca href=\"https://rockzillatour.com/\"\u003eRockzilla\u003c/a\u003e\u003c/p\u003e\n\u003cp\u003eWe had such a fun night. I got to experience my son’s very first “mosh pit” with him. 🤘\u003c/p\u003e\n\u003cp\u003e\u003cimg src=\"/uploads/2023/1677075829596.6z5qppxhsavn1va05028g.jpg\" alt=\"\"\u003e\u003c/p\u003e\n"
+    },
+    {
+        "date_published" : "2023-02-21T17:34:01Z",
+        "date_modified" : "2023-02-21T17:34:01Z",
+        "id" : "https://brandontreb.ngrok.io/2023/02/21/ndacaue1ae9q11km5c3tk/",
+        "url" : "https://brandontreb.ngrok.io/2023/02/21/ndacaue1ae9q11km5c3tk/",
+        "content_html" : "\u003cp\u003eHow long are you supposed to wait in a Zoom meeting room for the host to arrive before you bail relieved that you got out of another meeting?\u003c/p\u003e\n\u003cp\u003e\u003cem\u003eAsking for a friend\u003c/em\u003e\u003c/p\u003e\n"
+    }
+    ]
+}

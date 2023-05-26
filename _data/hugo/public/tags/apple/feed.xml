@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>apple on Brandon Trebitowski</title>
+    <link>https://brandontreb.ngrok.io/tags/apple/</link>
+    <description>Recent content in apple on Brandon Trebitowski</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>brandontreb@gmail.com (|Zero Cool|)</managingEditor>
+    <webMaster>brandontreb@gmail.com (|Zero Cool|)</webMaster>
+    <lastBuildDate>Mon, 25 Apr 2022 13:49:34 +0000</lastBuildDate><atom:link href="https://brandontreb.ngrok.io/tags/apple/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Apple Removing Apps Older Than 2 Years</title>
+      <link>https://brandontreb.ngrok.io/2022/04/25/apple-removing-apps/</link>
+      <pubDate>Mon, 25 Apr 2022 13:49:34 +0000</pubDate>
+      <author>brandontreb@gmail.com (|Zero Cool|)</author>
+      <guid>https://brandontreb.ngrok.io/2022/04/25/apple-removing-apps/</guid>
+      <description>Apple says they&#39;re removing my game because it&#39;s more than 2 years old
+This HN thread really resonated with me. I have been building and publishing iOS apps since the dawn of the App Store in 2008. In those 14 years, I have shipped over 200 apps, and do you want to know how many are still in the App Store? Zero.
+Some of these takedowns are due to startups failing or clients deciding to go in another direction, but still quite a few are forced out due to Apple’s update policy.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://brandontreb.ngrok.io/2020/10/16/8584/</link>
+      <pubDate>Fri, 16 Oct 2020 02:23:04 +0000</pubDate>
+      <author>brandontreb@gmail.com (|Zero Cool|)</author>
+      <guid>https://brandontreb.ngrok.io/2020/10/16/8584/</guid>
+      <description>Great family day at the Apple Orchard</description>
+    </item>
+    
+  </channel>
+</rss>

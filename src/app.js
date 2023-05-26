@@ -5,20 +5,18 @@ const compression = require('compression');
 const cors = require('cors');
 const httpStatus = require('http-status');
 const session = require('express-session');
-const config = require('./config/config');
 const morgan = require('./config/morgan');
 const { authLimiter } = require('./middlewares/rateLimiter');
 const routes = require('./routes');
 const { errorConverter, errorHandler } = require('./middlewares/error');
 const ApiError = require('./utils/ApiError');
-const methodOverride = require('method-override')
+const methodOverride = require('method-override');
+const {systemService, hugoService} = require('./services');
 
 const app = express();
 
-if (config.env !== 'test') {
-  app.use(morgan.successHandler);
-  app.use(morgan.errorHandler);
-}
+app.use(morgan.successHandler);
+app.use(morgan.errorHandler);
 
 // set security HTTP headers
 app.use(helmet({
@@ -45,8 +43,15 @@ app.options('*', cors());
 // override with POST having ?_method=DELETE
 app.use(methodOverride('_method'));
 
+// Check if app installed
+if(!systemService.isInstalled()) {
+  systemService.install();  
+}
+hugoService.generateSite();
+
 // Session configuration
-app.set('trust proxy', 1)
+app.set('trust proxy', 1);
+const config = require('./config/config');
 app.use(session({
   key: 'spore.blog.session',
   secret: config.jwt.secret,
