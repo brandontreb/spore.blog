@@ -1,5 +1,5 @@
 {
-  "baseURL": "[BASE_URL]",
+  "baseURL": "",
   "languageCode": "en-us",
   "title": "[TITLE]",
   "theme": "theme-default",

@@ -86,8 +86,7 @@ const generateSite = async () => {
   logger.debug('Generating site');  
   // Generate the site
   return new Promise(async (resolve, reject) => {
-    try {        
-      await copyConfig();
+    try {              
       const result =  execSync(`hugo --source data/hugo --cleanDestinationDir`);
       logger.debug(`hugo --source data/hugo`);
       // logger.debug(`${JSON.stringify(result)}`); 
@@ -181,19 +180,8 @@ const updateConfig = async (config) => {
   // Merge the new config with the current config
   config = Object.assign(hugo, config);
   // Write the config to disk
-  fs.writeFileSync('hugo/config.json', JSON.stringify(config, null, 2), 'utf8');  
-  await copyConfig();
+  fs.writeFileSync('data/hugo/config.json', JSON.stringify(config, null, 2), 'utf8');    
   return getConfig();
-}
-
-const copyConfig = () => {
-  return;
-  // Copy the config from the hugo folder to the data folder
-  logger.debug('Copying config');
-  // Delete admin section from config
-  let hugo = getConfig();
-  delete hugo.admin;
-  fs.writeFileSync('data/hugo/config.json', JSON.stringify(hugo, null, 2), 'utf8');
 }
 
 module.exports = {

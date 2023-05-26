@@ -2,8 +2,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const logger = require('../config/logger');
 const isInstalled = () => {
-  // check if hugo/config file exists
-  // const configPath = path.join(__dirname, '../../hugo/config.json');
+  // check if hugo/config file exists 
   return fs.existsSync('data/hugo/config.json');
 };
 
@@ -32,15 +31,13 @@ const install = async () => {
 
   // Copy the contents from hugo/themes/theme-blank to all of the theme folders inside of data/hugo/themes
   const themeBlankPath = path.join(__dirname, '../../hugo/themes/theme-blank');
-  const themeFolders = fs.readdirSync(hugoThemesPath);
-  console.log(`themeFolders: ${themeFolders}`);
+  const themeFolders = fs.readdirSync(hugoThemesPath);  
   themeFolders.forEach((themeFolder) => {
-    const themePath = path.join(hugoThemesPath, themeFolder);
-    console.log(`Copying ${themeBlankPath} to ${themePath}`);
+    const themePath = path.join(hugoThemesPath, themeFolder);    
     fs.copySync(themeBlankPath, themePath, { overwrite: false });
   }
   );
-
+  logger.debug('Installation complete');
 };
 
 module.exports = {

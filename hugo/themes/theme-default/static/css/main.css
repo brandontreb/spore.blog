@@ -186,3 +186,7 @@ h1 { font-size: 26px; margin-bottom: 0px; }
 video {
 	max-width: 100%;
 }
+
+#post-meta {
+  display: none;
+}
