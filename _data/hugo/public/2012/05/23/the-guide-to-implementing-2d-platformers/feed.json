@@ -1,6 +1,0 @@
-{
-  "name": "The guide to implementing 2D platformers",  
-  "content": "\u003ca href=\"http://higherorderfun.com/blog/2012/05/20/the-guide-to-implementing-2d-platformers/\" title=\"\" target=\"\"\u003ehttp://higherorderfun.com/blog/2012/05/20/the-guide-to-implementing-2d-platformers/\u003c/a\u003e \n\n\u003cdiv\u003e\n\u003c/div\u003e\n\n\u003cdiv\u003e\n  An incredible guide detailing many of the tricks/design patterns used in 2D platformers. \u0026nbsp;Although there isn\u0026#8217;t much code to look at, the higher level ideas detailed in the article are invaluable.\n\u003c/div\u003e\n\n\u003cdiv style=\"\"\u003e\n  \u003ca href=\"http://twitter.com/share\" class=\"twitter-share-button\" data-count=\"horizontal\" data-text=\"The guide to implementing 2D platformers\" data-url=\"http://brandontreb.com/the-guide-to-implementing-2d-platformers\"  data-via=\"brandontreb\" data-related=\"brandontreb:\"\u003eTweet\u003c/a\u003e\n\u003c/div\u003e\n",
-  "permalink" : "https://brandontreb.ngrok.io/2012/05/23/the-guide-to-implementing-2d-platformers/",
-  "date":"2012-05-23T00:00:00Z","draft":false,"iscjklanguage":false,"lastmod":"2012-05-23T00:00:00Z","post_type":"article","publishdate":"2012-05-23T00:00:00Z","slug":"the-guide-to-implementing-2d-platformers","tags":["Uncategorized"],"title":"The guide to implementing 2D platformers","type":"post"
-}

@@ -1,6 +1,0 @@
-{
-  "name": "Photos",  
-  "content": "---\ntitle: Photos\nlayout: \"list.photoshtml\"\npost_type: \"page\"\n---",
-  "permalink" : "https://brandontreb.ngrok.io/photos/",
-  "draft":false,"iscjklanguage":false,"layout":"list.photoshtml","post_type":"page","title":"Photos"
-}
