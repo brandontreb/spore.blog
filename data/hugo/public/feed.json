@@ -1,9 +1,0 @@
-{
-	"version": "https://jsonfeed.org/version/1",
-	"title": "[TITLE]",
-	"icon": "https://i.pravatar.cc/300",
-	"home_page_url": "[BASE_URL]",
-	"feed_url": "[BASE_URL]feed.json",
-	"items": [
-	]
-}
