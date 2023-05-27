@@ -5,6 +5,7 @@ const markdownLinkExtractor = require('markdown-link-extractor');
 
 const logger = require('../config/logger');
 const config = require('../config/config');
+const utils = require('../utils/utils');
 
 const folderForPostType = (post_type = 'post') => {  
   switch(post_type) {
@@ -167,18 +168,14 @@ const getLinksFromFrontMatterAndContent = (frontMatter, content) => {
 
 const getConfig = () => {
   // Get the config from disk
-  logger.debug('Getting config');  
-  const hugo = config.hugo.config;
-  return hugo;
+  return JSON.parse(fs.readFileSync('data/hugo/config.json', {"flag": 'rs'}))
 }
 
 const updateConfig = async (config) => {
   // Update the config
-  logger.debug('Updating config %o', config);
-  // Get the current config  
-  let hugo = getConfig();
+  let hugo = getConfig();  
   // Merge the new config with the current config
-  config = Object.assign(hugo, config);
+  config = utils.deepMerge(hugo, config);  
   // Write the config to disk
   fs.writeFileSync('data/hugo/config.json', JSON.stringify(config, null, 2), 'utf8');    
   return getConfig();

@@ -21,7 +21,9 @@
     "token_endpoint": "https://tokens.indieauth.com/token",
     "micropub_endpoint": "[BASE_URL]/micropub",
     "webmention_endpoint": "https://webmention.io/[BASE_URL]/webmention",
-    "theme_seconds": 1
+    "theme_seconds": 1,
+    "meta_description": "",
+    "favicon": "🦠"
   },
   "menu": {
     "main": [     
@@ -97,7 +99,5 @@
   },
   "ignoreErrors": [
     "error-output-taxonomy"
-  ],
-  "meta_description": "",
-  "favicon": ""
+  ]  
 }

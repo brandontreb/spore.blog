@@ -24,7 +24,7 @@
 
         <p>
           <label for="meta_description">Meta description:</label>
-          <textarea name="meta_description" rows="2" id="id_meta_description"><%- locals.hugo.meta_description %></textarea>
+          <textarea name="params[meta_description]" rows="2" id="id_meta_description"><%- locals.hugo.params.meta_description %></textarea>
           <span class="helptext">Max 200 characters</span>
         </p>
         <p>
@@ -32,7 +32,7 @@
         </p>
         <p>
           <label for="favicon" style="line-height: 2.4;">Favicon: &nbsp;</label>
-          <input type="text" name="favicon" id="favicon" class="favicon" value="<%- locals.hugo.favicon %>" id="favicon" />
+          <input type="text" name="params[favicon]" id="favicon" class="favicon" value="<%- locals.hugo.params.favicon %>" id="favicon" />
           <span class="helptext"><a target="_blank" href="https://getemoji.com/">Get an emoji</a></span>
         </p>
 

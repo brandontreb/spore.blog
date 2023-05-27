@@ -16,7 +16,7 @@ const update = catchAsync(async(req, res) => {
 });
 
 const index = catchAsync(async(req, res) => {
-  const hugo = hugoService.getConfig();
+  const hugo = hugoService.getConfig();  
   res.render('admin/index', {
     admin_title: 'admin',
     hugo,

@@ -8,6 +8,7 @@ const update = {
     theme: Joi.string().optional().allow(null, ''),
     meta_description: Joi.string().optional().allow(null, ''),
     favicon: Joi.string().optional().allow(null, ''),
+    params: Joi.object().optional().allow(null, ''),
     // paginate: Joi.number().optional().allow(null, ''),
     // summaryLength: Joi.number().optional().allow(null, ''),
     // rssLimit: Joi.number().optional().allow(null, ''),

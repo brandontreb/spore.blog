@@ -30,7 +30,7 @@ module.exports = {
     refreshExpirationDays: envVars.JWT_REFRESH_EXPIRATION_DAYS,    
   },  
   hugo: {
-    config:  fs.existsSync('data/hugo/config.json') ? JSON.parse(fs.readFileSync('data/hugo/config.json', 'utf8')) : {},
+    config:  (() => {return fs.existsSync('data/hugo/config.json') ? JSON.parse(fs.readFileSync('data/hugo/config.json', {"flag": 'rs'}, 'utf8')) : {}})(),
     contentDir: 'data/hugo/content',
     staticDir: 'data/hugo/static',
   }

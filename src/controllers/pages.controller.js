@@ -119,6 +119,7 @@ const createRedirect = async (req, res) => {
         from: from,
         redirect: to,
         post_type: 'redirect',
+        type: 'redirect',
         slug: slug
       },
     }

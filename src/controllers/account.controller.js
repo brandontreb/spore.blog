@@ -30,6 +30,7 @@ const update = catchAsync(async(req, res) => {
 
 const index = catchAsync(async(req, res) => {
   const hugo = hugoService.getConfig();
+  console.log('hugo', hugo);
   res.render('admin/account', {
     admin_title: 'account',
     hugo,
