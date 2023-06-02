@@ -43,7 +43,7 @@ router.use('/menus', require('./menu.route'));
 //   .post(validate(adminValidation.install), adminController.install);
 
 // // Other Admin Routes
-// router.use('/auth', require('./auth.route'));
+router.use('/auth', require('./auth.route'));
 // router.use('/import', require('./import.route'));
 
 module.exports = router;
