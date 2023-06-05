@@ -1,9 +1,6 @@
-const config = require('../config/config');
 const catchAsync = require('../utils/catchAsync');
-const httpStatus = require('http-status');
-const ApiError = require('../utils/ApiError');
 const logger = require('../config/logger');
-const {hugoService, pluginService} = require('../services');
+const {hugoService, systemService, userService} = require('../services');
 
 const update = catchAsync(async(req, res) => {
   let config = {
@@ -41,11 +38,8 @@ const newMenuItem = catchAsync(async(req, res) => {
 
 const getMenuItem = catchAsync(async(req, res) => {
   const hugo = hugoService.getConfig();  
-  let url = decodeURIComponent(req.query.url);
-  console.log(url);
-  console.log(hugo.menu.main)
-  const menu_item = hugo.menu.main.find(item => item.url === url);
-  console.log(menu_item);
+  let url = decodeURIComponent(req.query.url);  
+  const menu_item = hugo.menu.main.find(item => item.url === url);  
   res.render('admin/menu_item', {
     admin_title: 'edit menu item',
     menu_item,
@@ -87,6 +81,66 @@ const deleteMenuItem = catchAsync(async(req, res) => {
   hugoService.generateSite();
   req.flash('success', 'Menu item deleted successfully, regenerating site...');
   res.redirect('/admin/menus');
+});
+
+const install = catchAsync(async(req, res) => {
+  let hugo = res.locals.hugo;
+  let body = req.body;
+
+  // // Redirect if the blog is already installed
+  if (hugo) {
+    return res.redirect('/admin');
+  }
+
+  // If this is a GET request, render the install page  
+  if (req.method === 'GET' || Object.keys(body).length === 0) {
+    return res.render('admin/install', {
+      admin_title: 'Install',
+      baseURL: req.protocol + '://' + req.get('host')
+    });
+  }
+
+  // Ensure that password matches password_again
+  if (body.password !== body.password_again) {
+    req.flash('error', 'Passwords do not match');
+    return res.render('admin/install', {
+      admin_title: 'Install',
+      title: body.title,
+      baseURL: body.baseURL,  
+      name: body.name,
+      email: body.email,
+    });
+  }
+
+  await systemService.install();
+  
+  // Update the config
+  let config = req.body;
+  let user = {
+    email: config.email,
+    password: config.password
+  }
+
+  delete config.password;
+  delete config.password_again;
+  delete config.email;
+
+  config = {
+    "Author": {
+      "name": config.name,
+      "email": user.email,
+      "url" : config.baseURL
+    },
+    "baseURL": config.baseURL,
+    "title": config.title    
+  }
+
+  await hugoService.updateConfig(config);  
+  await userService.createUser(user.email, user.password);
+  await hugoService.generateSite();
+
+  req.flash('success', 'Blog installed successfully. Please log in.');
+  return res.redirect('/admin/auth/login');  
 });
 
 /*const updateBlog = catchAsync(async(req, res) => {
@@ -321,4 +375,5 @@ module.exports = {
   updateMenuItem,
   createMenuItem,
   deleteMenuItem,
+  install,
 };

@@ -33,5 +33,6 @@ module.exports = {
     config:  (() => {return fs.existsSync('data/hugo/config.json') ? JSON.parse(fs.readFileSync('data/hugo/config.json', {"flag": 'rs'}, 'utf8')) : {}})(),
     contentDir: 'data/hugo/content',
     staticDir: 'data/hugo/static',
-  }
+  },
+  user: (() => {return fs.existsSync('data/user.json') ? JSON.parse(fs.readFileSync('data/user.json', {"flag": 'rs'}, 'utf8')) : null})()
 };

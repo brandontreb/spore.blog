@@ -43,11 +43,15 @@ app.options('*', cors());
 // override with POST having ?_method=DELETE
 app.use(methodOverride('_method'));
 
-// Check if app installed
-if(!systemService.isInstalled()) {
-  systemService.install();  
-}
-hugoService.generateSite();
+app.use('*', async (req, res, next) => {  
+  if(!systemService.isInstalled() && 
+    !req.originalUrl.includes('admin/install') &&
+      !req.originalUrl.includes('.css') && 
+      !req.originalUrl.includes('.js')) {   
+    return res.redirect('/admin/install');
+  }  
+  next();
+});
 
 // Session configuration
 app.set('trust proxy', 1);

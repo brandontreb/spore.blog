@@ -10,6 +10,10 @@ router.route('/login')
   .get(auth(false), authController.getLogin)
   .post(validate(authValidation.login), authController.loginWithEmailAndPassword);
 
+router.route('/resetLogin')
+  .get(auth(false), authController.resetLogin)
+  .post(validate(authValidation.login), authController.resetLogin);
+
 router.get('/logout', authController.logout);
 
 module.exports = router;

@@ -1,14 +1,13 @@
 {
   "baseURL": "",
   "languageCode": "en-us",
-  "title": "[TITLE]",
+  "title": "",
   "theme": "theme-default",
   "Author": {
-    "email": "[AUTHOR_EMAIL]",
-    "username": "[AUTHOR_USERNAME]",
-    "name": "[AUTHOR_NAME]",
-    "url": "[AUTHOR_URL]",
-    "note": "[AUTHOR_NOTE]",
+    "email": "",    
+    "name": "",
+    "url": "",
+    "note": "",
     "avatar": "https://i.pravatar.cc/300"
   },
   "params": {

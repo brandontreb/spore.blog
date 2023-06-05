@@ -1,21 +1,28 @@
 const catchAsync = require('../utils/catchAsync');
 const config = require('../config/config');
-const { authService } = require('../services');
+const { userService } = require('../services');
 const logger = require('../config/logger');
 
 const getLogin = catchAsync(async(req, res) => {
+  if(!await userService.userExists()) {
+    return res.redirect('/admin/auth/resetLogin');
+  }
+
   if (req.query.redirect) {
     req.session.redirect = req.query.redirect;
   }
-
   res.render('admin/login', {
     admin_title: 'Login',
   });
 });
 
 const loginWithEmailAndPassword = catchAsync(async(req, res, next) => {
+  if(!await userService.userExists()) {
+    return res.redirect('/admin/auth/resetLogin');
+  }
+
   const { email, password } = req.body;
-  const authenticated = await authService.loginWithEmailAndPassword(email, password);
+  const authenticated = await userService.loginWithEmailAndPassword(email, password);
 
   logger.debug('Authenticated: %j', authenticated);  
   if (authenticated || config.dev) {
@@ -54,8 +61,28 @@ const logout = catchAsync(async(req, res, next) => {
   });
 });
 
+const resetLogin = catchAsync(async(req, res, next) => {
+  if(await userService.userExists()) {
+    res.flash('error', 'A user already exists');
+    return res.redirect('/admin/auth/login');
+  }
+
+  if(req.method === 'POST') {
+    const { email, password } = req.body;
+    await userService.createUser(email, password);
+    res.flash('success', 'Successfully created user. Please login.');
+    return res.redirect('/admin/auth/login');
+  }
+
+  res.render('admin/login', {
+    admin_title: 'Reset Login',
+    post: 'resetLogin'
+  });
+});
+
 module.exports = {
   getLogin,
   loginWithEmailAndPassword,
   logout,
+  resetLogin,
 }

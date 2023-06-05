@@ -38,9 +38,9 @@ router.use('/menus', require('./menu.route'));
 //   .delete(auth(true), validate(adminValidation.deletePost), adminController.deletePost);
 
 // // Install
-// router.route('/install')
-//   .get(auth(false), adminController.install)
-//   .post(validate(adminValidation.install), adminController.install);
+router.route('/install')
+  .get(auth(false), adminController.install)
+  .post(validate(adminValidation.install), adminController.install);
 
 // // Other Admin Routes
 router.use('/auth', require('./auth.route'));

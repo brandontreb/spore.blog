@@ -3,4 +3,4 @@ module.exports.micropubService = require('./micropub.service');
 module.exports.hugoService = require('./hugo.service');
 module.exports.pluginService = require('./plugin.service');
 module.exports.systemService = require('./system.service');
-module.exports.authService = require('./auth.service');
+module.exports.userService = require('./user.service');
