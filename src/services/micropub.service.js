@@ -286,14 +286,14 @@ const transformPhotosInFrontMatter = (hugo, properties) => {
 
   if (hugo.frontMatter.photos) {    
     hugo.frontMatter.photos = hugo.frontMatter.photos.map(photo => {
-      let url = typeof photo === 'string' ? photo : photo.value;      
-      let alt = typeof photo === 'string' ? '' : photo.alt;
-      // if the photos is on this domain, we need to set path instead of url      
-      return {
-        url: url,
-        alt: alt
-      }
+      let url = typeof photo === 'string' ? photo : photo.value;       
+      return url;
     });
+    hugo.frontMatter.photos_alt = hugo.frontMatter.photos.map(photo => {      
+      let alt = typeof photo === 'string' ? '' : photo.alt;      
+      return alt;      
+    });
+    console.log(hugo.frontMatter);
   }  
 }
 
@@ -301,7 +301,13 @@ const addPhotosInFrontMatterToContent = (hugo, properties) => {
   // Insert photos into content
   if (hugo.frontMatter.photos) {
     hugo.frontMatter.photos.forEach(photo => {
-      hugo.content += `\n![${photo.alt}](${photo.url})`;
+      let url = typeof photo === 'string' ? photo : null;
+      let alt = hugo.frontMatter.photos_alt.length >= hugo.frontMatter.photos.indexOf(photo) 
+      ? hugo.frontMatter.photos_alt[hugo.frontMatter.photos.indexOf(photo)]
+      : '';
+      if(url) {
+        hugo.content += `\n\n![${alt}](${url})`;
+      }
     });
   }
 }

@@ -161,7 +161,7 @@ const getLinksFromFrontMatterAndContent = (frontMatter, content) => {
   // Remove duplicates
   links = [...new Set(links)];
   // Remove null and undefined
-  links = links.filter(link => link !== null && link !== undefined);
+  links = links.filter(link => link !== null && link !== undefined && link !== 'undefined');
   logger.debug('Links found in front matter and content: %o', links);
   return links;
 };

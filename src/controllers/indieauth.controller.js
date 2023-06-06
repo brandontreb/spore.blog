@@ -130,7 +130,7 @@ const token = async(req, res) => {
   });
 }
 
-/*
+
 const verifyToken = async(req, res) => {
   let token = req.headers.authorization;
 
@@ -162,10 +162,10 @@ const verifyToken = async(req, res) => {
     });
   }
 };
-*/
+
 module.exports = {
   auth,
   approve,
   token,
-  //verifyToken
+  verifyToken
 }
