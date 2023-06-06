@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="<%- hugo.languageCode %>">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<head>
+  <link rel="stylesheet" href="/styles/water.css">
+  <title>Authorization Request</title>
+
+
+  <style type="text/css">
+    .avatar {
+      object-fit: contain;
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+    }
+  </style>
+
+</head>
+
+<body>
+  <header>
+    <h1>Authorization Request</h1>
+  </header>
+  <content>
+    <% if(hugo.Author.avatar) { %>
+      <img class="u-photo avatar" src="<%- hugo.Author.avatar %>" width="65" height="65" />      
+    <% } %>
+          <h2><strong><a target="_blank" href="<%- client_id %>"><%- client_id %></a></strong><br /> wants to access your <strong><%- hugo.Author.name %></strong> account.</h2>
+          <span class="u-clear"></span>
+          <p>This will allow
+            <a target="_blank" href="<%- client_id %>">
+              <%- client_id %>
+            </a> access to:</p>
+          <ul>
+            <% scope.split(" ").forEach(function(scope) { %>
+              <li><strong><%- scope %></strong></li>
+              <% }); %>
+          </ul>
+          <h4>Make sure you trust
+            <%- client_id %>
+          </h4>
+
+          <p>You will be redirected to
+            <a href="<%- redirect_uri %>">
+              <%- redirect_uri %>
+            </a> after authorizing this application.</p>
+
+          <p>
+            <a href="/indieauth/approve">Allow</a> |
+            <a href="<%- redirect_uri %>?error=access_denied" class="text-danger">Cancel</a>
+          </p>
+
+  </content>
+</body>
+
+</html>

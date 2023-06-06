@@ -85,6 +85,16 @@ const deepMerge = (target, source) => {
   return target;
 }
 
+
+const normalizeUrl = (url) => {
+  url = url.trim();
+  // if url doesn't end with a / add it
+  if (url.substr(-1) !== '/') {
+    url += '/';
+  }
+  return url;
+}
+
   module.exports = {
     slugify,
     randomStringOfLength,
@@ -92,5 +102,6 @@ const deepMerge = (target, source) => {
     hostnameFromUrl,
     gravatarUrl,
     generateFaviconFromFile,
-    deepMerge
+    deepMerge,
+    normalizeUrl
   }

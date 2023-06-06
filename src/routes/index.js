@@ -1,6 +1,7 @@
 const express = require('express');
 const micropubRoute = require('./micropub.route');
 const adminRoute = require('./admin.route');
+const indieAuthRoute = require('./indieauth.route');
 
 const router = express.Router();
 
@@ -13,6 +14,10 @@ const defaultRoutes = [
     path: '/admin',
     route: adminRoute,
   },  
+  {
+      path: '/indieauth',
+      route: indieAuthRoute,
+  }
 ];
 
 

@@ -1,7 +1,6 @@
 const fs = require('fs-extra');
 const path = require('path');
 const logger = require('../config/logger');
-const bcrypt = require("bcrypt");
 
 const isInstalled = () => {
   // check if hugo/config file exists 
@@ -44,5 +43,5 @@ const install = async () => {
 
 module.exports = {
   isInstalled,
-  install  
+  install
 };
