@@ -27,8 +27,8 @@
 	{{ with .Site.Params.instagram_username }}
 		<link rel="me" href="https://instagram.com/{{ . }}" />
 	{{ end }}
-	<link rel="authorization_endpoint" href="{{.Site.Params.Authorization_endpoint}}" />
-	<link rel="token_endpoint" href="{{.Site.Params.Token_endpoint}}" />
+	<link rel="authorization_endpoint" href="{{ .Site.BaseURL }}{{.Site.Params.Authorization_endpoint}}" />
+	<link rel="token_endpoint" href="{{ .Site.BaseURL }}{{.Site.Params.Token_endpoint}}" />
 	<link rel="micropub" href="{{.Site.BaseURL}}/micropub" />
 	<link rel="microsub" href="{{.Site.BaseURL}}/microsub" />
 	<link rel="webmention" href="{{.Site.BaseURL}}/webmention" />	

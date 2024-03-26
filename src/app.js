@@ -86,6 +86,16 @@ if (config.env === 'production') {
   app.use('/v1/auth', authLimiter);
 }
 
+app.use(async (req, res, next) => {
+  // log request
+  console.log(`[${req.method}] ${req.originalUrl}`);
+  // log all params
+  console.log(req.params);
+  console.log(req.query);
+  console.log(req.body);
+  next();
+});
+
 // v1 api routes
 app.use('/', routes);
 
