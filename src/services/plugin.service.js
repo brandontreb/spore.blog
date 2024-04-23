@@ -1,7 +1,7 @@
 const simpleGit = require('simple-git');
 const fs = require('fs');
 
-const clonsePluginAtUrl = async (url) => {
+const clonePluginAtUrl = async (url) => {
   // git clone into data/plugins/name folder
   try {
     // Get the name of the plugin from the url    
@@ -50,7 +50,7 @@ const getPluginUrl = async (pluginName) => {
 }
 
 module.exports = {
-  clonsePluginAtUrl,
+  clonePluginAtUrl,
   getPluginList,
   getPluginUrl
 }
