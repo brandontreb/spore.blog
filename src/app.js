@@ -65,7 +65,7 @@ app.use(session({
     // 30 days
     maxAge: 60 * 60 * 24 * 30 * 1000,
     httpOnly: true,
-    secure: config.env === 'production',
+    secure: false,//config.env === 'production',
     sameSite: 'lax',
   },
 }));
