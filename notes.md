@@ -1,3 +1,7 @@
+# Bugs
+
+- editing menu items cause duplicates
+
 # TODO
 - Custom config pipeline (base -> custom -> generated)
 - Plugin pipeline (affects config) 
