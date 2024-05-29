@@ -1,4 +1,5 @@
 const {execSync} = require('child_process')
+const execute = require('async-execute');
 const YAML = require('yaml');
 const fs = require('fs');
 const markdownLinkExtractor = require('markdown-link-extractor');
@@ -58,7 +59,7 @@ const deletePost = (slug, post_type = 'post') => {
   fs.unlinkSync(`${config.hugo.contentDir}/${folder}/${slug}.md`);
 }
 
-const getPosts = (post_type) => {
+const getPosts = (post_type, sort = null, order = 'asc', limit = -1, offset = 0) => {
   // Get all posts from disk
   let folder = folderForPostType(post_type);
   logger.debug('Getting Posts: %s', folder);
@@ -67,12 +68,30 @@ const getPosts = (post_type) => {
 
   // Get all the files in the folder
   try {
-    posts = fs.readdirSync(`${config.hugo.contentDir}/${folder}`);    
+    posts = fs.readdirSync(`${config.hugo.contentDir}/${folder}`);           
+
     // Get the front matter for each file
     posts = posts.map((post) => {
       let slug = post.replace('.md', '');
       return getPostBySlug(slug, post_type);
     });
+
+    // Sort the posts take order into consideration
+    if (sort) {
+      posts = posts.sort((a, b) => {
+        if (order === 'asc') {
+          return a.frontMatter[sort] > b.frontMatter[sort] ? 1 : -1;
+        } else {
+          return a.frontMatter[sort] < b.frontMatter[sort] ? 1 : -1;
+        }
+      }
+      );
+    }
+
+    // Limit the number of posts
+    if (limit > 0) {
+      posts = posts.slice(offset, offset + limit);
+    }    
 
   } catch (error) {
     logger.error(error);
@@ -88,7 +107,7 @@ const generateSite = async () => {
   // Generate the site
   return new Promise(async (resolve, reject) => {
     try {              
-      const result =  execSync(`hugo --source data/hugo --cleanDestinationDir`);
+      const result =  await execute(`hugo --source data/hugo --cleanDestinationDir`);
       logger.debug(`hugo --source data/hugo`);
       // logger.debug(`${JSON.stringify(result)}`); 
       // console.log(result.stdout)      

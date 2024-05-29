@@ -62,6 +62,7 @@ const create = catchAsync(async (req, res) => {
         }
 
         json['post-status'] = json.draft && json.draft === true ? ['draft'] : ['published'];
+        json['draft'] = json['post-status'][0] === 'draft';
 
         // Build a source object
         let source = {
@@ -88,7 +89,7 @@ const create = catchAsync(async (req, res) => {
     }
     let slug = url.split('/').pop();        
     hugoService.deletePost(slug);
-    await hugoService.generateSite();
+    hugoService.generateSite();
     return res.status(httpStatus.NO_CONTENT).send();
   }
 
@@ -120,7 +121,7 @@ const create = catchAsync(async (req, res) => {
       }
 
       hugoService.updatePost(post, post.content);
-      await hugoService.generateSite();
+      hugoService.generateSite();
       return res.status(httpStatus.NO_CONTENT).send();
     }
   }
@@ -131,13 +132,17 @@ const create = catchAsync(async (req, res) => {
   // Process the micropub request
   let micropubDocument = req.is('json') ? micropubService.processJsonEncodedBody(body) : micropubService.processFormEncodedBody(body);
   // Convert the micropub document to hugo format
-  let {frontMatter, content} = micropubService.micropubDocumentToHugo(micropubDocument);
+  let {frontMatter, content} = micropubService.micropubDocumentToHugo(micropubDocument);  
+  frontMatter['draft'] = frontMatter['post-status'][0] === 'draft' 
+  || frontMatter['post-status'][0] === 'unpublished' ||
+  frontMatter['draft'] === true ? true : false;
+
   logger.debug('frontMatter: %o', frontMatter);
   logger.debug('content: %s', content);  
   // Create the hugo post
   hugoService.createPost(frontMatter, content);  
   // Rebuild the site
-  await hugoService.generateSite();
+  hugoService.generateSite();
   // Get the url of the post
   let url = hugoService.getPostUrl(frontMatter);
   // Send webmentions for replies if there are any
@@ -173,7 +178,7 @@ const media = catchAsync(async(req, res, next) => {
   }
 
   // Rebuild the site
-  await hugoService.generateSite();
+  hugoService.generateSite();
 
   return res.set({ 'Location': response.url }).status(httpStatus.CREATED).json(response);
 });

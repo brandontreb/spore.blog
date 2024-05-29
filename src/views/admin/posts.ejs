@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./partials/head'); %>
+</head>
+
+<body class="container">
+  <header>
+    <%- include('./partials/header'); %>
+  </header>
+  <main>
+    <content>
+      <button type="button" onclick="window.location.href='/admin/posts/new'">New Post</button>      
+      <h3>Posts</h3>
+      <table>
+      <thead>
+        <tr>
+          <th>&nbsp;</th>          
+          <th>&nbsp;</th>   
+          <th>&nbsp;</th>       
+        </tr>
+      </thead>
+      <% posts.forEach(function(post) { %>
+      <tr>                
+        <td><%= new Date(post.frontMatter.date).toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' }); %></td>
+        <td colspan="2"><%= post.frontMatter.draft ? "[Unpublished]" : ""%> <%= post.frontMatter.title && post.frontMatter.title.length ? post.frontMatter.title : post.frontMatter.post_type.charAt(0).toUpperCase() + post.frontMatter.post_type.substring(1) %></td>                            
+        <td style="text-align:center"><a <a href="/admin/posts/<%= post.frontMatter.slug %>">Edit</a></td>
+      </tr>
+      <% }); %>
+      </table>           
+    </content>
+    <button type="button" onclick="window.location.href='/admin/posts?page=<%= page + 1 %>'">Next</button>      
+  </main>
+  <footer>
+    <%- include('./partials/footer'); %>
+  </footer>
+
+</body>
+
+</html>

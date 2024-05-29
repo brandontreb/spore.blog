@@ -15,32 +15,32 @@
     <content>
 
       <p id="idTitle">
-        <% if(page.frontMatter.slug) { %>
-        <form method="post" action="/admin/pages/<%- page.frontMatter.slug %>?_method=put" style="display:inline">
+        <% if(post.frontMatter.slug) { %>
+        <form method="post" action="/admin/posts/<%- post.frontMatter.slug %>?_method=put" style="display:inline">
         <% } else { %>
-        <form method="post" action="/admin/pages/new" style="display:inline">
+        <form method="post" action="/admin/posts/new" style="display:inline">
         <% } %>
-          <label for="title">Title:</label>
-          <input type="text" id="title" name="title" value="<%- page.frontMatter.title %>">
+          <label for="frontMatter">Front Matter:</label>
+          <textarea id="frontMatter" name="frontMatter" value="<%- post.frontMatter %>"><%= post.frontMatterString %></textarea>
           <label for="content">Content (markdown): <span class="helptext"><a href="https://www.markdownguide.org/basic-syntax/" target="_blank">Markdown
                 reference</a></span></label>
-          <textarea id="content" name="content" rows="10"><%- page.content %></textarea>
+          <textarea id="content" name="content" rows="10"><%- post.content %></textarea>
           <br />
           <!-- Back Button-->
-          <button type="button" id="backButton" class="button" onclick="window.location.href='/admin/pages'"><span class="arrow">←</span>Back</button>
-          <% if(page.frontMatter.slug) { %>
+          <button type="button" id="backButton" class="button" onclick="window.location.href='/admin/posts'"><span class="arrow">←</span>Back</button>
+          <% if(post.frontMatter.slug) { %>
           <!-- Update Button-->
-          <button class="button-secondary" id="updateButton" class="button" type="submit">Update Page</button>
+          <button class="button-secondary" id="updateButton" class="button" type="submit">Update post</button>
           <% } else { %>
           <!-- Create Button-->
-          <button class="button-secondary" id="createButton" class="button" type="submit">Create Page</button>
+          <button class="button-secondary" id="createButton" class="button" type="submit">Publish</button>
           <% } %>        
         </form>
         
-        <% if(page.frontMatter.slug) { %>
+        <% if(post.frontMatter.slug) { %>
         <!-- Delete Button-->
-        <form method="post" action="/admin/pages/<%- page.frontMatter.slug %>?_method=delete" style="display:inline" onsubmit="return confirm('Are your sure you want to delete this page?');">
-          <button type="submit" id="deleteButton" class="button-danger">Delete Page</button>
+        <form method="post" action="/admin/posts/<%- post.frontMatter.slug %>?_method=delete" style="display:inline" onsubmit="return confirm('Are your sure you want to delete this post?');">
+          <button type="submit" id="deleteButton" class="button-danger">Delete post</button>
         </form>
         <% } %>
       </p>

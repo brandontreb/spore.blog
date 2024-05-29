@@ -48,6 +48,7 @@
     "prettier"
   ],
   "dependencies": {
+    "async-execute": "^1.2.0",
     "bcrypt": "^5.1.0",
     "bcryptjs": "^2.4.3",
     "compression": "^1.7.4",
@@ -74,6 +75,7 @@
     "multer": "^1.4.5-lts.1",
     "node-fetch": "2",
     "nodemailer": "^6.3.1",
+    "parser-front-matter": "^1.6.4",
     "pm2": "^5.1.0",
     "send-webmention": "^2.0.0",
     "sharp": "^0.31.3",
