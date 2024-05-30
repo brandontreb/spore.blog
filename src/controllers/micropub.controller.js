@@ -133,9 +133,11 @@ const create = catchAsync(async (req, res) => {
   let micropubDocument = req.is('json') ? micropubService.processJsonEncodedBody(body) : micropubService.processFormEncodedBody(body);
   // Convert the micropub document to hugo format
   let {frontMatter, content} = micropubService.micropubDocumentToHugo(micropubDocument);  
-  frontMatter['draft'] = frontMatter['post-status'][0] === 'draft' 
-  || frontMatter['post-status'][0] === 'unpublished' ||
-  frontMatter['draft'] === true ? true : false;
+  if(frontMatter['post-status'] && Array.isArray(frontMatter['post-status']) && frontMatter['post-status'].length > 0) {
+    frontMatter['draft'] = frontMatter['post-status'][0] === 'draft' 
+    || frontMatter['post-status'][0] === 'unpublished' ||
+    frontMatter['draft'] === true ? true : false;
+  }
 
   logger.debug('frontMatter: %o', frontMatter);
   logger.debug('content: %s', content);  
